@@ -13,8 +13,29 @@
 			h2 How it works
 
 		.phone
-			.screen
-			/ = image_tag 'green.png'
+			.carousel
+				ul
+					li.pane.green
+						.content
+							.skill-title
+								| User Interface Design, User Experience, UX/UI - Focus on Retention & Engagement
+							.skill-price
+								| $20/hr
+							.skill-user
+								.userpic = image_tag 'denis.jpg'
+								.name Benjamin Yoskovitz
+								.jobtitle CEO & Publisher, Owner Magazine
+								a.button[href='#']	Let’s connect
+
+					li.pane.yellow
+					li.pane.orange
+					li.pane.red
+					li.pane.blue
+				.nav
+					a.icon-menu[href='#']
+					a.icon-arrow[href='#']
+						span All skills
+					a.icon-messages[href='#']
 
 .how-it-works
 	.wrapper

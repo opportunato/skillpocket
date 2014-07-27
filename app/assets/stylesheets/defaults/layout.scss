@@ -37,6 +37,7 @@
 	p {
 		font-size: 1.2em;
 		line-height: 1.4;
+		font-family: Anonymous Pro;
 	}
 
 	h2 {
@@ -89,6 +90,7 @@
 	}
 
 	input[type=text] {
+		font-family: Anonymous Pro;
 		color: $color-black;
 		width: 100%;
 		width: 240px;
@@ -128,13 +130,14 @@
 		@include border-radius(18px);
 	}
 
-	.screen {
-		background: $color-screen-green;
+	.carousel {
+		background: $color-black;
 		width: 320px;
 		height: 568px;
 		position: absolute;
 		top: 130px; left: 50%;
-		margin-left: 160px;
+		margin-left: -160px;
+		overflow: hidden;
 	}
 }
 
