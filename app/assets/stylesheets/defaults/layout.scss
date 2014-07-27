@@ -1,0 +1,72 @@
+.main {
+	padding: 0 $padding/2;
+	width: $width-max;
+	margin: 0 auto;
+}
+
+.intro {
+	position: relative;
+	padding-top: $padding*2;
+}
+
+.phone, .about {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.about {
+	width: 610px;
+	padding-top: 145px;
+
+	.icon-logo {
+		font-size: 8em;
+		float: left;
+		margin-top: -15px;
+	}
+
+	.title, h1, p {
+		margin-left: 140px;
+		margin-bottom: $margin/2;
+		padding-right: $padding*4;
+	}
+
+	.title {
+		font-size: 1.6em;
+	}
+
+	p {
+		font-size: 1.2em;
+		line-height: 1.4;
+	}
+
+	h1 {
+
+	}
+}
+
+.phone {
+	background: $color-grey;
+	width: 370px;
+	height: 770px;
+	text-align: center;
+	@include border-radius(60px);
+	img {
+		width: 320px;
+		padding-top: 130px;
+	}
+}
+
+.how-it-works {
+	width: 100%;
+	border-top: 1px solid $color-grey;
+	position: relative;
+	top: -72px;
+	z-index: 2;
+	background: white;
+	height: 150px;
+
+	.wrapper {
+		padding: $padding/2;
+		width: $width-max;
+		margin: 0 auto;	}
+}

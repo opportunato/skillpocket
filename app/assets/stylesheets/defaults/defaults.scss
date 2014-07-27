@@ -1,0 +1,8 @@
+body {
+	color: $color-red;
+	font-size: 14px;
+	@include nowie_vremena;
+	-webkit-overflow-scrolling: touch;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}

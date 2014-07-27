@@ -8,6 +8,8 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'compass-rails'
 
+gem 'jquery-rails'
+
 gem 'jbuilder', '~> 2.0'
 
 gem 'spring',        group: :development
