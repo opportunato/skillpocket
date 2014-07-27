@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 protected
 
   def authenticate
-    if Rails.env.development?
+    if Rails.env.production?
       authenticate_or_request_with_http_basic do |u, p| 
         u == ENV['USERNAME'] && Digest::SHA1.hexdigest(p) == ENV['PASSWORD_HASH']
       end
