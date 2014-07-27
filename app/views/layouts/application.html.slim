@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    title Skillpocket
+    = stylesheet_link_tag "application", media: :all
+  body
+    = yield
+    = javascript_include_tag "application"
