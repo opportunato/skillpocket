@@ -128,9 +128,13 @@
 		@include border-radius(18px);
 	}
 
-	img {
+	.screen {
+		background: $color-screen-green;
 		width: 320px;
-		padding-top: 130px;
+		height: 568px;
+		position: absolute;
+		top: 130px; left: 50%;
+		margin-left: 160px;
 	}
 }
 
