@@ -1,0 +1,22 @@
+form method="POST" action="#{poll_submit_path}"
+  input name="authenticity_token" value="#{form_authenticity_token}" type="hidden"
+  .input-wrapper
+    | Twitter link
+    input name="expert[twitter_link]"
+  .input-wrapper
+    | LinkedIn Link
+    input name="expert[linkedin_link]"
+  .input-wrapper
+    | Site Link
+    input name="expert[site_link]"
+  .input-wrapper
+    | Skill Title
+    textarea name="expert[text_title]"
+  .input-wrapper
+    | Tags
+    textarea name="expert[tags]"
+  .input-wrapper
+    | Price
+    input name="expert[price]"
+
+  input type="submit"
