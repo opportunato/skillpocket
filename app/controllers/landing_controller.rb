@@ -6,8 +6,12 @@ class LandingController < ApplicationController
   end
 
   def poll_submit
+    temp_image = TempImage.create(image: params[:image])
+
     data = {
-      expert: expert_params,
+      expert: expert_params.merge({
+        image: absolute_attachment_url(temp_image.image)
+      }),
       token: ENV['API_TOKEN']
     }
 
@@ -28,6 +32,6 @@ class LandingController < ApplicationController
 private
 
   def expert_params
-    params.require(:expert).permit(:twitter_link, :linkedin_link, :site_link, :text_title, :tags, :price, :image)
+    params.require(:expert).permit(:twitter_link, :linkedin_link, :site_link, :text_title, :tags, :price)
   end
 end

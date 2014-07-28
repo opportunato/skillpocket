@@ -31,6 +31,7 @@ set :shared_paths,                  %w(
                                       config/puma.rb
                                       config/application.yml
                                       public/uploads
+                                      public/system
                                     )
 
 set :monitored,                     %w(
