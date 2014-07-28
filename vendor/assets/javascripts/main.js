@@ -17,4 +17,9 @@ $ul.on("mousemove", function(e) {
 	$ul.removeClass("animation-start");
 });
 
+$ul.on("touchmove", function(e) {
+	e.preventDefault();
+	$ul.removeClass("animation-start");
+});
+
 });

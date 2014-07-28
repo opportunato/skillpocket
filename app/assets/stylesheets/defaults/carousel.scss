@@ -63,6 +63,9 @@
 			.button:hover {
 				color: $color-pane-green!important;
 			}
+			.white {
+				top: 386px;
+			}
 		}
 
 		&.yellow {
@@ -70,6 +73,9 @@
 			z-index: 2;
 			.button:hover {
 				color: $color-pane-yellow!important;
+			}
+			.white {
+				top: 386px;
 			}
 		}
 
@@ -79,6 +85,9 @@
 			.button:hover {
 				color: $color-pane-orange!important;
 			}
+			.white {
+				top: 356px;
+			}
 		}
 
 		&.red {
@@ -87,6 +96,9 @@
 			.button:hover {
 				color: $color-pane-red!important;
 			}
+			.white {
+				top: 326px;
+			}
 		}
 
 		&.blue {
@@ -94,6 +106,9 @@
 			z-index: 5;
 			.button:hover {
 				color: $color-pane-blue!important;
+			}
+			.white {
+				top: 386px;
 			}
 		}
 
@@ -161,7 +176,6 @@
 			padding: $padding/2;
 			padding-right: 35px;
 			position: relative;
-			top: 325px;
 			z-index: 2;
 			background: white;
 			color: $color-black;

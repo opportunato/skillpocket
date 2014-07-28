@@ -3,6 +3,8 @@ html
   head
     title Skillpocket
     = stylesheet_link_tag "application", media: :all
+    meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" user-scalable="no"]
+	meta[name="apple-mobile-web-app-capable" content="yes"]
   body
     = yield
     = javascript_include_tag "application"
