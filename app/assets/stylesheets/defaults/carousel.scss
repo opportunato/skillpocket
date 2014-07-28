@@ -1,6 +1,7 @@
 .carousel {
-	cursor: -webkit-grab;
-	cursor: -moz-grab;
+	// cursor: -webkit-grab;
+	// cursor: -moz-grab;
+	cursor: ew-resize;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -26,6 +27,14 @@
 		position: relative;
 		height: 100%;
 		min-height: 100%;
+
+		&.animation-start {
+			@include animation(pane 3s 3s ease-out infinite);
+
+			.pane {
+				overflow: hidden;
+			}
+		}
 
 		&.animate {
 			-webkit-transition: all .3s;
@@ -91,7 +100,6 @@
 		.content {
 			padding: $padding/2;
 			padding-right: 35px;
-			height: 1000px;
 
 			.skill-title {
 				padding-top: 60px;
@@ -148,6 +156,46 @@
 				}
 			}
 		}
+
+		.white {
+			padding: $padding/2;
+			padding-right: 35px;
+			position: relative;
+			top: 325px;
+			z-index: 2;
+			background: white;
+			color: $color-black;
+			text-align: left;
+			line-height: 1.4;
+
+			.skill-about, .user-about {
+				margin-bottom: $margin/2;
+				padding-bottom: $padding/2;
+				border-bottom: 1px solid $color-grey;
+			}
+
+			.item {
+				font-family: Anonymous Pro;
+				opacity: .5;
+			}
+
+			.title {
+				margin-bottom: $margin/6;
+			}
+
+			.read-more {
+				padding-left: $padding/6;
+			}
+
+			.tag {
+				background: $color-grey;
+				padding: $padding/10 $padding/3;
+				margin-right: $margin/6;
+				margin-bottom: $margin/6;
+				display: inline-block;
+				opacity: .5;
+			}
+		}
 	}
 
 	.carousel-image {
@@ -156,8 +204,9 @@
 		background: center center no-repeat;
 		background-color: $color-black;
 		@include background-size(cover);
-		cursor: -webkit-grab;
-		cursor: -moz-grab;
+		// cursor: -webkit-grab;
+		// cursor: -moz-grab;
+		cursor: ew-resize;
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
 		-khtml-user-select: none;
@@ -168,7 +217,7 @@
 	}
 
 	.nav {
-		position: fixed;
+		position: absolute;
 		top: 0; left: 0; right: 0;
 		color: $color-black;
 		opacity: .5;

@@ -6,6 +6,7 @@
 
 .intro {
 	position: relative;
+	overflow: hidden;
 	padding-top: $padding*2;
 }
 
@@ -38,11 +39,24 @@
 		font-size: 1.2em;
 		line-height: 1.4;
 		font-family: Anonymous Pro;
+		@include animation(copy 1s 1600ms both);
 	}
 
 	h2 {
 		position: absolute;
-		bottom: 95px;
+		bottom: 85px;
+		@include animation(copy 1s 2200ms both);
+
+		.icon-arrow {
+			font-size: 3em;
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: -5px;
+		}
+	}
+
+	form {
+		@include animation(copy 1s 1600ms both);
 	}
 
 	input {
@@ -100,6 +114,7 @@
 }
 
 .phone {
+	@include animation(phone .6s 1.8s ease-in both);
 	background: $color-grey;
 	width: 370px;
 	height: 770px;
@@ -134,7 +149,7 @@
 		background: $color-black;
 		width: 320px;
 		height: 568px;
-		position: absolute;
+		position: relative;
 		top: 130px; left: 50%;
 		margin-left: -160px;
 		overflow: hidden;
@@ -145,13 +160,33 @@
 	width: 100%;
 	border-top: 1px solid $color-grey;
 	position: relative;
-	top: -72px;
+	top: -78px;
 	z-index: 2;
 	background: white;
-	height: 150px;
+	// font-size: 1.2em;
+	line-height: 1.4;
 
 	.wrapper {
-		padding: $padding/2;
+		// @include animation(copy 1s 1800ms both);
+		padding: $padding*2 $padding/2 0 $padding/2;
 		width: $width-max;
-		margin: 0 auto;	}
+		margin: 0 auto;
+
+		.step {
+			display: inline-block;
+			vertical-align: top;
+			padding-right: 4%;
+			width: 16%;
+
+			.icon {
+				font-size: 6em;
+				display: block;
+				text-align: center;
+			}
+
+			.title {
+				font-family: Anonymous Pro;
+			}
+		}
+	}
 }
