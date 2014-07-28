@@ -74,15 +74,15 @@
 		margin: 0;
 
 		&:-webkit-autofill {
-			  -webkit-box-shadow: 0 0 0px 1000px white inset;
+			  -webkit-box-shadow: 0 0 0px 1000px $color-grey inset;
 			  border: none;
-			  background: white;
+			  background: $color-grey;
 		}
 
 		&:-webkit-autofill {
-			  -webkit-box-shadow: 0 0 0px 1000px white inset;
+			  -webkit-box-shadow: 0 0 0px 1000px $color-grey inset;
 			  border: none;
-			  background: white;
+			  background: $color-grey;
 		}
 
 	}
@@ -103,7 +103,7 @@
 		}
 	}
 
-	input[type=text] {
+	input[type=email] {
 		font-family: Anonymous Pro;
 		color: $color-black;
 		width: 100%;
@@ -167,7 +167,7 @@
 	line-height: 1.4;
 
 	.wrapper {
-		// @include animation(copy 1s 1800ms both);
+		@include animation(copy 1s 1800ms both);
 		padding: $padding*2 $padding/2 0 $padding/2;
 		width: $width-max;
 		margin: 0 auto;

@@ -8,9 +8,10 @@
 			h1.type-wrap
 				span#typed
 			p Get paid for professional advice. Be among our first experts when we launch near you!
-			form.stay-tuned
-				input.input type="text" name="email" placeholder="Email"
-				input.submit type="submit" value="GO"
+			= render partial: 'mailchimp'
+			/ form.stay-tuned
+			/ 	input.input type="text" name="email" placeholder="Email"
+			/ 	input.submit type="submit" value="GO"
 			h2
 				span How it works
 				span.icon-arrow
