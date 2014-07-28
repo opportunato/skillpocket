@@ -171,10 +171,12 @@
 	}
 
 	@include respond-to(mobile) {
+		margin: 0 auto;
 		margin-top: -$margin*3;
 		left: 50%;
-		transform: translate3d(-50%, 0px, 0px) scale3d(0.7, 0.7, 1);
-		-webkit-transform: translate3d(-50%, 0px, 0px) scale3d(0.7, 0.7, 1);
+		margin-left: -185px;
+		transform: scale3d(0.7, 0.7, 1);
+		-webkit-transform: scale3d(0.7, 0.7, 1);
 	}
 
 	&:before, &:after {
