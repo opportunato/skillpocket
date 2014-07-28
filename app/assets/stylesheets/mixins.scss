@@ -1,3 +1,12 @@
+@mixin respond-to($media) {
+  @if $media == tablet {
+    @media only screen and (max-width: $break-tablet) {@content; }
+  }
+  @else if $media == mobile {
+    @media only screen and (max-width: $break-phone) {@content; }
+  }
+}
+
 @mixin nowie_vremena() {
 	font-family: "nowie_vremena", Helvetica, Arial, Sans-Serif;
 	font-weight: normal;
@@ -45,6 +54,7 @@
 	50% { transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); opacity: 1; }
 	100% { transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); opacity: 1; }
 }
+
 
 @include keyframes(pane) {
   0% { transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); }

@@ -1,6 +1,6 @@
 .main {
 	padding: 0 $padding/2;
-	width: $width-max;
+	max-width: $width-max;
 	margin: 0 auto;
 }
 
@@ -8,6 +8,10 @@
 	position: relative;
 	overflow: hidden;
 	padding-top: $padding*2;
+
+	@include respond-to(tablet) {
+		text-align: center;
+	}
 }
 
 .phone, .about {
@@ -16,19 +20,36 @@
 }
 
 .about {
-	width: 610px;
+	max-width: 610px;
 	padding-top: 145px;
+
+	@include respond-to(tablet) {
+		max-width: 400px;
+		padding-top: 0;
+		margin: 0 auto;
+	}
 
 	.icon-logo {
 		font-size: 8em;
 		float: left;
 		margin-top: -15px;
+
+		@include respond-to(tablet) {
+			float: none;
+			margin-top: 0;
+			margin-bottom: $margin/2;
+		}
 	}
 
 	.title, h1, p, form {
 		margin-left: 140px;
 		margin-bottom: $margin/3*2;
 		padding-right: $padding*3;
+
+		@include respond-to(tablet) {
+			margin-left: 0;
+			padding-right: 0;
+		}
 	}
 
 	.title {
@@ -40,12 +61,21 @@
 		line-height: 1.4;
 		font-family: Anonymous Pro;
 		@include animation(copy 1s 1600ms both);
+
+		@include respond-to(tablet) {
+			animation: none;
+			-webkit-animation: none;
+		}
 	}
 
 	h2 {
 		position: absolute;
 		bottom: 85px;
-		@include animation(copy 1s 2200ms both);
+		@include animation(copy 1s 1800ms both);
+
+		@include respond-to(tablet) {
+			display: none;
+		}
 
 		.icon-arrow {
 			font-size: 3em;
@@ -57,6 +87,11 @@
 
 	form {
 		@include animation(copy 1s 1600ms both);
+
+		@include respond-to(tablet) {
+			animation: none;
+			-webkit-animation: none;
+		}
 	}
 
 	input {
@@ -110,17 +145,37 @@
 		width: 240px;
 		background: $color-grey;
 		margin-right: $margin/2;
+
+		@include respond-to(mobile) {
+			width: 160px;
+		}
 	}
 }
 
 .phone {
-	@include animation(phone .6s 1.8s ease-in both);
+	// @include animation(phone .6s 1.8s ease-in both);
 	background: $color-grey;
 	width: 370px;
 	height: 770px;
 	text-align: center;
 	position: relative;
+	margin: 0 auto;
 	@include border-radius(60px);
+
+	@include respond-to(tablet) {
+		animation: none;
+		-webkit-animation: none;
+		display: block;
+		margin: 0 auto;
+		margin-top: $margin;
+	}
+
+	@include respond-to(mobile) {
+		margin-top: -$margin*3;
+		left: 50%;
+		transform: translate3d(-50%, 0px, 0px) scale3d(0.7, 0.7, 1);
+		-webkit-transform: translate3d(-50%, 0px, 0px) scale3d(0.7, 0.7, 1);
+	}
 
 	&:before, &:after {
 		position: absolute;
@@ -158,26 +213,43 @@
 
 .how-it-works {
 	width: 100%;
-	min-width: 1000px;
 	border-top: 1px solid $color-grey;
 	position: relative;
 	top: -72px;
 	z-index: 2;
 	background: white;
-	// font-size: 1.2em;
 	line-height: 1.4;
+
+	@include respond-to(mobile) {
+		top: -166px;
+	}
 
 	.wrapper {
 		@include animation(copy 1s 1800ms both);
 		padding: $padding*2 $padding/2 0 $padding/2;
-		width: $width-max;
+		max-width: $width-max;
 		margin: 0 auto;
+
+		@include respond-to(tablet) {
+			animation: none;
+			-webkit-animation: none;
+		}
 
 		.step {
 			display: inline-block;
 			vertical-align: top;
 			padding-right: 4%;
 			width: 16%;
+
+			@include respond-to(tablet) {
+				display: block;
+				width: 100%;
+				padding-right: 0;
+				text-align: center;
+				margin: 0 auto;
+				margin-bottom: $margin;
+				max-width: 300px;
+			}
 
 			.icon {
 				font-size: 6em;
@@ -187,6 +259,10 @@
 
 			.title {
 				font-family: Anonymous Pro;
+
+				@include respond-to(tablet) {
+					font-size: 1.2em;
+				}
 			}
 		}
 	}

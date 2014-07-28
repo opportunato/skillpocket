@@ -244,21 +244,20 @@
 
 		.icon-messages { float: right; }
 
+		.categories {
+
+		}
+
 		.icon-arrow {
-			position: relative;
-			&:before {
-				position: absolute;
-				right: -38px;
-			}
+			display: inline-block;
+			vertical-align: middle;
 		}
 
 		span {
-			font-size: .3em;
-			vertical-align: middle;
 			font-family: Anonymous Pro;
-			margin-top: -10px;
 			display: inline-block;
-			margin-left: -15px;
+			vertical-align: middle;
+			margin-right: -10px;
 		}
 	}
 
