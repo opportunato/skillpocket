@@ -1,22 +1,24 @@
-form method="POST" action="#{poll_submit_path}"
-  input name="authenticity_token" value="#{form_authenticity_token}" type="hidden"
+= form_tag poll_submit_path, multipart: true do
   .input-wrapper
     | Twitter link
-    input name="expert[twitter_link]"
+    = text_field_tag "expert[twitter_link]"
   .input-wrapper
     | LinkedIn Link
-    input name="expert[linkedin_link]"
+    = text_field_tag "expert[linkedin_link]"
   .input-wrapper
     | Site Link
-    input name="expert[site_link]"
+    = text_field_tag "expert[site_link]"
   .input-wrapper
     | Skill Title
-    textarea name="expert[text_title]"
+    = text_area_tag "expert[text_title]"
   .input-wrapper
     | Tags
-    textarea name="expert[tags]"
+    = text_area_tag "expert[tags]"
   .input-wrapper
     | Price
-    input name="expert[price]"
+    = text_field_tag "expert[price]"
+  .input-wrapper
+    | Image
+    = file_field_tag "expert[image]", accept: 'image/png,image/gif,image/jpeg,image/jpg'
 
   input type="submit"

@@ -28,6 +28,6 @@ class LandingController < ApplicationController
 private
 
   def expert_params
-    params.require(:expert).permit(:twitter_link, :linkedin_link, :site_link, :text_title, :tags, :price)
+    params.require(:expert).permit(:twitter_link, :linkedin_link, :site_link, :text_title, :tags, :price, :image)
   end
 end
