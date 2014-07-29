@@ -58,8 +58,9 @@
 
 @include keyframes(pane) {
   0% { transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); }
-  20% { transform: translate3d(-2%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(-2%, 0px, 0px) scale3d(1, 1, 1); }
-  30% { transform: translate3d(-2%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(-2%, 0px, 0px) scale3d(1, 1, 1); }
-  45% { transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); }
+  20% { transform: translate3d(-20%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(-20%, 0px, 0px) scale3d(1, 1, 1); }
+  40% { transform: translate3d(-40%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(-40%, 0px, 0px) scale3d(1, 1, 1); }
+  60% { transform: translate3d(-20%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(-20%, 0px, 0px) scale3d(1, 1, 1); }
+  80% { transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); }
   100% { transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); -webkit-transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1); }
 }
