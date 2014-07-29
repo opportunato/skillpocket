@@ -5,7 +5,7 @@ require 'mina/rbenv'
 require 'mina-stack'
 
 set :app,                 'skillpocket'
-set :server_name,         'skillpocket.com'
+set :server_name,         'skillpocket.com www.skillpocket.com'
 set :keep_releases,       100
 set :default_server,      :production
 set :server, ENV['to'] || default_server

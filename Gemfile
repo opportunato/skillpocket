@@ -7,6 +7,13 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'compass-rails'
+gem 'bootstrap-sass'
+gem 'angularjs-rails'
+gem 'angularjs-rails-resource'
+
+gem "jquery-fileupload-rails"
+
+gem 'angular-rails-templates'
 
 gem 'jquery-rails'
 
@@ -27,6 +34,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "database_cleaner"
   gem "shoulda"
+  gem "better_errors"
 
   gem "pry"
   gem 'pry-remote'

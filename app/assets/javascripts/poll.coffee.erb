@@ -1,0 +1,28 @@
+$ ->
+
+  if $('.poll').length > 0
+
+    getToken = ->
+      document.querySelector('input[name="authenticity_token"]').value
+
+    openPage = (id) ->
+      $(".page").addClass('hidden')
+      $(".page#{id}").removeClass('hidden')
+
+    $('a.button').on 'click', (e) ->
+      e.preventDefault()
+
+      currentId = $(e.currentTarget).data('currentId')
+      openPage(currentId + 1)
+
+      data = $(e.currentTarget).parent('form').serialize() + "&page=" + currentId
+
+      $.ajax
+        type: "POST",
+        url: '<%= poll_submit_path %>',
+        headers: {
+          "X-CSRF-TOKEN": getToken()
+          "X-Requested-With": 'XMLHttpRequest'
+        },
+        data: data,
+        dataType: 'json'

@@ -1,0 +1,22 @@
+a class="btn btn-primary main" href="/" = t("common.main")
+a class="btn btn-success create" href="{{workshopsUrl}}/new" = t("common.create")
+
+table.table.table-hover
+  thead
+    tr
+      th = t("workshop.title")
+      th = t("workshop.duration")
+      th = t("workshop.is_published")
+      th
+  tbody
+    tr role="link" ng-repeat="workshop in data.workshops"
+      td ng-bind="workshop.title" ng-click="startEdit(workshop)"
+      td ng-bind="workshop.duration" ng-click="startEdit(workshop)"
+      td ng-show="workshop.isPublished" ng-click="startEdit(workshop)"
+        = t("common.ya")
+      td ng-show="!workshop.isPublished" ng-click="startEdit(workshop)"
+        = t("common.nein")
+      td
+        a ng-href="{{getWorkshopUserLink(workshop.id)}}" class="btn btn-primary" target="_blank" = t("workshop.go_to")
+      td
+        button class="btn btn-danger" ng-click="deleteWorkshop(workshop)" = t("common.delete")

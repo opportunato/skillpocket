@@ -1,0 +1,25 @@
+angular.module("skillpocketAdmin", [
+  "rails",
+  "ngRoute",
+  "templates",
+  "ui.bootstrap"
+])
+.constant("pollExpertsUrl", "/admin/poll")
+.constant("pollApiUrl", "#{ENV['API_LINK']}/v1/poll")
+.factory("PollExpert", ["railsResourceFactory", "pollApiUrl", "$templateCache", (railsResourceFactory, pollApiUrl, $templateCache) ->
+  railsResourceFactory 
+    url: pollApiUrl,
+    name: "pollExpert"
+])
+.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+
+  $locationProvider.html5Mode true
+
+  $routeProvider.otherwise
+    templateUrl: "pollTable.html"
+    controller: "pollTableCtrl"
+    resolve:
+      experts: ['PollExpert', (PollExpert) ->
+        PollExpert.query()
+      ]
+])
