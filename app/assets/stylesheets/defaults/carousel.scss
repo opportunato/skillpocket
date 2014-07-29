@@ -156,7 +156,7 @@
 				}
 
 				.button {
-					@include transition(all 300ms);
+					@include transition(opacity 300ms);
 					padding: 15px;
 					border: 1px solid white;
 					background: transparent;

@@ -1,50 +1,52 @@
-
-.page.page1 class=(@current_page == 1 ? '' : 'hidden')
-  = form_tag poll_submit_path, class: "poll" do
-    .input-wrapper
-      label for="expert_full_name" Full Name
-      = text_field_tag "expert[full_name]"
-    .input-wrapper
-      label for="expert_email" Email
-      = text_field_tag "expert[email]"
-    a.button data-current-id="1" Yes
-.page.page2 class=(@current_page == 2 ? '' : 'hidden')
-  = form_tag poll_submit_path, class: "poll" do
-    .input-wrapper
-      label for="expert_job" Job
-      = text_field_tag "expert[job]"
-    .input-wrapper
-      label for="expert_site_link" Site Link
-      = text_field_tag "expert[site_link]"
-    .input-wrapper
-      label for="expert_twitter_link" Twitter Link
-      = text_field_tag "expert[twitter_link]"
-    .input-wrapper
-      label for="expert_linkedin_link" LinkedIn Link
-      = text_field_tag "expert[linkedin_link]"
-    a.button data-current-id="2" Yes
-.page.page3 class=(@current_page == 3 ? '' : 'hidden')
-  = form_tag poll_submit_path, class: "poll" do
-    .input-wrapper
-      label for="expert_skill_title" Skill Title
-      = text_area_tag "expert[skill_title]"
-    .input-wrapper
-      label for="expert_skill_description" Skill Description
-      = text_area_tag "expert[skill_description]"
-    a.button data-current-id="3" Yes
-.page.page4 class=(@current_page == 4 ? '' : 'hidden')
-  = form_tag poll_submit_path, class: "poll", multipart: true do
-    = hidden_field_tag 'page', 4
-    .input-wrapper
-      label for="expert_price" Price
-      = text_field_tag "expert[price]"
-    .input-wrapper
-      label for="expert_tags" Categories
-      = text_area_tag "expert[tags]"
-    .input-wrapper
-      label for="image" Image
-      = file_field_tag "image", accept: 'image/png,image/gif,image/jpeg,image/jpg'
-    input type="submit" data-current-id="4" Yes
-.page.page5 class=(@current_page == 5 ? '' : 'hidden')
-  | All Done! Congratulations!
+.poll
+  .icon-logo
+  .title Skillpocket
+  .page.page1 class=(@current_page == 1 ? '' : 'hidden')
+    = form_tag poll_submit_path, class: "poll" do
+      .input-wrapper
+        label for="expert_full_name" Full Name
+        = text_field_tag "expert[full_name]"
+      .input-wrapper
+        label for="expert_email" Email
+        = text_field_tag "expert[email]"
+      a.button data-current-id="1" Go
+  .page.page2 class=(@current_page == 2 ? '' : 'hidden')
+    = form_tag poll_submit_path, class: "poll" do
+      .input-wrapper
+        label for="expert_job" Job
+        = text_field_tag "expert[job]"
+      .input-wrapper
+        label for="expert_site_link" Site Link
+        = text_field_tag "expert[site_link]"
+      .input-wrapper
+        label for="expert_twitter_link" Twitter Link
+        = text_field_tag "expert[twitter_link]"
+      .input-wrapper
+        label for="expert_linkedin_link" LinkedIn Link
+        = text_field_tag "expert[linkedin_link]"
+      a.button data-current-id="2" Go
+  .page.page3 class=(@current_page == 3 ? '' : 'hidden')
+    = form_tag poll_submit_path, class: "poll" do
+      .input-wrapper
+        label for="expert_skill_title" Skill Title
+        = text_area_tag "expert[skill_title]"
+      .input-wrapper
+        label for="expert_skill_description" Skill Description
+        = text_area_tag "expert[skill_description]"
+      a.button data-current-id="3" Go
+  .page.page4 class=(@current_page == 4 ? '' : 'hidden')
+    = form_tag poll_submit_path, class: "poll", multipart: true do
+      = hidden_field_tag 'page', 4
+      .input-wrapper
+        label for="expert_price" Price
+        = text_field_tag "expert[price]"
+      .input-wrapper
+        label for="expert_tags" Categories
+        = text_area_tag "expert[tags]"
+      .input-wrapper
+        label for="image" Image
+        = file_field_tag "image", accept: 'image/png,image/gif,image/jpeg,image/jpg'
+      input type="submit" data-current-id="4"
+  .page.page5 class=(@current_page == 5 ? '' : 'hidden')
+    | All Done! Congratulations!
 

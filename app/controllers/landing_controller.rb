@@ -49,15 +49,13 @@ class LandingController < ApplicationController
         }
       elsif step == 4
         @temp_user = TempUser.find_by(token: cookies[:token])
-        if params[:image]
-          temp_image = TempImage.create(image: params[:image])
-        end
+        # if params[:image]
+        #   temp_image = TempImage.create(image: params[:image])
+        # end
 
         data = {
           token: cookies[:token],
-          expert: expert_params_4.merge({
-            image: absolute_attachment_url(temp_image.image)
-          }),
+          expert: expert_params_4,
           step: 4,
           api_token: ENV['API_TOKEN']
         }
@@ -72,7 +70,7 @@ class LandingController < ApplicationController
       request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json'})
       request.body = data.to_json
 
-      response = http.request(request)
+      # response = http.request(request)
 
       if step == 4
         redirect_to action: :success

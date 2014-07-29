@@ -1,7 +1,66 @@
-form.poll {
-  margin: 100px;
-}
-
 .hidden {
   display: none;
+}
+
+div.poll {
+	max-width: 280px;
+	margin: 0 auto;
+	width: 100%;
+	padding: $padding*3 0;
+
+	label {
+		display: block;
+		margin-bottom: $margin/3;
+	}
+
+	input {
+		width: 280px;
+	}
+
+	.input-wrapper {
+		margin-bottom: $margin;
+
+		input, textarea {
+			width: 255px;
+		}
+
+		#image {
+			font-size: 0.8em;
+		}
+
+	}
+
+	.success {
+		font-size: 4em;
+		text-align: center;
+	}
+
+	.button {
+		@include transition(opacity 300ms);
+		display: block;
+		cursor: pointer;
+		padding: 15px 136px;
+		border: 1px solid $color-red;
+		background: transparent;
+		@include border-radius(30px);
+		color: $color-red;
+		font-size: 1.2em;
+
+		&:hover {
+			background: $color-red;
+			color: white;
+		}
+	}
+
+	.icon-logo {
+		font-size: 8em;
+		margin-bottom: $margin/2;
+		text-align: center;
+	}
+
+	.title {
+		font-size: 1.6em;
+		text-align: center;
+		margin-bottom: $margin*2;
+	}
 }

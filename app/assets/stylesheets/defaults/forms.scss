@@ -1,0 +1,56 @@
+input, textarea {
+	font-size: 1.2em;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	@include nowie_vremena;
+	padding: 10px 15px 10px 10px;
+	display: inline-block;
+	-webkit-border-radius: 0;
+	outline: none;
+	@include border-radius(0);
+	border: 0;
+	resize: none;
+	margin: 0;
+
+	&:-webkit-autofill {
+		  -webkit-box-shadow: 0 0 0px 1000px $color-grey inset;
+		  border: none;
+		  background: $color-grey;
+	}
+
+	&:-webkit-autofill {
+		  -webkit-box-shadow: 0 0 0px 1000px $color-grey inset;
+		  border: none;
+		  background: $color-grey;
+	}
+
+}
+
+input[type=submit] {
+	@include transition(opacity 300ms);
+	padding: 10px 30px;
+	cursor: pointer;
+	-webkit-appearance: none;
+	border: 1px solid $color-red;
+	background: white;
+	color: $color-red;
+	@include border-radius(30px);
+
+	&:hover {
+		background: $color-red;
+		color: white;
+	}
+}
+
+input[type=email], input[type=text], textarea {
+	font-family: Anonymous Pro;
+	color: $color-black;
+	width: 100%;
+	width: 240px;
+	background: $color-grey;
+	margin-right: $margin/2;
+
+	@include respond-to(mobile) {
+		width: 160px;
+	}
+}

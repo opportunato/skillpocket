@@ -29,4 +29,5 @@ ActiveRecord::Schema.define(version: 20140729151321) do
   end
 
   add_index "temp_users", ["token"], name: "index_temp_users_on_token", using: :btree
+
 end
