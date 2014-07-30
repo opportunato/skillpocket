@@ -59,7 +59,6 @@
 	p {
 		font-size: 1.2em;
 		line-height: 1.4;
-		font-family: Anonymous Pro;
 		@include animation(copy 1s 1600ms both);
 
 		@include respond-to(tablet) {
@@ -203,7 +202,7 @@
 			}
 
 			.title {
-				font-family: Anonymous Pro;
+
 
 				@include respond-to(tablet) {
 					font-size: 1.2em;

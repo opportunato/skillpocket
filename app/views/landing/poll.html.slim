@@ -1,52 +1,67 @@
 .poll
   .icon-logo
   .title Skillpocket
+
   .page.page1 class=(@current_page == 1 ? '' : 'hidden')
+    h1 Meet local experts
+    .subline
+      p If you see this page then that means somebody recommended you to join Skillpocket as an expert!
+      span You can see how Skillpocket works&nbsp
+      = link_to 'here', root_path
+      span .
     = form_tag poll_submit_path, class: "poll" do
       .input-wrapper
-        label for="expert_full_name" Full Name
+        label for="expert_email" Your email
+        = text_field_tag "expert[email]"
+      a.button data-current-id="1" Apply to be an expert
+    p We pre-launch in Berlin August 4th.
+
+  .page.page2 class=(@current_page == 2 ? '' : 'hidden')
+    h1 Your profile
+    .subline
+      p We use this info to screen potential experts and pre-create your expert profile.
+    = form_tag poll_submit_path, class: "poll" do
+      .input-wrapper
+        label for="expert_full_name" Full name
         = text_field_tag "expert[full_name]"
       .input-wrapper
-        label for="expert_email" Email
-        = text_field_tag "expert[email]"
-      a.button data-current-id="1" Go
-  .page.page2 class=(@current_page == 2 ? '' : 'hidden')
-    = form_tag poll_submit_path, class: "poll" do
-      .input-wrapper
-        label for="expert_job" Job
-        = text_field_tag "expert[job]"
-      .input-wrapper
-        label for="expert_site_link" Site Link
+        label for="expert_site_link" Your website or portfolio (Optional)
         = text_field_tag "expert[site_link]"
       .input-wrapper
-        label for="expert_twitter_link" Twitter Link
+        label for="expert_twitter_link" Twitter (Optional)
         = text_field_tag "expert[twitter_link]"
       .input-wrapper
-        label for="expert_linkedin_link" LinkedIn Link
+        label for="expert_linkedin_link" LinkedIn (Optional)
         = text_field_tag "expert[linkedin_link]"
-      a.button data-current-id="2" Go
-  .page.page3 class=(@current_page == 3 ? '' : 'hidden')
-    = form_tag poll_submit_path, class: "poll" do
       .input-wrapper
+        label for="expert_job" Job (Example: UX Designer at Skillpocket)
+        = text_field_tag "expert[job]"
+      a.button data-current-id="2" Go
+
+  .page.page3 class=(@current_page == 3 ? '' : 'hidden')
+    h1 Your skill
+    .subline
+      p Your skill is supposed to convey what users will get from a meeting with you.
+    = form_tag poll_submit_path, class: "poll", multipart: true do
+      = hidden_field_tag 'page', 3
+      .input-wrapper.skill-title
         label for="expert_skill_title" Skill Title
         = text_area_tag "expert[skill_title]"
-      .input-wrapper
+        p.hint Example: “Pitching to VCs — Advice From a Serial Investor”, “Web Design and Copywriting: Build Insanely Effective Landing Pages” or “Swift — Make apps in Apple’s new programming language and ship them to the App Store
+      .input-wrapper.skill-description
         label for="expert_skill_description" Skill Description
         = text_area_tag "expert[skill_description]"
-      a.button data-current-id="3" Go
-  .page.page4 class=(@current_page == 4 ? '' : 'hidden')
-    = form_tag poll_submit_path, class: "poll", multipart: true do
-      = hidden_field_tag 'page', 4
+        p.hint Go into detail. Let people know what they get from booking you for a meeting. Include experiences & credentials that demonstrate your level of expertise.
       .input-wrapper
-        label for="expert_price" Price
+        label for="expert_price" Rate per hour
         = text_field_tag "expert[price]"
+        p.hint Set a rate that you find suitable. Some will charge 15€ others charge 300€.
       .input-wrapper
-        label for="expert_tags" Categories
+        label for="expert_tags" Tags
         = text_area_tag "expert[tags]"
+        p.hint Choose a few tags for your skill. Examples: “Marketing”, “Design”, “iOS”, “Wordpress”, “Startup”, “Photography”, “UX”, “SEO”, “Growth hacking” etc.
       .input-wrapper
-        label for="image" Image
+        label for="image" Profile picture
         = file_field_tag "image", accept: 'image/png,image/gif,image/jpeg,image/jpg'
-      input type="submit" data-current-id="4"
-  .page.page5 class=(@current_page == 5 ? '' : 'hidden')
-    | All Done! Congratulations!
+      input type="submit" data-current-id="3" value="Complete"
 
