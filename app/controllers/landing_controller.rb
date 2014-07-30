@@ -69,7 +69,16 @@ class LandingController < ApplicationController
     end
   end
 
+  def mail_submit
+    user = PreUser.create(pre_user_params)
+
+    redirect_to action: :thankyou
+  end
+
   def success
+  end
+
+  def thankyou
   end
 
 private
@@ -84,5 +93,9 @@ private
 
   def expert_params_3
     params.require(:expert).permit(:skill_title, :skill_description, :price, :tags)
+  end
+
+  def pre_user_params
+    params.require(:user).permit(:email)
   end
 end
