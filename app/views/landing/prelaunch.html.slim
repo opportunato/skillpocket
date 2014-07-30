@@ -4,7 +4,7 @@
   .icon-logo
   .title Skillpocket
 
-  .page.page1 class=(@current_page == 1 ? '' : 'hidden')
+  .page.page1 class=(@current_page == 1 ? '' : 'hidden') data-current-id="1"
     h1 Meet local experts
     .subline
       p If you see this page then that means somebody recommended you to join Skillpocket as an expert!
@@ -15,11 +15,11 @@
       .input-wrapper
         label for="expert_email" Your email
         = text_field_tag "expert[email]", "", type: :email
-      a.button.berlin data-current-id="1"
+      a.button.berlin href="#"
         span Apply to be an expert
         span.berlin We pre-launch in Berlin August 4th.
 
-  .page.page2 class=(@current_page == 2 ? '' : 'hidden')
+  .page.page2 class=(@current_page == 2 ? '' : 'hidden') data-current-id="2"
     h1 Your profile
     .subline
       p We use this info to screen potential experts and pre-create your expert profile.
@@ -39,9 +39,9 @@
       .input-wrapper
         label for="expert_job" Job (Example: UX Designer at Skillpocket)
         = text_field_tag "expert[job]"
-      a.button data-current-id="2" Go
+      a.button href="#" Go
 
-  .page.page3 class=(@current_page == 3 ? '' : 'hidden')
+  .page.page3 class=(@current_page == 3 ? '' : 'hidden') data-current-id="3"
     h1 Your skill
     .subline
       p Your skill is supposed to convey what users will get from a meeting with you.
@@ -66,7 +66,7 @@
       .input-wrapper
         label for="expert_image" Profile picture
         = file_field_tag "expert[image]", accept: 'image/png,image/gif,image/jpeg,image/jpg'
-      input type="submit" data-current-id="3" value="Complete"
+      input type="submit" value="Complete"
 
     .phone.phoneForm
       .carousel

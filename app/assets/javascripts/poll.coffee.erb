@@ -9,13 +9,18 @@ $ ->
       $(".page").addClass('hidden')
       $(".page#{id}").removeClass('hidden')
 
-    $('a.button').on 'click', (e) ->
-      e.preventDefault()
+    getCurrentId = ->
+      $(".page:not(.hidden)").data('currentId')
 
-      currentId = $(e.currentTarget).data('currentId')
+    getCurrentPage = ->
+      $(".page:not(.hidden)")
+
+    sendForm = (e) ->
+
+      currentId = getCurrentId()
+      data = getCurrentPage().find('form').serialize() + "&page=" + currentId
+
       openPage(currentId + 1)
-
-      data = $(e.currentTarget).parent('form').serialize() + "&page=" + currentId
 
       $.ajax
         type: "POST",
@@ -26,3 +31,12 @@ $ ->
         },
         data: data,
         dataType: 'json'
+
+    $(document).on 'keydown', (e) ->
+      if e.keyCode == 13 && getCurrentId() != 3
+        e.preventDefault()
+        sendForm()
+
+    $('a.button').on 'click', (e) ->
+      e.preventDefault()
+      sendForm()
