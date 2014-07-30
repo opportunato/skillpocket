@@ -2,11 +2,11 @@ class LandingController < ApplicationController
   def index
   end
 
-  def poll
+  def prelaunch
     @current_page = cookies[:poll_page].present? ? cookies[:poll_page].to_i : 1
   end
 
-  def poll_submit
+  def prelaunch_submit
     step = params[:page].to_i
 
     if [1, 2, 3].include?(step)

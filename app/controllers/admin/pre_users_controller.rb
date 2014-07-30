@@ -1,4 +1,4 @@
-class Admin::PollController < ApplicationController
+class Admin::PreUsersController < ApplicationController
   layout "admin"
   before_filter :admin_login
 

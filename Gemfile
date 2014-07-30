@@ -26,6 +26,8 @@ gem 'carrierwave'
 gem 'puma'
 gem 'figaro'
 
+gem 'meta-tags'
+
 gem 'slim'
 
 gem 'mina-stack', github: 'div/mina-stack', group: :development

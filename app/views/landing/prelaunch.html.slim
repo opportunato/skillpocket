@@ -9,7 +9,7 @@
       span You can see how Skillpocket works&nbsp
       = link_to 'here', root_path
       span .
-    = form_tag poll_submit_path, class: "poll" do
+    = form_tag prelaunch_submit_path, class: "poll" do
       .input-wrapper
         label for="expert_email" Your email
         = text_field_tag "expert[email]", "", type: :email
@@ -21,7 +21,7 @@
     h1 Your profile
     .subline
       p We use this info to screen potential experts and pre-create your expert profile.
-    = form_tag poll_submit_path, class: "poll" do
+    = form_tag prelaunch_submit_path, class: "poll" do
       .input-wrapper
         label for="expert_full_name" Full name
         = text_field_tag "expert[full_name]"
@@ -43,7 +43,7 @@
     h1 Your skill
     .subline
       p Your skill is supposed to convey what users will get from a meeting with you.
-    = form_tag poll_submit_path, class: "poll", multipart: true do
+    = form_tag prelaunch_submit_path, class: "poll", multipart: true do
       = hidden_field_tag 'page', 3
       .input-wrapper.skill-title
         label for="expert_skill_title" Skill Title

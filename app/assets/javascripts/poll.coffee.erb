@@ -19,7 +19,7 @@ $ ->
 
       $.ajax
         type: "POST",
-        url: '<%= poll_submit_path %>',
+        url: '<%= prelaunch_submit_path %>',
         headers: {
           "X-CSRF-TOKEN": getToken()
           "X-Requested-With": 'XMLHttpRequest'
