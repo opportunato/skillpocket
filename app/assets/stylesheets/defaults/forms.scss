@@ -27,7 +27,7 @@ input, textarea {
 }
 
 input[type=submit] {
-	@include transition(opacity 300ms);
+	@include transition(all 300ms);
 	padding: 10px 30px;
 	cursor: pointer;
 	-webkit-appearance: none;

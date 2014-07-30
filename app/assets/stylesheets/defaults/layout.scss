@@ -211,3 +211,32 @@
 		}
 	}
 }
+
+footer {
+	border-top: 1px solid $color-grey;
+
+	.follow {
+		@include animation(copy 1s 1800ms both);
+		padding: $padding*2 $padding/2;
+		max-width: $width-max;
+		margin: 0 auto;
+		text-align: center;
+
+		p { margin-bottom: $margin; }
+
+		a {
+			@include transition(all 300ms);
+			font-size: 1.6em;
+			color: $color-red;
+			padding: $padding/2;
+			margin: 0 $margin/6;
+			@include border-radius(30px);
+			border: 1px solid $color-red;
+
+			&:hover {
+				background: $color-red;
+				color: white;
+			}
+		}
+	}
+}
