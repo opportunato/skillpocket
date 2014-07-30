@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730093315) do
+ActiveRecord::Schema.define(version: 20140730133729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "poll_experts", force: true do |t|
+    t.string "email"
+    t.string "full_name"
+    t.string "job"
+    t.string "twitter_link"
+    t.string "linkedin_link"
+    t.string "site_link"
+    t.string "skill_title"
+    t.text   "skill_description"
+    t.text   "tags"
+    t.string "price"
+    t.string "image"
+    t.string "step"
+    t.string "token"
+  end
 
   create_table "pre_users", force: true do |t|
     t.string   "email"
@@ -29,12 +45,5 @@ ActiveRecord::Schema.define(version: 20140730093315) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
-
-  create_table "temp_users", force: true do |t|
-    t.string "email"
-    t.string "token"
-  end
-
-  add_index "temp_users", ["token"], name: "index_temp_users_on_token", using: :btree
 
 end

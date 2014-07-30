@@ -20,7 +20,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
 gem 'spring',        group: :development
-gem 'paperclip'
+gem 'mini_magick'
+gem 'carrierwave'
 
 gem 'puma'
 gem 'figaro'
@@ -35,6 +36,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "shoulda"
   gem "better_errors"
+  gem "binding_of_caller"
 
   gem "pry"
   gem 'pry-remote'
