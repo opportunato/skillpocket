@@ -59,7 +59,7 @@
 	p {
 		font-size: 1.2em;
 		line-height: 1.4;
-		@include animation(phone .6s 1.8s ease-in both);
+		@include animation(copy .6s 1.8s ease-in both);
 
 		@include respond-to(tablet) {
 			animation: none;
@@ -85,7 +85,7 @@
 	}
 
 	form {
-		@include animation(phone .6s 1.8s ease-in both);
+		@include animation(copy .6s 1.8s ease-in both);
 
 		@include respond-to(tablet) {
 			animation: none;
@@ -163,7 +163,7 @@
 	z-index: 2;
 	background: white;
 	line-height: 1.4;
-	@include animation(phone 1s 1800ms both);
+	@include animation(phone 1s 1600ms both);
 
 	@include respond-to(mobile) {
 		top: -166px;
@@ -214,7 +214,7 @@
 
 footer {
 	border-top: 1px solid $color-grey;
-	@include animation(phone 1s 1800ms both);
+	@include animation(phone 1s 1600ms both);
 
 	.follow {
 		padding: $padding*2 $padding/2;
