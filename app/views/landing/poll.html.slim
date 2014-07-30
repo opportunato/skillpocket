@@ -12,7 +12,7 @@
     = form_tag poll_submit_path, class: "poll" do
       .input-wrapper
         label for="expert_email" Your email
-        = text_field_tag "expert[email]"
+        = text_field_tag "expert[email]", "", type: :email
       a.button data-current-id="1" Apply to be an expert
     p We pre-launch in Berlin August 4th.
 
@@ -61,7 +61,7 @@
         = text_area_tag "expert[tags]"
         p.hint Choose a few tags for your skill. Examples: “Marketing”, “Design”, “iOS”, “Wordpress”, “Startup”, “Photography”, “UX”, “SEO”, “Growth hacking” etc.
       .input-wrapper
-        label for="image" Profile picture
-        = file_field_tag "image", accept: 'image/png,image/gif,image/jpeg,image/jpg'
+        label for="expert_image" Profile picture
+        = file_field_tag "expert[image]", accept: 'image/png,image/gif,image/jpeg,image/jpg'
       input type="submit" data-current-id="3" value="Complete"
 
