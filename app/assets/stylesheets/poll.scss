@@ -120,7 +120,7 @@ div.poll {
 	}
 
 	.button {
-		@include transition(opacity 300ms);
+		// @include transition(color 300ms);
 		display: block;
 		cursor: pointer;
 		padding: 15px;
@@ -135,6 +135,15 @@ div.poll {
 		&:hover {
 			background: $color-red;
 			color: white;
+		}
+
+		&.berlin {
+			@include border-radius(40px);
+			.berlin {
+				display: block;
+				font-size: 0.8em;
+				padding-top: $padding/6;
+			}
 		}
 	}
 

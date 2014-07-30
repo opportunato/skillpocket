@@ -13,8 +13,9 @@
       .input-wrapper
         label for="expert_email" Your email
         = text_field_tag "expert[email]", "", type: :email
-      a.button data-current-id="1" Apply to be an expert
-    p We pre-launch in Berlin August 4th.
+      a.button.berlin data-current-id="1"
+        span Apply to be an expert
+        span.berlin We pre-launch in Berlin August 4th.
 
   .page.page2 class=(@current_page == 2 ? '' : 'hidden')
     h1 Your profile
