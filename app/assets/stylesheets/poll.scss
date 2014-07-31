@@ -3,172 +3,172 @@
 }
 
 div.poll {
-	max-width: 380px;
-	margin: 0 auto;
-	width: 100%;
-	padding: $padding*3 0;
+  max-width: 380px;
+  margin: 0 auto;
+  width: 100%;
+  padding: $padding*3 0;
 
-	.page3 {
-		position: absolute;
-		left: 0;
-		right: 0;
-		margin: 0 auto;
-		max-width: 810px;
-		margin-bottom: $margin*2;
+  .page3 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 810px;
+    margin-bottom: $margin*2;
 
-		@include respond-to(tablet) {
-			position: static;
-		}
+    @include respond-to(tablet) {
+      position: static;
+    }
 
-		.carousel {
-			cursor: auto;
-		}
-	}
+    .carousel {
+      cursor: auto;
+    }
+  }
 
-	.follow {
-		text-align: center;
+  .follow {
+    text-align: center;
 
-		p {
-			margin-bottom: $margin;
-		}
+    p {
+      margin-bottom: $margin;
+    }
 
-		a {
-			@include transition(all 300ms);
-			font-size: 1.6em;
-			color: $color-red;
-			padding: $padding/2;
-			margin: 0 $margin/6;
-			@include border-radius(30px);
-			border: 1px solid $color-red;
+    a {
+      @include transition(all 300ms);
+      font-size: 1.6em;
+      color: $color-red;
+      padding: $padding/2;
+      margin: 0 $margin/6;
+      @include border-radius(30px);
+      border: 1px solid $color-red;
 
-			&:hover {
-				background: $color-red;
-				color: white;
-			}
-		}
-	}
+      &:hover {
+        background: $color-red;
+        color: white;
+      }
+    }
+  }
 
-	@include respond-to(mobile) {
-		max-width: 280px;
-	}
+  @include respond-to(mobile) {
+    max-width: 280px;
+  }
 
-	label {
-		display: block;
-		margin-bottom: $margin/3;
-	}
+  label {
+    display: block;
+    margin-bottom: $margin/3;
+  }
 
-	input {
-		width: 380px;
+  input {
+    width: 380px;
 
-		@include respond-to(mobile) {
-			max-width: 280px;
-		}
-	}
+    @include respond-to(mobile) {
+      max-width: 280px;
+    }
+  }
 
-	form {
-		max-width: 380px;
-	}
+  form {
+    max-width: 380px;
+  }
 
-	.input-wrapper {
-		margin-bottom: $margin;
+  .input-wrapper {
+    margin-bottom: $margin;
 
-		input, textarea {
-			width: 355px;
-			font-size: 1em;
+    input, textarea {
+      width: 355px;
+      font-size: 1em;
 
-			@include respond-to(mobile) {
-				width: 255px;
-			}
-		}
+      @include respond-to(mobile) {
+        width: 255px;
+      }
+    }
 
-		#image {
-			font-size: 0.8em;
-		}
+    #image {
+      font-size: 0.8em;
+    }
 
-		.hint {
-			text-align: left;
-			font-size: 0.8em;
-			color: #777;
-		}
+    .hint {
+      text-align: left;
+      font-size: 0.8em;
+      color: #777;
+    }
 
-		&.skill-description textarea {
-			height: 120px;
-		}
+    &.skill-description textarea {
+      height: 120px;
+    }
 
-	}
+  }
 
-	h1, .success {
-		text-align: center;
-		font-size: 3em;
-		margin-bottom: $margin/2;
-	}
+  h1, .success {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: $margin/2;
+  }
 
-	.subline {
-		text-align: center;
-		margin-bottom: $margin;
+  .subline {
+    text-align: center;
+    margin-bottom: $margin;
 
-		a {
-			color: $color-red;
-			text-decoration: underline;
-		}
-	}
+    a {
+      color: $color-red;
+      text-decoration: underline;
+    }
+  }
 
-	p {
-		text-align: center;
-		margin-bottom: $margin/3;
-		line-height: 1.3;
-	}
+  p {
+    text-align: center;
+    margin-bottom: $margin/3;
+    line-height: 1.3;
+  }
 
-	.button {
-		// @include transition(color 300ms);
-		display: block;
-		cursor: pointer;
-		padding: 15px;
-		text-align: center;
-		border: 1px solid $color-red;
-		background: transparent;
-		@include border-radius(30px);
-		color: $color-red;
-		font-size: 1.2em;
-		margin-bottom: $margin/2;
+  .button {
+    // @include transition(color 300ms);
+    display: block;
+    cursor: pointer;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid $color-red;
+    background: transparent;
+    @include border-radius(30px);
+    color: $color-red;
+    font-size: 1.2em;
+    margin-bottom: $margin/2;
 
-		&:hover {
-			background: $color-red;
-			color: white;
-		}
+    &:hover {
+      background: $color-red;
+      color: white;
+    }
 
-		&.berlin {
-			@include border-radius(40px);
-			.berlin {
-				display: block;
-				font-size: 0.8em;
-				padding-top: $padding/6;
-			}
-		}
-	}
+    &.berlin {
+      @include border-radius(40px);
+      .berlin {
+        display: block;
+        font-size: 0.8em;
+        padding-top: $padding/6;
+      }
+    }
+  }
 
-	.icon-logo {
-		font-size: 8em;
-		margin-bottom: $margin/2;
-		text-align: center;
-	}
+  .icon-logo {
+    font-size: 8em;
+    margin-bottom: $margin/2;
+    text-align: center;
+  }
 
-	.title {
-		font-size: 1.6em;
-		text-align: center;
-		margin-bottom: $margin/2;
-	}
+  .title {
+    font-size: 1.6em;
+    text-align: center;
+    margin-bottom: $margin/2;
+  }
 }
 
 .phoneForm {
-	animation: none;
-	-webkit-animation: none;
+  animation: none;
+  -webkit-animation: none;
 
-	position: absolute;
-	right: 0;
-	top: 100px;
+  position: absolute;
+  right: 0;
+  top: 100px;
 
-	@include respond-to(tablet) {
-		display: none;
-	}
+  @include respond-to(tablet) {
+    display: none;
+  }
 }
