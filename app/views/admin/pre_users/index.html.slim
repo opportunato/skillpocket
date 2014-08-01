@@ -13,4 +13,4 @@ table.table
     tr class=("warning" if !user.is_read)
       td = user.email
       td
-        = link_to "Delete", admin_pre_user_path(user), method: :delete, class: "btn btn-danger"
+        = link_to "Delete", admin_pre_user_path(user), method: :delete, class: "btn btn-danger", "data-confirm" => "Are you sure?"

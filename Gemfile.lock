@@ -7,6 +7,15 @@ GIT
       mina
       rake
 
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: ed3de1c2b566a962697529e824953f6b280e2867
+  branch: master
+  specs:
+    simple_form (3.1.0.rc2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -234,6 +243,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails
   shoulda
+  simple_form (~> 3.1.0.rc1)!
   slim
   spring
   uglifier

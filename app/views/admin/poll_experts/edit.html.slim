@@ -1,0 +1,14 @@
+- title "Expert Preview"
+
+= simple_form_for @expert, url: admin_poll_expert_path do |f|
+  = image_tag @expert.image.url(:small)
+  = f.input :full_name
+  = f.input :email
+  = f.input :job
+  = f.input :twitter_link
+  = f.input :linkedin_link
+  = f.input :site_link
+  = f.input :skill_title
+  = f.input :skill_description
+  = f.input :price
+  = f.input :tags
