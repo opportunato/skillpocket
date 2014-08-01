@@ -1,0 +1,16 @@
+- title "Pre Sign Up Emails list"
+
+.buttons
+  = link_to "Get csv for unread", admin_pre_users_path(format: :csv, unread: true), class: "btn btn-primary"
+  = link_to "Get csv for all", admin_pre_users_path(format: :csv), class: "btn btn-primary"
+  = link_to "Mark all as read", admin_mark_as_read_path, method: :patch, class: "btn btn-success"
+
+table.table
+  tr
+    th Email
+    th
+  - @pre_users.each do |user|
+    tr class=("warning" if !user.is_read)
+      td = user.email
+      td
+        = link_to "Delete", admin_pre_user_path(user), method: :delete, class: "btn btn-danger"

@@ -23,6 +23,8 @@ gem 'spring',        group: :development
 gem 'mini_magick'
 gem 'carrierwave'
 
+gem 'has_scope'
+
 gem 'puma'
 gem 'figaro'
 

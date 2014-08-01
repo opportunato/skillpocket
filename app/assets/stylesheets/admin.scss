@@ -1,0 +1,7 @@
+@import "compass";
+@include global-reset();
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "admins.scss";

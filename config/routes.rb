@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   post "/prelaunch_submit", to: "landing#prelaunch_submit"
   post "/mail_submit", to: "landing#mail_submit"
 
-  match "/admin/*path" => "admin/poll#index", via: [:get], constraints: { format: 'html' }
+  namespace :admin do
+    resources :pre_users, only: [:index, :destroy]
+    patch "/mark_as_read", to: "pre_users#mark_as_read"
+  end
 end
