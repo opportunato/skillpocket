@@ -5,6 +5,8 @@
   = link_to "Only Step 1", admin_poll_experts_path(by_step: 1), class: "btn btn-primary"
   = link_to "Only Step 2", admin_poll_experts_path(by_step: 2), class: "btn btn-primary"
   = link_to "Only Step 3", admin_poll_experts_path(by_step: 3), class: "btn btn-primary"
+  = link_to "Not Published", admin_poll_experts_path(notpublished: true), class: "btn btn-primary"
+  = link_to "Already Published", admin_poll_experts_path(published: true), class: "btn btn-primary"
 
 table.table
   tr
