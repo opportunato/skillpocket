@@ -1,0 +1,13 @@
+.experts
+  - @experts.each do |expert|
+    .expert
+      = expert["full_name"]
+      = expert["color"]
+      = expert["job"]
+      = expert["about"]
+      = image_tag(expert["photo"])
+      = expert["price"]
+      = expert["skill_title"]
+      = expert["skill_description"]
+      - expert["tags"].each do |tag|
+        = tag["name"]

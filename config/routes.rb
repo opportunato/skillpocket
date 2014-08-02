@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   get "/thankyou", to: "landing#thankyou"
   post "/prelaunch_submit", to: "landing#prelaunch_submit"
   post "/mail_submit", to: "landing#mail_submit"
+  get "/prelaunch_app", to: "landing#prelaunch_app"
 
   namespace :admin do
     resources :pre_users, only: [:index, :destroy]
-    resources :poll_experts, only: [:index, :edit, :update, :destroy]
+    resources :poll_experts, only: [:index, :edit, :create, :destroy]
     patch "/mark_as_read", to: "pre_users#mark_as_read"
   end
 end

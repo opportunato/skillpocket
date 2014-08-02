@@ -1,9 +1,25 @@
 class LandingController < ApplicationController
+  before_filter :admin_login, only: :prelaunch_app
+
   def index
   end
 
   def prelaunch
     @current_page = cookies[:poll_page].present? ? cookies[:poll_page].to_i : 1
+  end
+
+  def prelaunch_app
+    url = URI.parse("http://api.skillpocket.com/v1/experts")
+    http = Net::HTTP.new(url.host, url.port)
+
+    request = Net::HTTP::Get.new(url.path, {'Content-Type' =>'application/json'})
+    request.body = {
+      token: ENV['API_TOKEN']
+    }.to_json
+
+    response = http.request(request)
+
+    @experts = JSON.parse(response.body)
   end
 
   def prelaunch_submit

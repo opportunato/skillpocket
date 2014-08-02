@@ -9,8 +9,28 @@ body {
 
 form {
   width: 600px;
+  margin-bottom: 50px;
 
   img {
     margin-bottom: 20px;
+  }
+}
+
+.prelaunch-form {
+  margin-right: 30px;
+}
+
+.prelaunch-form, .prelaunch-data {
+  width: 600px;
+  float: left;
+}
+
+.data {
+  margin-bottom: 20px;
+
+  .data-label {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 5px;
   }
 }
