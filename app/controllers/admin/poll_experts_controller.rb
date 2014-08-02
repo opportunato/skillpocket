@@ -17,8 +17,6 @@ class Admin::PollExpertsController < ApplicationController
 
   def edit
     @expert = PollExpert.find(params[:id])
-
-    
   end
 
   def create
@@ -40,8 +38,6 @@ class Admin::PollExpertsController < ApplicationController
     response = http.request(request)
 
     response = JSON.parse(response.body)
-
-    binding.pry
 
     if response["success"]
       @poll_expert.update(expert_created: true)
