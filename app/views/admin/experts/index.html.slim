@@ -1,0 +1,13 @@
+- title "Published Experts List"
+
+table.table
+  tr
+    th Email
+    th Full Name
+    th
+  - @experts.each do |expert|
+    tr
+      td = expert["email"]
+      td = expert["full_name"]
+      td
+        = link_to "Delete", admin_expert_path(expert["id"]), method: :delete, class: "btn btn-danger", "data-confirm" => "Are you sure?"

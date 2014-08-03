@@ -1,7 +1,9 @@
+- color = "cccccc"
+
 .carousel
   ul
     - @experts.each do |expert|
-      li.pane.expert
+      li.pane.expert[style="background-color: ##{color};"]
         .skill-title= expert["skill_title"]
         .price= expert["price"]
         .full-name= expert["full_name"]
