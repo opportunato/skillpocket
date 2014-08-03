@@ -3,6 +3,8 @@ class Admin::PollExpertsController < ApplicationController
   before_filter :admin_login
 
   has_scope :by_step
+  has_scope :published, type: :boolean
+  has_scope :notpublished, type: :boolean
 
   def index
     @experts = apply_scopes(PollExpert).all.order("created_at DESC")
