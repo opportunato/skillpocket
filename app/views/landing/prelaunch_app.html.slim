@@ -1,13 +1,15 @@
-.experts
-  - @experts.each do |expert|
-    .expert
-      = expert["full_name"]
-      = expert["color"]
-      = expert["job"]
-      = expert["about"]
-      = image_tag(expert["photo"])
-      = expert["price"]
-      = expert["skill_title"]
-      = expert["skill_description"]
-      - expert["tags"].each do |tag|
-        = tag["name"]
+.carousel
+  ul
+    - @experts.each do |expert|
+      li.pane.expert
+        .skill-title= expert["skill_title"]
+        .price= expert["price"]
+        .full-name= expert["full_name"]
+        .color= expert["color"]
+        .job-title= expert["job"]
+        .image= image_tag(expert["photo"])
+        .skill-description= expert["skill_description"]
+        .about-expert= expert["about"]
+        .tags
+          - expert["tags"].each do |tag|
+            = tag["name"]
