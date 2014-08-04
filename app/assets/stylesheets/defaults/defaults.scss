@@ -5,6 +5,8 @@ body {
 	-webkit-overflow-scrolling: touch;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
+	background: $color-black;
+	@include animation(fadein 2s);
 }
 
 span {

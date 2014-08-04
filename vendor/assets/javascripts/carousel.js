@@ -122,5 +122,5 @@ function Carousel(element)
         }
     }
 
-    new Hammer(element[0], { dragLockToAxis: true }).on("tap release dragleft dragright swipeleft swiperight", handleHammer);
+    new Hammer(element[0], { behavior: { userSelect: true, userDrag: "none" }, dragLockToAxis: true }).on("tap release dragleft dragright swipeleft swiperight", handleHammer);
 }

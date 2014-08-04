@@ -1,0 +1,75 @@
+.main.web-app {
+	max-width: 100%;
+	padding: 0;
+	color: white;
+
+	ul {
+		overflow: hidden;
+		background: white;
+	}
+
+	.content {
+		position: relative;
+		padding: 0;
+	}
+
+	.top {
+		text-align: center;
+	}
+
+	.skill-title, .skill-about, .user-about, .tags {
+		max-width: 612px;
+		margin: 0 auto;
+	}
+
+	.skill-title {
+		margin-bottom: $margin;
+		font-size: 3em;
+	}
+
+	.skill-user {
+		position: absolute;
+		left: 0; right: 0; bottom: $padding; top: auto;
+		text-align: center;
+		max-width: 312px;
+		margin: 0 auto;
+	}
+
+	.skill-about, .user-about, .tags {
+		font-size: 1.2em;
+		padding-top: $padding/2;
+	}
+
+	.white {
+		padding-bottom: $padding;
+		border-left: 1px solid $color-grey;
+	}
+
+	.color-3FB39D {
+		background: #3FB39D;
+		.button:hover {
+			color: #3FB39D;
+		}
+	}
+
+	.color-E47A36 {
+		background: #E47A36;
+		.button:hover {
+			color: #E47A36;
+		}
+	}
+
+	.color-E5C038 {
+		background: #E5C038;
+		.button:hover {
+			color: #E5C038;
+		}
+	}
+
+	.color-E14744 {
+		background: #E14744;
+		.button:hover {
+			color: #E14744;
+		}
+	}
+}

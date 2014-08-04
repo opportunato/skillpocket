@@ -1,13 +1,110 @@
+.content {
+	padding: $padding/2;
+	padding-right: 35px;
+
+	.skill-title {
+		padding-top: 60px;
+		font-size: 1.8em;
+		color: white;
+		line-height: 1.2;
+		margin-bottom: $margin/2;
+	}
+
+	.skill-price {
+		color: $color-black;
+		opacity: .5;
+		font-size: 1.2em;
+	}
+
+	.skill-user {
+		position: absolute;
+		top: 335px;
+		left: 15px; right: 35px;
+		.userpic img {
+			@include border-radius(100%);
+			width: 90px;
+			margin-bottom: $margin/3;
+		}
+
+		.jobtitle {
+			color: $color-black;
+			opacity: .5;
+			font-size: .8em;
+			margin-bottom: $margin/3*2;
+		}
+
+		.name {
+			color: $color-black;
+			opacity: .5;
+			font-size: 1.4em;
+			margin-bottom: $margin/3;
+		}
+
+		.button {
+			@include transition(all 300ms);
+			padding: 15px;
+			border: 1px solid white;
+			background: transparent;
+			@include border-radius(30px);
+			color: white;
+			font-size: 1.4em;
+			display: block;
+
+			&:hover {
+				background: white;
+			}
+		}
+	}
+}
+
+.white {
+	padding: $padding/2;
+	padding-right: 35px;
+	position: relative;
+	z-index: 2;
+	background: white;
+	color: $color-black;
+	text-align: left;
+	line-height: 1.4;
+
+	.skill-about, .user-about {
+		margin-bottom: $margin/2;
+		padding-bottom: $padding/2;
+		border-bottom: 1px solid $color-grey;
+	}
+
+	.item {
+		opacity: .5;
+	}
+
+	.title {
+		margin-bottom: $margin/6;
+	}
+
+	.read-more {
+		padding-left: $padding/6;
+	}
+
+	.tag {
+		background: $color-grey;
+		padding: $padding/10 $padding/3;
+		margin-right: $margin/6;
+		margin-bottom: $margin/6;
+		display: inline-block;
+		opacity: .5;
+	}
+}
+
 .carousel {
-	// cursor: -webkit-grab;
-	// cursor: -moz-grab;
-	cursor: ew-resize;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+	// cursor: ew-resize;
 	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	// -webkit-user-select: none;
+	// -khtml-user-select: none;
+	// -moz-user-select: none;
+	// -ms-user-select: none;
+	// user-select: none;
 	overflow: hidden;
 	position: relative;
 	z-index: 999;
@@ -109,103 +206,6 @@
 			}
 			.white {
 				top: 386px;
-			}
-		}
-
-		.content {
-			padding: $padding/2;
-			padding-right: 35px;
-
-			.skill-title {
-				padding-top: 60px;
-				font-size: 1.8em;
-				color: white;
-				line-height: 1.2;
-				margin-bottom: $margin/2;
-			}
-
-			.skill-price {
-				color: $color-black;
-				opacity: .5;
-				font-size: 1.2em;
-			}
-
-			.skill-user {
-				position: absolute;
-				top: 335px;
-				left: 15px; right: 35px;
-				.userpic img {
-					@include border-radius(100%);
-					width: 90px;
-					margin-bottom: $margin/3;
-				}
-
-				.jobtitle {
-					color: $color-black;
-					opacity: .5;
-					font-size: .8em;
-					margin-bottom: $margin/3*2;
-				}
-
-				.name {
-					color: $color-black;
-					opacity: .5;
-					font-size: 1.4em;
-					margin-bottom: $margin/3;
-				}
-
-				.button {
-					@include transition(all 300ms);
-					padding: 15px;
-					border: 1px solid white;
-					background: transparent;
-					@include border-radius(30px);
-					color: white;
-					font-size: 1.4em;
-					display: block;
-
-					&:hover {
-						background: white;
-					}
-				}
-			}
-		}
-
-		.white {
-			padding: $padding/2;
-			padding-right: 35px;
-			position: relative;
-			z-index: 2;
-			background: white;
-			color: $color-black;
-			text-align: left;
-			line-height: 1.4;
-
-			.skill-about, .user-about {
-				margin-bottom: $margin/2;
-				padding-bottom: $padding/2;
-				border-bottom: 1px solid $color-grey;
-			}
-
-			.item {
-				opacity: .5;
-			}
-
-			.title {
-				margin-bottom: $margin/6;
-			}
-
-			.read-more {
-				padding-left: $padding/6;
-			}
-
-			.tag {
-				background: $color-grey;
-				padding: $padding/10 $padding/3;
-				margin-right: $margin/6;
-				margin-bottom: $margin/6;
-				display: inline-block;
-				opacity: .5;
 			}
 		}
 	}
