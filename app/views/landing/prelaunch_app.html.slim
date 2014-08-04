@@ -1,4 +1,11 @@
 .main.web-app
+  header
+    .tags-filter
+    nav
+  a.previous.full-height href="#"
+    span.icon-previous
+  a.next.full-height href="#"
+    span.icon-next
   .carousel
     ul
       - @experts.each do |expert|
@@ -19,8 +26,11 @@
               .title About expert
               .item= expert["about"]
             .tags
-              - expert["tags"].each do |tag|
-                = tag["name"]
+              title About expert
+              .item
+                .tag
+                  - expert["tags"].each do |tag|
+                    = tag["name"]
 
 
 / .content
