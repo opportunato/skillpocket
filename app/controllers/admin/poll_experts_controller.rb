@@ -7,7 +7,7 @@ class Admin::PollExpertsController < ApplicationController
   has_scope :notpublished, type: :boolean
 
   def index
-    @experts = apply_scopes(PollExpert).all.order("created_at DESC")
+    @experts = apply_scopes(PollExpert).all.order("created_at ASC")
   end
 
   def destroy
