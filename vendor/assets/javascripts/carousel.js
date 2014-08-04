@@ -31,7 +31,7 @@ function Carousel(element)
      * set the pane dimensions and scale the container
      */
     function setPaneDimensions() {
-        pane_width = element.width() + 20;
+        pane_width = element.width();
         panes.each(function() {
             $(this).width(pane_width);
         });

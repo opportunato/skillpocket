@@ -212,6 +212,58 @@
 	}
 }
 
+header {
+	position: absolute;
+	left: 0; right: 0; top: 0;
+	height: 60px;
+	text-align: center;
+	z-index: 4;
+	color: $color-black;
+	opacity: .5;
+
+	.tags-filter {
+
+		margin-right: -33px;
+		display: inline-block;
+		padding-top: 4px;
+
+		.title, .icon-arrow {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.title {
+			margin-right: -10px;
+		}
+
+	  .icon-arrow {
+	  	font-size: 3.6em;
+	  }
+	}
+
+
+  .logo {
+  	position: absolute;
+  	left: 8px;
+		top: 8px;
+
+  	.icon-user, .title {
+  		display: inline-block;
+			vertical-align: middle;
+  	}
+
+  	.icon-user {
+  		font-size: 3em;
+  	}
+
+  	.title {
+  		@include respond-to(mobile) {
+  			display: none;
+  		}
+  	}
+  }
+}
+
 footer {
 	border-top: 1px solid $color-grey;
 	@include animation(phone 1s 1600ms both);

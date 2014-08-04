@@ -41,7 +41,7 @@ $(function() {
 		});
 
 		$ul.on("touchmove", function(e) {
-			e.preventDefault();
+			// e.preventDefault();
 			$ul.removeClass("animation-start");
 		});
 
@@ -49,7 +49,11 @@ $(function() {
 
 		$w.resize(function() {
 			windowHeight = $w.height();
-			$fullHeight.height(windowHeight);
+			if (windowHeight > 500) {
+				$fullHeight.height(windowHeight);
+			} else {
+				$fullHeight.height(500);
+			}
 		});
 
 		$w.trigger("resize");

@@ -5,6 +5,9 @@
   @else if $media == mobile {
     @media only screen and (max-width: $break-phone) {@content; }
   }
+  @else if $media == landscape {
+    @media only screen and (max-height: $break-landscape) {@content; }
+  }
 }
 
 @mixin nowie_vremena() {

@@ -11,6 +11,10 @@
 		width: 60px;
 		z-index: 2;
 		font-size: 4em;
+
+		@include respond-to(mobile) {
+			display: none;
+		}
 	}
 
 	.carousel {
@@ -30,7 +34,7 @@
 	}
 
 	.next {
-		right: 20px;
+		right: 0px;
 
 		.icon-next {
 			position: absolute;
@@ -64,14 +68,31 @@
 		margin-bottom: $margin;
 		max-width: 512px;
 		font-size: 3em;
+		padding-top: 80px;
+
+		@include respond-to(mobile) {
+			font-size: 2em;
+			padding: 80px $padding/2 0 $padding/2;
+			margin-bottom: $margin/2;
+		}
+
+		@include respond-to(landscape) {
+			font-size: 2em;
+			padding: 80px $padding/2 0 $padding/2;
+			margin-bottom: $margin/2;
+		}
 	}
 
 	.skill-user {
 		position: absolute;
 		left: 0; right: 0; bottom: $padding; top: auto;
 		text-align: center;
-		max-width: 312px;
+		max-width: 290px;
 		margin: 0 auto;
+
+		@include respond-to(mobile) {
+			bottom: $padding/2;
+		}
 	}
 
 	.skill-about, .user-about, .tags {

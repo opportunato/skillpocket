@@ -1,6 +1,5 @@
 .content {
 	padding: $padding/2;
-	padding-right: 35px;
 
 	.skill-title {
 		padding-top: 60px;
@@ -59,7 +58,6 @@
 
 .white {
 	padding: $padding/2;
-	padding-right: 35px;
 	position: relative;
 	z-index: 2;
 	background: white;
@@ -73,12 +71,18 @@
 		border-bottom: 1px solid $color-grey;
 	}
 
+	.skill-about {
+		@include respond-to(mobile) {
+			padding-top: 0!important;
+		}
+	}
+
 	.item {
 		opacity: .5;
 	}
 
 	.title {
-		margin-bottom: $margin/6;
+		margin-bottom: $margin/3;
 	}
 
 	.read-more {
@@ -99,7 +103,7 @@
 	cursor: -webkit-grab;
 	cursor: -moz-grab;
 	// cursor: ew-resize;
-	-webkit-touch-callout: none;
+	// -webkit-touch-callout: none;
 	// -webkit-user-select: none;
 	// -khtml-user-select: none;
 	// -moz-user-select: none;

@@ -1,11 +1,19 @@
 .main.web-app
   header
-    .tags-filter
+    .logo =link_to root_path
+      span.icon-user
+      span.title Skillpocket / Berlin
+    a.tags-filter href="#"
+      span.title All skills
+      span.icon-arrow
     nav
+
   a.previous.full-height href="#"
     span.icon-previous
+
   a.next.full-height href="#"
     span.icon-next
+
   .carousel
     ul
       - @experts.each do |expert|
@@ -26,11 +34,9 @@
               .title About expert
               .item= expert["about"]
             .tags
-              title About expert
-              .item
-                .tag
-                  - expert["tags"].each do |tag|
-                    = tag["name"]
+              .title About expert
+              - expert["tags"].each do |tag|
+                .tag= tag["name"]
 
 
 / .content
