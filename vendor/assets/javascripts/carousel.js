@@ -131,4 +131,12 @@ function Carousel(element)
     }
 
     new Hammer(element[0], { behavior: { userSelect: true, userDrag: "none" }, dragLockToAxis: true }).on("tap release dragleft dragright swipeleft swiperight", handleHammer);
+
+    $(panes).removeClass('current');
+    $(panes[current_pane]).addClass('current');
+
+    setTimeout(function() {
+        var currentHeight = $('.current').height();
+        container.height(currentHeight);
+    }, 300);
 }
