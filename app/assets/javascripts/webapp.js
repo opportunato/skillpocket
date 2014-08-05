@@ -36,9 +36,9 @@ $(function() {
 
       setTimeout(function() {
         if ($webApp.hasClass("opened")) {
-          $ul.height('auto');
-        } else {
           $ul.height($('nav').innerHeight());
+        } else {
+          $ul.height('auto');
         }
       }, 100);
 
