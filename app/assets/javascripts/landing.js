@@ -1,20 +1,14 @@
 $(function() {
 	'use strict';
 
-	if ($('.main').length > 0) {
+	if ($('.intro').length > 0) {
 		var carousel = new Carousel(".carousel"),
 				$ul = $('.carousel ul'),
 				$fullHeight = $('.full-height'),
 				$b = $('body'),
-				$webApp = $('.main.web-app'),
 				$w = $(window),
-				$tagsFilter = $('.tags-filter'),
 				windowHeight = $w.height(),
-				nexthammertime,
-				previoushammertime,
 				current_pane = 0,
-				previousPost = $('.previous'),
-				nextPost = $('.next'),
 				panes = $('.carousel li.pane'),
 				pane_count = panes.length,
 				nextCarousel,
@@ -44,20 +38,6 @@ $(function() {
 
 		$ul.on("touchmove", function(e) {
 			$ul.removeClass("animation-start");
-		});
-
-		$tagsFilter.on("click", function(e) {
-			e.preventDefault();
-
-			if ($webApp.hasClass("opened")) {
-				$ul.height('auto');
-			}	else {
-				$ul.height($('nav').innerHeight());
-			}
-
-			setTimeout(function() {
-				$webApp.toggleClass("opened");
-			}, 100);
 		});
 
 		$fullHeight.height(windowHeight);
@@ -101,28 +81,5 @@ $(function() {
 			}
 
 		}
-
-		nexthammertime = Hammer(nextPost[0]).on("tap", function(event) {
-			event.preventDefault();
-			nextCarousel();
-		});
-
-		previoushammertime = Hammer(previousPost[0]).on("tap", function(event) {
-			event.preventDefault();
-			previousCarousel();
-		});
-
-		$b.keydown(function(e) {
-
-			if(e.keyCode == 37) { // left
-
-				previousCarousel();
-			}
-
-			else if(e.keyCode == 39) { // right
-
-				nextCarousel();
-			}
-		});
 	}
 });

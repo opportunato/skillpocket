@@ -4,5 +4,6 @@
 //= require hammer
 //= require carousel
 //= require typed
-//= require main
+//= require landing
+//= require webapp
 //= require poll

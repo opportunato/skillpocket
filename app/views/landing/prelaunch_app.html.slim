@@ -45,7 +45,7 @@
               .userpic = image_tag(expert["photo"])
               .name = expert["full_name"]
               .jobtitle = expert["job"]
-              .button Let’s connect
+              a.button href="#" Let’s connect
 
           .white
             .skill-about= expert["skill_description"]
@@ -56,3 +56,6 @@
               .title About expert
               - expert["tags"].each do |tag|
                 .tag = tag["name"]
+
+  .popup
+    .title Book a meeting. We'll forward your message in an email and [first name of expert] will get back to you
