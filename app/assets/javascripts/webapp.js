@@ -9,7 +9,6 @@ $(function() {
 				$webApp = $('.main.web-app'),
 				$w = $(window),
 				$tagsFilter = $('.tags-filter'),
-				$button = $('a.button'),
 				$popup = $('.popup'),
 				$nav = $('nav'),
 				windowHeight = $w.height(),
@@ -25,10 +24,6 @@ $(function() {
 
 
 //ui
-		$button.on("click", function(e) {
-			e.preventDefault();
-			$popup.addClass("opened");
-		});
 
 		$tagsFilter.on("click", function(e) {
 			e.preventDefault();

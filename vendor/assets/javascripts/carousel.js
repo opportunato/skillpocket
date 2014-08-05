@@ -9,6 +9,9 @@ function Carousel(element)
 
     var container = $(">ul", element),
         panes = $(">ul>li", element),
+        $w = $(window),
+        $popup = $('.popup'),
+        $button = $('a.button'),
 
         pane_width = 0,
         pane_count = panes.length,
@@ -53,10 +56,8 @@ function Carousel(element)
         $(panes).removeClass('current');
         $(panes[current_pane]).addClass('current');
 
-        setTimeout(function() {
-            var currentHeight = $('.current').height();
-            container.height(currentHeight);
-        }, 300);
+        var currentHeight = $('.current').height();
+        container.height(currentHeight);
     };
 
 
@@ -116,7 +117,7 @@ function Carousel(element)
 
             case 'release':
                 // more then 50% moved, navigate
-                if(Math.abs(ev.gesture.deltaX) > pane_width/4) {
+                if(Math.abs(ev.gesture.deltaX) > pane_width/2) {
                     if(ev.gesture.direction == 'right') {
                         self.prev();
                     } else {
@@ -135,8 +136,22 @@ function Carousel(element)
     $(panes).removeClass('current');
     $(panes[current_pane]).addClass('current');
 
-    setTimeout(function() {
-        var currentHeight = $('.current').height();
-        container.height(currentHeight);
-    }, 300);
+    $w.resize(function() {
+        setTimeout(function() {
+            var currentHeight = $('.current').height();
+            container.height(currentHeight);
+        }, 300);
+    });
+
+    $w.trigger("resize");
+
+    $button.on("click", function(e) {
+        e.preventDefault();
+        $popup.addClass("opened");
+    });
+
+    $button.on("tap", function(e) {
+        e.preventDefault();
+        $popup.addClass("opened");
+    });
 }

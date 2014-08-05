@@ -62,4 +62,12 @@ javascript:
                 .tag = tag["name"]
 
   .popup
-    .title Book a meeting. We'll forward your message in an email and [first name of expert] will get back to you
+    .wrapper
+      .title Book a meeting. We'll forward your message in an email and the expert will get back to you.
+      form
+        input type="email" placeholder="Your name"
+        input type="email" placeholder="Your email"
+        textarea type="email" placeholder="What would you like to discuss"
+        textarea type="email" placeholder="When and where are you available to meet"
+        input.submit type="submit" value="Connect"
+      a.cancel href="#" Cancel

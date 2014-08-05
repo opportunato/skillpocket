@@ -8,6 +8,10 @@
 		header {
 			opacity: 1;
 
+			a {
+				color: $color-red;
+			}
+
 			nav {
 				@include translateY(0%);
 			}
@@ -54,10 +58,20 @@
 			font-size: 1.2em;
 			display: block;
 
+			// @include respond-to(mobile) {
+			// 	font-size: 1em;
+			// 	padding: $padding/2;
+			// }
+
+			// @include respond-to(landscape) {
+			// 	font-size: 1em;
+			// 	padding: $padding/2;
+			// }
+
 			&:hover { background: $color-grey; }
 
 			&.active {
-				background: $color-black;
+				background: $color-red;
 				color: white;
 			}
 		}
@@ -124,13 +138,13 @@
 
 		@include respond-to(mobile) {
 			font-size: 2em;
-			padding: 80px $padding/2 0 $padding/2;
+			padding: 60px $padding/2 0 $padding/2;
 			margin-bottom: $margin/2;
 		}
 
 		@include respond-to(landscape) {
 			font-size: 2em;
-			padding: 80px $padding/2 0 $padding/2;
+			padding: 60px $padding/2 0 $padding/2;
 			margin-bottom: $margin/2;
 		}
 	}

@@ -6,4 +6,5 @@
 //= require typed
 //= require landing
 //= require webapp
+//= require popup
 //= require poll

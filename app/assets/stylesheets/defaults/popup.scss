@@ -10,4 +10,54 @@
   &.opened {
     @include translateY(0%);
   }
+
+  .title {
+    font-size: 1.2em;
+    text-align: center;
+    padding-top: $padding*3;
+    padding-bottom: $padding;
+    line-height: 1.4;
+
+    @include respond-to(mobile) {
+      padding-top: $padding;
+      font-size: 1em;
+    }
+  }
+
+  .wrapper {
+    max-width: 365px;
+    margin: 0 auto;
+
+    @include respond-to(mobile) {
+      width: 265px;
+    }
+  }
+
+  input, textarea {
+    margin-right: 0;
+    margin-bottom: $margin/2;
+    width: 340px;
+
+    @include respond-to(mobile) {
+      width: 240px;
+      font-size: 1em;
+      margin-bottom: $margin/3;
+    }
+  }
+
+  .submit {
+    width: 100%;
+    font-size: 1.2em;
+
+    @include respond-to(mobile) {
+      font-size: 1em;
+    }
+  }
+
+  .cancel {
+    color: $color-black;
+    opacity: .5;
+    display: block;
+    text-align: center;
+  }
 }

@@ -18,7 +18,7 @@
 	.skill-user {
 		position: absolute;
 		top: 335px;
-		left: 15px; right: 35px;
+		left: 15px; right: 15px;
 		.userpic img {
 			@include border-radius(100%);
 			width: 90px;
@@ -100,8 +100,8 @@
 }
 
 .carousel {
-	cursor: -webkit-grab;
-	cursor: -moz-grab;
+	// cursor: -webkit-grab;
+	// cursor: -moz-grab;
 	// cursor: ew-resize;
 	// -webkit-touch-callout: none;
 	// -webkit-user-select: none;
