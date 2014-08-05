@@ -54,9 +54,6 @@ $(function() {
 		$w.trigger("resize");
 
 
-
-
-
 //carousel
 		carousel.init();
 

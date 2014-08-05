@@ -27,7 +27,7 @@ class Admin::ExpertsController < ApplicationController
 
     response = http.request(request)
 
-    @expert = JSON.parse(response.body)
+    @expert = JSON.parse(response.body)["expert"]
   end
 
   def update
