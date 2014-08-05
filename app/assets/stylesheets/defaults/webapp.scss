@@ -1,7 +1,6 @@
 .main.web-app {
 	max-width: 100%;
 	padding: 0;
-	color: white;
 	position: relative;
 	overflow: hidden;
 
@@ -23,9 +22,9 @@
 	}
 
 	.carousel, .next, .previous {
-			@include transition(all 600ms);
-			@include translateY(0%);
-		}
+		@include transition(all 600ms);
+		@include translateY(0%);
+	}
 
 	.next, .previous {
 		@include transition(all 600ms);
@@ -46,7 +45,7 @@
 		top: 0; left: 0; right: 0;
 		background: white;
 		padding-top: $padding*2;
-		@include translateY(-105%);
+		@include translateY(-100%);
 		@include transition(all 600ms);
 
 		li a {
@@ -70,6 +69,13 @@
 
 	.carousel {
 		z-index: 1;
+
+		ul { overflow: hidden; }
+
+		ul li {
+			height: auto;
+			min-height: initial;
+		}
 	}
 
 	.previous {
@@ -176,6 +182,13 @@
 		background: #E14744;
 		.button:hover {
 			color: #E14744;
+		}
+	}
+
+	.color-3FB39F {
+		background: #3FB39F;
+		.button:hover {
+			color: #3FB39F;
 		}
 	}
 }

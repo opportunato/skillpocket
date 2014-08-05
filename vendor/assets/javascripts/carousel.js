@@ -7,13 +7,13 @@ function Carousel(element)
     var self = this;
     element = $(element);
 
-    var container = $(">ul", element);
-    var panes = $(">ul>li", element);
+    var container = $(">ul", element),
+        panes = $(">ul>li", element),
 
-    var pane_width = 0;
-    var pane_count = panes.length;
+        pane_width = 0,
+        pane_count = panes.length,
 
-    var current_pane = 0;
+        current_pane = 0;
 
     /**
      * initial
@@ -49,6 +49,14 @@ function Carousel(element)
 
         var offset = -((100/pane_count)*current_pane);
         setContainerOffset(offset, animate);
+
+        $(panes).removeClass('current');
+        $(panes[current_pane]).addClass('current');
+
+        setTimeout(function() {
+            var currentHeight = $('.current').height();
+            container.height(currentHeight);
+        }, 300);
     };
 
 
@@ -108,7 +116,7 @@ function Carousel(element)
 
             case 'release':
                 // more then 50% moved, navigate
-                if(Math.abs(ev.gesture.deltaX) > pane_width/2) {
+                if(Math.abs(ev.gesture.deltaX) > pane_width/4) {
                     if(ev.gesture.direction == 'right') {
                         self.prev();
                     } else {
