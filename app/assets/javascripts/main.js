@@ -6,7 +6,9 @@ $(function() {
 				$ul = $('.carousel ul'),
 				$fullHeight = $('.full-height'),
 				$b = $('body'),
+				$webApp = $('.main.web-app'),
 				$w = $(window),
+				$tagsFilter = $('.tags-filter'),
 				windowHeight = $w.height(),
 				nexthammertime,
 				previoushammertime,
@@ -41,8 +43,21 @@ $(function() {
 		});
 
 		$ul.on("touchmove", function(e) {
-			// e.preventDefault();
 			$ul.removeClass("animation-start");
+		});
+
+		$tagsFilter.on("click", function(e) {
+			e.preventDefault();
+
+			if ($webApp.hasClass("opened")) {
+				$ul.height('auto');
+			}	else {
+				$ul.height($w.height()+10);
+			}
+
+			setTimeout(function() {
+				$webApp.toggleClass("opened");
+			}, 100);
 		});
 
 		$fullHeight.height(windowHeight);

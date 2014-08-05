@@ -3,8 +3,33 @@
 	padding: 0;
 	color: white;
 	position: relative;
+	overflow: hidden;
+
+	&.opened {
+		overflow: hidden;
+		header {
+			opacity: 1;
+
+			nav {
+				@include translateY(0%);
+			}
+		}
+		.carousel, .next, .previous {
+			@include translateY(95%);
+		}
+	}
+
+	header {
+		@include transition(all 600ms);
+	}
+
+	.carousel, .next, .previous {
+			@include transition(all 600ms);
+			@include translateY(0%);
+		}
 
 	.next, .previous {
+		@include transition(all 600ms);
 		position: absolute;
 		top: 0; bottom: 0;
 		opacity: .5;
@@ -16,6 +41,33 @@
 			display: none;
 		}
 	}
+
+	nav {
+		position: absolute;
+		top: 0; left: 0; right: 0;
+		background: white;
+		padding-top: $padding*2;
+		@include translateY(-105%);
+		@include transition(all 600ms);
+
+		li a {
+			padding: $padding;
+			border-top: 1px solid $color-grey;
+			font-size: 1.2em;
+			display: block;
+
+			&:hover { background: $color-grey; }
+
+			&.active {
+				background: $color-black;
+				color: white;
+			}
+		}
+	}
+
+	.logo, .tags-filter { z-index: 2; }
+
+	.tags-filter { position: relative; }
 
 	.carousel {
 		z-index: 1;
@@ -43,11 +95,6 @@
 			margin-top: -28px;
 			margin-right: -15px;
 		}
-	}
-
-	ul {
-		overflow: hidden;
-		background: white;
 	}
 
 	.content {
