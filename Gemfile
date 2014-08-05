@@ -23,6 +23,8 @@ gem 'spring',        group: :development
 gem 'mini_magick'
 gem 'carrierwave'
 
+gem 'mandrill_mailer'
+
 gem 'has_scope'
 
 gem 'puma'
@@ -46,4 +48,5 @@ group :development, :test do
   gem "pry"
   gem 'pry-remote'
   gem 'pry-nav'
+  gem 'letter_opener'
 end

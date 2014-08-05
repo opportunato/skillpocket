@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/prelaunch_app", to: "landing#prelaunch_app"
 
   namespace :admin do
-    resources :experts, only: [:index, :destroy]
+    resources :experts, only: [:index, :destroy, :edit, :update]
     resources :pre_users, only: [:index, :destroy]
     resources :poll_experts, only: [:index, :edit, :create, :destroy]
     patch "/mark_as_read", to: "pre_users#mark_as_read"

@@ -20,53 +20,20 @@
         li.pane.expert[class="color-#{expert['color']}"]
           .content.full-height
             .top
-              .skill-title= expert["skill_title"]
-              .skill-price= expert["price"]
+              .skill-title = expert["skill_title"]
+              .skill-price = "#{expert["price"]}€/hr"
             .skill-user
-              .userpic= image_tag(expert["photo"])
-              .name= expert["full_name"]
-              .jobtitle= expert["job"]
+              .userpic = image_tag(expert["photo"])
+              .name = expert["full_name"]
+              .jobtitle = expert["job"]
               .button Let’s connect
 
           .white
             .skill-about= expert["skill_description"]
             .user-about
               .title About expert
-              .item= expert["about"]
+              .item = expert["about"]
             .tags
               .title About expert
               - expert["tags"].each do |tag|
-                .tag= tag["name"]
-
-
-/ .content
-/   .skill-title
-/     | UI & UX Advise — Get feedback on your designs
-/   .skill-price
-/     | €60/hr
-/   .skill-user
-/     .userpic = image_tag 'denis.png'
-/     .name Denis Drachyov
-/     .jobtitle Product lead, Skillpocket
-/     .button Let’s connect
-/ .white
-/   .skill-about
-/     span.item
-/       | A usable and engaging website is important for obtaining and retaining new users. I can evaluate your website for many of the most-common usability problems and offer suggestions on how to improve your site so that it better ...
-/     span.read-more
-/       | read more
-/   .user-about
-/     .title
-/       | About Denis
-/     span.item
-/       | I am the product lead of Skillpocket. I have been designing and developing websites for 5+ years. I was the Design Director of three companies within Dream Industries ...
-/     span.read-more
-/       | read more
-/   .tags
-/     .title
-/       | Categories
-/     span.tag UX
-/     span.tag Design
-/     span.tag Usability
-/     span.tag Product Design
-/     span.tag Service Design
+                .tag = tag["name"]

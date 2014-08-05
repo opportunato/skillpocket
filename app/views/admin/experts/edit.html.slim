@@ -1,0 +1,17 @@
+- title "Prelaunch Expert Preview"
+- expert = @expert
+- tags = @expert["tags"].map{ |tag| tag["name"] }.join(', ')
+
+= simple_form_for :poll_expert, url: "/admin/experts/#{expert['id']}", method: 'patch', html: { class: "prelaunch-form" } do |f|
+  = f.input :id, input_html: { value: expert["id"] }, as: :hidden
+  = f.input :first_name, input_html: { value: expert["first_name"] }, required: false
+  = f.input :last_name, input_html: { value: expert["last_name"] }, required: false
+  = f.input :email, input_html: { value: expert["email"] }, required: false
+  = f.input :job, input_html: { value: expert["job"] }, required: false
+  = f.input :about, input_html: { value: expert["about"] }, required: false, as: :text
+  = f.input :color, input_html: { value: expert["color"] }, required: false, hint: 'like 3FB39D'
+  = f.input :skill_title, input_html: { value: expert["skill_title"] }, required: false
+  = f.input :skill_description, input_html: { value: expert["skill_description"] }, required: false, as: :text
+  = f.input :price, input_html: { value: expert["price"] }, required: false, hint: 'Number, please'
+  = f.input :tags, input_html: { value: tags }, required: false, hint: 'Separate with commas', as: :text
+  = f.button :submit, 'Update', class: 'btn btn-success'
