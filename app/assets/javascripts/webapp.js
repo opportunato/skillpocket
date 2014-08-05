@@ -32,15 +32,16 @@ $(function() {
     $tagsFilter.on("click", function(e) {
       e.preventDefault();
 
-      if ($webApp.hasClass("opened")) {
-        $ul.height('auto');
-      } else {
-        $ul.height($('nav').innerHeight());
-      }
+      $webApp.toggleClass("opened");
 
       setTimeout(function() {
-        $webApp.toggleClass("opened");
+        if ($webApp.hasClass("opened")) {
+          $ul.height('auto');
+        } else {
+          $ul.height($('nav').innerHeight());
+        }
       }, 100);
+
     });
 
     $fullHeight.height(windowHeight);
