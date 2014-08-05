@@ -52,7 +52,7 @@ $(function() {
 			if ($webApp.hasClass("opened")) {
 				$ul.height('auto');
 			}	else {
-				$ul.height($w.height()+10);
+				$ul.height($('nav').innerHeight());
 			}
 
 			setTimeout(function() {
