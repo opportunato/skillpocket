@@ -14,5 +14,13 @@
   = f.input :skill_description, input_html: { value: expert["skill_description"] }, required: false, as: :text
   = f.input :price, input_html: { value: expert["price"] }, required: false, hint: 'Number, please'
   = f.input :tags, input_html: { value: tags }, required: false, hint: 'Separate with commas', as: :text
+
+  = f.input :website_link, input_html: { value: expert["website_link"] }, required: false
+  = f.input :twitter_link, input_html: { value: expert["twitter_link"] }, required: false
+  = f.input :linkedin_link, input_html: { value: expert["linkedin_link"] }, required: false
+  = f.input :behance_link, input_html: { value: expert["behance_link"] }, required: false
+  = f.input :github_link, input_html: { value: expert["github_link"] }, required: false
+  = f.input :stackoverflow_link, input_html: { value: expert["stackoverflow_link"] }, required: false
+
   = f.input :slug, input_html: { value: expert["slug"] }, required: false
   = f.button :submit, 'Update', class: 'btn btn-success'

@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   get "/thankyou", to: "landing#thankyou"
   post "/prelaunch_submit", to: "landing#prelaunch_submit"
   post "/mail_submit", to: "landing#mail_submit"
-  get "/berlin", to: "landing#prelaunch_app"
-  get "/berlin/:id", to: "landing#show_prelaunch_app"
+  get "/berlin", to: "berlin#index"
+  get "/berlin/:id", to: "berlin#show"
+  post "/berlin_connect", to: "berlin#connect"
 
   namespace :admin do
     resources :experts, only: [:index, :destroy, :edit, :update]

@@ -11,6 +11,6 @@ module Skillpocket
   class Application < Rails::Application
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
-    config.assets.precompile += %w(admin.js admin.css prelaunch.js)
+    config.assets.precompile += %w(admin.js admin.css berlin.js)
   end
 end

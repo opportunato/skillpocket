@@ -1,7 +1,5 @@
-/ - title "Find experts to meet in Berlin!", description: @workshop.first_paragraph
-/ / - set_meta_tags fb: { app_id: ENV['FACEBOOK_APP_ID'] }
-/ / - set_meta_tags og: { title: @workshop.title, image: @workshop.cover_image, description: @workshop.first_paragraph, url: workshop_url(@workshop) }
-/ / - set_meta_tags twitter: { title: @workshop.title, image: @workshop.cover_image, description: @work
+- title "Find experts to meet in Berlin!", description: @current_expert['skill_description']
+
 
 javascript:
   mixpanel.track('Prelaunch Landed');
@@ -57,10 +55,11 @@ javascript:
   .popup
     .wrapper
       .title Book a meeting. We'll forward your message in an email and the expert will get back to you.
-      form
-        input type="email" placeholder="Your name"
-        input type="email" placeholder="Your email"
-        textarea type="email" placeholder="What would you like to discuss"
-        textarea type="email" placeholder="When and where are you available to meet"
-        input.submit type="submit" value="Connect"
+      = form_tag(berlin_connect_path)
+        = hidden_field_tag "request['id']", ''
+        = text_field_tag "request['name']", '', placeholder: 'Your Name', type: 'email'
+        = text_field_tag "request['name']", '', placeholder: 'Your Email', type: 'email'
+        = text_area_tag "request['topic']", '', placeholder: 'What would you like to discuss'
+        = text_area_tag "request['meeting']", '', placeholder: 'When and where are you available to meet'
+        = submit_tag "Connect", class: 'submit'
       a.cancel href="#" Cancel

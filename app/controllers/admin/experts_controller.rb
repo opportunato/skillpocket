@@ -62,6 +62,6 @@ class Admin::ExpertsController < ApplicationController
 private
 
   def expert_params
-    params.require(:poll_expert).permit(:id, :first_name, :last_name, :email, :job, :about, :color, :skill_title, :skill_description, :price, :tags, :slug)
+    params.require(:poll_expert).permit(:id, :first_name, :last_name, :email, :job, :about, :color, :skill_title, :skill_description, :price, :tags, :slug, :website_link, :twitter_link, :linkedin_link, :behance_link, :github_link, :stackoverflow_link)
   end
 end

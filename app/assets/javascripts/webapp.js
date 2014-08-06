@@ -115,7 +115,7 @@ $(function() {
     }
 
     var changeLink = function(direction) {
-      history.pushState({direction: direction}, "", "/prelaunch_app/" + $('.current').data('slug'));
+      history.pushState({direction: direction}, "", "/berlin/" + $('.current').data('slug'));
     }
 
 
