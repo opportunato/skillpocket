@@ -9,6 +9,7 @@
 
   &.opened {
     @include translateY(0%);
+    overflow-y: auto;
   }
 
   .title {
@@ -27,6 +28,7 @@
   .wrapper {
     max-width: 365px;
     margin: 0 auto;
+    padding-bottom: $padding*2;
 
     @include respond-to(mobile) {
       width: 265px;
