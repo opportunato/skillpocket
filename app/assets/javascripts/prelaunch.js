@@ -3,6 +3,5 @@
 //= require modernizr
 //= require hammer
 //= require carousel
-//= require typed
-//= require landing
-//= require poll
+//= require webapp
+//= require popup

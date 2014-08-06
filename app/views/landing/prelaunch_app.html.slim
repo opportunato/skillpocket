@@ -1,6 +1,12 @@
-- title "Find experts to meet in Berlin!"
+/ - title "Find experts to meet in Berlin!", description: @workshop.first_paragraph
+/ / - set_meta_tags fb: { app_id: ENV['FACEBOOK_APP_ID'] }
+/ / - set_meta_tags og: { title: @workshop.title, image: @workshop.cover_image, description: @workshop.first_paragraph, url: workshop_url(@workshop) }
+/ / - set_meta_tags twitter: { title: @workshop.title, image: @workshop.cover_image, description: @work
+
 javascript:
   mixpanel.track('Prelaunch Landed');
+
+.data-experts data-experts='@experts'
 
 .main.web-app
   header
@@ -13,23 +19,10 @@ javascript:
     nav
       ul
         li
-          a href="#" All skills
-        li
-          a.active href="#" Business
-        li
-          a href="#" Sales & Marketing
-        li
-          a href="#" Funding
-        li
-          a href="#" Product & Design
-        li
-          a href="#" Science & Technology
-        li
-          a href="#" Skills & Management
-        li
-          a href="#" Industries
-        li
-          a href="#" Art & Design
+          a.active href="#" data-id="" class="filter" All skills
+        - @tags.each do |tag|
+          li
+            a href="#" data-id="#{tag['id']}" class="filter" = tag['name']
 
   a.previous.full-height href="#"
     span.icon-previous
@@ -40,7 +33,7 @@ javascript:
   .carousel
     ul
       - @experts.each do |expert|
-        li.pane.expert[class="color-#{expert['color']}"]
+        li.pane.expert[class="color-#{expert['color']}" data-slug="#{expert['slug']}" data-categories="#{expert['categories'].map { |category| category['id'] }.join(',')}"]
           .content.full-height
             .top
               .skill-title = expert["skill_title"]

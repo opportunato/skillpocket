@@ -4,6 +4,7 @@
 */
 function Carousel(element)
 {
+    'use strict';
     var self = this;
     element = $(element);
 
@@ -23,12 +24,26 @@ function Carousel(element)
      */
     this.init = function() {
         setPaneDimensions();
+        setCurrent();
 
         $(window).on("load resize orientationchange", function() {
             setPaneDimensions();
         })
     };
 
+    this.refresh = function() {
+        current_pane = 0;
+        panes = $(">ul>li", element);
+        pane_count = panes.length;
+
+        setPaneDimensions();
+        setCurrent();
+    };
+
+    function setCurrent() {
+        $(panes).removeClass('current');
+        $(panes[current_pane]).addClass('current');
+    };
 
     /**
      * set the pane dimensions and scale the container
@@ -132,9 +147,6 @@ function Carousel(element)
     }
 
     new Hammer(element[0], { behavior: { userSelect: true, userDrag: "none" }, dragLockToAxis: true }).on("tap release dragleft dragright swipeleft swiperight", handleHammer);
-
-    $(panes).removeClass('current');
-    $(panes[current_pane]).addClass('current');
 
     $w.resize(function() {
         setTimeout(function() {

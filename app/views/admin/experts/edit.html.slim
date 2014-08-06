@@ -14,4 +14,5 @@
   = f.input :skill_description, input_html: { value: expert["skill_description"] }, required: false, as: :text
   = f.input :price, input_html: { value: expert["price"] }, required: false, hint: 'Number, please'
   = f.input :tags, input_html: { value: tags }, required: false, hint: 'Separate with commas', as: :text
+  = f.input :slug, input_html: { value: expert["slug"] }, required: false
   = f.button :submit, 'Update', class: 'btn btn-success'

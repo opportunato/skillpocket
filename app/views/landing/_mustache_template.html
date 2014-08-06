@@ -1,0 +1,27 @@
+<script id="template" type="x-tmpl-mustache">
+  <div class="carousel">
+    <ul>
+      {{#experts}}
+        li.pane.expert[class="color-#{expert['color']}"]
+          .content.full-height
+            .top
+              .skill-title = expert["skill_title"]
+              .skill-price = "#{expert["price"]}€/hr"
+            .skill-user
+              .userpic = image_tag(expert["photo"])
+              .name = expert["full_name"]
+              .jobtitle = expert["job"]
+              a.button href="#" Let’s connect
+
+          .white
+            .skill-about = expert["skill_description"]
+            .user-about
+              .title About expert
+              .item = expert["about"]
+            .tags
+              .title About expert
+              - expert["tags"].each do |tag|
+                .tag = tag["name"]
+    </ul>
+  </div>
+</script>
