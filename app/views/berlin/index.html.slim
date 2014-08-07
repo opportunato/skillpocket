@@ -1,7 +1,6 @@
-- title "Find experts to meet in Berlin!", description: @current_expert['skill_description']
-
-javascript:
-  mixpanel.track('Prelaunch Landed');
+- title expert_title(@current_expert), description: @current_expert['skill_description']
+- set_meta_tags og: { title: expert_title(@current_expert), image: @current_expert["photo"], description: @current_expert['skill_description'], url: (berlin_url + "/#{@current_expert['slug']}") }
+- set_meta_tags twitter: { title: expert_title(@current_expert), image: @current_expert["photo"], description: @current_expert['skill_description'], url: (berlin_url + "/#{@current_expert['slug']}") }
 
 .data-experts data-experts='@experts'
 
@@ -30,7 +29,7 @@ javascript:
   .carousel
     ul
       - @experts.each do |expert|
-        li.pane.expert[class="color-#{expert['color']}" data-id="#{expert['id']}" data-slug="#{expert['slug']}" data-categories="#{expert['categories'].map { |category| category['id'] }.join(',')}"]
+        li.pane.expert[id="expert_#{expert['id']}" class="color-#{expert['color']}" data-id="#{expert['id']}" data-name="#{expert['full_name']}" data-slug="#{expert['slug']}" data-categories="#{expert['categories'].map { |category| category['id'] }.join(',')}"]
           .content.full-height
             .top
               .skill-title = expert["skill_title"]
@@ -54,10 +53,10 @@ javascript:
   .popup
     .wrapper
       .title Book a meeting. We'll forward your message in an email and the expert will get back to you.
-      = form_tag(berlin_connect_path)
-        = hidden_field_tag "connect[expert_id]", ''
-        = text_field_tag "connect[name]", '', placeholder: 'Your Name'
-        = text_field_tag "connect[email]", '', placeholder: 'Your Email', type: 'email'
-        = text_area_tag "connect[topic]", '', placeholder: 'What would you like to discuss'
-        = submit_tag "Go", class: 'submit'
+      = form_for @connect, url: berlin_connect_path, validate: true, html: { id: 'connect' } do |f|
+        = f.hidden_field :expert_id
+        = f.text_field :name, placeholder: 'Your Name', "data-validation" => 'required'
+        = f.text_field :email, placeholder: 'Your Email', type: 'email', "data-validation" => 'required email'
+        = f.text_area :topic, placeholder: 'What would you like to discuss', "data-validation" => 'required'
+        = f.submit "Go", class: 'submit'
       a.cancel href="#" Cancel

@@ -6,8 +6,6 @@ class BerlinController < ApplicationController
     @experts = send_api_request("/v1/experts")
     @experts.shuffle!
 
-    @categories = send_api_request("/v1/categories")
-
     redirect_to action: :show, id: @experts.first['slug']
   end
 
@@ -21,6 +19,8 @@ class BerlinController < ApplicationController
     @experts = @other_experts.unshift(@current_expert)
 
     @categories = send_api_request("/v1/categories")
+
+    @connect = BerlinConnect.new
 
     render action: :index 
   end

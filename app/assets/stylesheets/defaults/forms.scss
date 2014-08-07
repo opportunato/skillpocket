@@ -55,3 +55,11 @@ input[type=email], input[type=text], textarea {
 }
 
 textarea { height: 100px; }
+
+.form-error {
+	margin-bottom: 15px;
+}
+
+.error {
+	color: red;
+}

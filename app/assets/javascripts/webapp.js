@@ -27,6 +27,16 @@ $(function() {
         nextCarousel,
         previousCarousel;
 
+    var trackEvent = function(eventName, data, isTimed) {
+      data = data || {};
+      isTimed = isTimed || false;
+
+      if (!$.cookie(eventName) || !isTimed) {
+        $.cookie(eventName, true, {expires: 1, path: '/berlin'});
+        mixpanel.track(eventName, data);
+      }
+    }
+
     var toggleFilterList = function() {
       $webApp.toggleClass("opened");
 
@@ -161,32 +171,6 @@ $(function() {
       }
     });
 
-    $cancel.on("click", function(e) {
-      e.preventDefault();
-      $b.removeClass("popup-opened");
-    });
-
-    var getToken = function() {
-      return document.querySelector('input[name="authenticity_token"]').value
-    };
-
-    $form.submit(function(e) {
-      e.preventDefault();
-
-      var data = $form.serialize();
-
-      $.ajax({
-        type: "POST",
-        url: $form.attr('action'),
-        headers: {
-          "X-CSRF-TOKEN": getToken(),
-          "X-Requested-With": 'XMLHttpRequest'
-        },
-        data: data,
-        dataType: 'json'        
-      });
-    });
-
     $('.main.web-app').on("click tap", 'a.button', function(e) {
         e.preventDefault();
 
@@ -194,6 +178,53 @@ $(function() {
 
         $b.addClass("popup-opened");
         $popup.find('#connect_expert_id').val($expert.data('id'));
+    
+        trackEvent('Connect Initiated', { name: $expert.data('name') });
+    });
+
+    $cancel.on("click", function(e) {
+      e.preventDefault();
+      $b.removeClass("popup-opened");
+
+      trackEvent('Connect Canceled');
+    });
+
+    trackEvent('Prelaunch Landed', {}, true);
+
+    var getToken = function() {
+      return document.querySelector('input[name="authenticity_token"]').value
+    };
+
+    $.validate({
+      form: "#connect",
+      errorMessagePosition: 'top',
+      validateOnBlur: false,
+      onSuccess: function() {
+        var data = $form.serialize();
+        var $expert = $('#expert_' + $popup.find('#connect_expert_id').val())
+
+        $.ajax({
+          type: "POST",
+          url: $form.attr('action'),
+          headers: {
+            "X-CSRF-TOKEN": getToken(),
+            "X-Requested-With": 'XMLHttpRequest'
+          },
+          data: data,
+          dataType: 'json',
+          success: function(data) {
+            if (data.success) {
+              trackEvent('Connect Succeeded', { name: $expert.data('name') });
+            } else {
+              trackEvent('Connect Failed', { client: false, name: $expert.data('name') });
+            }
+          }        
+        });
+        return false;
+      },
+      onError: function() {
+        trackEvent('Connect Failed', { client: true });
+      }
     });
   }
 });
