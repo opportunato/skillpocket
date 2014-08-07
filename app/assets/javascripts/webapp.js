@@ -10,7 +10,6 @@ $(function() {
         $w = $(window),
         $tagsFilter = $('.tags-filter'),
         $filters = $('a.filter'),
-        $popup = $('.popup'),
         $nav = $('nav'),
         windowHeight = $w.height(),
         nexthammertime,

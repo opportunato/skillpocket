@@ -1,3 +1,12 @@
+body.popup-opened {
+  overflow: hidden;
+
+  .popup {
+    @include translateY(0%);
+    overflow-y: auto;
+  }
+}
+
 .popup {
   @include transition(all 600ms);
   position: fixed;
@@ -7,16 +16,12 @@
   color: $color-red;
   @include translateY(100%);
 
-  &.opened {
-    @include translateY(0%);
-    overflow-y: auto;
-  }
-
   .title {
-    font-size: 1.2em;
+    font-size: 2em;
     text-align: center;
     padding-top: $padding*3;
     padding-bottom: $padding;
+    color: $color-black;
     line-height: 1.4;
 
     @include respond-to(mobile) {

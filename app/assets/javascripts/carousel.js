@@ -11,6 +11,7 @@ function Carousel(element)
     var container = $(">ul", element),
         panes = $(">ul>li", element),
         $w = $(window),
+        $b = $('body'),
         $popup = $('.popup'),
         $button = $('a.button'),
 
@@ -159,11 +160,11 @@ function Carousel(element)
 
     $button.on("click", function(e) {
         e.preventDefault();
-        $popup.addClass("opened");
+        $b.addClass("popup-opened");
     });
 
     $button.on("tap", function(e) {
         e.preventDefault();
-        $popup.addClass("opened");
+        $b.addClass("popup-opened");
     });
 }
