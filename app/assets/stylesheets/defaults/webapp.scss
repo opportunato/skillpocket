@@ -26,9 +26,11 @@ body.opened {
 	padding: 0;
 	position: relative;
 	overflow: hidden;
+	background: $color-black;
 
 	header {
 		@include transition(all 600ms);
+		a { @include transition(all 600ms); }
 	}
 
 	.carousel, .next, .previous {
@@ -121,6 +123,33 @@ body.opened {
 			top: 50%;
 			margin-top: -28px;
 			margin-right: -15px;
+		}
+	}
+
+	.introduction {
+		background: white;
+		color: $color-red;
+		text-align: center;
+
+		.wrapper {
+			width: 100%;
+			max-width: 400px;
+			margin: 0 auto;
+			padding-top: 80px;
+		}
+
+		.icon-logo {
+			font-size: 8em;
+		}
+
+		h1, .title, .icon-logo {
+			margin-bottom: $margin/2;
+		}
+
+		.button {
+			border: 1px solid $color-red;
+			color: $color-red;
+			&:hover { background: $color-red; color: white; }
 		}
 	}
 

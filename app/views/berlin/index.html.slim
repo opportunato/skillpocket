@@ -9,7 +9,7 @@ javascript:
   header
     .logo = link_to root_path
       span.icon-user
-      span.title Skillpocket / Berlin
+      span.title Skillpocket
     a.tags-filter href="#"
       span.title All skills
       span.icon-arrow
@@ -29,6 +29,21 @@ javascript:
 
   .carousel
     ul
+      li.pane.expert.introduction
+        .content.full-height
+          .wrapper
+            .icon-logo
+            .title Skillpocket
+            h1 Meet experts near you
+            .subline Cooming soon in the App Store.
+            .subline This is our Berlin beta:
+            .subline.steps 1. Find the expert you want to meet
+            .subline.steps 2. Send him a short message
+            .subline.steps 3. Discuss time and place via mail
+            .subline.steps 4. Meet up
+            a.button href="#" Browse experts
+            .readmore = link_to 'Read more about Skillpocket', root_path
+
       - @experts.each do |expert|
         li.pane.expert[class="color-#{expert['color']}" data-id="#{expert['id']}" data-slug="#{expert['slug']}" data-categories="#{expert['categories'].map { |category| category['id'] }.join(',')}"]
           .content.full-height

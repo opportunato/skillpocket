@@ -192,7 +192,7 @@ $(function() {
       });
     });
 
-    $('.main.web-app').on("click tap", 'a.button', function(e) {
+    $('.main.web-app').on("click tap", '.skill-user a.button', function(e) {
         e.preventDefault();
 
         var $expert = $(e.currentTarget).parents('.expert');
