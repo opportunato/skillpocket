@@ -1,28 +1,36 @@
-.main.web-app {
-	max-width: 100%;
-	padding: 0;
-	position: relative;
+body.opened {
 	overflow: hidden;
 
-	&.opened {
+	.main.web-app {
 		header {
 			opacity: 1;
+			background: $color-black;
 
 			a {
-				color: $color-red;
+				color: white;
 			}
 
 			nav {
 				@include translateY(0%);
+				// margin-top: 60px;
 			}
 		}
 		.carousel, .next, .previous {
 			@include translateY(105%);
 		}
 	}
+}
+
+.main.web-app {
+	max-width: 100%;
+	padding: 0;
+	position: relative;
+	overflow: hidden;
+	background: $color-black;
 
 	header {
 		@include transition(all 600ms);
+		a { @include transition(all 600ms); }
 	}
 
 	.carousel, .next, .previous {
@@ -47,15 +55,17 @@
 	nav {
 		position: absolute;
 		top: 0; left: 0; right: 0;
-		background: white;
-		padding-top: $padding*2;
+		background: $color-black;
+		overflow-y: auto;
 		@include translateY(-100%);
 		@include transition(all 600ms);
+		padding-top: $padding*2;
 
 		li a {
 			padding: $padding;
-			border-top: 1px solid $color-grey;
+			border-top: 1px solid #333;
 			font-size: 1.2em;
+			color: white;
 			display: block;
 
 			// @include respond-to(mobile) {
@@ -68,10 +78,10 @@
 			// 	padding: $padding/2;
 			// }
 
-			&:hover { background: $color-grey; }
+			&:hover { background: #333; }
 
 			&.active {
-				background: $color-red;
+				background: #333;
 				color: white;
 			}
 		}
@@ -113,6 +123,33 @@
 			top: 50%;
 			margin-top: -28px;
 			margin-right: -15px;
+		}
+	}
+
+	.introduction {
+		background: white;
+		color: $color-red;
+		text-align: center;
+
+		.wrapper {
+			width: 100%;
+			max-width: 400px;
+			margin: 0 auto;
+			padding-top: 80px;
+		}
+
+		.icon-logo {
+			font-size: 8em;
+		}
+
+		h1, .title, .icon-logo {
+			margin-bottom: $margin/2;
+		}
+
+		.button {
+			border: 1px solid $color-red;
+			color: $color-red;
+			&:hover { background: $color-red; color: white; }
 		}
 	}
 
