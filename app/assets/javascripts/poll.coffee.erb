@@ -2,7 +2,8 @@ $ ->
 
   if $('.poll').length > 0
 
-
+    getToken = ->
+      document.querySelector('input[name="authenticity_token"]').value
 
     openPage = (id) ->
       $(".page").addClass('hidden')
