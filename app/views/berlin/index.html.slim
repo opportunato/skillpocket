@@ -9,7 +9,7 @@ javascript:
   header
     .logo = link_to root_path
       span.icon-user
-      span.title Skillpocket
+      span.title Skillpocket / Berlin
     a.tags-filter href="#"
       span.title All skills
       span.icon-arrow
@@ -57,14 +57,31 @@ javascript:
               a.button href="#" Let’s connect
 
           .white
-            .skill-about= expert["skill_description"]
+            .skill-about
+              .item= expert["skill_description"]
             .user-about
               .title About expert
               .item = expert["about"]
+              a.website href="#" www.skillpocket.com
+              .links
+                a.icon-twitter href="#"
+                a.icon-linkedin href="#"
+                a.icon-behance href="#"
+                a.icon-github href="#"
+                a.icon-stackoverflow href="#"
             .tags
               .title About expert
               - expert["tags"].each do |tag|
                 .tag = tag["name"]
+      li.pane.expert.last
+        .content.full-height
+          .wrapper
+            .icon-logo
+            .title Skillpocket
+            h1 Wanna be an expert?
+            a.button href="#"
+              span Apply here
+              span.small Berlin only
 
   .popup
     .wrapper
