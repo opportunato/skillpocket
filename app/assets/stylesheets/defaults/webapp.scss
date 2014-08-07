@@ -133,23 +133,40 @@ body.opened {
 
 		.wrapper {
 			width: 100%;
-			max-width: 400px;
+			max-width: 380px;
 			margin: 0 auto;
 			padding-top: 80px;
+
+			@include respond-to(mobile) {
+				max-width: 280px;
+			}
 		}
 
-		.icon-logo {
-			font-size: 8em;
-		}
+		.icon-logo { font-size: 8em; }
 
-		h1, .title, .icon-logo {
+		.title { font-size: 1.2em; }
+
+		h1, .title, .icon-logo, .steps, .button {
 			margin-bottom: $margin/2;
 		}
 
+		p {
+			font-size: 1.2em;
+			margin-bottom: $margin/6;
+		}
+
 		.button {
+			margin-top: $margin/2;
+			font-size: 1.8em;
 			border: 1px solid $color-red;
 			color: $color-red;
 			&:hover { background: $color-red; color: white; }
+		}
+
+		.readmore a {
+			color: $color-red;
+			text-decoration: underline;
+			padding-bottom: $margin;
 		}
 	}
 
