@@ -126,7 +126,17 @@ body.opened {
 		}
 	}
 
-	.introduction {
+	.last {
+		.button {
+			border-radius: 80px;
+			.small {
+				display: block;
+				font-size: .6em;
+			}
+		}
+	}
+
+	.introduction, .last {
 		background: white;
 		color: $color-red;
 		text-align: center;
@@ -212,6 +222,15 @@ body.opened {
 
 		@include respond-to(mobile) {
 			bottom: $padding/2;
+		}
+	}
+
+	.links {
+		margin-top: $margin/2;
+		a {
+			font-size: 1.4em;
+			margin-right: $margin/2;
+			&.website { font-size: 1em; }
 		}
 	}
 
