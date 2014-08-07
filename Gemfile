@@ -33,6 +33,9 @@ gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 
 
 gem 'meta-tags'
 
+gem 'roadie'
+gem 'roadie-rails'
+
 gem 'slim'
 
 gem 'mina-stack', github: 'div/mina-stack', group: :development

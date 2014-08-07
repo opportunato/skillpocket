@@ -10,6 +10,8 @@ $(function() {
         $w = $(window),
         $tagsFilter = $('.tags-filter'),
         $filters = $('a.filter'),
+        $popup = $('.popup'),
+        $cancel = $('a.cancel'),
         $nav = $('nav'),
         windowHeight = $w.height(),
         nexthammertime,
@@ -20,6 +22,7 @@ $(function() {
         panes = $('.carousel li.pane'),
         $experts = $('.carousel li.expert'),
         $expertsInMemory = $('.carousel li.expert').clone(),
+        $form = $('.popup form'),
         pane_count = panes.length,
         nextCarousel,
         previousCarousel;
@@ -70,6 +73,7 @@ $(function() {
 
       $filters.removeClass('active');
       $filter.addClass('active');
+      $tagsFilter.find('.title').text($filter.text());
 
       toggleFilterList();
       filterExperts(categoryId);
@@ -155,6 +159,41 @@ $(function() {
           nextCarousel();
         }
       }
-    })
+    });
+
+    $cancel.on("click", function(e) {
+      e.preventDefault();
+      $b.removeClass("popup-opened");
+    });
+
+    var getToken = function() {
+      return document.querySelector('input[name="authenticity_token"]').value
+    };
+
+    $form.submit(function(e) {
+      e.preventDefault();
+
+      var data = $form.serialize();
+
+      $.ajax({
+        type: "POST",
+        url: $form.attr('action'),
+        headers: {
+          "X-CSRF-TOKEN": getToken(),
+          "X-Requested-With": 'XMLHttpRequest'
+        },
+        data: data,
+        dataType: 'json'        
+      });
+    });
+
+    $('.main.web-app').on("click tap", 'a.button', function(e) {
+        e.preventDefault();
+
+        var $expert = $(e.currentTarget).parents('.expert');
+
+        $b.addClass("popup-opened");
+        $popup.find('#connect_expert_id').val($expert.data('id'));
+    });
   }
 });

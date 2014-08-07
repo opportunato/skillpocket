@@ -157,14 +157,4 @@ function Carousel(element)
     });
 
     $w.trigger("resize");
-
-    $button.on("click", function(e) {
-        e.preventDefault();
-        $b.addClass("popup-opened");
-    });
-
-    $button.on("tap", function(e) {
-        e.preventDefault();
-        $b.addClass("popup-opened");
-    });
 }

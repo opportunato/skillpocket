@@ -4,4 +4,3 @@
 //= require hammer
 //= require carousel
 //= require webapp
-//= require popup
