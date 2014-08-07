@@ -6,6 +6,7 @@ body {
 	color: $color-red;
 	font-size: 14px;
 	@include nowie_vremena;
+	background: $color-black;
 	-webkit-overflow-scrolling: touch;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;

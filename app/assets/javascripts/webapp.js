@@ -28,12 +28,15 @@ $(function() {
         previousCarousel;
 
     var toggleFilterList = function() {
-      $webApp.toggleClass("opened");
+
+      $b.toggleClass("opened");
 
       var navHeight = $nav.height();
 
+      $nav.height(windowHeight-60);
+
       if (Modernizr.csstransforms) {
-        if ($webApp.hasClass("opened")) {
+        if ($b.hasClass("opened")) {
           $('.carousel').css("transform", "translateY("+ navHeight + "px)");
         } else {
           $('.carousel').css("transform", "translateY(0px)");
@@ -83,6 +86,8 @@ $(function() {
 
     $w.resize(function() {
       windowHeight = $w.height();
+
+      $nav.height(windowHeight-60);
       if (windowHeight > 500) {
         $('.full-height').height(windowHeight);
       } else {
@@ -183,7 +188,7 @@ $(function() {
           "X-Requested-With": 'XMLHttpRequest'
         },
         data: data,
-        dataType: 'json'        
+        dataType: 'json'
       });
     });
 
