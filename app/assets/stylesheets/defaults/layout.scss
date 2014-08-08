@@ -174,6 +174,20 @@
 	}
 }
 
+.berlin-beta {
+	@include animation(phone 1s 1600ms both);
+	font-size: 3em;
+	text-align: center;
+	border-top: 1px solid $color-grey;
+	width: 100%;
+	a {
+		color: $color-red;
+		padding: $padding*2 $padding;
+		display: block;
+		text-decoration: underline;
+	}
+}
+
 .how-it-works {
 	width: 100%;
 	border-top: 1px solid $color-grey;
