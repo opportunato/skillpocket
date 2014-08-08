@@ -79,12 +79,12 @@ function Carousel(element)
         $(panes[current_pane]).addClass('current');
 
         if (current_pane === 0) {
-            prevButton.hide();
+            prevButton.addClass('button-hidden');
         } else if (current_pane === pane_count-1) {
-            nextButton.hide();
+            nextButton.addClass('button-hidden');
         } else {
-            prevButton.show();
-            nextButton.show();
+            prevButton.removeClass('button-hidden');
+            nextButton.removeClass('button-hidden');
         }
 
         var currentHeight = $('.current').height();

@@ -207,7 +207,7 @@ $(function() {
 
     trackEvent('Prelaunch Landed', {}, true);
 
-    $('.introduction a.button').on('click', function(e) {
+    $('.introduction a.button').on('click tap', function(e) {
       e.preventDefault();
 
       carousel.next();

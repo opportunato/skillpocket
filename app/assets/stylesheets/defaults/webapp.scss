@@ -51,6 +51,10 @@ body.opened {
 		z-index: 2;
 		font-size: 4em;
 
+		&.button-hidden {
+			display: none;
+		}
+
 		@include respond-to(mobile) {
 			display: none;
 		}
