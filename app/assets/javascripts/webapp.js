@@ -95,6 +95,7 @@ $(function() {
       $tagsFilter.find('.title').text($filter.text());
 
       toggleFilterList();
+      trackEvent('List Filtered', { filter: $filter.text() });
       filterExperts(categoryId);
     });
 
