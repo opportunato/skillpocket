@@ -38,6 +38,19 @@ body.popup-opened {
     @include respond-to(mobile) {
       width: 265px;
     }
+
+    &.success, &.error {
+      .cancel { opacity: 1; }
+      .title {
+        color: $color-red;
+        padding: 0;
+        font-size: 2.6em;
+      }
+      .icon-logo {
+        padding-top: 80px;
+      }
+      .button { font-size: 1.4em; }
+    }
   }
 
   input, textarea {

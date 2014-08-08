@@ -141,7 +141,7 @@ body.opened {
 	}
 
 	.introduction, .last,
-	.wrapper.success, .wrapper.form {
+	.wrapper.success, .wrapper.form, .wrapper.error {
 		background: white;
 		color: $color-red;
 		text-align: center;
@@ -158,8 +158,6 @@ body.opened {
 		}
 
 		.icon-logo { font-size: 8em; }
-
-		.title { font-size: 1.2em; }
 
 		h1, .title, .icon-logo, .steps, .button {
 			margin-bottom: $margin/2;
