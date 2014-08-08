@@ -59,10 +59,15 @@ $(function() {
 
       $experts = $expertsInMemory.filter(function(index, expert) {
         var $expert = $(expert),
-            categories = $expert.data('categories').toString().split(',');
+            categories;
 
-        return categories.indexOf(categoryId) !== -1;
+        if ($expert.data('id') === "start" || $expert.data('id') === "apply") {
+          return true;
+        } else {
+          categories = $expert.data('categories').toString().split(',');
 
+          return categories.indexOf(categoryId) !== -1;
+        }
       });
 
       $ul.append($experts);
@@ -162,10 +167,10 @@ $(function() {
           previousCarousel();
         } else if ($expert.next().data('id') == id) {
           nextCarousel();
-        }
-
-        changeTitle();
+        }        
       }
+
+      changeTitle();
     });
 
     var showPopup = function(page) {
@@ -230,6 +235,10 @@ $(function() {
               showPopup('error');
               trackEvent('Connect Failed', { client: false, name: $expert.data('name') });
             }
+          },
+          error: function() {
+            showPopup('error');
+            trackEvent('Connect Failed', { client: false, name: $expert.data('name') });            
           }        
         });
         return false;

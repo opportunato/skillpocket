@@ -1,15 +1,20 @@
 = "Hi #{@expert['first_name']},"
 br
-= "#{@connect['name']} wants to get in touch with you:"
+= "You have a new meeting request via Skillpocket."
 br
+br
+= "#{@connect.name}:"
 br
 = @connect.topic
 br
 br
 a href="mailto:#{@connect['email']}"
-  = "Respond to #{@connect['name']}"
+  = "Respond to #{@first_name}"
 br
 br
-| Best Regards,
+| Remember that until we launch our app you will have to accept payment for your time in hand. 
+br
+br
+| We hope you have a great meeting and would love to get your feedback once you've met!
 br
 | Skillpocket

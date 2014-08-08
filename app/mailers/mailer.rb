@@ -11,6 +11,8 @@ class Mailer < ActionMailer::Base
     @connect = connect
     @expert = expert
 
-    mail(to: 'ryu.gordeyev@gmail.com', subject: 'Someone has requested to talk to you').deliver
+    @first_name = connect.name.split(' ')[0]
+
+    mail(to: 'ryu.gordeyev@gmail.com', subject: "#{@first_name} would like to meet with you!").deliver
   end
 end

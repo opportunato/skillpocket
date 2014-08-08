@@ -21,21 +21,21 @@
     .logo = link_to root_path
       span.icon-user
       span.title Skillpocket / Berlin
-    a.tags-filter href="#"
+    a.tags-filter
       span.title All skills
       span.icon-arrow
     nav
       ul
         li
-          a.active href="#" data-id="" class="filter" All skills
+          a.active data-id="" class="filter" All skills
         - @categories.each do |category|
           li
-            a href="#" data-id="#{category['id']}" class="filter" = category['name']
+            a data-id="#{category['id']}" class="filter" = category['name']
 
-  a.previous.full-height href="#"
+  a.previous.full-height
     span.icon-previous
 
-  a.next.full-height href="#"
+  a.next.full-height
     span.icon-next
 
   .carousel
@@ -52,7 +52,7 @@
             p 2. Send him a short message
             p 3. Discuss time and place via mail
             p 4. Meet up
-            a.button href="#" Browse experts
+            a.button Browse experts
             .readmore = link_to 'Read more about Skillpocket', root_path
 
       - @experts.each do |expert|
@@ -65,7 +65,7 @@
               .userpic = image_tag(expert["photo"])
               .name = expert["full_name"]
               .jobtitle = expert["job"]
-              a.button href="#" Let’s connect
+              a.button Let’s connect
 
           .white
             .skill-about
@@ -74,30 +74,30 @@
               .title About expert
               .item = expert["about"]
               - if expert["website_link"].present?
-                a.website href="#{expert["website_link"]}"
+                a.website href="#{expert["website_link"]}" target="_blank"
                   = strip_protocol(expert["website_link"])
               .links
                 - if expert["twitter_link"].present?
-                  a.icon-twitter href="#{expert["twitter_link"]}"
+                  a.icon-twitter href="#{expert["twitter_link"]}" target="_blank"
                 - if expert["linkedin_link"].present?
-                  a.icon-linkedin href="#{expert["linkedin_link"]}"
+                  a.icon-linkedin href="#{expert["linkedin_link"]}" target="_blank"
                 - if expert["behance_link"].present?
-                  a.icon-behance href="#{expert["behance_link"]}"
+                  a.icon-behance href="#{expert["behance_link"]}" target="_blank"
                 - if expert["github_link"].present?
-                  a.icon-github href="#{expert["github_link"]}"
+                  a.icon-github href="#{expert["github_link"]}" target="_blank"
                 - if expert["stackoverflow_link"].present?
-                  a.icon-stackoverflow href="#{expert["stackoverflow_link"]}"
+                  a.icon-stackoverflow href="#{expert["stackoverflow_link"]}" target="_blank"
             .tags
               .title About expert
               - expert["tags"].each do |tag|
                 .tag = tag["name"]
-      li.pane.expert.last data-title="Wanna be an expert? - Skillpocket.com" data-slug="apply" data-id="end"
+      li.pane.expert.last data-title="Wanna be an expert? - Skillpocket.com" data-slug="apply" data-id="apply"
         .content.full-height
           .wrapper
             .icon-logo
             .title Skillpocket
             h1 Wanna be an expert?
-            a.button href="#"
+            a.button href=prelaunch_path
               span Apply here
               span.small Berlin only
 
@@ -110,16 +110,16 @@
         = f.text_field :email, placeholder: 'Your Email', type: 'email', "data-validation" => 'required email'
         = f.text_area :topic, placeholder: 'What would you like to discuss', "data-validation" => 'required'
         = f.submit "Go", class: 'submit'
-      a.cancel href="#" Cancel
+      a.cancel Cancel
     .wrapper.success
       .icon-logo
-      .title Skillpocket
-      h1 Expert has been notified of your interest!
-      a.button.cancel href="#"
-        | Browse more
+      .title Thanks!
+      h1 We will forward your message to the expert
+      a.button.cancel
+        | Browse more experts
     .wrapper.error
       .icon-logo
-      .title Skillpocket
-      h1 Something went wrong!
-      a.button.cancel href="#"
-        | Browse more
+      .title Sorry!
+      h1 Something went wrong with sending your message!
+      a.button.cancel
+        | Browse more experts

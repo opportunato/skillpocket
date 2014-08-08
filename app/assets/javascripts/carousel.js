@@ -18,7 +18,10 @@ function Carousel(element)
         pane_width = 0,
         pane_count = panes.length,
 
-        current_pane = 0;
+        current_pane = 0,
+
+        prevButton = $('.previous'),
+        nextButton = $('.next');
 
     /**
      * initial
@@ -74,6 +77,15 @@ function Carousel(element)
 
         $(panes).removeClass('current');
         $(panes[current_pane]).addClass('current');
+
+        if (current_pane === 0) {
+            prevButton.hide();
+        } else if (current_pane === pane_count-1) {
+            nextButton.hide();
+        } else {
+            prevButton.show();
+            nextButton.show();
+        }
 
         var currentHeight = $('.current').height();
         container.height(currentHeight);
