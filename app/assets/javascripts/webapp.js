@@ -112,7 +112,12 @@ $(function() {
 
     $w.trigger("resize");
 
-    carousel.init(1);
+    if ($.cookie("berlin_shown")) {
+      carousel.init(1);
+    } else {
+      carousel.init(0);
+      $.cookie("berlin_shown", true);
+    }
 
     var nextCarousel = function() {
       carousel.next();

@@ -11,7 +11,6 @@ class BerlinController < ApplicationController
     if cookies[:berlin_shown]
       redirect_to action: :show, id: @experts.first['slug']
     else
-      cookies.permanent[:berlin_shown] = true
       @connect = BerlinConnect.new
     end
   end
