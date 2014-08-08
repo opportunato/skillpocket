@@ -6,7 +6,14 @@ class BerlinController < ApplicationController
     @experts = send_api_request("/v1/experts")
     @experts.shuffle!
 
-    redirect_to action: :show, id: @experts.first['slug']
+    @categories = send_api_request("/v1/categories")
+
+    if cookies[:berlin_shown]
+      redirect_to action: :show, id: @experts.first['slug']
+    else
+      cookies.permanent[:berlin_shown] = true
+      @connect = BerlinConnect.new
+    end
   end
 
   def show
@@ -30,7 +37,7 @@ class BerlinController < ApplicationController
 
     if berlin_connect.save
       expert = send_api_request("/v1/experts/#{berlin_connect.expert_id}")['expert']
-      Mailer.berlin_connect(berlin_connect, expert['email'])
+      Mailer.berlin_connect(berlin_connect, expert)
 
       render json: {
         success: true
@@ -45,7 +52,7 @@ class BerlinController < ApplicationController
 private
 
   def connect_params
-    params.require(:connect).permit(:expert_id, :name, :email, :topic)
+    params.require(:berlin_connect).permit(:expert_id, :name, :email, :topic)
   end
 
 end

@@ -136,7 +136,8 @@ body.opened {
 		}
 	}
 
-	.introduction, .last {
+	.introduction, .last,
+	.wrapper.success, .wrapper.form {
 		background: white;
 		color: $color-red;
 		text-align: center;

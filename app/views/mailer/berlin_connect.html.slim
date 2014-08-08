@@ -1,3 +1,15 @@
-tr
-  td = @connect.name
-  td = @connect.topic
+= "Hi #{@expert['first_name']},"
+br
+= "#{@connect['name']} wants to get in touch with you:"
+br
+br
+= @connect.topic
+br
+br
+a href="mailto:#{@connect['email']}"
+  = "Respond to #{@connect['name']}"
+br
+br
+| Best Regards,
+br
+| Skillpocket

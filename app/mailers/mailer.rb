@@ -5,9 +5,12 @@ class Mailer < ActionMailer::Base
   default css: "mailer"
   layout "mail"
 
-  def berlin_connect(connect, expert_email)
-    @connect = connect
+  default from: "Skillpocket <hello@skillpocket.com>"
 
-    mail(to: 'ryu.gordeyev@gmail.com', from: connect.email).deliver
+  def berlin_connect(connect, expert)
+    @connect = connect
+    @expert = expert
+
+    mail(to: 'ryu.gordeyev@gmail.com', subject: 'Someone has requested to talk to you').deliver
   end
 end

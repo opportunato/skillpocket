@@ -1,6 +1,18 @@
-- title expert_title(@current_expert), description: @current_expert['skill_description']
-- set_meta_tags og: { title: expert_title(@current_expert), image: @current_expert["photo"], description: @current_expert['skill_description'], url: (berlin_url + "/#{@current_expert['slug']}") }
-- set_meta_tags twitter: { title: expert_title(@current_expert), image: @current_expert["photo"], description: @current_expert['skill_description'], url: (berlin_url + "/#{@current_expert['slug']}") }
+- if request["action"] == "show"
+  - page_title = expert_title(@current_expert)
+  - description = @current_expert['skill_description']
+  - image = @current_expert["photo"]
+  - url = berlin_url + "/#{@current_expert['slug']}"
+- else
+  - page_title = "Meet Experts in Berlin - Skillpocket.com"
+  - description = "Meet experts near you. Get paid for professional advice. Be among our first experts when we launch near you!"
+  - image = image_url('icon.png')
+  - url = berlin_url
+
+- title page_title, description: description
+- set_meta_tags og: { title: title, image: image, description: description, url: url }
+- set_meta_tags twitter: { title: title, image: image, description: description, url: url }
+  
 
 .data-experts data-experts='@experts'
 
@@ -28,7 +40,7 @@
 
   .carousel
     ul
-      li.pane.expert.introduction
+      li.pane.expert.introduction data-title="Meet Experts in Berlin - Skillpocket.com" data-slug="" data-id="start"
         .content.full-height
           .wrapper
             .icon-logo
@@ -44,7 +56,7 @@
             .readmore = link_to 'Read more about Skillpocket', root_path
 
       - @experts.each do |expert|
-        li.pane.expert[id="expert_#{expert['id']}" class="color-#{expert['color']}" data-id="#{expert['id']}" data-name="#{expert['full_name']}" data-slug="#{expert['slug']}" data-categories="#{expert['categories'].map { |category| category['id'] }.join(',')}"]
+        li.pane.expert[id="expert_#{expert['id']}" class="color-#{expert['color']}" data-id="#{expert['id']}" data-name="#{expert['full_name']}" data-slug="#{expert['slug']}" data-categories="#{expert['categories'].map { |category| category['id'] }.join(',')}" data-title="#{expert_title(expert)}"]
           .content.full-height
             .top
               .skill-title = expert["skill_title"]
@@ -61,18 +73,25 @@
             .user-about
               .title About expert
               .item = expert["about"]
-              a.website href="#" www.skillpocket.com
+              - if expert["website_link"].present?
+                a.website href="#{expert["website_link"]}"
+                  = strip_protocol(expert["website_link"])
               .links
-                a.icon-twitter href="#"
-                a.icon-linkedin href="#"
-                a.icon-behance href="#"
-                a.icon-github href="#"
-                a.icon-stackoverflow href="#"
+                - if expert["twitter_link"].present?
+                  a.icon-twitter href="#{expert["twitter_link"]}"
+                - if expert["linkedin_link"].present?
+                  a.icon-linkedin href="#{expert["linkedin_link"]}"
+                - if expert["behance_link"].present?
+                  a.icon-behance href="#{expert["behance_link"]}"
+                - if expert["github_link"].present?
+                  a.icon-github href="#{expert["github_link"]}"
+                - if expert["stackoverflow_link"].present?
+                  a.icon-stackoverflow href="#{expert["stackoverflow_link"]}"
             .tags
               .title About expert
               - expert["tags"].each do |tag|
                 .tag = tag["name"]
-      li.pane.expert.last
+      li.pane.expert.last data-title="Wanna be an expert? - Skillpocket.com" data-slug="apply" data-id="end"
         .content.full-height
           .wrapper
             .icon-logo
@@ -83,7 +102,7 @@
               span.small Berlin only
 
   .popup
-    .wrapper
+    .wrapper.form
       .title Book a meeting. We'll forward your message in an email and the expert will get back to you.
       = form_for @connect, url: berlin_connect_path, validate: true, html: { id: 'connect' } do |f|
         = f.hidden_field :expert_id
@@ -92,3 +111,15 @@
         = f.text_area :topic, placeholder: 'What would you like to discuss', "data-validation" => 'required'
         = f.submit "Go", class: 'submit'
       a.cancel href="#" Cancel
+    .wrapper.success
+      .icon-logo
+      .title Skillpocket
+      h1 Expert has been notified of your interest!
+      a.button.cancel href="#"
+        | Browse more
+    .wrapper.error
+      .icon-logo
+      .title Skillpocket
+      h1 Something went wrong!
+      a.button.cancel href="#"
+        | Browse more

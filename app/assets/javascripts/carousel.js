@@ -23,7 +23,8 @@ function Carousel(element)
     /**
      * initial
      */
-    this.init = function() {
+    this.init = function(pane) {
+        current_pane = pane || 0;
         setPaneDimensions();
         setCurrent();
 
@@ -32,8 +33,8 @@ function Carousel(element)
         })
     };
 
-    this.refresh = function() {
-        current_pane = 0;
+    this.refresh = function(pane) {
+        current_pane = pane || 0;
         panes = $(">ul>li", element);
         pane_count = panes.length;
 
@@ -44,6 +45,8 @@ function Carousel(element)
     function setCurrent() {
         $(panes).removeClass('current');
         $(panes[current_pane]).addClass('current');
+
+        self.showPane(current_pane, false)
     };
 
     /**
@@ -102,8 +105,6 @@ function Carousel(element)
     function handleHammer(ev) {
         // disable browser scrolling
         ev.gesture.preventDefault();
-
-
 
         switch(ev.type) {
             case 'dragright':

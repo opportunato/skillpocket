@@ -67,7 +67,7 @@ $(function() {
 
       $ul.append($experts);
 
-      carousel.refresh();
+      carousel.refresh(1);
       $('.full-height').height(windowHeight);
       $w.trigger('resize');
     }
@@ -107,84 +107,83 @@ $(function() {
 
     $w.trigger("resize");
 
-//carousel
-    carousel.init();
+    carousel.init(1);
 
     var nextCarousel = function() {
-      var nextCarousel;
-      nextCarousel = new Carousel(".carousel");
-      nextCarousel.init();
-      nextCarousel.showPane(current_pane + 1, true);
-      if (current_pane < pane_count - 1) {
-        current_pane += 1;
-      }
+      carousel.next();
     }
 
     var previousCarousel = function() {
-
-      var previousCarousel;
-      previousCarousel = new Carousel(".carousel");
-      previousCarousel.init();
-      previousCarousel.showPane(current_pane - 1, true);
-      if (current_pane > 0) {
-        current_pane -= 1;
-      }
-
+      carousel.prev();
     }
 
-    var changeLink = function(direction) {
-      history.pushState({direction: direction}, "", "/berlin/" + $('.current').data('slug'));
+    var changeLink = function() {
+      history.pushState({id: $('.current').data('id'), title: $('.current').data('title')}, "", "/berlin/" + $('.current').data('slug'));
+      changeTitle();
     }
 
+    var changeTitle = function() {
+      document.title = $('.current').data('title');
+    }
 
     var previoushammertime = Hammer(previousPost[0]).on("click", function(event) {
       event.preventDefault();
 
       previousCarousel();
-      changeLink("left");
+      changeLink();
     });
 
     var nexthammertime = Hammer(nextPost[0]).on("click", function(event) {
       event.preventDefault();
 
       nextCarousel();
-      changeLink("right");
+      changeLink();
     });
 
     $b.keydown(function(event) {
 
       if (event.keyCode == 37) { // left
         previousCarousel();
-        changeLink("left");
+        changeLink();
       } else if (event.keyCode == 39) { // right
         nextCarousel();
-        changeLink("right");
+        changeLink();
       }
     });
 
     $w.on("popstate", function(e) {
       var state = e.originalEvent.state || {}
+      var $expert = $('.current');
 
-      if (state.direction) {
-        var direction = state.direction
+      if (state.id) {
+        var id = state.id;
 
-        if (direction == "right") {
+        if ($expert.prev().data('id') == id) {
           previousCarousel();
-        } else if (direction == "left") {
+        } else if ($expert.next().data('id') == id) {
           nextCarousel();
         }
+
+        changeTitle();
       }
     });
 
+    var showPopup = function(page) {
+      $popup.find('.wrapper').hide();
+      $popup.find('.wrapper.' + page).show();
+
+      $b.addClass("popup-opened"); 
+    };
+
     $('.main.web-app').on("click tap", '.skill-user a.button', function(e) {
-        e.preventDefault();
+      e.preventDefault();
 
-        var $expert = $(e.currentTarget).parents('.expert');
+      var $expert = $(e.currentTarget).parents('.expert');
 
-        $b.addClass("popup-opened");
-        $popup.find('#connect_expert_id').val($expert.data('id'));
-    
-        trackEvent('Connect Initiated', { name: $expert.data('name') });
+      showPopup('form');
+      $popup.find('#berlin_connect_expert_id').val($expert.data('id'));
+  
+      trackEvent('Connect Initiated', { name: $expert.data('name') });
     });
 
     $cancel.on("click", function(e) {
@@ -196,8 +195,14 @@ $(function() {
 
     trackEvent('Prelaunch Landed', {}, true);
 
+    $('.introduction a.button').on('click', function(e) {
+      e.preventDefault();
+
+      carousel.next();
+    });
+
     var getToken = function() {
-      return document.querySelector('input[name="authenticity_token"]').value
+      return document.querySelector('input[name="authenticity_token"]').value;
     };
 
     $.validate({
@@ -206,7 +211,7 @@ $(function() {
       validateOnBlur: false,
       onSuccess: function() {
         var data = $form.serialize();
-        var $expert = $('#expert_' + $popup.find('#connect_expert_id').val())
+        var $expert = $('#expert_' + $popup.find('#berlin_connect_expert_id').val())
 
         $.ajax({
           type: "POST",
@@ -219,8 +224,10 @@ $(function() {
           dataType: 'json',
           success: function(data) {
             if (data.success) {
+              showPopup('success');
               trackEvent('Connect Succeeded', { name: $expert.data('name') });
             } else {
+              showPopup('error');
               trackEvent('Connect Failed', { client: false, name: $expert.data('name') });
             }
           }        
