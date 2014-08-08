@@ -75,6 +75,7 @@ $(function() {
       carousel.refresh(1);
       $('.full-height').height(windowHeight);
       $w.trigger('resize');
+      changeLink();
     }
 
     $tagsFilter.on("click", function(e) {
@@ -128,7 +129,7 @@ $(function() {
     }
 
     var changeLink = function() {
-      history.pushState({id: $('.current').data('id'), title: $('.current').data('title')}, "", "/berlin/" + $('.current').data('slug'));
+      history.replaceState({}, "", "/berlin/" + $('.current').data('slug'));
       changeTitle();
     }
 
@@ -161,22 +162,22 @@ $(function() {
       }
     });
 
-    $w.on("popstate", function(e) {
-      var state = e.originalEvent.state || {}
-      var $expert = $('.current');
+    // $w.on("popstate", function(e) {
+    //   var state = e.originalEvent.state || {}
+    //   var $expert = $('.current');
 
-      if (state.id) {
-        var id = state.id;
+    //   if (state.id) {
+    //     var id = state.id;
 
-        if ($expert.prev().data('id') == id) {
-          previousCarousel();
-        } else if ($expert.next().data('id') == id) {
-          nextCarousel();
-        }        
-      }
+    //     if ($expert.prev().data('id') == id) {
+    //       previousCarousel();
+    //     } else if ($expert.next().data('id') == id) {
+    //       nextCarousel();
+    //     }        
+    //   }
 
-      changeTitle();
-    });
+    //   changeTitle();
+    // });
 
     var showPopup = function(page) {
       $popup.find('.wrapper').hide();

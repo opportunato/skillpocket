@@ -53,7 +53,7 @@
             p 3. Discuss time and place via mail
             p 4. Meet up
             a.button Browse experts
-            .readmore = link_to 'Read more about Skillpocket', root_path
+            .readmore = link_to 'Read more about Skillpocket', root_path, target: "_blank"
 
       - @experts.each do |expert|
         li.pane.expert[id="expert_#{expert['id']}" class="color-#{expert['color']}" data-id="#{expert['id']}" data-name="#{expert['full_name']}" data-slug="#{expert['slug']}" data-categories="#{expert['categories'].map { |category| category['id'] }.join(',')}" data-title="#{expert_title(expert)}"]
@@ -118,6 +118,6 @@
         | Browse more experts
     .wrapper.error
       .icon-logo
-      .title Sorry! Something went wrong with sending your message!
+      .title Sorry! Something went wrong while sending your message!
       a.button.cancel
         | Browse more experts
