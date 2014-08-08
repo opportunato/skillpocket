@@ -61,7 +61,7 @@ $(function() {
         var $expert = $(expert),
             categories;
 
-        if ($expert.data('id') === "start" || $expert.data('id') === "apply") {
+        if ($expert.data('id') === "start" || $expert.data('id') === "apply" || categoryId === "") {
           return true;
         } else {
           categories = $expert.data('categories').toString().split(',');
