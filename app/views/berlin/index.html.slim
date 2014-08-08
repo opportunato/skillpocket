@@ -88,7 +88,7 @@
                 - if expert["stackoverflow_link"].present?
                   a.icon-stackoverflow href="#{expert["stackoverflow_link"]}" target="_blank"
             .tags
-              .title About expert
+              .title Tags
               - expert["tags"].each do |tag|
                 .tag = tag["name"]
       li.pane.expert.last data-title="Wanna be an expert? - Skillpocket.com" data-slug="apply" data-id="apply"
