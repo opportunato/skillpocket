@@ -1,16 +1,15 @@
 class BerlinController < ApplicationController
-  before_filter :admin_login, only: [:index, :show]
   layout "berlin", only: [:index, :show]
 
   def index
     @experts = send_api_request("/v1/experts")
     @experts.shuffle!
-
-    @categories = send_api_request("/v1/categories")
-
+    
     if cookies[:berlin_shown]
       redirect_to action: :show, id: @experts.first['slug']
     else
+      @categories = send_api_request("/v1/categories")
+
       @connect = BerlinConnect.new
     end
   end

@@ -13,6 +13,6 @@ class Mailer < ActionMailer::Base
 
     @first_name = connect.name.split(' ')[0]
 
-    mail(to: 'ryu.gordeyev@gmail.com', subject: "#{@first_name} would like to meet with you!").deliver
+    mail(to: expert['email'], subject: "#{@first_name} would like to meet with you!").deliver
   end
 end
