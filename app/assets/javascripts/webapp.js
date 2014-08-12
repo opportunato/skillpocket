@@ -174,7 +174,7 @@ $(function() {
     //       previousCarousel();
     //     } else if ($expert.next().data('id') == id) {
     //       nextCarousel();
-    //     }        
+    //     }
     //   }
 
     //   changeTitle();
@@ -184,7 +184,7 @@ $(function() {
       $popup.find('.wrapper').hide();
       $popup.find('.wrapper.' + page).show();
 
-      $b.addClass("popup-opened"); 
+      $b.addClass("popup-opened");
     };
 
     $('.main.web-app').on("click tap", '.skill-user a.button', function(e) {
@@ -194,7 +194,7 @@ $(function() {
 
       showPopup('form');
       $popup.find('#berlin_connect_expert_id').val($expert.data('id'));
-  
+
       trackEvent('Connect Initiated', { name: $expert.data('name') });
     });
 
@@ -245,8 +245,8 @@ $(function() {
           },
           error: function() {
             showPopup('error');
-            trackEvent('Connect Failed', { client: false, name: $expert.data('name') });            
-          }        
+            trackEvent('Connect Failed', { client: false, name: $expert.data('name') });
+          }
         });
         return false;
       },

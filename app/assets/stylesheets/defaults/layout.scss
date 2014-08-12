@@ -1,3 +1,20 @@
+::-webkit-scrollbar {
+    width: 0px;
+    position: absolute;
+    right: 0;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
 .button {
 	@include transition(all 300ms);
 	padding: 15px;
@@ -176,15 +193,42 @@
 
 .berlin-beta {
 	@include animation(phone 1s 1600ms both);
-	font-size: 3em;
 	text-align: center;
 	border-top: 1px solid $color-grey;
 	width: 100%;
-	a {
+	& > span a {
+		font-size: 3em;
 		color: $color-red;
 		padding: $padding*2 $padding;
 		display: block;
 		text-decoration: underline;
+	}
+	.experts {
+		max-width: $width-max;
+		margin: 0 auto;
+	}
+	.skill-user {
+		display: inline-block;
+		vertical-align: top;
+		width: 200px;
+		padding: $padding/2 $padding*2 $padding*2 $padding*2;
+		color: $color-red;
+
+		.userpic img {
+			@include border-radius(100%);
+			width: 90px;
+			margin-bottom: $margin/3;
+		}
+
+		.jobtitle {
+			font-size: .8em;
+			margin-bottom: $margin/3*2;
+		}
+
+		.name {
+			font-size: 1.4em;
+			margin-bottom: $margin/3;
+		}
 	}
 }
 
