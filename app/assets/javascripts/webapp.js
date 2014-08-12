@@ -5,6 +5,7 @@ $(function() {
     var carousel = new Carousel(".carousel"),
         $ul = $('.carousel ul'),
         $fullHeight = $('.full-height'),
+        $learnMore = $('.skill-user .icon-next'),
         $b = $('body'),
         $webApp = $('.main.web-app'),
         $w = $(window),
@@ -100,6 +101,13 @@ $(function() {
     });
 
     $('.full-height').height(windowHeight);
+
+    $learnMore.on("click", function(e) {
+      e.preventDefault();
+      $('body, html').animate({
+        scrollTop: windowHeight
+      }, 250);
+    });
 
     $w.resize(function() {
       windowHeight = $w.height();
