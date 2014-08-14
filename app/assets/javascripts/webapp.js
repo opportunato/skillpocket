@@ -5,7 +5,7 @@ $(function() {
     var carousel = new Carousel(".carousel"),
         $ul = $('.carousel ul'),
         $fullHeight = $('.full-height'),
-        $learnMore = $('.skill-user .icon-next'),
+        $learnMore = $('.skill-user .learn-more'),
         $b = $('body'),
         $webApp = $('.main.web-app'),
         $w = $(window),
@@ -46,13 +46,13 @@ $(function() {
 
       $nav.height(windowHeight-60);
 
-      if (Modernizr.csstransforms) {
-        if ($b.hasClass("opened")) {
-          $('.carousel').css("transform", "translateY("+ navHeight + "px)");
-        } else {
-          $('.carousel').css("transform", "translateY(0px)");
-        }
-      }
+      // if (Modernizr.csstransforms) {
+      //   if ($b.hasClass("opened")) {
+      //     $('.carousel').css("transform", "translateY("+ navHeight + "px)");
+      //   } else {
+      //     $('.carousel').css("transform", "translateY(0px)");
+      //   }
+      // }
     }
 
     var filterExperts = function(categoryId) {

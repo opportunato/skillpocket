@@ -6,7 +6,7 @@ body.opened {
 	overflow: hidden;
 
 	.main.web-app {
-		header {
+		header .wrapper {
 			opacity: 1;
 			background: $color-black;
 
@@ -14,13 +14,13 @@ body.opened {
 				color: white;
 			}
 
-			nav {
-				@include translateY(0%);
-				// margin-top: 60px;
+			.icon-arrow:before {
+				@include rotate(180deg);
 			}
 		}
-		.carousel, .next, .previous {
-			@include translateY(105%);
+
+		nav {
+			@include translateY(0%);
 		}
 	}
 }
@@ -33,13 +33,27 @@ body.opened {
 	background: $color-black;
 
 	header {
-		@include transition(all 600ms);
-		a { @include transition(all 600ms); }
+
+		.wrapper {
+			@include transition(all 300ms);
+			height: 60px;
+			opacity: .5;
+			position: relative;
+			left: 0; right: 0;
+			z-index: 3;
+
+			a { @include transition(all 300ms); }
+
+			.icon-arrow:before {
+				@include transition(all 300ms);
+				display: block;
+				@include rotate(0deg);
+			}
+		}
 	}
 
 	.carousel, .next, .previous {
 		@include transition(all 600ms);
-		@include translateY(0%);
 	}
 
 	.next, .previous {
@@ -62,12 +76,12 @@ body.opened {
 
 	nav {
 		position: absolute;
-		top: 0; left: 0; right: 0;
+		top: 60px; left: 0; right: 0;
 		background: $color-black;
 		overflow-y: auto;
-		@include translateY(-100%);
-		@include transition(all 600ms);
-		padding-top: $padding*2;
+		@include translateY(-200%);
+		@include transition(all 400ms);
+		// padding-top: $padding*2;
 
 		li a {
 			padding: $padding;
@@ -222,7 +236,7 @@ body.opened {
 
 	.skill-user {
 		position: absolute;
-		left: 0; right: 0; bottom: $padding/2; top: auto;
+		left: 0; right: 0; bottom: 0; top: auto;
 		text-align: center;
 		max-width: 290px;
 		margin: 0 auto;
@@ -231,18 +245,37 @@ body.opened {
 			bottom: $padding/2;
 		}
 
-		.icon-next {
+		.learn-more {
 			@include transition(all 300ms);
-			margin-top: $margin/2;
 			display: inline-block;
-			font-size: 4em;
+			padding: $padding/2 $padding/2 $padding $padding/2;
 			opacity: .5;
-			@include rotate(90deg);
-
 			&:hover {
 				opacity: 1;
 			}
 		}
+
+		// .circle {
+		// 	width: 10px;
+		// 	height: 10px;
+		// 	background: $color-black;
+		// 	opacity: .5;
+		// 	margin: $margin $margin/6;
+		// 	display: inline-block;
+		// 	border-radius: 10px;
+		// }
+		// .icon-next {
+		// 	@include transition(all 300ms);
+		// 	margin-top: $margin/2;
+		// 	display: inline-block;
+		// 	font-size: 4em;
+		// 	opacity: .5;
+		// 	@include rotate(90deg);
+
+		// 	&:hover {
+		// 		opacity: 1;
+		// 	}
+		// }
 	}
 
 	.links {

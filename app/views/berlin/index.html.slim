@@ -19,12 +19,13 @@
 
 .main.web-app
   header
-    .logo = link_to root_path
-      span.icon-user
-      span.title Skillpocket / Berlin
-    a.tags-filter
-      span.title All skills
-      span.icon-arrow
+    .wrapper
+      .logo = link_to root_path
+        span.icon-user
+        span.title Skillpocket / Berlin
+      a.tags-filter
+        span.title All skills
+        span.icon-arrow
     nav
       ul
         li
@@ -67,7 +68,7 @@
               .name = expert["full_name"]
               .jobtitle = expert["job"]
               a.button Let’s connect
-              a.icon-next href="#"
+              a.learn-more href="#" Learn more
 
           .white
             .skill-about
