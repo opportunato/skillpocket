@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :experts, only: [:index, :destroy, :edit, :update]
     resources :pre_users, only: [:index, :destroy]
+    resources :berlin_connects, only: [:index]
     resources :poll_experts, only: [:index, :edit, :create, :destroy]
     patch "/mark_as_read", to: "pre_users#mark_as_read"
   end

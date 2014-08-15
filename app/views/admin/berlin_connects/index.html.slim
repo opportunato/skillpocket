@@ -1,0 +1,14 @@
+- title "Initiated Connects"
+
+table.table
+  tr
+    th Expert
+    th Email
+    th Name
+    th Message
+  - @berlin_connects.each do |connect|
+    tr
+      td = connect["expert_name"]
+      td = connect["email"]
+      td = connect["name"]
+      td = connect["topic"]

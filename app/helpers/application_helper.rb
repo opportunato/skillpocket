@@ -6,4 +6,9 @@ module ApplicationHelper
   def strip_protocol(s)
     s.sub(/^https?\:\/\//, '').sub(/^www./,'')
   end
+
+  def expert_categories(expert)
+    expert['categories'] ||= []
+    expert['categories'].map { |category| category['id'] }.join(',')
+  end
 end
