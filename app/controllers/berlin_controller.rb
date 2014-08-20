@@ -32,7 +32,7 @@ class BerlinController < ApplicationController
 
   def connect
     berlin_connect = BerlinConnect.new(connect_params)
-    expert = send_api_request("/v1/experts/#{berlin_connect.expert_id}")['expert']
+    expert = send_api_request("/v1/experts/#{berlin_connect.expert_id}")
     berlin_connect.expert_name = expert["full_name"]
 
     if berlin_connect.save
