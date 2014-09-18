@@ -3,8 +3,6 @@ Rails.application.configure do
 
   config.eager_load = true
 
-  config.asset_host = 'http://skillpocket.com'
-
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
