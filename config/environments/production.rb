@@ -18,6 +18,8 @@ Rails.application.configure do
 
   config.log_level = :info
 
+  config.force_ssl = true
+
   config.i18n.fallbacks = true
 
   config.active_support.deprecation = :notify
