@@ -12,5 +12,7 @@ module Skillpocket
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     config.assets.precompile += %w(admin.js admin.css berlin.js)
+
+    config.autoload_paths += %W(#{config.root}/lib/helpers)
   end
 end

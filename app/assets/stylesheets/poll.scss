@@ -115,7 +115,8 @@ div.poll {
     line-height: 1.3;
   }
 
-  .button {
+  .button,
+  .click-button {
     // @include transition(color 300ms);
     display: block;
     cursor: pointer;

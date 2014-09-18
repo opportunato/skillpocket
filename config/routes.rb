@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   root 'landing#index'
 
+  namespace :api, defaults: { format: "json" } do
+    namespace :v1 do
+      resources :experts, only: [:index, :show]
+      resources :categories, only: [:index]
+      resources :profile, only: [:index, :create, :update]
+    end
+  end
+
   get "/prelaunch", to: "landing#prelaunch"
   get "/Prelaunch", to: "landing#prelaunch"
   get "/success", to: "landing#success"
@@ -19,4 +27,11 @@ Rails.application.routes.draw do
     resources :poll_experts, only: [:index, :edit, :create, :destroy]
     patch "/mark_as_read", to: "pre_users#mark_as_read"
   end
+
+  get '/login', to: "sessions#new"
+  get '/auth/twitter/callback', to: "sessions#create"
+
+  get "/profile", to: "profile#index"
+  get "/profile/edit", to: "profile#edit"
+  patch "/profile", to: "profile#update"
 end

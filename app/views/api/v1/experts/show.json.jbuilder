@@ -1,0 +1,1 @@
+json.partial! 'expert', expert: @expert
