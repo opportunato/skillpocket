@@ -1,0 +1,13 @@
+.poll
+  .banner = image_tag @profile.banner
+  .photo = image_tag @profile.photo
+
+  = simple_form_for @profile, url: "/profile", method: 'patch' do |f|
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :email
+    = f.input :job
+    = f.input :about
+
+    = submit_tag
+

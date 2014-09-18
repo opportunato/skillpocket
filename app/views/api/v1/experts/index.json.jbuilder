@@ -1,0 +1,1 @@
+json.partial! 'expert', collection: @experts, as: :expert
