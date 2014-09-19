@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_one :skill, dependent: :destroy
 
-  validates_presence_of :twitter_id, :first_name, :last_name
+  validates_presence_of :first_name, :last_name
 
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
 

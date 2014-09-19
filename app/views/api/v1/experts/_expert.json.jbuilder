@@ -2,7 +2,6 @@ json.cache! expert do
   json.id expert.id
   json.email expert.email
   json.about expert.about
-  json.color expert.color
   json.full_name expert.full_name
   json.first_name expert.first_name
   json.last_name expert.last_name
