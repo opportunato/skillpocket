@@ -20,7 +20,7 @@ json.cache! expert do
   json.github_link expert.github_link
   json.stackoverflow_link expert.stackoverflow_link
 
-  json.profile_banner_url image_url("profile_stub.jpeg")
+  json.profile_banner_url expert.profile_banner.url(:normal)
 
   json.categories expert.skill_categories do |category|
     json.id category.id

@@ -1,24 +1,23 @@
 class ProfileCreator
-  def initialize(uid, token, secret)
-    @uid = uid
+  def initialize(token, secret)
     @token = token
     @secret = secret
   end
 
   def create
-    if User.exists?(twitter_id: @uid)
-      user =  User.find_by(twitter_id: @uid)
-    else
-      user_data = TwitterTalker.new(@token, @secret).user
+    user_data = TwitterTalker.new(@token, @secret).user
 
+    if User.exists?(twitter_id: user_data.id.to_s)
+      user = User.find_by(twitter_id: user_data.id.to_s)
+    else
       user = create_from_user_data(user_data)
     end
 
     return user
   end
 
-  def self.perform(uid: nil, token: nil, secret: nil)
-    self.new(uid, token, secret).create
+  def self.perform(token: nil, secret: nil)
+    self.new(token, secret).create
   end
 
 private

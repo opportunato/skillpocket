@@ -21,6 +21,6 @@ private
   end
 
   def create_profile
-    ProfileCreator.perform(uid: auth_hash[:uid], token: auth_hash[:credentials][:token], secret: auth_hash[:credentials][:secret])
+    ProfileCreator.perform(token: auth_hash[:credentials][:token], secret: auth_hash[:credentials][:secret])
   end
 end

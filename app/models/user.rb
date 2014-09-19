@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   mount_uploader :photo, UserPhotoUploader
   mount_uploader :profile_banner, UserBannerUploader
 
+  def expert?
+    skill.present?
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

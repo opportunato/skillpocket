@@ -6,10 +6,10 @@ class Api::V1::ProfileController < ApiController
   end
 
   def create
-    if params[:uid].nil? || params[:token].nil? || params[:secret].nil?
+    if params[:token].nil? || params[:secret].nil?
       render nothing: true, status: 400
     else
-      user = ProfileCreator.perform(uid: params[:uid], token: params[:token], secret: params[:secret])
+      user = ProfileCreator.perform(token: params[:token], secret: params[:secret])
 
       render json: {
         token: user.access_token
@@ -26,6 +26,6 @@ class Api::V1::ProfileController < ApiController
 private
 
   def profile_params
-    params.require(:uid, :token, :secret)
+    params.require(:token, :secret)
   end
 end
