@@ -1,5 +1,5 @@
 .poll
-  .banner = image_tag @profile.banner
+  .banner = image_tag @profile.profile_banner
   .photo = image_tag @profile.photo
 
   = simple_form_for @profile, url: "/profile", method: 'patch' do |f|
