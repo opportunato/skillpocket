@@ -39,8 +39,16 @@ FactoryGirl.define do
     "title #{n}"
   end
 
-  sequence :facebook_id do |n|
+  sequence :twitter_id do
     SecureRandom.random_number(1000000)
+  end
+
+  sequence :twitter_token do
+    SecureRandom.hex(16)
+  end
+
+  sequence :twitter_token_secret do
+    SecureRandom.hex(20)
   end
 
   sequence :price do |n|
@@ -52,22 +60,18 @@ FactoryGirl.define do
   end
 
   factory :skill do
-    color
     description
     price
     title
-    expert factory: :user
   end
 
   factory :user do
     about
     email
-    facebook_id
     photo
     first_name 
     last_name
     job
-    secure_token
 
     behance_link "http://behance.com/"
     github_link "http://github.com/"
@@ -75,6 +79,16 @@ FactoryGirl.define do
     stackoverflow_link "http://stackoverflow.com/"
     twitter_link "http://twitter.com/"
     website_link "http://some-site.com/"
+
+    twitter_id
+    twitter_token
+    twitter_token_secret
+
+    factory :expert do
+      after(:create) do |user, evaluator|
+        create(:skill, expert: user)
+      end
+    end
   end
 
   factory :tag do

@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
+  include Redis::Objects
+  
   has_one :skill, dependent: :destroy
 
   validates_presence_of :first_name, :last_name
 
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
+  scope :experts, -> { joins(:skill) }
 
   delegate :price,
            to: :skill
@@ -19,6 +22,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :photo, UserPhotoUploader
   mount_uploader :profile_banner, UserBannerUploader
+
+  set :twitter_friends
 
   def expert?
     skill.present?

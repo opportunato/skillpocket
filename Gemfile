@@ -24,15 +24,16 @@ gem 'mini_magick'
 gem 'carrierwave'
 
 gem 'mandrill_mailer'
-
 gem 'has_scope'
 
 gem 'friendly_id'
-
 gem 'twitter'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
+
+gem 'redis'
+gem 'redis-objects'
 
 gem 'puma'
 gem 'figaro'
@@ -42,6 +43,11 @@ gem 'meta-tags'
 
 gem 'roadie'
 gem 'roadie-rails'
+
+gem 'sidekiq'
+gem 'sidekiq-client-cli'
+
+gem 'whenever'
 
 gem 'slim'
 
@@ -59,4 +65,6 @@ group :development, :test do
   gem 'pry-remote'
   gem 'pry-nav'
   gem 'letter_opener'
+
+  gem 'webmock'
 end
