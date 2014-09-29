@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   mount_uploader :profile_banner, UserBannerUploader
 
   set :twitter_friends
+  set :twitter_followers
 
   def expert?
     skill.present?

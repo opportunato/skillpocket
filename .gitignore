@@ -16,3 +16,4 @@ config/application.yml
 /.bundle
 /vendor/bundle
 dump.rdb
+config/database.yml

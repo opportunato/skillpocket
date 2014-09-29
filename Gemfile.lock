@@ -338,6 +338,7 @@ DEPENDENCIES
   redis-objects
   roadie
   roadie-rails
+  rspec-mocks
   rspec-rails
   sass-rails
   shoulda

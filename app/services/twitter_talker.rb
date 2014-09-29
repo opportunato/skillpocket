@@ -15,4 +15,8 @@ class TwitterTalker
   def friend_ids(options={})
     @client.friend_ids(options).to_a
   end
+
+  def follower_ids(options={})
+    @client.follower_ids(options).to_a
+  end
 end

@@ -40,7 +40,7 @@ FactoryGirl.define do
   end
 
   sequence :twitter_id do
-    SecureRandom.random_number(1000000)
+    SecureRandom.random_number(1000000).to_s
   end
 
   sequence :twitter_token do

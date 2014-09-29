@@ -56,6 +56,8 @@ gem 'mina-stack', github: 'div/mina-stack', group: :development
 group :development, :test do
   gem "factory_girl_rails"
   gem "rspec-rails"
+  gem "rspec-mocks"
+
   gem "database_cleaner"
   gem "shoulda"
   gem "better_errors"
