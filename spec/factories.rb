@@ -31,16 +31,12 @@ FactoryGirl.define do
     SecureRandom.hex(3)
   end
 
-  sequence :secure_token do
+  sequence :access_token do
     SecureRandom.hex(16)
   end
 
   sequence :title do |n|
     "title #{n}"
-  end
-
-  sequence :facebook_id do |n|
-    SecureRandom.random_number(1000000)
   end
 
   sequence :price do |n|
@@ -52,7 +48,6 @@ FactoryGirl.define do
   end
 
   factory :skill do
-    color
     description
     price
     title
@@ -62,12 +57,11 @@ FactoryGirl.define do
   factory :user do
     about
     email
-    facebook_id
     photo
     first_name 
     last_name
     job
-    secure_token
+    access_token
 
     behance_link "http://behance.com/"
     github_link "http://github.com/"
