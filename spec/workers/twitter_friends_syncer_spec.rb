@@ -54,4 +54,9 @@ RSpec.describe TwitterFriendsSyncer do
     TwitterFriendsSyncer.new.perform(@user.id)
     expect(UserFriendedExpertFollower.where(user_id: @user.id, expert_id: @third_expert.id).pluck(:twitter_id)).to eq(["42"])
   end
+
+  # it 'correctly updates followers count' do
+  #   TwitterFriendsSyncer.new.perform(@user.id)
+  #   expect(UserFriendedExpertFollowerCount.where()).to eq()
+  # end
 end

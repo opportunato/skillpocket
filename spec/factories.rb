@@ -84,11 +84,60 @@ FactoryGirl.define do
     twitter_token
     twitter_token_secret
 
-    factory :expert do
+    trait :is_expert do
       after(:create) do |user, evaluator|
         create(:skill, expert: user)
+      end      
+    end
+
+    trait :has_friended_experts do
+      ignore do
+        friended_experts []
+      end
+
+      after(:create) do |user, evaluator|
+        evaluator.friended_experts.each do |expert|
+          create(:user_friended_expert, user: user, expert: expert)
+        end
       end
     end
+
+    trait :has_friended_expert_followers do
+      ignore do
+        friended_experts []
+        friended_expert_followers_number 0
+      end
+
+      after(:create) do |user, evaluator|
+        evaluator.friended_experts.each do |expert|
+          create(:user_friended_expert_follower, user: user, expert: expert)
+        end
+      end
+    end
+
+    factory :expert do
+      is_expert
+    end
+
+    factory :user_with_friended_experts do
+      has_friended_experts
+    end
+
+    factory :user_with_friended_expert_followers do
+      has_friended_experts
+    end
+
+    factory :user_with_friended_experts_and_followers do
+      has_friended_experts
+      has_friended_expert_followers
+    end
+  end
+
+  factory :user_friended_expert do
+  end
+
+  factory :user_friended_expert_follower do
+    twitter_id
   end
 
   factory :tag do

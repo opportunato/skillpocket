@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   include Redis::Objects
   
   has_one :skill, dependent: :destroy
+  has_many :user_friended_experts, dependent: :destroy
+  has_many :user_friended_expert_followers, dependent: :destroy
 
   validates_presence_of :first_name, :last_name
 
