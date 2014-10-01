@@ -7,16 +7,16 @@ class ProfileCreator
   def create
     user_data = TwitterTalker.new(@token, @secret).user
 
+    # FIXME: find_or_create
     if User.exists?(twitter_id: user_data.id.to_s)
-      user = User.find_by(twitter_id: user_data.id.to_s)
+      User.find_by(twitter_id: user_data.id.to_s)
     else
-      user = create_from_user_data(user_data)
+      create_from_user_data(user_data)
     end
-
-    return user
   end
 
   def self.perform(token: nil, secret: nil)
+    # TODO: check if both are provided. fail otherwise
     self.new(token, secret).create
   end
 
