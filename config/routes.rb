@@ -6,6 +6,11 @@ Rails.application.routes.draw do
       resources :experts, only: [:index, :show]
       resources :categories, only: [:index]
       resource :profile, only: [:show, :create, :update]
+      resources :message, only: [:show] do
+        member do
+          post :create
+        end
+      end
     end
   end
 

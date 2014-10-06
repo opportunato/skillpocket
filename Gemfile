@@ -44,12 +44,20 @@ gem 'roadie-rails'
 
 gem 'slim'
 
+# In-app messages rails engine
+gem 'mailboxer'
+
+
+# REST API doc generator (https://helloreverb.com/developers/swagger)
+gem 'swagger-docs'
+
 group :development do
   gem 'mina-stack', github: 'div/mina-stack'
   gem 'spring'
 end
 
 group :development, :test do
+  gem 'ffaker'
   gem "factory_girl_rails"
   gem "binding_of_caller"
 
@@ -64,4 +72,5 @@ group :test do
   gem "database_cleaner"
   gem "shoulda"
   gem "better_errors"
+  gem 'timecop'
 end
