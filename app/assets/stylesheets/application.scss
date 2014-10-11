@@ -1,8 +1,7 @@
-@import "compass";
-@include global-reset();
+@import "bourbon";
+@import "normalize-rails";
 
-@import "variables.scss";
-@import "mixins.scss";
-@import "typo.scss";
-@import "defaults/*";
-@import "poll.scss";
+@import "variables";
+@import "mixins/all";
+@import "components/all";
+@import "partials/all";
