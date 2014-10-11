@@ -6,16 +6,10 @@ gem 'pg'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
-gem 'compass-rails'
-gem 'bootstrap-sass'
-gem 'angularjs-rails'
-gem 'angularjs-rails-resource'
-
-gem "jquery-fileupload-rails"
-
-gem 'angular-rails-templates'
-
+gem 'bourbon'
+gem 'normalize-rails'
 gem 'jquery-rails'
+gem 'sprockets-commonjs', git: 'git@github.com:maccman/sprockets-commonjs.git'
 
 gem 'jbuilder', '~> 2.0'
 
@@ -38,9 +32,6 @@ gem 'figaro'
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
 
 gem 'meta-tags'
-
-gem 'roadie'
-gem 'roadie-rails'
 
 gem 'slim'
 

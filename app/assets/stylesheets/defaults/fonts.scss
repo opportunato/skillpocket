@@ -1,7 +1,0 @@
-h1 {
-	font-size: 4em;
-
-	@include respond-to(mobile) {
-		font-size: 3em;
-	}
-}

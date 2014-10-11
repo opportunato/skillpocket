@@ -17,20 +17,6 @@ protected
     end
   end
 
-  def send_api_request(path, type="get")
-    url = URI.parse("#{ENV['API_LINK']}#{path}")
-    http = Net::HTTP.new(url.host, url.port)
-
-    request = Net::HTTP::Get.new(url.path, {'Content-Type' =>'application/json'})
-    request.body = {
-      token: ENV['API_TOKEN']
-    }.to_json
-
-    response = http.request(request)
-
-    return JSON.parse(response.body)
-  end
-
   def absolute_attachment_url(attachment_name, attachment_style = :original)
     "#{request.protocol}#{request.host_with_port}#{attachment_name.url(attachment_style)}"
   end
