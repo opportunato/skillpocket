@@ -13,7 +13,7 @@ RSpec.describe ExpertSorter do
     it "should order experts by created_at" do
       @sorted_experts = ExpertSorter.new(@experts, @user).sort
 
-      expect(@sorted_experts.map { |expert| expert.id }).to eq([@expert_2.id, @expert_1.id])
+      expect(@sorted_experts.pluck(:id)).to eq([@expert_2.id, @expert_1.id])
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe ExpertSorter do
     it "should first order friended experts" do
       @sorted_experts = ExpertSorter.new(@experts, @user).sort
 
-      expect(@sorted_experts.map { |expert| expert.id }).to eq([@expert_2.id, @expert_1.id, @expert_4.id, @expert_3.id])
+      expect(@sorted_experts.pluck(:id)).to eq([@expert_2.id, @expert_1.id, @expert_4.id, @expert_3.id])
     end
   end
 
