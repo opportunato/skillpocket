@@ -61,18 +61,14 @@ RSpec.describe Api::V1::ProfilesController do
     end
   end
 
-  context 'without a token' do
-    after(:each) { expect(response.status).to eq 401 }
-
-    it "GET #show is unauthorized" do
-      get api_v1_profile_path
-    end
-
-    it "GET #index is unauthorized" do
-      put api_v1_profile_path
-    end
-  end
-
+#   context 'without a token' do
+#     it '' do
+#       get api_v1_profile_path
+#       # put api_v1_profile_path
+#       it_behaves_like 'token protected resource'
+#     end
+#   end
+ 
   context 'with access token' do
     let(:user) { create :user }
 

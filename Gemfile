@@ -19,7 +19,6 @@ gem 'jquery-rails'
 
 gem 'jbuilder', '~> 2.0'
 
-gem 'spring',        group: :development
 gem 'mini_magick'
 gem 'carrierwave'
 
@@ -45,18 +44,33 @@ gem 'roadie-rails'
 
 gem 'slim'
 
-gem 'mina-stack', github: 'div/mina-stack', group: :development
+# In-app messages rails engine
+gem 'mailboxer'
+
+
+# REST API doc generator (https://helloreverb.com/developers/swagger)
+gem 'swagger-docs'
+
+group :development do
+  gem 'mina-stack', github: 'div/mina-stack'
+  gem 'spring'
+end
 
 group :development, :test do
+  gem 'ffaker'
   gem "factory_girl_rails"
-  gem "rspec-rails"
-  gem "database_cleaner"
-  gem "shoulda"
-  gem "better_errors"
   gem "binding_of_caller"
 
   gem "pry"
   gem 'pry-remote'
   gem 'pry-nav'
   gem 'letter_opener'
+end
+
+group :test do
+  gem "rspec-rails"
+  gem "database_cleaner"
+  gem "shoulda"
+  gem "better_errors"
+  gem 'timecop'
 end
