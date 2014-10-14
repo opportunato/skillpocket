@@ -56,7 +56,7 @@ task :deploy do
     invoke :'rails:assets_precompile'
 
     to :launch do
-      invoke :'puma:restart'
+      invoke :'puma:phased-restart'
     end
   end
 end
