@@ -39,8 +39,22 @@ RSpec.describe Api::V1::MessageController do
   end
 
   describe do
+    context 'no messages' do
+      before(:each) do
+        @consumer = create :user
+        @expert = create :skilled_user
+      end
+
+      it 'is an empty list' do
+        get api_v1_message_path(@expert.id), nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(@consumer.access_token)
+
+        expect(response.status).to eq 200
+        expect(response_json).to eq([])
+      end
+    end
+
     context 'some messages' do
-      before(:all) do
+      before(:each) do
         @consumer = create :user
         @expert = create :skilled_user
         Timecop.freeze(Time.at(1413234000)) { @consumer.send_message_to(@expert, 'Hi') }

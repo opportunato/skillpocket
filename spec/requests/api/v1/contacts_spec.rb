@@ -6,10 +6,10 @@ RSpec.describe Api::V1::ContactsController do
   describe 'list' do
     before(:all) do
       @consumer = create :user
-      one = create :skilled_user
-      two = create :skilled_user
-      Timecop.freeze(Time.at(1234567000)) { one.send_message_to @consumer, 'hey' }
-      Timecop.freeze(Time.at(1234568000)) { two.send_message_to @consumer, 'whatup' }
+      @one = create :skilled_user
+      @two = create :skilled_user
+      Timecop.freeze(Time.at(1234567000)) { @one.send_message_to @consumer, 'hey' }
+      Timecop.freeze(Time.at(1234568000)) { @two.send_message_to @consumer, 'whatup' }
     end
 
     it 'lists customers messages' do
@@ -18,15 +18,15 @@ RSpec.describe Api::V1::ContactsController do
       expect(response.status).to eq 200
       expect(response_json.size).to eq 2
       expect(response_json).to eq([
-       { "id"=>5,
-         "full_name"=>"first_name 4 last_name 4",
-         "about"=>"about 4",
+       { "id"=> @two.id,
+         "full_name"=> @two.full_name,
+         "about"=> @two.about,
          "unread"=>1,
          "message"=>"whatup",
          "date"=>1234568000},
-       { "id"=>3,
-         "full_name"=>"first_name 2 last_name 2",
-         "about"=>"about 2",
+       { "id"=> @one.id,
+         "full_name"=> @one.full_name,
+         "about"=> @one.about,
          "unread"=>1,
          "message"=>"hey",
          "date"=>1234567000

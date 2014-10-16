@@ -15,7 +15,12 @@ module Messageable
 
     def conversation_with messageable
       # TODO: check query and simplify
-      mailbox.inbox.participant(messageable).first.receipts.recipient(self).includes(:message)
+      previous_conversation = mailbox.conversations.participant(messageable).participant(self).first
+      if previous_conversation
+        previous_conversation.receipts.recipient(self).includes(:message).order(:created_at => :desc)
+      else
+        []
+      end
     end
 
     def conversations
