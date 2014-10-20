@@ -11,7 +11,19 @@ module Messageable
     end
 
     def conversations
-      Message.where(recipient: self).group(:sender).unread.count
+      messages = Message.arel_table
+      older = messages.alias
+
+      query = messages.
+        join(older, Arel::Nodes::OuterJoin).
+          on(messages[:created_at].gt(older[:created_at]), messages[:sender_id].eq(older[:sender_id])).
+        join(User.arel_table).
+          on(User.arel_table[:id].eq(messages[:sender_id])).
+        where(older[:id].eq(nil)).
+        where(messages[:recipient_id].eq(self.id)).
+        project(Arel.sql('users.first_name, users.last_name, users.id, users.about, messages.*'))
+
+      Message.find_by_sql query.to_sql
     end
   end
 end
