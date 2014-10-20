@@ -57,6 +57,7 @@ RSpec.describe Api::V1::MessageController do
       before(:each) do
         @consumer = create :user
         @expert = create :skilled_user
+        @expert2 = create :skilled_user
         Timecop.freeze(Time.at(1413234000)) { @consumer.send_message_to(@expert, 'Hi') }
         Timecop.freeze(Time.at(1413234111)) { @expert.send_message_to(@consumer, 'Hello') }
         Timecop.freeze(Time.at(1413234222)) { @consumer.send_message_to(@expert, 'Hi') }
@@ -75,6 +76,20 @@ RSpec.describe Api::V1::MessageController do
          {"incoming"=>false, "read"=>false, "date"=>1413234111, "message"=>"Hello" },
          {"incoming"=>true,  "read"=>true,  "date"=>1413234000, "message"=>"Hi" }
         ])
+      end
+
+      it 'is unable to read other customers messages' do
+        get api_v1_message_path(@consumer.id), nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(@expert2.access_token)
+
+        expect(response.status).to eq 200
+        expect(response_json).to eq([])
+      end
+
+      it 'is only shows given interlocutor messages' do
+        get api_v1_message_path(@expert2.id), nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(@consumer.access_token)
+
+        expect(response.status).to eq 200
+        expect(response_json).to eq([])
       end
 
       it 'lists expert messages' do

@@ -1,9 +1,6 @@
-json.array! @contacts do |contact|
-  other = ( contact.participants - [ @current_user ] ).first
-  json.id other.id
-  json.full_name other.full_name
-  json.about other.about
-  json.unread contact.messages.unread.count
-  json.message contact.messages.first.body
-  json.date contact.messages.first.created_at.to_i
+json.array! @conversations do |messageable, count|
+  json.id messageable.id
+  json.full_name messageable.full_name
+  json.about messageable.about
+  json.unread count
 end

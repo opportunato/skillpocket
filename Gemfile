@@ -44,9 +44,8 @@ gem 'roadie-rails'
 
 gem 'slim'
 
-# In-app messages rails engine
-gem 'mailboxer'
-
+gem 'foreigner'
+gem 'immigrant'
 
 # REST API doc generator (https://helloreverb.com/developers/swagger)
 gem 'swagger-docs'

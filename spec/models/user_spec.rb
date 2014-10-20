@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  # it_bahaves_like Messageable
+  it_behaves_like Messageable, :user
 
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:first_name) }

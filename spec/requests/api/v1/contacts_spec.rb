@@ -17,20 +17,17 @@ RSpec.describe Api::V1::ContactsController do
 
       expect(response.status).to eq 200
       expect(response_json.size).to eq 2
-      expect(response_json).to eq([
-       { "id"=> @two.id,
-         "full_name"=> @two.full_name,
-         "about"=> @two.about,
-         "unread"=>1,
-         "message"=>"whatup",
-         "date"=>1234568000},
-       { "id"=> @one.id,
-         "full_name"=> @one.full_name,
-         "about"=> @one.about,
-         "unread"=>1,
-         "message"=>"hey",
-         "date"=>1234567000
-       }
+      expect(response_json).to eq([{
+          "id"=> @one.id,
+          "full_name"=> @one.full_name,
+          "about"=> @one.about,
+          "unread"=>1,
+        }, {
+          "id"=> @two.id,
+          "full_name"=> @two.full_name,
+          "about"=> @two.about,
+          "unread"=>1
+        }
       ])
     end
 

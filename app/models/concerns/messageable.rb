@@ -2,29 +2,16 @@ module Messageable
   extend ActiveSupport::Concern
 
   included do
-    acts_as_messageable
-
     def send_message_to messageable, text
-      previous_conversation = mailbox.conversations.participant(messageable).participant(self).first
-      if previous_conversation
-        reply_to_conversation previous_conversation, text
-      else
-        send_message messageable, text, '-'
-      end
+      Message.create sender: self, recipient: messageable, body: text
     end
 
     def conversation_with messageable
-      # TODO: check query and simplify
-      previous_conversation = mailbox.conversations.participant(messageable).participant(self).first
-      if previous_conversation
-        previous_conversation.receipts.recipient(self).includes(:message).order(:created_at => :desc)
-      else
-        []
-      end
+      Message.where(sender: [self, messageable]).where(recipient: [self, messageable]).order(created_at: :desc)
     end
 
     def conversations
-      mailbox.inbox
+      Message.where(recipient: self).group(:sender).unread.count
     end
   end
 end
