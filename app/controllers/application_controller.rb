@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :signed_in?, :current_user
 
-  def authenticate!
-    warden.authenticate!
+  def authenticate!(options={})
+    warden.authenticate!(options)
   end
 
   def signed_in?

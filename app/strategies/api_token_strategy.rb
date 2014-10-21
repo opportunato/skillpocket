@@ -1,11 +1,11 @@
 class ApiTokenStrategy < ::Warden::Strategies::Base
   def valid?
-    params['oauth_token']
+    request.env['omniauth.auth']
   end
 
-  def authenticate!
-    token = request.params['oauth_token']
-    user = User.find_by(twitter_token: twitter_token)
+  def authenticate!(options={})
+    token = request.env['omniauth.auth'][:credentials][:token]
+    user = User.find_by(twitter_token: token)
     user.nil? ? fail! : success!(user)
   end
 end
