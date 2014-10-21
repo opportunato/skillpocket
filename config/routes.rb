@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post "onboarding/step2", to: "onboarding#step2_submit"
   get "onboarding/step3", to: "onboarding#step3"
   post "onboarding/step3", to: "onboarding#step3_submit"
+
+  get "profile", to: "profile#index"
 end

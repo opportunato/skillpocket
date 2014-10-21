@@ -12,14 +12,9 @@ class User < ActiveRecord::Base
            to: :skill,
            prefix: true
 
-  store_accessor :urls, 
-                 :website_url,
-                 :twitter_url,
-                 :facebook_url,
-                 :linkedin_url,
-                 :behance_url,
-                 :github_url,
-                 :stackoverflow_url
+  URLS = %w[website_url twitter_url facebook_url linkedin_url behance_url github_url stackoverflow_url]
+
+  store_accessor :urls, *URLS
 
   extend FriendlyId
   friendly_id :full_name, use: :slugged
