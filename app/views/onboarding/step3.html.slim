@@ -6,7 +6,9 @@ section.onboarding-step
   = simple_form_for @skill, url: onboarding_step3_path, method: :post do |f|
     fieldset
       = f.input :title
-      = f.input :price
+      .price
+        span.dollar $
+        = f.input :price
       = f.input :tags, as: :collection_text
       = f.association :categories, as: :check_boxes, collection: Tag.categories
       = f.submit "Complete profile"

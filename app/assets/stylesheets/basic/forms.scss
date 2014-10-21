@@ -64,23 +64,81 @@ input, textarea {
   }
 }
 
+.image_upload:before {
+  content: "g";
+  font-family: "skillpocket" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @include position(absolute, 50% 0 0 50%);
+  font-size: 2.4em;
+  color: white;
+  margin-left: -18px;
+  margin-top: -16px;
+}
+
+.help-block {
+  color: red;
+  display: block;
+  margin-top: -25px;
+  margin-bottom: $grid;
+}
+
 div.image_upload {
   background-size: cover;
-  background-color: #666666;
-  height: 150px;
-  overflow: hidden;
+  background-color: $color-grey;
   position: relative;
-  width: 100%;
+  margin-bottom: $grid*2;
+
+  .help-block {
+    margin-top: $grid/2;
+    @include position(absolute, 0 0px -45px 0px);
+  }
+
+  .control-label {
+    background: white;
+    padding-bottom: $grid/2;
+    margin-bottom: 0;
+  }
+
+  &.user_photo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    margin-bottom: $grid/2*3;
+    border-radius: 100%;
+  }
+
+  &.photo,input[type="file"] {
+    border-radius: 100%;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  &.banner {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 
   &.photo {
-    border-radius: 100%;
-    height: 50px;
-    width: 50px;
+    opacity: .6;
+  }
+
+  &.banner {
+    height: 150px;
   }
 
   input[type="file"] {
     @include position(absolute, 0px 0px 0px 0px);
-
     cursor: pointer;
     opacity: 0;
   }

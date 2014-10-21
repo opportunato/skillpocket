@@ -47,3 +47,12 @@ a.add-social {
     visibility: visible;
   }
 }
+
+.price {
+  position: relative;
+
+  .dollar {
+    @include position(absolute, 35px 0 0 -15px);
+    font-size: 1.2em;
+  }
+}
