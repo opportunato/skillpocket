@@ -8,5 +8,6 @@ html
   body
     = render partial: "shared/social"
     = render partial: "shared/header"
-    = yield
+    main
+      = yield
     = javascript_include_tag "application"

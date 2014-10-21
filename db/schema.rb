@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918132709) do
+ActiveRecord::Schema.define(version: 20141021135900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,10 +58,9 @@ ActiveRecord::Schema.define(version: 20140918132709) do
   end
 
   create_table "skills", force: true do |t|
-    t.text     "description", null: false
-    t.integer  "price",       null: false
-    t.string   "title",       null: false
-    t.integer  "user_id",     null: false
+    t.integer  "price",      null: false
+    t.string   "title",      null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,21 +85,20 @@ ActiveRecord::Schema.define(version: 20140918132709) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "first_name",                        null: false
-    t.string   "last_name",                         null: false
     t.string   "job"
     t.text     "about"
     t.string   "photo"
     t.string   "profile_banner"
     t.string   "email"
     t.string   "slug"
-    t.hstore   "links",                default: {}
+    t.hstore   "urls",                 default: {}
     t.string   "access_token"
     t.string   "twitter_id"
     t.string   "twitter_token"
     t.string   "twitter_token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_name"
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree

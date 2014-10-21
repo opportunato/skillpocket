@@ -10,9 +10,12 @@ Bundler.require(*Rails.groups)
 module Skillpocket
   class Application < Rails::Application
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
-
-    config.assets.precompile += %w(admin.js admin.css berlin.js)
-
+    config.assets.precompile += %w()
     config.autoload_paths += %W(#{config.root}/lib/helpers)
+
+    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+      manager.default_strategies :api_token
+      manager.failure_app = UnauthorizedController
+    end
   end
 end

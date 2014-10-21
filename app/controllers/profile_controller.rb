@@ -1,29 +1,13 @@
 class ProfileController < ApplicationController
-  before_filter :admin_login
-  before_filter :get_profile
+  skip_before_action :authenticate!, only: [:index]
+  before_action :set_user, only: [:index]
 
   def index
-    if @current_user.nil?
-      redirect_to login_path
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    @profile.update(profile_params)
-
-    redirect_to profile_path
   end
 
 private
 
-  def get_profile
-    @profile = @current_user
-  end
-
-  def profile_params
-    params.require(:user).permit(:first_name, :last_name, :email, :job, :about)
+  def set_user
+    @user = User.last
   end
 end

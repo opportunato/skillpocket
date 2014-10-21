@@ -9,10 +9,13 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/login', to: "sessions#new"
   get '/auth/twitter/callback', to: "sessions#create"
 
-  get "/profile", to: "profile#index"
-  get "/profile/edit", to: "profile#edit"
-  patch "/profile", to: "profile#update"
+  get "onboarding/step1", to: "onboarding#step1"
+  get "onboarding/step2", to: "onboarding#step2"
+  post "onboarding/step2", to: "onboarding#step2_submit"
+  get "onboarding/step3", to: "onboarding#step3"
+  post "onboarding/step3", to: "onboarding#step3_submit"
+
+  get "profile", to: "profile#index"
 end
