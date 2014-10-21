@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021135900) do
+ActiveRecord::Schema.define(version: 20141021204458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,13 +133,16 @@ ActiveRecord::Schema.define(version: 20141021135900) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "full_name"
+    t.string   "twitter_handle"
+    t.boolean  "approved",             default: false
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
+  add_index "users", ["twitter_handle"], name: "index_users_on_twitter_handle", using: :btree
   add_index "users", ["twitter_token"], name: "index_users_on_twitter_token", unique: true, using: :btree
 
-  add_foreign_key "messages", "users", name: "messages_recipient_id_fk", column: "recipient_id"
-  add_foreign_key "messages", "users", name: "messages_sender_id_fk", column: "sender_id"
+  add_foreign_key "messages", "users", name: "messages_recipient_id_fk", column: "recipient_id", dependent: :delete
+  add_foreign_key "messages", "users", name: "messages_sender_id_fk", column: "sender_id", dependent: :delete
 
 end

@@ -9,4 +9,6 @@ section.onboarding-step
       .price
         span.dollar $
         = f.input :price
+      = f.input :tags, as: :collection_text
+      = f.association :categories, as: :check_boxes, collection: Tag.categories
       = f.submit "Complete profile"

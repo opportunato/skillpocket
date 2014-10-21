@@ -27,6 +27,7 @@ private
       full_name: user_data.name,
       about: user_data.description,
       twitter_id: user_data.id,
+      twitter_handle: user_data.screen_name,
       twitter_token: @token,
       twitter_token_secret: @secret,
       twitter_url: "https://twitter.com/#{user_data.screen_name}"
@@ -41,7 +42,7 @@ private
     user.remote_photo_url = user_data.profile_image_url
     user.remote_profile_banner_url = user_data.profile_banner_url
 
-    user.save
+    user.save(validate: false)
     user
   end
 end

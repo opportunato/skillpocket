@@ -16,6 +16,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    get "/approve", to: "approve#index"
+    post "/approve", to: "approve#update"
+  end
+
   get '/auth/twitter/callback', to: "sessions#create"
 
   get "onboarding/step1", to: "onboarding#step1"
