@@ -1,13 +1,14 @@
-.poll
-  .banner = image_tag @profile.profile_banner
-  .photo = image_tag @profile.photo
+- @user = @user.decorate
 
-  = simple_form_for @profile, url: "/profile", method: 'patch' do |f|
-    = f.input :first_name
-    = f.input :last_name
-    = f.input :email
-    = f.input :job
-    = f.input :about
-
-    = submit_tag
-
+section.profile-page
+  header[style="background-image: url(#{@user.profile_banner_url});"]
+    = @user.skill_title
+    = image_tag @user.photo_url
+  section.main
+    h2 = @user.full_name
+    p.job = @user.job
+    p.price = @user.price
+    p.tags = @user.tags
+    p.about = @user.about
+    ul.urls
+      = @user.urls

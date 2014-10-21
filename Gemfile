@@ -20,6 +20,7 @@ gem 'carrierwave'
 gem 'mandrill_mailer'
 
 gem 'has_scope'
+gem 'draper'
 
 gem 'friendly_id'
 gem 'warden'
