@@ -6,7 +6,7 @@ section.onboarding-step
   = simple_form_for @user, url: onboarding_step2_path, method: :post do |f|
     fieldset
       = f.input :photo, as: :image_upload, label: false, input_html: { class: "photo" }
-      = f.input :full_name, label: false
+      = f.input :full_name
       = f.input :email
       = f.input :job
       = f.input :about

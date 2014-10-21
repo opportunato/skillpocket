@@ -53,6 +53,7 @@ end
 group :development, :test do
   gem 'ffaker'
   gem "factory_girl_rails"
+  gem "better_errors"
   gem "binding_of_caller"
 
   gem "pry"

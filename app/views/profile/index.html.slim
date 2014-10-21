@@ -1,13 +1,14 @@
 - @user = @user.decorate
 
 section.profile-page
-  header[style="background-image: url(#{@user.profile_banner_url});"]
-    = @user.skill_title
-    = image_tag @user.photo_url
-  section.main
-    h2 = @user.full_name
+  header.profile
+    .bg[style="background-image: url(#{@user.profile_banner_url});"]
+    h2.skill-title= @user.skill_title
+    = image_tag @user.photo_url, class: 'userpic'
+  section.profile
+    h2.name = @user.full_name
     p.job = @user.job
-    p.price = @user.price
+    h3.price = @user.price
     p.tags = @user.tags
     p.about = @user.about
     ul.urls

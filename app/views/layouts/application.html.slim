@@ -5,7 +5,7 @@ html
     = stylesheet_link_tag "application", media: :all
     = render partial: "shared/mixpanel"
 	meta[name="apple-mobile-web-app-capable" content="yes"]
-  body
+  body[class=(params[:controller] == "profile" ? "profile" : "")]
     = render partial: "shared/social"
     = render partial: "shared/header"
     main

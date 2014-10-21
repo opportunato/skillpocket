@@ -1,0 +1,68 @@
+body.profile {
+  header.main {
+    @include position(absolute, 0px 0px 0 0px);
+    z-index: 999;
+
+    .logo { color: white; }
+
+    .menu-button {
+      color: white;
+      border-color: white;
+
+      &:hover {
+        background: white;
+        color: $color-text;
+      }
+    }
+  }
+
+  header.profile {
+    background: $color-text;
+    position: relative;
+    margin-bottom: $grid*3;
+  }
+
+  .userpic {
+    @include position(absolute, 0 0 -40px 50%);
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 90px;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .name {
+    margin-bottom: 0;
+  }
+
+  .job {
+    color: $color-grey;
+  }
+
+  // .price {
+  //   font-size: 1.4em;
+  // }
+
+  .bg {
+    opacity: .4;
+    height: 360px;
+  }
+
+  .skill-title {
+    color: white;
+    text-align: center;
+    @include position(absolute, 50% 0 0 50%);
+    transform: translate(-50%,-50%);
+  }
+
+  section.profile {
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto;
+    margin-bottom: $grid*6;
+
+    @include respond-to(medium) {
+      max-width: 470px;
+    }
+  }
+}
