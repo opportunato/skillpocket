@@ -4,6 +4,7 @@ section.onboarding-step
     h1 Add your skill
 
   = simple_form_for @skill, url: onboarding_step3_path, method: :post do |f|
-    = f.input :title
-    = f.input :price
-    = f.submit "Complete profile"
+    fieldset
+      = f.input :title
+      = f.input :price
+      = f.submit "Complete profile"

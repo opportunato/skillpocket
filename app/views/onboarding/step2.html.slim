@@ -4,13 +4,14 @@ section.onboarding-step
     h1 Your Profile
 
   = simple_form_for @user, url: onboarding_step2_path, method: :post do |f|
-    = f.input :photo
-    = f.input :full_name
-    = f.input :email
-    = f.input :job
-    = f.input :about
-    = f.input :profile_banner
     fieldset
+      = f.input :photo
+      = f.input :full_name
+      = f.input :email
+      = f.input :job
+      = f.input :about
+      = f.input :profile_banner
+
       = f.input :website_url
       = f.input :facebook_url
       = f.input :github_url
