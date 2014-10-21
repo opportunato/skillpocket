@@ -12,7 +12,8 @@ RSpec.describe Api::V1::MessageController do
       expert = create :skilled_user
       body = Faker::Lorem.sentence
 
-      post api_v1_message_path(expert.id), { text: body }, authorization: ActionController::HttpAuthentication::Token.encode_credentials(consumer.access_token)
+      login_as(consumer)
+      post api_v1_message_path(expert.id), { text: body }
 
       expect(response.status).to eq 201
       expect(response.body).to be_blank
@@ -29,7 +30,8 @@ RSpec.describe Api::V1::MessageController do
       consumer.send_message_to(expert, body)
       reply = Faker::Lorem.sentence
 
-      post api_v1_message_path(consumer.id), { text: reply }, authorization: ActionController::HttpAuthentication::Token.encode_credentials(expert.access_token)
+      login_as(expert)
+      post api_v1_message_path(consumer.id), { text: reply }
 
       expect(response.status).to eq 201
       expect(response.body).to be_blank
@@ -46,7 +48,8 @@ RSpec.describe Api::V1::MessageController do
       end
 
       it 'is an empty list' do
-        get api_v1_message_path(@expert.id), nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(@consumer.access_token)
+        login_as(@consumer)
+        get api_v1_message_path(@expert.id), nil
 
         expect(response.status).to eq 200
         expect(response_json).to eq([])
@@ -66,7 +69,8 @@ RSpec.describe Api::V1::MessageController do
       end
 
       it 'lists customers messages' do
-        get api_v1_message_path(@expert.id), nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(@consumer.access_token)
+        login_as(@consumer)
+        get api_v1_message_path(@expert.id), nil
 
         expect(response.status).to eq 200
         expect(response_json).to eq([
@@ -79,21 +83,24 @@ RSpec.describe Api::V1::MessageController do
       end
 
       it 'is unable to read other customers messages' do
-        get api_v1_message_path(@consumer.id), nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(@expert2.access_token)
+        login_as(@expert2)
+        get api_v1_message_path(@consumer.id), nil
 
         expect(response.status).to eq 200
         expect(response_json).to eq([])
       end
 
       it 'is only shows given interlocutor messages' do
-        get api_v1_message_path(@expert2.id), nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(@consumer.access_token)
+        login_as(@consumer)
+        get api_v1_message_path(@expert2.id), nil
 
         expect(response.status).to eq 200
         expect(response_json).to eq([])
       end
 
       it 'lists expert messages' do
-        get api_v1_message_path(@consumer.id), nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(@expert.access_token)
+        login_as(@expert)
+        get api_v1_message_path(@consumer.id), nil
 
         expect(response.status).to eq 200
         expect(response_json).to eq([

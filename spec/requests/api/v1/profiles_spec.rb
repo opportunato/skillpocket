@@ -48,13 +48,12 @@ RSpec.describe Api::V1::ProfilesController do
         post api_v1_profile_path, token: '123', secret: 'secret'
         expect(response.status).to eq 201
         user = User.find_by(access_token: response_json['token'])
-        expect(user.first_name).to eq 'John'
-        expect(user.last_name).to eq 'Smith'
+        expect(user.full_name).to eq 'John Smith'
         expect(user.about).to eq 'Blah blah'
         expect(user.twitter_id).to eq 'twitter_id'
         expect(user.twitter_token).to eq '123'
         expect(user.twitter_token_secret).to eq 'secret'
-        expect(user.twitter_link).to eq 'https://twitter.com/screen_name'
+        expect(user.twitter_url).to eq 'https://twitter.com/screen_name'
         # expect(user.profile_image_url).to eq 'profile_image_url'
         # expect(user.profile_banner_url).to eq 'profile_banner_url'
       end
@@ -73,36 +72,35 @@ RSpec.describe Api::V1::ProfilesController do
     let(:user) { create :user }
 
     it '#show' do
-      get api_v1_profile_path, nil, authorization: ActionController::HttpAuthentication::Token.encode_credentials(user.access_token)
+      login_as(user)
+      get api_v1_profile_path, nil
 
       expect(response.status).to eq 200
       expect(response_json.symbolize_keys).to eq({
         about: user.about,
         email: user.email,
-        first_name: user.first_name,
         full_name: user.full_name,
         id: user.id,
         job: user.job,
-        last_name: user.last_name,
         photo_url: user.photo_url(:small),
         profile_banner_url: user.profile_banner.url(:normal),
         slug: user.slug,
-        behance_link: user.behance_link,
-        github_link: user.github_link,
-        linkedin_link: user.linkedin_link,
-        stackoverflow_link: user.stackoverflow_link,
-        twitter_link: user.twitter_link,
-        website_link: user.website_link
+        behance_url: user.behance_url,
+        github_url: user.github_url,
+        linkedin_url: user.linkedin_url,
+        stackoverflow_url: user.stackoverflow_url,
+        twitter_url: user.twitter_url,
+        website_url: user.website_url
       })
     end
 
     it 'updates allowed parameters' do
-      VARIABLE_PROPERTIES = [:about, :email, :first_name, :job, :last_name, :behance_link, :github_link, :linkedin_link, :stackoverflow_link, :twitter_link, :website_link]
+      VARIABLE_PROPERTIES = [:about, :email, :full_name, :job, :behance_url, :github_url, :linkedin_url, :stackoverflow_url, :twitter_url, :website_url]
       RESTRICTED_PROPERTIES = [:id, :slug, :twitter_id, :twitter_token, :twitter_token_secret]
       # TODO: those are rounded on persistence :created_at, :updated_at]
+      login_as(user)
       put api_v1_profile_path,
-        VARIABLE_PROPERTIES.product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h),
-        authorization: ActionController::HttpAuthentication::Token.encode_credentials(user.access_token)
+        VARIABLE_PROPERTIES.product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h)
       expect(response.status).to eq 201
       after = user.clone
       after.reload

@@ -1,5 +1,4 @@
 class Api::V1::MessageController < ApiController
-  before_filter :authenticate
 
   def show
     interlocutor = User.find params[:id]

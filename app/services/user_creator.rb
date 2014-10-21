@@ -24,13 +24,12 @@ private
 
   def create_from_user_data(user_data)
     user = User.new({
-      first_name: FullNameParser.new(user_data.name).first_name,
-      last_name: FullNameParser.new(user_data.name).last_name,
+      full_name: user_data.name,
       about: user_data.description,
       twitter_id: user_data.id,
       twitter_token: @token,
       twitter_token_secret: @secret,
-      twitter_link: "https://twitter.com/#{user_data.screen_name}"
+      twitter_url: "https://twitter.com/#{user_data.screen_name}"
     })
 
     begin

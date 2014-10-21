@@ -1,6 +1,5 @@
 FactoryGirl.define do
-  sequence(:first_name) { |n| "first_name #{n}" }
-  sequence(:last_name) { |n| "last_name #{n}" }
+  sequence(:full_name) { |n| "name surname #{n}" }
   sequence(:name) { |n| "name #{n}" }
   sequence(:job) { |n| "job #{n}" }
   sequence(:about) { |n| "about #{n}" }
@@ -12,18 +11,17 @@ FactoryGirl.define do
     about
     email
     photo
-    first_name
-    last_name
+    full_name
     job
     access_token
 
     # TODO: these should differ
-    behance_link "http://behance.com/"
-    github_link "http://github.com/"
-    linkedin_link "http://linkedin.com/"
-    stackoverflow_link "http://stackoverflow.com/"
-    twitter_link "http://twitter.com/"
-    website_link "http://some-site.com/"
+    behance_url "http://behance.com/"
+    github_url "http://github.com/"
+    linkedin_url "http://linkedin.com/"
+    stackoverflow_url "http://stackoverflow.com/"
+    twitter_url "http://twitter.com/"
+    website_url "http://some-site.com/"
 
     factory :skilled_user do
       skill factory: :tagged_skill

@@ -1,6 +1,6 @@
 class Api::V1::ProfilesController < ApiController
-  before_filter :authenticate, except: [:create]
-  before_filter :get_profile, except: [:create]
+  skip_before_action :authenticate!, only: [:create]
+  before_action :get_profile, except: [:create]
 
   def create
     user = UserCreator.perform params.permit(:token, :secret).symbolize_keys
@@ -23,8 +23,8 @@ private
   # TODO: allow to update photo and skill
 
   def user_params
-    params.permit(:first_name, :last_name, :email, :job, :about,
-             :website_link, :twitter_link, :linkedin_link,
-             :behance_link, :github_link, :stackoverflow_link)
+    params.permit(:full_name, :email, :job, :about,
+             :website_url, :twitter_url, :linkedin_url,
+             :behance_url, :github_url, :stackoverflow_url)
   end
 end

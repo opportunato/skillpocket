@@ -22,50 +22,42 @@ RSpec.describe Api::V1::ExpertsController do
     expect(response_json).to eq([
       {
         'about' => first_expert.about,
-        'behance_link' => first_expert.behance_link,
-        # 'color' => first_expert.skill.color,
+        'behance_url' => first_expert.behance_url,
         'email' => first_expert.email,
-        'github_link' => first_expert.github_link,
-        'first_name' => first_expert.first_name,
+        'github_url' => first_expert.github_url,
         'full_name' => first_expert.full_name,
         'id' => first_expert.id,
         'job' => first_expert.job,
-        'last_name' => first_expert.last_name,
-        'linkedin_link' => first_expert.linkedin_link,
+        'linkedin_url' => first_expert.linkedin_url,
         'photo' => first_expert.photo.url(:small),
         'price' => first_expert.price,
         'profile_banner_url' => first_expert.profile_banner.url(:normal),
         'skill_title' => first_expert.skill.title,
-        'skill_description' => first_expert.skill.description,
         'slug' => first_expert.slug,
-        'stackoverflow_link' => first_expert.stackoverflow_link,
+        'stackoverflow_url' => first_expert.stackoverflow_url,
         'categories' => [],
         'tags' => [{
           'id' => first_expert.skill.tags.first.id,
           'name' => first_expert.skill.tags.first.name
         }],
-        'twitter_link' => first_expert.twitter_link,
-        'website_link' => first_expert.website_link
+        'twitter_url' => first_expert.twitter_url,
+        'website_url' => first_expert.website_url
       }, 
       {
         'id' => second_expert.id,
         'email' => second_expert.email,
         'about' => second_expert.about,
-        'behance_link' => second_expert.behance_link,
-        # 'color' => second_expert.skill.color,
-        'github_link' => second_expert.github_link,
-        'first_name' => second_expert.first_name,
+        'behance_url' => second_expert.behance_url,
+        'github_url' => second_expert.github_url,
         'full_name' => second_expert.full_name,
         'job' => second_expert.job,
-        'last_name' => second_expert.last_name,
-        'linkedin_link' => second_expert.linkedin_link,
+        'linkedin_url' => second_expert.linkedin_url,
         'photo' => second_expert.photo.url(:small),
         'price' => second_expert.price,
         'profile_banner_url' => second_expert.profile_banner.url(:normal),
         'skill_title' => second_expert.skill.title,
-        'skill_description' => second_expert.skill.description,
         'slug' => second_expert.slug,
-        'stackoverflow_link' => second_expert.stackoverflow_link,
+        'stackoverflow_url' => second_expert.stackoverflow_url,
         'categories' => [{
           'id' => second_expert.skill.tags.last.id,
           'name' => second_expert.skill.tags.last.name
@@ -77,8 +69,8 @@ RSpec.describe Api::V1::ExpertsController do
           'id' => second_expert.skill.tags.last.id,
           'name' => second_expert.skill.tags.last.name
         }],
-        'twitter_link' => second_expert.twitter_link,
-        'website_link' => second_expert.website_link
+        'twitter_url' => second_expert.twitter_url,
+        'website_url' => second_expert.website_url
       }
     ])
   end
@@ -92,21 +84,17 @@ RSpec.describe Api::V1::ExpertsController do
           'id' => second_expert.id,
           'email' => second_expert.email,
           'about' => second_expert.about,
-          'behance_link' => second_expert.behance_link,
-          # 'color' => second_expert.skill.color,
-          'github_link' => second_expert.github_link,
-          'first_name' => second_expert.first_name,
+          'behance_url' => second_expert.behance_url,
+          'github_url' => second_expert.github_url,
           'full_name' => second_expert.full_name,
           'job' => second_expert.job,
-          'last_name' => second_expert.last_name,
-          'linkedin_link' => second_expert.linkedin_link,
+          'linkedin_url' => second_expert.linkedin_url,
           'photo' => second_expert.photo.url(:small),
           'price' => second_expert.price,
           'profile_banner_url' => second_expert.profile_banner.url(:normal),
           'skill_title' => second_expert.skill.title,
-          'skill_description' => second_expert.skill.description,
           'slug' => second_expert.slug,
-          'stackoverflow_link' => second_expert.stackoverflow_link,
+          'stackoverflow_url' => second_expert.stackoverflow_url,
           'categories' => [{
             'id' => second_expert.skill.tags.last.id,
             'name' => second_expert.skill.tags.last.name
@@ -118,8 +106,8 @@ RSpec.describe Api::V1::ExpertsController do
             'id' => second_expert.skill.tags.last.id,
             'name' => second_expert.skill.tags.last.name
           }],
-          'twitter_link' => second_expert.twitter_link,
-          'website_link' => second_expert.website_link
+          'twitter_url' => second_expert.twitter_url,
+          'website_url' => second_expert.website_url
         }
       ])
     end
@@ -133,28 +121,24 @@ RSpec.describe Api::V1::ExpertsController do
         'id' => first_expert.id,
         'email' => first_expert.email,
         'about' => first_expert.about,
-        'behance_link' => first_expert.behance_link,
-        # 'color' => first_expert.skill.color,
-        'github_link' => first_expert.github_link,
-        'first_name' => first_expert.first_name,
+        'behance_url' => first_expert.behance_url,
+        'github_url' => first_expert.github_url,
         'full_name' => first_expert.full_name,
         'job' => first_expert.job,
-        'last_name' => first_expert.last_name,
-        'linkedin_link' => first_expert.linkedin_link,
+        'linkedin_url' => first_expert.linkedin_url,
         'photo' => first_expert.photo.url(:small),
         'price' => first_expert.price,
         'profile_banner_url' => first_expert.profile_banner.url(:normal),
         'skill_title' => first_expert.skill.title,
-        'skill_description' => first_expert.skill.description,
         'slug' => first_expert.slug,
-        'stackoverflow_link' => first_expert.stackoverflow_link,
+        'stackoverflow_url' => first_expert.stackoverflow_url,
         'categories' => [],
         'tags' => [{
           'id' => first_expert.skill.tags.first.id,
           'name' => first_expert.skill.tags.first.name,
         }],
-        'twitter_link' => first_expert.twitter_link,
-        'website_link' => first_expert.website_link
+        'twitter_url' => first_expert.twitter_url,
+        'website_url' => first_expert.website_url
       }
     )
   end

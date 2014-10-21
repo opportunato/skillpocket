@@ -1,10 +1,8 @@
 FactoryGirl.define do
-  sequence(:description) { |n| "description #{n}" }
   sequence(:title) { |n| "title #{n}" }
   sequence(:price) { SecureRandom.random_number(100) }
 
   factory :skill do
-    description
     title
     price
     expert factory: :user

@@ -3,24 +3,21 @@ json.cache! @profile do
   json.email @profile.email
   json.about @profile.about
   json.full_name @profile.full_name
-  json.first_name @profile.first_name
-  json.last_name @profile.last_name
   json.job @profile.job
   json.photo_url @profile.photo.url(:small)
   json.profile_banner_url @profile.profile_banner.url(:normal)
   json.slug @profile.slug
 
-  json.website_link @profile.website_link
-  json.twitter_link @profile.twitter_link
-  json.linkedin_link @profile.linkedin_link
-  json.behance_link @profile.behance_link
-  json.github_link @profile.github_link
-  json.stackoverflow_link @profile.stackoverflow_link
+  json.website_url @profile.website_url
+  json.twitter_url @profile.twitter_url
+  json.linkedin_url @profile.linkedin_url
+  json.behance_url @profile.behance_url
+  json.github_url @profile.github_url
+  json.stackoverflow_url @profile.stackoverflow_url
 
   if @profile.expert?
     json.price @profile.price
     json.skill_title @profile.skill_title
-    json.skill_description @profile.skill_description
 
     json.categories @profile.skill_categories do |category|
       json.id category.id

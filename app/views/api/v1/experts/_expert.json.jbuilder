@@ -8,14 +8,13 @@ json.cache! expert do
   json.price expert.price
   json.slug expert.slug
   json.skill_title expert.skill_title
-  json.skill_description expert.skill_description
 
-  json.website_link expert.website_link
-  json.twitter_link expert.twitter_link
-  json.linkedin_link expert.linkedin_link
-  json.behance_link expert.behance_link
-  json.github_link expert.github_link
-  json.stackoverflow_link expert.stackoverflow_link
+  json.website_url expert.website_url
+  json.twitter_url expert.twitter_url
+  json.linkedin_url expert.linkedin_url
+  json.behance_url expert.behance_url
+  json.github_url expert.github_url
+  json.stackoverflow_url expert.stackoverflow_url
 
   json.profile_banner_url expert.profile_banner.url(:normal)
 
