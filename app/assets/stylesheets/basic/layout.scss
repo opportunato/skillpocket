@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  padding: 0;
+  transition: background ease-in-out .6s $baseTransitionStyle;
+  animation: fadein .9s .3s both;
+  opacity: 0;
+  color: $color-text;
+  font-size: $font-size;
+  font-family: $base-font-family;
+
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ol, ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  list-style-image: none;
+}
+
+section {
+  margin-bottom: $grid;
+}
+
+.content {
+  @include respond-to(medium) {
+    margin: 0 auto;
+    max-width: $sizeM;
+  }
+}

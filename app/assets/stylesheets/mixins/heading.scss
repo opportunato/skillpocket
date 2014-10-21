@@ -1,0 +1,16 @@
+@mixin header-font-size($normal-size, $small-size, $medium-size, $large-slize) {
+  font-family: $accent-font-family;
+  font-weight: normal;
+  // padding: 0 $grid;
+  font-style: normal;
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-size: $normal-size;
+  @include respond-to(small)  { font-size: $small-size; }
+  @include respond-to(medium) { font-size: $medium-size; }
+  @include respond-to(large)  { font-size: $large-slize; }
+}
+
+@mixin h1-font-size {
+  @include header-font-size(1.4em,1.8em,2.4em,3em);
+}
