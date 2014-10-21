@@ -1,5 +1,6 @@
 header.main
-	a.logo href="#"
+	/ a.logo href="#"
+	= link_to root_path, class: 'logo'
 		span.icon-logo
 		span Skillpocket
 	a.button.menu-button href="#" Menu
@@ -7,7 +8,7 @@ header.main
 		.overlay
 		ul
 			li
-				span How It Works
+				= link_to 'How It Works', root_path
 			li
 				a href="#" About
 			li

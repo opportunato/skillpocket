@@ -42,6 +42,8 @@
 .intro {
 	margin-bottom: 0;
 
+	.block { display: block; }
+
 	@include respond-to(medium) {
 		margin-bottom: $grid;
 	}
@@ -85,7 +87,6 @@
 
 	.typed {
 		color: $color-accent;
-		display: block;
 	}
 }
 
@@ -128,7 +129,12 @@
 		transition: all $transitionTime $baseTransitionStyle;
 
 		&.active {
-			h2 { color: $color-accent; }
+			border-left: 1px solid $color-accent;
+			padding-left: $grid/2;
+
+			h2 {
+				color: $color-accent;
+			}
 		}
 	}
 
