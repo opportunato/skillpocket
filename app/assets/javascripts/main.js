@@ -7,7 +7,9 @@ $(function() {
 			$connectTab = $('li.connect'),
 			$connectScreenshot = $('.screenshot.connect'),
 			$hireTab = $('li.hire'),
-			$hireScreenshot = $('.screenshot.hire');
+			$hireScreenshot = $('.screenshot.hire'),
+			$addSocial = $('.add-social'),
+			$socialNetworks = $('.social-networks');
 
 	$menuButton.on('click', function(e) {
 		e.preventDefault();
@@ -51,5 +53,12 @@ $(function() {
 	$("#typed").typed({
     strings: ["designers ^1000 ", "engineers ^1000 ", "marketeers ^1000 ", "investors ^1000 ", "copy writers ^1000 ", "producers ^1000 ", "photographers ^1000 ", "analysts ^1000 ", "creatives ^1000 ", "PR specialists ^1000 "]
   });
+
+  $addSocial.on('click', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$socialNetworks.addClass('active');
+		$(this).remove();
+	});
 
 });

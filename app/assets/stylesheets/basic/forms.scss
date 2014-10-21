@@ -1,0 +1,65 @@
+.button, input[type=submit] {
+	transition: background $transitionTime $baseTransitionStyle, color $transitionTime $baseTransitionStyle;
+	border: 1px solid $color-accent;
+	border-radius: 30px;
+	color: $color-accent;
+	padding: $grid/4 $grid;
+	font-family: $accent-font-family;
+	margin-bottom: $grid;
+
+	&:hover {
+		background: $color-accent;
+		color: white;
+	}
+}
+
+label {
+	color: $color-grey;
+	margin-bottom: $grid/2;
+	display: block;
+}
+
+input[type=submit] {
+	background: white;
+	width: auto;
+}
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+abbr { display: none; }
+
+input, textarea {
+  display: inline-block;
+  outline: none;
+  border-radius: 0;
+  background: $color-grey-light;
+  border: 0;
+  resize: none;
+  font-family: $base-font-family;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  padding: $input_padding;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: $grid/2*3;
+  font-size: 1.2em;
+
+  &:focus::-webkit-input-placeholder {
+    color: $color-grey-light;
+  }
+
+  &::-webkit-input-placeholder {
+    text-align: center;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px $color-grey-light inset;
+    border: none;
+    background: $color-grey-light;
+  }
+}

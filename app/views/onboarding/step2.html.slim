@@ -1,6 +1,6 @@
 section.onboarding-step
   header
-    h2 Step 2
+    .caps Step 2
     h1 Your Profile
 
   = simple_form_for @user, url: onboarding_step2_path, method: :post do |f|
@@ -12,10 +12,12 @@ section.onboarding-step
       = f.input :about
       = f.input :profile_banner
 
-      = f.input :website_url
-      = f.input :facebook_url
-      = f.input :github_url
-      = f.input :behance_url
-      = f.input :stackoverflow_url
-      = f.input :linkedin_url
+      a.add-social href='#' + Add your social networks
+      .social-networks
+        = f.input :website_url
+        = f.input :facebook_url
+        = f.input :github_url
+        = f.input :behance_url
+        = f.input :stackoverflow_url
+        = f.input :linkedin_url
     = f.submit "Continue"
