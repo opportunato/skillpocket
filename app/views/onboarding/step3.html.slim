@@ -6,5 +6,7 @@ section.onboarding-step
   = simple_form_for @skill, url: onboarding_step3_path, method: :post do |f|
     fieldset
       = f.input :title
-      = f.input :price
+      .price
+        span.dollar $
+        = f.input :price
       = f.submit "Complete profile"

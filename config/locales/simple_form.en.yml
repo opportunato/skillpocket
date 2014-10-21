@@ -15,6 +15,16 @@ en:
         email: Your email
         job: Job title and Company
         about: About you
+        website_url: Website
+        facebook_url: Facebook
+        github_url: Github
+        behance_url: Behance
+        stackoverflow_url: Stackoverflow
+        linkedin_url: Linkedin
+
+      skill:
+        price: Your price per hour
+        title: Skill title
     # hints:
     #   defaults:
     #     username: 'User name to sign in.'
