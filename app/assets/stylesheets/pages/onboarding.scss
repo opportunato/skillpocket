@@ -1,0 +1,26 @@
+.onboarding-step {
+	text-align: center;
+	max-width: 280px;
+	margin: 0 auto;
+
+	@include respond-to(medium) {
+		max-width: 470px;
+	}
+
+	.button {
+		font-size: 1.2em;
+		padding: $grid/2 $grid*2;
+
+		@include respond-to(medium) {
+			margin: 0 $grid*4 $grid $grid*4;
+		}
+	}
+
+	a {
+		display: inline-block;
+	}
+
+	.learn-more {
+		text-decoration: underline;
+	}
+}
