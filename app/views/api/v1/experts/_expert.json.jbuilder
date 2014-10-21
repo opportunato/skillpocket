@@ -3,8 +3,6 @@ json.cache! expert do
   json.email expert.email
   json.about expert.about
   json.full_name expert.full_name
-  json.first_name expert.first_name
-  json.last_name expert.last_name
   json.job expert.job
   json.photo expert.photo.url(:small)
   json.price expert.price

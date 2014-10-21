@@ -1,6 +1,5 @@
 class ProfileController < ApplicationController
-  before_filter :admin_login
-  before_filter :get_profile
+  before_filter :set_profile
 
   def index
     if @current_user.nil?
@@ -19,7 +18,7 @@ class ProfileController < ApplicationController
 
 private
 
-  def get_profile
+  def set_profile
     @profile = @current_user
   end
 
