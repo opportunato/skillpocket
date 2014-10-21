@@ -61,4 +61,18 @@ $(function() {
 		$(this).remove();
 	});
 
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $(input).parent('.image_upload').css('backgroundImage', "url(" + e.target.result + ")");
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $(".image_upload input[type=file]").change(function(){
+    readURL(this);
+  });
 });

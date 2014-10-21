@@ -5,12 +5,12 @@ section.onboarding-step
 
   = simple_form_for @user, url: onboarding_step2_path, method: :post do |f|
     fieldset
-      = f.input :photo
-      = f.input :full_name
+      = f.input :photo, as: :image_upload, label: false, input_html: { class: "photo" }
+      = f.input :full_name, label: false
       = f.input :email
       = f.input :job
       = f.input :about
-      = f.input :profile_banner
+      = f.input :profile_banner, as: :image_upload, input_html: { class: "banner" }
 
       a.add-social href='#' + Add your social networks
       .social-networks
