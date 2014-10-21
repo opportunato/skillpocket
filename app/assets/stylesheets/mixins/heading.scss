@@ -4,7 +4,7 @@
   // padding: 0 $grid;
   font-style: normal;
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: .5em;
   font-size: $normal-size;
   @include respond-to(small)  { font-size: $small-size; }
   @include respond-to(medium) { font-size: $medium-size; }

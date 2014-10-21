@@ -1,11 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ExpertsController do
-  let!(:first_expert) { create :skilled_user }
-  let!(:second_expert) { create :category_tag_skilled_user }
+  before do
+    @first_expert = create :skilled_user
+    @second_expert = create :category_tag_skilled_user
+  end
+
+  def first_expert
+    @first_expert
+  end
+
+  def second_expert
+    @second_expert
+  end
 
   it 'returns experts' do
     get "/api/v1/experts/"
+
+    # it_behaves_like 'token protected resource'
 
     expect(response_json).to eq([
       {

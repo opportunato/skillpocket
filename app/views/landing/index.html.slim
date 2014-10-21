@@ -9,8 +9,8 @@ section.intro
 
 .coming-soon
 	span In the App Store November 22nd — Follow us and be the first to know
-	a.icon-facebook href='#'
-	a.icon-twitter href='#'
+	a.icon-facebook href='https://www.facebook.com/skillpocket' target='_blank'
+	a.icon-twitter href='https://twitter.com/Skillpocket' target='_blank'
 
 section.how-it-works
 	.content
@@ -71,9 +71,9 @@ section.become-an-expert
 	.content
 		h2 Become an expert
 		span Be among our first experts and start earning money when we launch near you.
-		.button Apply with Twitter
+		= link_to "Apply with Twitter", "/auth/twitter", class: 'button'
 		.caps Follow us
 		.social
-			.button.icon-facebook
-			.button.icon-twitter
+			a.button.icon-facebook href='https://www.facebook.com/skillpocket' target='_blank'
+			a.button.icon-twitter href='https://twitter.com/Skillpocket' target='_blank'
 

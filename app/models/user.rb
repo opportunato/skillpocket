@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Messageable
+
   has_one :skill, dependent: :destroy
 
   validates_presence_of :full_name

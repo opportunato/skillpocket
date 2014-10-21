@@ -22,6 +22,10 @@
 		vertical-align: middle;
 		margin-right: $grid/4;
 
+		@include respond-to(medium) {
+			padding: $grid/2;
+		}
+
 		&:hover {
 			background: white;
 			color: $color-accent;
@@ -61,6 +65,7 @@
 
 	h1 {
 		margin-bottom: $grid*2;
+		line-height: 1.2em;
 
 		@include respond-to(medium) {
 			max-width: 460px;
@@ -180,13 +185,42 @@
 
 	.icon-get-advice, .icon-hire, .icon-learn {
 		color: $color-accent;
-		font-size: 3em;
+		font-size: 4em;
 	}
 }
 
 .become-an-expert {
 	margin: 0 auto;
-	margin-bottom: $grid*4;
+	margin-bottom: $grid*8;
+	padding-top: $grid*2;
 	text-align: center;
 	max-width: 280px;
+
+	h2 {
+		margin-bottom: $grid/2;
+	}
+
+	a {
+		display: inline-block;
+		font-size: 1.2em;
+	}
+
+	.button {
+		padding: $grid/2 $grid*2;
+		margin-bottom: $grid*2;
+	}
+
+	span {
+		color: $color-grey;
+		margin-bottom: $grid;
+		display: inline-block;
+	}
+
+	.icon-facebook, .icon-twitter {
+		padding: $grid/2;
+		margin: 0 $grid/4;
+		font-size: 1.4em;
+
+		&:before { display: block; }
+	}
 }

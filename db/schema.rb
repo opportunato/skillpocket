@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 20141021135900) do
     t.datetime "updated_at"
   end
 
+  create_table "messages", force: true do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.boolean  "is_read",      default: false
+    t.text     "body",                         null: false
+    t.datetime "created_at",                   null: false
+  end
+
+  add_index "messages", ["recipient_id", "is_read"], name: "index_messages_on_recipient_id_and_is_read", using: :btree
+  add_index "messages", ["recipient_id", "sender_id", "is_read"], name: "index_messages_on_recipient_id_and_sender_id_and_is_read", using: :btree
+  add_index "messages", ["recipient_id", "sender_id"], name: "index_messages_on_recipient_id_and_sender_id", using: :btree
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
+
   create_table "poll_experts", force: true do |t|
     t.string   "email"
     t.string   "full_name"
@@ -84,6 +97,27 @@ ActiveRecord::Schema.define(version: 20141021135900) do
     t.datetime "updated_at"
   end
 
+  create_table "user_friended_expert_followers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "expert_id"
+    t.string   "twitter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_friended_expert_followers", ["expert_id"], name: "index_user_friended_expert_followers_on_expert_id", using: :btree
+  add_index "user_friended_expert_followers", ["user_id"], name: "index_user_friended_expert_followers_on_user_id", using: :btree
+
+  create_table "user_friended_experts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "expert_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_friended_experts", ["expert_id"], name: "index_user_friended_experts_on_expert_id", using: :btree
+  add_index "user_friended_experts", ["user_id"], name: "index_user_friended_experts_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "job"
     t.text     "about"
@@ -104,5 +138,8 @@ ActiveRecord::Schema.define(version: 20141021135900) do
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   add_index "users", ["twitter_token"], name: "index_users_on_twitter_token", unique: true, using: :btree
+
+  add_foreign_key "messages", "users", name: "messages_recipient_id_fk", column: "recipient_id"
+  add_foreign_key "messages", "users", name: "messages_sender_id_fk", column: "sender_id"
 
 end
