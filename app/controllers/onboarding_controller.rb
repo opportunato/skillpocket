@@ -1,5 +1,5 @@
 class OnboardingController < ApplicationController
-  skip_before_action :authenticate!, only: [:step1, :step2, :step2_submit, :step3, :step3_submit]
+  skip_before_action :authenticate!, only: [:step1]
 
   before_action :set_user, only: [:step2, :step2_submit, :step3, :step3_submit]
 
@@ -44,6 +44,6 @@ private
   end
 
   def set_user
-    @user = User.last
+    @user = current_user
   end
 end

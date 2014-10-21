@@ -8,6 +8,6 @@ class ProfileController < ApplicationController
 private
 
   def set_user
-    @user = User.last
+    @user = current_user
   end
 end
