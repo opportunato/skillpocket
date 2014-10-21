@@ -28,11 +28,8 @@ class User < ActiveRecord::Base
     skill.present?
   end
 
-  def update_skill(skill_params)
-    if skill.present?
-      skill.update(skill_params)
-    else
-      self.skill = Skill.create(skill_params)
-    end
+  def approve
+    self.approved = true
+    save
   end
 end

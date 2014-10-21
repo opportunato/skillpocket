@@ -1,0 +1,14 @@
+= form_tag admin_approve_path, method: :post do 
+  = text_field_tag :handle
+  = submit_tag "Add"
+
+table
+  tr
+    th Twitter handle
+    th Name
+    th Approved
+  - @users.each do |user|
+    tr
+      td = user.twitter_handle
+      td = user.full_name
+      td = user.approved ? "Yes" : "No"

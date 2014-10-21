@@ -7,4 +7,6 @@ section.onboarding-step
     fieldset
       = f.input :title
       = f.input :price
+      = f.input :tags, as: :collection_text
+      = f.association :categories, as: :check_boxes, collection: Tag.categories
       = f.submit "Complete profile"
