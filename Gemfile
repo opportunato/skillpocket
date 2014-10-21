@@ -22,6 +22,8 @@ gem 'mandrill_mailer'
 gem 'has_scope'
 
 gem 'friendly_id'
+gem 'warden'
+gem 'cancan'
 
 gem 'twitter'
 
@@ -30,7 +32,7 @@ gem 'omniauth-twitter'
 
 gem 'puma'
 gem 'figaro'
-gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
+gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
 
 gem 'meta-tags'
 

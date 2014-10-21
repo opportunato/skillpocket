@@ -3,7 +3,7 @@ class Skill < ActiveRecord::Base
   has_many :skills_tags
   has_many :tags, through: :skills_tags
 
-  validates_presence_of :expert, :description, :price, :title
+  validates_presence_of :expert, :price, :title
 
   def categories
     tags.where(is_category: true)

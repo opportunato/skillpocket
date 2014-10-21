@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: ed3de1c2b566a962697529e824953f6b280e2867
+  revision: 932619c180f90c5aebbb23f4d92fa254b430c775
   branch: master
   specs:
     simple_form (3.1.0.rc2)
@@ -66,6 +66,7 @@ GEM
       thor
     buftok (0.2.0)
     builder (3.2.2)
+    cancan (1.6.10)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -263,6 +264,8 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -272,6 +275,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bourbon
+  cancan
   carrierwave
   coffee-rails
   compass-rails
@@ -302,7 +306,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails
   shoulda
-  simple_form (~> 3.1.0.rc1)!
+  simple_form (~> 3.1.0.rc2)!
   slim
   spring
   swagger-docs
@@ -310,3 +314,4 @@ DEPENDENCIES
   sprockets-commonjs!
   twitter
   uglifier
+  warden

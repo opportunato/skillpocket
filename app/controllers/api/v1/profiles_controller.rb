@@ -3,7 +3,7 @@ class Api::V1::ProfilesController < ApiController
   before_filter :get_profile, except: [:create]
 
   def create
-    user = ProfileCreator.perform params.permit(:token, :secret).symbolize_keys
+    user = UserCreator.perform params.permit(:token, :secret).symbolize_keys
     render json: { token: user.access_token }, status: 201
   end
 

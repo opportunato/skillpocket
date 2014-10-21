@@ -1,4 +1,4 @@
-class ProfileCreator
+class UserCreator
   def initialize(token, secret)
     @token = token
     @secret = secret
