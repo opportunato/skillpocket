@@ -1,0 +1,13 @@
+.button {
+	transition: background $transitionTime $baseTransitionStyle, color $transitionTime $baseTransitionStyle;
+	border: 1px solid $color-accent;
+	border-radius: 30px;
+	color: $color-accent;
+	padding: $grid/4 $grid;
+	font-family: $accent-font-family;
+
+	&:hover {
+		background: $color-accent;
+		color: white;
+	}
+}

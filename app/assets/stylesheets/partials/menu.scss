@@ -1,0 +1,76 @@
+header {
+	font-family: $accent-font-family;
+	position: relative;
+	height: 50px;
+	margin-bottom: $grid*2;
+	color: $color-text;
+
+	@include respond-to(medium) {
+		margin-bottom: $grid*6;
+	}
+}
+
+nav.main {
+	transition: opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle;
+	opacity: 0;
+	visibility: hidden;
+	text-align: center;
+	font-size: 1.2em;
+	@include position(fixed, 0px 0px 0px 0px);
+	background: white;
+	z-index: 999;
+
+	@include respond-to(medium) {
+		font-size: 2em;
+	}
+
+	&.active {
+		visibility: visible;
+		opacity: .95;
+	}
+
+	ul {
+		@include position(absolute, 50% 0 0 50%);
+		transform: translate(-50%,-50%);
+	}
+
+	li {
+		margin-bottom: $grid/2;
+
+		@include respond-to(medium) {
+			margin-bottom: $grid;
+		}
+	}
+
+	a {
+		display: block;
+		color: $color-grey;
+
+		&:hover { color: $color-text; }
+	}
+}
+
+.overlay {
+	@include position(absolute, 0px 0px 0px 0px);
+}
+
+.icon-logo {
+  font-size: 2.1em;
+  margin-right: $grid/4;
+
+  &:before { display: block; }
+}
+
+.logo {
+	@include position(absolute, $grid/2 0 0 $grid/2);
+  color: $color-grey;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.menu-button {
+	@include position(absolute, $grid/2 $grid/2 0 0);
+}
