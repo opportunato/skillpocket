@@ -25,8 +25,6 @@ class OnboardingController < ApplicationController
   end
 
   def step3_submit
-    @skill = @user.skill || Skill.new
-
     if SkillCreator.perform(@user, skill_params)
       redirect_to onboarding_success_path
     else
@@ -35,6 +33,7 @@ class OnboardingController < ApplicationController
   end
 
   def succcess
+    check_for_current_step("done")
   end
 
 private
@@ -56,14 +55,14 @@ private
   end
 
   def user_current_step(user)
-    if !user.present?
+    if signed_in?
       1
     elsif !user.email.present?
       2
     elsif !user.skill.present?
       3
     else
-      nil
+      "done" # TODO extremely bad code style, need to rewrite pretty much everything
     end
   end
 

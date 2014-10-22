@@ -4,7 +4,12 @@ class SessionsController < ApplicationController
   def create
     if user = create_user
       authenticate!
-      redirect_to onboarding_step2_path
+
+      if user.email.present?
+        redirect_to profile_path
+      else
+        redirect_to onboarding_step2_path
+      end
     end
   end
 

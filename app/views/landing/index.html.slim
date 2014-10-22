@@ -1,79 +1,80 @@
 section.intro
-	.content
-		h1
-			span.block Book expert
-			span.typed#typed
-			span.block in person or – online
-		.phone
-			.screenshot=image_tag 'profile.png'
+  .content
+    h1
+      span.block Book expert
+      span.typed#typed
+      span.block in person or – online
+    .phone
+      .screenshot=image_tag 'profile.png'
 
 .coming-soon
-	span In the App Store November 22nd — Follow us and be the first to know
-	a.icon-facebook href='https://www.facebook.com/skillpocket' target='_blank'
-	a.icon-twitter href='https://twitter.com/Skillpocket' target='_blank'
+  span In the App Store November 22nd — Follow us and be the first to know
+  a.icon-facebook href='https://www.facebook.com/skillpocket' target='_blank'
+  a.icon-twitter href='https://twitter.com/Skillpocket' target='_blank'
 
 section.how-it-works
-	.content
-		.caps How it works
-		.phone
-			.screenshot.discover.active=image_tag 'filter.png'
-			.screenshot.connect=image_tag 'messaging.png'
-			.screenshot.hire=image_tag 'book.png'
-		ul
-			li.discover.active
-				h2 Discover
-				span Search by tag & find the expert you need
-			li.connect
-				h2 Connect
-				span Press connect and discuss your needs in a private chat
-			li.hire
-				h2 Book
-				span Schedule your meeting and pay the expert with card
+  .content
+    .caps How it works
+    .phone
+      .screenshot.discover.active=image_tag 'filter.png'
+      .screenshot.connect=image_tag 'messaging.png'
+      .screenshot.hire=image_tag 'book.png'
+    ul
+      li.discover.active
+        h2 Discover
+        span Search by tag & find the expert you need
+      li.connect
+        h2 Connect
+        span Press connect and discuss your needs in a private chat
+      li.hire
+        h2 Book
+        span Schedule your meeting and pay the expert with card
 
 section.use-skillpocket-to
-	.content
-		.caps Use Skillpocket to
-		ul
-			li
-				.icon-get-advice
-				h2 Get Advice
-				span Unsure if your business plan makes sense? Sit down with a seasoned VC and get feedback on your deck.
-			li
-				.icon-hire
-				h2 Hire
-				span Keep running into issues with your site? Find a skilled developer and get it fixed.
-			li
-				.icon-learn
-				h2 Learn
-				span Want to become a better designer? Why not get someone to have a look at your portfolio and help you move into.
+  .content
+    .caps Use Skillpocket to
+    ul
+      li
+        .icon-get-advice
+        h2 Get Advice
+        span Unsure if your business plan makes sense? Sit down with a seasoned VC and get feedback on your deck.
+      li
+        .icon-hire
+        h2 Hire
+        span Keep running into issues with your site? Find a skilled developer and get it fixed.
+      li
+        .icon-learn
+        h2 Learn
+        span Want to become a better designer? Why not get someone to have a look at your portfolio and help you move into.
 
-section.our-experts
-	.content
-		.caps Our experts
-		ul
-			li
-				a href='#'
-					=image_tag 'fred.png', class: 'userpic'
-					h3 Alexander Kovalyov
-					span Front-End Developer at SoundCloud
-			li
-				a href='#'
-					=image_tag 'geer.png', class: 'userpic'
-					h3 Jose L Ugia
-					span Head of Android at 6Wunderkinder & Co-Founder at Momenta
-			li
-				a href='#'
-					=image_tag 'tiffany.png', class: 'userpic'
-					h3 Alexander Kovalyov
-					span Front-End Developer at SoundCloud
+/ section.our-experts
+/   .content
+/     .caps Our experts
+/     ul
+/       li
+/         a href='#'
+/           =image_tag 'fred.png', class: 'userpic'
+/           h3 Alexander Kovalyov
+/           span Front-End Developer at SoundCloud
+/       li
+/         a href='#'
+/           =image_tag 'geer.png', class: 'userpic'
+/           h3 Jose L Ugia
+/           span Head of Android at 6Wunderkinder & Co-Founder at Momenta
+/       li
+/         a href='#'
+/           =image_tag 'tiffany.png', class: 'userpic'
+/           h3 Alexander Kovalyov
+/           span Front-End Developer at SoundCloud
 
 section.become-an-expert
-	.content
-		h2 Become an expert
-		span Be among our first experts and start earning money when we launch near you.
-		= link_to "Apply with Twitter", "/auth/twitter", class: 'button'
-		.caps Follow us
-		.social
-			a.button.icon-facebook href='https://www.facebook.com/skillpocket' target='_blank'
-			a.button.icon-twitter href='https://twitter.com/Skillpocket' target='_blank'
+  .content
+    - if !signed_in?
+      h2 Become an expert
+      span Be among our first experts and start earning money when we launch near you.
+      = link_to "Apply with Twitter", "/auth/twitter", class: 'button'
+    .caps Follow us
+    .social
+      a.button.icon-facebook href='https://www.facebook.com/skillpocket' target='_blank'
+      a.button.icon-twitter href='https://twitter.com/Skillpocket' target='_blank'
 

@@ -31,4 +31,8 @@ Rails.application.routes.draw do
   get "onboarding/success", to: "onboarding#success"
 
   get "profile", to: "profile#index"
+  get "profile/edit", to: "profile#edit"
+  post "profile", to: "profile#update"
+
+  get "logout", to: "sessions#destroy"
 end

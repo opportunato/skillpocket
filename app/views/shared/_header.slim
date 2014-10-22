@@ -1,19 +1,25 @@
 header.main
-	/ a.logo href="#"
-	= link_to root_path, class: 'logo'
-		span.icon-logo
-		span Skillpocket
-	a.button.menu-button href="#" Menu
-	nav.main
-		.overlay
-		ul
-			li
-				= link_to_unless_current 'How It Works', root_path
-			li
-				a href="#" About
-			li
-				a href="#" FAQ
-			li
-				a href="#" Become an expert
-			li
-				a href="#" Login
+  / a.logo href="#"
+  = link_to root_path, class: 'logo'
+    span.icon-logo
+    span Skillpocket
+  a.button.menu-button href="#" Menu
+  nav.main
+    .overlay
+    ul
+      li
+        = link_to_unless_current 'How It Works', root_path
+      li
+        a href="#" About
+      li
+        a href="#" FAQ
+      - if signed_in?
+        li
+          a href=profile_path Profile
+        li
+          a href=logout_path Logout
+      - if !signed_in?
+        li
+          a href=onboarding_step1_path Become an expert
+        li
+          a href="/auth/twitter" Login
