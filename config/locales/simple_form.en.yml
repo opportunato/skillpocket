@@ -25,6 +25,8 @@ en:
       skill:
         price: Your price per hour
         title: Skill title
+        tags_text: Tags
+        categories_list: Categories
     # hints:
     #   defaults:
     #     username: 'User name to sign in.'

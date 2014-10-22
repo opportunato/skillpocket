@@ -3,7 +3,7 @@ section.onboarding-step
     .caps Step 2
     h1 Your Profile
 
-  = simple_form_for @user, url: onboarding_step2_path, method: :post do |f|
+  = simple_form_for @user, url: onboarding_step2_path, method: :post, html: { multipart: true } do |f|
     fieldset
       = f.input :photo, as: :image_upload, label: false, input_html: { class: "photo" }
       = f.input :full_name
