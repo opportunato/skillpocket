@@ -97,27 +97,6 @@ ActiveRecord::Schema.define(version: 20141021204458) do
     t.datetime "updated_at"
   end
 
-  create_table "user_friended_expert_followers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "expert_id"
-    t.string   "twitter_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_friended_expert_followers", ["expert_id"], name: "index_user_friended_expert_followers_on_expert_id", using: :btree
-  add_index "user_friended_expert_followers", ["user_id"], name: "index_user_friended_expert_followers_on_user_id", using: :btree
-
-  create_table "user_friended_experts", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "expert_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_friended_experts", ["expert_id"], name: "index_user_friended_experts_on_expert_id", using: :btree
-  add_index "user_friended_experts", ["user_id"], name: "index_user_friended_experts_on_user_id", using: :btree
-
   create_table "users", force: true do |t|
     t.string   "job"
     t.text     "about"
