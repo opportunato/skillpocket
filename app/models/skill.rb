@@ -5,8 +5,30 @@ class Skill < ActiveRecord::Base
 
   validates_presence_of :expert, :price, :title
 
+  attr_accessor :tags_text, :categories_list
+
+  CATEGORIES=%w[Technology Business Marketing\ &\ Sales Skills\ &\ Management Product\ &\ Design Funding Photo\ &\ Video, Writing]
+
+  def tags_text
+    @tags_text || tags.non_categories.map(&:name).reduce do |string, tag|
+      string + ", " + tag
+    end
+  end
+
+  def tags_text=(tags_text)
+    @tags_text = tags_text
+  end
+
   def categories
-    tags.where(is_category: true)
+    tags.categories
+  end
+
+  def categories_list
+    @categories_list || tags.categories.map(&:name)
+  end
+
+  def categories_list=(categories_list)
+    @categories_list = categories_list
   end
 
   def assign_tags(*tag_names)

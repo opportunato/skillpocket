@@ -24,7 +24,7 @@ class OnboardingController < ApplicationController
   def step3_submit
     @skill = @user.skill || Skill.new
 
-    if @skill.update(skill_params.except(:tags)) && update_tags
+    if SkillCreator.perform(@user, skill_params)
       redirect_to :root
     else
       render "step3"
@@ -42,11 +42,7 @@ private
   end
 
   def skill_params
-    params.require(:skill).permit(:title, :price, :tags)
-  end
-
-  def update_tags
-    @skill.update_tags(skill_params[:tags]).split(',')
+    params.require(:skill).permit(:title, :price, :tags_text, categories_list: [])
   end
 
   def set_user
