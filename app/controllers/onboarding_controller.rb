@@ -4,9 +4,11 @@ class OnboardingController < ApplicationController
   before_action :set_user, only: [:step2, :step2_submit, :step3, :step3_submit]
 
   def step1
+    check_for_current_step(1)
   end
 
   def step2
+    check_for_current_step(2)
   end
 
   def step2_submit
@@ -18,6 +20,7 @@ class OnboardingController < ApplicationController
   end
 
   def step3
+    check_for_current_step(3)
     @skill = @user.skill || Skill.new
   end
 
@@ -25,10 +28,13 @@ class OnboardingController < ApplicationController
     @skill = @user.skill || Skill.new
 
     if SkillCreator.perform(@user, skill_params)
-      redirect_to :root
+      redirect_to onboarding_success_path
     else
       render "step3"
     end
+  end
+
+  def succcess
   end
 
 private
@@ -47,5 +53,23 @@ private
 
   def set_user
     @user = current_user
+  end
+
+  def user_current_step(user)
+    if !user.present?
+      1
+    elsif !user.email.present?
+      2
+    elsif !user.skill.present?
+      3
+    else
+      nil
+    end
+  end
+
+  def check_for_current_step(step)
+    if user_current_step(current_user) != step
+      redirect_to root_path
+    end
   end
 end

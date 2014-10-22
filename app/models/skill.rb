@@ -35,11 +35,13 @@ class Skill < ActiveRecord::Base
     tag_names.each do |tag_name|
       tag_name.strip!
 
-      if not (tag = Tag.find_by(name: tag_name))
-        tag = Tag.create(name: tag_name)
-      end
+      if tag_name.present? 
+        if !(tag = Tag.find_by(name: tag_name))
+          tag = Tag.create(name: tag_name)
+        end
 
-      tags.push tag
+        tags.push tag
+      end
     end
     save!
   end
