@@ -11,9 +11,3 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
-
-CarrierWave.configure do |config|
-  config.storage = :file
-  config.enable_processing = false
-  config.validate_download = false
-end

@@ -6,11 +6,13 @@ FactoryGirl.define do
   sequence(:email) { |n| "something#{n}@something.org" }
   sequence(:access_token) { SecureRandom.hex(16) }
   sequence(:photo) { File.open Rails.root.join("db/fixtures/images/lera.png") }
+  sequence(:profile_banner) { File.open Rails.root.join("db/fixtures/images/lera.png") }
 
   factory :user do
     about
     email
     photo
+    profile_banner
     full_name
     job
     access_token
@@ -24,11 +26,15 @@ FactoryGirl.define do
     website_url "http://some-site.com/"
 
     factory :skilled_user do
-      skill factory: :tagged_skill
+      after(:create) do |user, evaluator|
+        create :tagged_skill, expert: user
+      end
     end
 
     factory :category_tag_skilled_user do
-      skill factory: :category_tagged_skill
+      after(:create) do |user, evaluator|
+        create :category_tagged_skill, expert: user
+      end
     end
   end
 end

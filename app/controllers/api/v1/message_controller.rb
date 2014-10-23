@@ -2,7 +2,7 @@ class Api::V1::MessageController < ApiController
 
   def show
     interlocutor = User.find params[:id]
-    @messages = current_user.conversation_with interlocutor
+    @messages = current_user.messages_with interlocutor
   end
 
   def create

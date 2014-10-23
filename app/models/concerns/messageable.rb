@@ -2,28 +2,31 @@ module Messageable
   extend ActiveSupport::Concern
 
   included do
+    has_many :conversations
+
     def send_message_to messageable, text
-      Message.create sender: self, recipient: messageable, body: text
+      conversation = conversation_with(messageable) || create_conversation(messageable)
+      Message.create sender: self, recipient: messageable, conversation: conversation, body: text
+    end
+
+    def messages_with messageable
+      conversation = conversation_with messageable
+      conversation ? conversation.messages : []
     end
 
     def conversation_with messageable
-      Message.where(sender: [self, messageable]).where(recipient: [self, messageable]).order(created_at: :desc)
+      Conversation.find self, messageable
     end
 
-    def conversations
-      messages = Message.arel_table
-      older = messages.alias
+    def create_conversation messageable
+      conversation = Conversation.create older: self, newer: messageable
+    end
 
-      query = messages.
-        join(older, Arel::Nodes::OuterJoin).
-          on(messages[:created_at].gt(older[:created_at]), messages[:sender_id].eq(older[:sender_id])).
-        join(User.arel_table).
-          on(User.arel_table[:id].eq(messages[:sender_id])).
-        where(older[:id].eq(nil)).
-        where(messages[:recipient_id].eq(self.id)).
-        project(Arel.sql('users.first_name, users.last_name, users.id, users.about, messages.*'))
-
-      Message.find_by_sql query.to_sql
+    def recent
+      Message.
+        joins(:conversation).
+        where('older_id = ? OR newer_id = ?', self.id, self.id).
+        includes(:conversation)
     end
   end
 end

@@ -1,5 +1,5 @@
 class Api::V1::ContactsController < ApiController
   def index
-    @conversations = current_user.conversations
+    @recent = current_user.recent
   end
 end

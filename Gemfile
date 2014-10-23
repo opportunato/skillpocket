@@ -66,6 +66,5 @@ group :test do
   gem "rspec-rails"
   gem "database_rewinder"
   gem "shoulda"
-  gem "better_errors"
   gem 'timecop'
 end

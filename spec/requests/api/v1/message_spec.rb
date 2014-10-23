@@ -74,11 +74,11 @@ RSpec.describe Api::V1::MessageController do
 
         expect(response.status).to eq 200
         expect(response_json).to eq([
-         {"incoming"=>false, "read"=>false, "date"=>1413234444, "message"=>"Ready, let`s roll" },
-         {"incoming"=>false, "read"=>false, "date"=>1413234333, "message"=>"Hello back" },
-         {"incoming"=>true,  "read"=>true,  "date"=>1413234222, "message"=>"Hi" },
-         {"incoming"=>false, "read"=>false, "date"=>1413234111, "message"=>"Hello" },
-         {"incoming"=>true,  "read"=>true,  "date"=>1413234000, "message"=>"Hi" }
+         {"incoming"=>true,  "read"=>false, "date"=>1413234444, "message"=>"Ready, let`s roll" },
+         {"incoming"=>true,  "read"=>false, "date"=>1413234333, "message"=>"Hello back" },
+         {"incoming"=>false, "read"=>true,  "date"=>1413234222, "message"=>"Hi" },
+         {"incoming"=>true,  "read"=>false, "date"=>1413234111, "message"=>"Hello" },
+         {"incoming"=>false, "read"=>true,  "date"=>1413234000, "message"=>"Hi" }
         ])
       end
 
@@ -104,11 +104,11 @@ RSpec.describe Api::V1::MessageController do
 
         expect(response.status).to eq 200
         expect(response_json).to eq([
-         {"incoming"=>true,  "read"=>true,  "date"=>1413234444, "message"=>"Ready, let`s roll" },
-         {"incoming"=>true,  "read"=>true,  "date"=>1413234333, "message"=>"Hello back" },
-         {"incoming"=>false, "read"=>false, "date"=>1413234222, "message"=>"Hi" },
-         {"incoming"=>true,  "read"=>true,  "date"=>1413234111, "message"=>"Hello" },
-         {"incoming"=>false, "read"=>false, "date"=>1413234000, "message"=>"Hi" }
+         {"incoming"=>false, "read"=>true,  "date"=>1413234444, "message"=>"Ready, let`s roll" },
+         {"incoming"=>false, "read"=>true,  "date"=>1413234333, "message"=>"Hello back" },
+         {"incoming"=>true,  "read"=>false, "date"=>1413234222, "message"=>"Hi" },
+         {"incoming"=>false, "read"=>true,  "date"=>1413234111, "message"=>"Hello" },
+         {"incoming"=>true,  "read"=>false, "date"=>1413234000, "message"=>"Hi" }
         ])
       end
     end
