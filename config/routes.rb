@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get "/login", to: "login#new"
+    post "/login", to: "login#create"
     get "/approve", to: "approve#index"
     post "/approve", to: "approve#update"
   end

@@ -34,4 +34,8 @@ class User < ActiveRecord::Base
     self.approved = true
     save
   end
+
+  def admin
+    where(role: "admin").first
+  end
 end

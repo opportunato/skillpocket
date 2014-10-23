@@ -1,4 +1,6 @@
 class Admin::ApproveController < AdminController
+  skip_before_action :authenticate!, only: [:index, :update]
+
   def index
     @users = User.all
   end

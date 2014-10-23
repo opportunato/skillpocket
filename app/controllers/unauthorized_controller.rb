@@ -17,6 +17,10 @@ class UnauthorizedController < ActionController::Metal
       flash.alert = I18n.t(message)
     end
 
-    redirect_to :root
+    if env['warden.options'][:scope] == :admin
+      redirect_to admin_login_path
+    else
+      redirect_to :root
+    end
   end
 end
