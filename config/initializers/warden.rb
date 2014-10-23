@@ -7,3 +7,4 @@ Warden::Manager.serialize_from_session do |id|
 end
 
 Warden::Strategies.add(:api_token, ApiTokenStrategy)
+Warden::Strategies.add(:password, PasswordStrategy)

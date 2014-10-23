@@ -1,0 +1,4 @@
+= form_tag(admin_login_path, method: :post) do
+  = text_field_tag :username, "", placeholder: "Login"
+  = text_field_tag :password, "", type: :password, placeholder: "Password"
+  = submit_tag("Login")
