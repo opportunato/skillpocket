@@ -8,3 +8,4 @@ end
 
 Warden::Strategies.add(:api_token, ApiTokenStrategy)
 Warden::Strategies.add(:password, PasswordStrategy)
+Warden::Strategies.add(:http_token, HttpTokenStrategy)

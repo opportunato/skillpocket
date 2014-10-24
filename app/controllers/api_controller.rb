@@ -5,7 +5,7 @@ class ApiController < ActionController::Base
 protected
 
   def authenticate!
-    warden.authenticate!(:token)
+    warden.authenticate!(:http_token)
   end
 
   def current_user

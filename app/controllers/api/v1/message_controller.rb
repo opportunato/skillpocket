@@ -1,6 +1,4 @@
 class Api::V1::MessageController < ApiController
-  skip_before_action :authenticate!
-
   def show
     interlocutor = User.find params[:id]
     @messages = current_user.messages_with interlocutor
