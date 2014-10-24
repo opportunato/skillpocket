@@ -132,11 +132,11 @@ RSpec.describe Api::V1::MessageController do
     end
 
     it 'returns correct number' do
-      login_as(@customer)
+      login_as(@consumer)
       get unread_api_v1_message_index_path, nil
 
       expect(response.status).to eq 200
-      expect(response_json).to eq({unread: 3})
+      expect(response_json).to eq({"unread" => 3})
     end
   end
 end
