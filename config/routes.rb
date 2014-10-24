@@ -10,6 +10,9 @@ Rails.application.routes.draw do
         member do
           post :create
         end
+        collection do
+          get :unread
+        end
       end
       resources :contacts, only: [:index, :show] do
       end
