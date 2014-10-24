@@ -55,14 +55,14 @@ private
   end
 
   def user_current_step(user)
-    if signed_in?
-      1
-    elsif !user.email.present?
-      2
-    elsif !user.skill.present?
-      3
-    else
+    if user.skill.present?
       "done" # TODO extremely bad code style, need to rewrite pretty much everything
+    elsif user.email.present?
+      3
+    elsif signed_in?
+      2
+    else
+      1
     end
   end
 

@@ -15,6 +15,9 @@ module Skillpocket
 
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
       manager.default_strategies :api_token
+      manager.scope_defaults :user, strategies: [:api_token]
+      manager.scope_defaults :admin, strategies: [:password]
+
       manager.failure_app = UnauthorizedController
     end
   end

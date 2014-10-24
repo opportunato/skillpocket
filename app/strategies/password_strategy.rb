@@ -3,8 +3,12 @@ class PasswordStrategy < ::Warden::Strategies::Base
     params['username'] || params['password']
   end
 
-  def authenticate!
-    passed = params['username'] == ENV['USERNAME'] && Digest::SHA1.hexdigest(params['password']) == ENV['PASSWORD_HASH'] && User.admin.present?
-    passed ? success!(User.admin) : fail!("Could not log in")
+  def authenticate!(options={})
+    if (admin = User.admin).present?
+      passed = params['username'] == ENV['USERNAME'] && Digest::SHA1.hexdigest(params['password']) == ENV['PASSWORD_HASH'] 
+      passed ? success!(admin) : fail!("Could not log in")
+    else
+      fail!
+    end
   end
 end

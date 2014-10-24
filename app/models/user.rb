@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     save
   end
 
-  def admin
+  def self.admin
     where(role: "admin").first
   end
 end

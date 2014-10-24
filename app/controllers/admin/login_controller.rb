@@ -3,6 +3,9 @@ class Admin::LoginController < ApplicationController
   skip_before_action :authenticate!, only: [:new, :create]
 
   def new
+    if is_admin?
+      redirect_to :root
+    end
   end
 
   def create
