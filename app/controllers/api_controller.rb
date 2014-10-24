@@ -1,5 +1,20 @@
-class ApiController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  skip_before_action :authenticate_admin!
-  skip_before_action :authenticate!
+class ApiController < ActionController::Base
+  helper_method :current_user
+  before_action :authenticate!
+
+protected
+
+  def authenticate!
+    warden.authenticate(:token)
+  end
+
+  def current_user
+    warden.user
+  end
+
+private
+
+  def warden
+    env['warden']
+  end
 end

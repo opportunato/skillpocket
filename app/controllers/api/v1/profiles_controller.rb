@@ -17,8 +17,7 @@ class Api::V1::ProfilesController < ApiController
 
 private
   def get_profile
-    # @profile = current_user
-    @profile = User.find(9)
+    @profile = current_user
   end
 
   # TODO: allow to update photo and skill

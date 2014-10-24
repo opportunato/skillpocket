@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
 protected
 
   def authenticate!(options={})
-    warden.authenticate!(scope: :user)
+    warden.authenticate(scope: :user)
   end
 
   def authenticate_admin!(options={})
-    warden.authenticate!(scope: :admin)
+    warden.authenticate(scope: :admin)
   end
 
   def signed_in?
@@ -31,7 +31,9 @@ protected
     warden.user(:admin) && warden.user(:admin).role == "admin"
   end
 
+private
+
   def warden
-    request.env['warden']
+    env['warden']
   end
 end

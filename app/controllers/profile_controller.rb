@@ -48,7 +48,6 @@ private
   end
 
   def check_for_current_step(implied_step)
-    binding.remote_pry
     if user_current_step(current_user) != implied_step
       redirect_to root_path
     end
