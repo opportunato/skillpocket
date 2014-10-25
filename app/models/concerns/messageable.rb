@@ -5,27 +5,23 @@ module Messageable
     has_many :conversations
 
     def send_message_to messageable, text
-      conversation = conversation_with(messageable) || create_conversation(messageable)
+      conversation = conversation_with(messageable).first_or_create(older: self, newer: messageable)
       Message.create sender: self, recipient: messageable, conversation: conversation, body: text
     end
 
     def messages_with messageable
-      conversation = conversation_with messageable
-      conversation ? conversation.messages : []
+      Message.where(conversation: conversation_with(messageable))
     end
 
     def conversation_with messageable
-      Conversation.find self, messageable
-    end
-
-    def create_conversation messageable
-      conversation = Conversation.create older: self, newer: messageable
+      Conversation.participant(self).participant(messageable)
     end
 
     def recent
       Message.
         joins(:conversation).
-        where('older_id = ? OR newer_id = ?', self.id, self.id).
+        where('older_id = ? OR newer_id = ?', self.id, self.id). # WTF, why I cannot use scope on a joined model:
+        # participant(self).
         includes(:conversation)
     end
   end
