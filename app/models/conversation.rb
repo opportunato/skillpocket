@@ -4,13 +4,10 @@ class Conversation < ActiveRecord::Base
   belongs_to :newer, class: User
   has_many :messages
 
+  scope :participant, -> (participant) { where('older_id = ? OR newer_id = ?', participant.id, participant.id) }
+
   # Disallow Andy <=> Pete and Pete <=> Andy conversation duplicates
   before_create do
     self.older, self.newer = [self.older, self.newer].sort_by &:id
-  end
-
-  def self.find one, another
-    older, newer = [one, another].sort_by &:id
-    find_by(older: older, newer: newer)
   end
 end

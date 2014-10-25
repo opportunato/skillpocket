@@ -11,4 +11,10 @@ class Message < ActiveRecord::Base
   validates_presence_of :recipient_id
 
   scope :unread, -> { where(is_read: false) }
+
+  scope :recipient, -> (recipient) { where(recipient: recipient) }
+
+  def self.mark_as_read
+    self.update_all is_read: true
+  end
 end

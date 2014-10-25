@@ -111,6 +111,18 @@ RSpec.describe Api::V1::MessageController do
          {"incoming"=>true,  "read"=>false, "date"=>1413234000, "message"=>"Hi" }
         ])
       end
+
+      it 'next time messages are marked as read' do
+        login_as(@consumer)
+        get api_v1_message_path(@expert.id), nil
+        get api_v1_message_path(@expert.id), nil
+
+        response_json.
+          select { |message| message['incoming'] }.
+          each do |incoming|
+            expect(incoming['read']).to eq true
+          end
+      end
     end
 
     context 'lots of messages' do

@@ -1,5 +1,5 @@
 RSpec.shared_examples_for Messageable  do |factory|
-  describe '#conversation_with' do
+  describe '#messages_with' do
     context 'with a bunch of messages' do
       before do
         @sender = create factory
@@ -9,7 +9,7 @@ RSpec.shared_examples_for Messageable  do |factory|
       end
 
       it 'is visible by sender' do
-        messages = @sender.conversation_with(@recipient).messages
+        messages = @sender.messages_with(@recipient)
         expect(messages.count).to eq 1
         expect(messages.first.body).to eq 'hello'
         expect(messages.first.sender).to eq @sender
@@ -17,7 +17,7 @@ RSpec.shared_examples_for Messageable  do |factory|
       end
 
       it 'is visible by recipient' do
-        messages = @recipient.conversation_with(@sender).messages
+        messages = @recipient.messages_with(@sender)
         expect(messages.count).to eq 1
         expect(messages.first.body).to eq 'hello'
         expect(messages.first.sender).to eq @sender
@@ -37,23 +37,23 @@ RSpec.shared_examples_for Messageable  do |factory|
       end
 
       it 'is only visible by participants' do
-        messages = @someone.conversation_with(@sender).messages
+        messages = @someone.messages_with(@sender)
         expect(messages.count).to eq 1
         expect(messages.first.body).to eq 'loser'
-        messages = @someone.conversation_with(@recipient).messages
+        messages = @someone.messages_with(@recipient)
         expect(messages.count).to eq 1
         expect(messages.first.body).to eq 'wtf'
       end
 
       it 'is all visible by sender' do
-        messages = @sender.conversation_with(@recipient).messages
+        messages = @sender.messages_with(@recipient)
         expect(messages.count).to eq 2
         expect(messages.first.body).to eq 'hi'
         expect(messages.last.body).to eq 'hello'
       end
 
       it 'is visible by recipient' do
-        messages = @recipient.conversation_with(@sender).messages
+        messages = @recipient.messages_with(@sender)
         expect(messages.count).to eq 2
         expect(messages.first.body).to eq 'hi'
         expect(messages.last.body).to eq 'hello'
