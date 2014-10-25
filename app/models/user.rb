@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   def approve
     self.approved = true
-    save
+    self.save(validate: false)
   end
 
   def self.admin

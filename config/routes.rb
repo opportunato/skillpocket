@@ -39,5 +39,8 @@ Rails.application.routes.draw do
   get "profile/edit", to: "profile#edit"
   post "profile", to: "profile#update"
 
+  get "about", to: "landing#about"
+  get "faq", to: "landing#faq"
+
   get "logout", to: "sessions#destroy"
 end

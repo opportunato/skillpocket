@@ -1,0 +1,15 @@
+section.onboarding-step
+  - if @user.approved?
+    
+    header
+      h1 Welcome aboard!
+
+    p We'll notify you as soon as we launch in the AppStore.
+    = link_to "Check out your new profile", profile_path, class: 'button'
+
+  - else
+    
+    header
+      h1 Welcome aboard!
+
+    p We're bringing new experts onboard every day and will get back to you shortly.

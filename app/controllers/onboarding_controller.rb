@@ -1,7 +1,7 @@
 class OnboardingController < ApplicationController
   skip_before_action :authenticate!, only: [:step1]
 
-  before_action :set_user, only: [:step2, :step2_submit, :step3, :step3_submit]
+  before_action :set_user, only: [:step2, :step2_submit, :step3, :step3_submit, :success]
 
   def step1
     check_for_current_step(1)

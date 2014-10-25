@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023092853) do
+ActiveRecord::Schema.define(version: 20141025074418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,21 +28,24 @@ ActiveRecord::Schema.define(version: 20141023092853) do
   end
 
   create_table "conversations", force: true do |t|
+    t.integer "older_id", null: false
+    t.integer "newer_id", null: false
   end
 
-  create_table "interlocutors", force: true do |t|
-    t.integer "participant_id"
-    t.integer "conversation_id"
-  end
+  add_index "conversations", ["older_id", "newer_id"], name: "index_conversations_on_older_id_and_newer_id", unique: true, using: :btree
 
   create_table "messages", force: true do |t|
-    t.integer  "sender_id_id"
-    t.integer  "recipient_id"
-    t.integer  "conversation_id"
+    t.integer  "sender_id",                       null: false
+    t.integer  "recipient_id",                    null: false
+    t.integer  "conversation_id",                 null: false
     t.boolean  "is_read",         default: false
     t.text     "body",                            null: false
     t.datetime "created_at",                      null: false
   end
+
+  add_index "messages", ["conversation_id", "created_at"], name: "index_messages_on_conversation_id_and_created_at", using: :btree
+  add_index "messages", ["conversation_id", "is_read", "created_at"], name: "index_messages_on_conversation_id_and_is_read_and_created_at", using: :btree
+  add_index "messages", ["conversation_id", "is_read"], name: "index_messages_on_conversation_id_and_is_read", using: :btree
 
   create_table "poll_experts", force: true do |t|
     t.string   "email"
@@ -73,6 +76,13 @@ ActiveRecord::Schema.define(version: 20141023092853) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "preapproved_handles", force: true do |t|
+    t.string  "name"
+    t.decimal "social_authority"
+  end
+
+  add_index "preapproved_handles", ["name"], name: "index_preapproved_handles_on_name", using: :btree
 
   create_table "skills", force: true do |t|
     t.integer  "price",      null: false
@@ -119,11 +129,19 @@ ActiveRecord::Schema.define(version: 20141023092853) do
     t.string   "twitter_handle"
     t.boolean  "approved",             default: false
     t.string   "role",                 default: "user"
+    t.decimal  "social_authority"
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   add_index "users", ["twitter_handle"], name: "index_users_on_twitter_handle", using: :btree
   add_index "users", ["twitter_token"], name: "index_users_on_twitter_token", unique: true, using: :btree
+
+  add_foreign_key "conversations", "users", name: "conversations_newer_id_fk", column: "newer_id", dependent: :delete
+  add_foreign_key "conversations", "users", name: "conversations_older_id_fk", column: "older_id", dependent: :delete
+
+  add_foreign_key "messages", "conversations", name: "messages_conversation_id_fk", dependent: :delete
+  add_foreign_key "messages", "users", name: "messages_recipient_id_fk", column: "recipient_id", dependent: :delete
+  add_foreign_key "messages", "users", name: "messages_sender_id_fk", column: "sender_id", dependent: :delete
 
 end

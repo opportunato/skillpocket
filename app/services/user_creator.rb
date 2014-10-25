@@ -43,6 +43,7 @@ private
     user.remote_profile_banner_url = user_data.profile_banner_url
 
     user.save(validate: false)
+    PreapprovedHandle.preapprove(user)
     user
   end
 end

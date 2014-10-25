@@ -1,17 +1,14 @@
 class ProfileController < ApplicationController
   before_action :set_user, only: [:index, :edit, :update]
+  before_action :check_if_approved
 
   def index
-    check_for_current_step("done")
   end
 
   def edit
-    check_for_current_step("done")
   end
 
   def update
-    check_for_current_step("done")
-
     if @user.update(user_params.except(:skill_attributes)) && SkillCreator.perform(@user, user_params[:skill_attributes])
       redirect_to profile_path
     else
@@ -35,21 +32,12 @@ private
     @user = current_user
   end
 
-  def user_current_step(user)
-    if !signed_in?
-      1
-    elsif !user.email.present?
-      2
-    elsif !user.skill.present?
-      3
-    else
-      "done" # TODO extremely bad code style, need to rewrite pretty much everything
-    end
-  end
-
-  def check_for_current_step(implied_step)
-    if user_current_step(current_user) != implied_step
-      redirect_to root_path
+  def check_if_approved
+    user = current_user
+    passed = signed_in? && user.email.present? && user.skill.present? && user.approved
+  
+    if !passed
+      redirect_to :root
     end
   end
 end
