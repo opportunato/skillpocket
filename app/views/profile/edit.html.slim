@@ -1,27 +1,29 @@
-= simple_form_for @user, url: profile_path, method: :post, html: { multipart: true } do |f|
-  fieldset
-    = f.input :photo, as: :image_upload, label: false, input_html: { class: "photo" }
-    = f.input :full_name
-    = f.input :email
-    = f.input :job
-    = f.input :about
-    = f.input :profile_banner, as: :image_upload, input_html: { class: "banner" }
+section.onboarding-step
+  header
+    = simple_form_for @user, url: profile_path, method: :post, html: { multipart: true } do |f|
+      fieldset
+        = f.input :photo, as: :image_upload, label: false, input_html: { class: "photo" }
+        = f.input :full_name
+        = f.input :email
+        = f.input :job
+        = f.input :about
+        = f.input :profile_banner, as: :image_upload, input_html: { class: "banner" }
 
-    a.add-social href='#' + Add your social networks
-    .social-networks
-      = f.input :website_url
-      = f.input :facebook_url
-      = f.input :github_url
-      = f.input :behance_url
-      = f.input :stackoverflow_url
-      = f.input :linkedin_url
-    = f.submit "Update"
-  fieldset
-    = f.simple_fields_for :skill do |s|
-      = s.input :title, placeholder: 'Data Science Consulting — Leverage your data for a personalised user experience'
-      .price
-        span.dollar $
-        = s.input :price
-      = s.input :tags_text, placeholder: 'Design, UX Design'
-      = s.input :categories_list, as: :check_boxes, collection: Skill::CATEGORIES
-      = f.submit "Update"
+        a.add-social href='#' + Add your social networks
+        .social-networks
+          = f.input :website_url
+          = f.input :facebook_url
+          = f.input :github_url
+          = f.input :behance_url
+          = f.input :stackoverflow_url
+          = f.input :linkedin_url
+        = f.submit "Update"
+      fieldset
+        = f.simple_fields_for :skill do |s|
+          = s.input :title, placeholder: 'Data Science Consulting — Leverage your data for a personalised user experience'
+          .price
+            span.dollar $
+            = s.input :price
+          = s.input :tags_text, placeholder: 'Design, UX Design'
+          = s.input :categories_list, as: :check_boxes, collection: Skill::CATEGORIES
+          = f.submit "Update"
