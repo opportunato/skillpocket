@@ -41,6 +41,20 @@ RSpec.describe Api::V1::MessageController do
   end
 
   describe 'lists messages' do
+    context 'no such respondent' do
+      before(:each) do
+        @consumer = create :user
+      end
+
+      it 'is an empty list' do
+        login_as(@consumer)
+        get api_v1_message_path(rand(10000000..20000000)), nil
+
+        expect(response.status).to eq 200
+        expect(response_json).to eq([])
+      end
+    end
+
     context 'no messages' do
       before(:each) do
         @consumer = create :user

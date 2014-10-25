@@ -1,6 +1,7 @@
 class Api::V1::MessageController < ApiController
   def show
-    interlocutor = User.find params[:id]
+    interlocutor = User.where(id: params[:id]).first
+    return render json: [] unless interlocutor
     @messages = current_user.messages_with interlocutor
     render.tap do
       # Render first. Mark as read afterwards
