@@ -107,6 +107,7 @@ GEM
       activerecord (>= 3.0.0)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
+    grocer (0.6.0)
     has_scope (0.5.1)
     hashie (3.3.1)
     highline (1.6.21)
@@ -291,6 +292,7 @@ DEPENDENCIES
   figaro
   foreigner
   friendly_id
+  grocer
   has_scope
   immigrant
   jbuilder (~> 2.0)

@@ -36,5 +36,9 @@ FactoryGirl.define do
         create :category_tagged_skill, expert: user
       end
     end
+
+    factory :user_with_ios_device_token do
+      ios_device_token { SecureRandom.hex }
+    end
   end
 end

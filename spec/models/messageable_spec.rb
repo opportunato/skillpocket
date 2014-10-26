@@ -81,4 +81,19 @@ RSpec.shared_examples_for Messageable  do |factory|
       end
     end
   end
+
+  describe '#send_message_to also sends push notification' do
+    let(:recipient) { create :user_with_ios_device_token }
+    let(:sender) { create :user }
+    let(:body) { Faker::Lorem.sentence }
+
+    before do
+      allow(AppleNotificationPusher).to receive(:push).with(recipient.ios_device_token, body)
+    end
+
+    specify do
+      expect(AppleNotificationPusher).to receive(:push).with(recipient.ios_device_token, body)
+      sender.send_message_to recipient, body
+    end
+  end
 end

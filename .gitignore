@@ -16,4 +16,4 @@ config/application.yml
 /.bundle
 /vendor/bundle
 config/database.yml
-config/certificate.pem
+config/push.pem

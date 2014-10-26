@@ -42,6 +42,8 @@ gem 'slim'
 gem 'foreigner'
 gem 'immigrant'
 
+gem 'grocer' # Apple push notifications
+
 # REST API doc generator (https://helloreverb.com/developers/swagger)
 gem 'swagger-docs'
 
