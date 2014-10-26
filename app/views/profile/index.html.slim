@@ -1,15 +1,1 @@
-- @user = @user.decorate
-
-section.profile-page
-  header.profile
-    .bg[style="background-image: url(#{@user.profile_banner_url});"]
-    h2.skill-title= @user.skill_title
-    = image_tag @user.photo_url, class: 'userpic'
-  section.profile
-    h2.name = @user.full_name
-    p.job = @user.job
-    h3.price = @user.price
-    p.tags = @user.tags
-    p.about = @user.about
-    ul.urls
-      = @user.urls
+= render partial: "shared/profile", locals: { user: @user }

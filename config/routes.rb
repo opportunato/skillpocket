@@ -42,5 +42,7 @@ Rails.application.routes.draw do
   get "about", to: "landing#about"
   get "faq", to: "landing#faq"
 
+  resources :experts, path: '', only: :show, as: :show_expert, constraints: { id: /@[\w-]+/ }
+
   get "logout", to: "sessions#destroy"
 end

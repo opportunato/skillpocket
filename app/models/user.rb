@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates_presence_of :full_name, :email, :job, :about, :photo, :profile_banner
 
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
+  scope :approved, -> { where(approved: true) }
 
   delegate :price,
            to: :skill
@@ -37,5 +38,9 @@ class User < ActiveRecord::Base
 
   def self.admin
     where(role: "admin").first
+  end
+
+  def self.find_by_handle(handle)
+    where("lower(twitter_handle) = ?", handle.downcase).first
   end
 end
