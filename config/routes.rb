@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :experts, only: [:index, :show]
       resources :categories, only: [:index]
-      resource :profile, only: [:show, :create, :update]
+      resources :contacts, only: [:index, :show]
+
+      resource :profile, only: [:show, :create, :update] do
+        post :pushtoken
+      end
+
       resources :message, only: [:show] do
         member do
           post :create
@@ -13,8 +18,6 @@ Rails.application.routes.draw do
         collection do
           get :unread
         end
-      end
-      resources :contacts, only: [:index, :show] do
       end
     end
   end

@@ -15,6 +15,11 @@ class Api::V1::ProfilesController < ApiController
     render nothing: true, status: 201
   end
 
+  def pushtoken
+    @profile.update params.permit(:ios_device_token)
+    render nothing: true, status: 202
+  end
+
 private
   def get_profile
     @profile = current_user

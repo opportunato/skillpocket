@@ -111,5 +111,16 @@ RSpec.describe Api::V1::ProfilesController do
         expect(after.send(property)).to eq user.send(property)
       end
     end
+
+    it 'updates push token' do
+      login_as(user)
+      token = SecureRandom.hex
+      post pushtoken_api_v1_profile_path, { ios_device_token: token }
+
+      expect(response.status).to eq 202
+      expect(response.body).to be_blank
+
+      expect(user.reload.ios_device_token).to eq token
+    end
   end
 end
