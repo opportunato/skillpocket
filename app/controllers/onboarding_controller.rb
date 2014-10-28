@@ -12,7 +12,7 @@ class OnboardingController < ApplicationController
   end
 
   def step2_submit
-    authorize@ :manage, :onboard_step2
+    authorize! :manage, :onboard_step2
 
     if @user.update(user_params)
       redirect_to onboarding_step3_path
