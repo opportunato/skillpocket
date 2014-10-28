@@ -31,6 +31,7 @@ set :shared_paths,                  %w(
                                       config/puma.rb
                                       config/application.yml
                                       config/database.yml
+                                      config/secrets.yml
                                       public/uploads
                                       public/system
                                     )
