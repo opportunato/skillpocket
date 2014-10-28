@@ -4,15 +4,15 @@ class OnboardingController < ApplicationController
   before_action :set_user, except: [:step1]
 
   def step1
-    authorize :manage, :onboard_step1
+    authorize! :manage, :onboard_step1
   end
 
   def step2
-    authorize :manage, :onboard_step2
+    authorize@ :manage, :onboard_step2
   end
 
   def step2_submit
-    authorize :manage, :onboard_step2
+    authorize@ :manage, :onboard_step2
 
     if @user.update(user_params)
       redirect_to onboarding_step3_path
@@ -22,13 +22,13 @@ class OnboardingController < ApplicationController
   end
 
   def step3
-    authorize :manage, :onboard_step3
+    authorize! :manage, :onboard_step3
 
     @skill = @user.skill || Skill.new
   end
 
   def step3_submit
-    authorize :manage, :onboard_step3
+    authorize! :manage, :onboard_step3
 
     if SkillCreator.perform(@user, skill_params)
       redirect_to onboarding_success_path
@@ -38,7 +38,7 @@ class OnboardingController < ApplicationController
   end
 
   def succcess
-    authorize :manage, :onboard_success
+    authorize! :manage, :onboard_success
   end
 
 private
