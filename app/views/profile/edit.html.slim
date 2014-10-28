@@ -1,6 +1,6 @@
 section.onboarding-step
   header
-    = simple_form_for @user, url: profile_path, method: :post, html: { multipart: true } do |f|
+    = simple_form_for @user, url: user_path("@#{@user.twitter_handle}"), method: :post, html: { multipart: true } do |f|
       fieldset
         = f.input :photo, as: :image_upload, label: false, input_html: { class: "photo" }
         = f.input :full_name

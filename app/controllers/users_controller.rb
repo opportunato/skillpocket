@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     authorize! :update, @user
 
     if @user.update(user_params.except(:skill_attributes)) && SkillCreator.perform(@user, user_params[:skill_attributes])
-      redirect_to profile_path
+      redirect_to user_path("@#{@user.twitter_handle}")
     else
       render "edit"
     end

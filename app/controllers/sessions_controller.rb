@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       authenticate!
 
       if user.email.present?
-        redirect_to profile_path
+        redirect_to user_path("@#{user.twitter_handle}")
       else
         redirect_to onboarding_step2_path
       end

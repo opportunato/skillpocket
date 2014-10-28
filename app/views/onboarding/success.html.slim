@@ -5,7 +5,7 @@ section.onboarding-step
       h1 Welcome aboard!
 
     p We'll notify you as soon as we launch in the AppStore.
-    = link_to "Check out your new profile", profile_path, class: 'button'
+    = link_to "Check out your new profile", user_path("@#{@user.twitter_handle}"), class: 'button'
 
   - else
     

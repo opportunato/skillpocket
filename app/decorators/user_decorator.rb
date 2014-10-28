@@ -9,14 +9,35 @@ class UserDecorator < ApplicationDecorator
   end
 
   def tags
-    user.skill_tags.reduce("") do |string, tag|
-      string + tag.name
-    end
+    user.skill_tags.map do |tag|
+      h.content_tag :li, tag.name
+    end.join('').html_safe
   end
 
   def urls
-    User::URLS.reduce("") do |string, url|
-      user.send(url).present? ? string + url : string
-    end
+    User::URLS.map do |url|
+      if user.send(url).present? 
+        h.content_tag :li do
+          h.link_to user.send(url) do
+            h.tag(:i) +
+            url_names[url.to_sym]
+          end
+        end
+      end
+    end.join('').html_safe
+  end
+
+private
+
+  def url_names
+    {
+      website_url: "Website",
+      twitter_url: "Twitter",
+      facebook_url: "Facebook",
+      linkedin_url: "LinkedIn",
+      behance_url: "Behance",
+      github_url: "Github",
+      stackoverflow_url: "Stack Overflow"
+    }
   end
 end
