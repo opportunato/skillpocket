@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
   scope :approved, -> { where(approved: true) }
+  scope :experts, -> { joins(:skill) }
 
   delegate :price,
            to: :skill
