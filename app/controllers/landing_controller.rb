@@ -1,5 +1,5 @@
 class LandingController < ApplicationController
-  skip_before_action :authenticate!, only: [:index]
+  skip_before_action :authenticate!
 
   def index
   end

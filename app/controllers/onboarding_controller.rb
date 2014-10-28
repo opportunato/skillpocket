@@ -1,17 +1,19 @@
 class OnboardingController < ApplicationController
   skip_before_action :authenticate!, only: [:step1]
 
-  before_action :set_user, only: [:step2, :step2_submit, :step3, :step3_submit, :success]
+  before_action :set_user, except: [:step1]
 
   def step1
-    check_for_current_step(1)
+    authorize :manage, :onboard_step1
   end
 
   def step2
-    check_for_current_step(2)
+    authorize :manage, :onboard_step2
   end
 
   def step2_submit
+    authorize :manage, :onboard_step2
+
     if @user.update(user_params)
       redirect_to onboarding_step3_path
     else
@@ -20,11 +22,14 @@ class OnboardingController < ApplicationController
   end
 
   def step3
-    check_for_current_step(3)
+    authorize :manage, :onboard_step3
+
     @skill = @user.skill || Skill.new
   end
 
   def step3_submit
+    authorize :manage, :onboard_step3
+
     if SkillCreator.perform(@user, skill_params)
       redirect_to onboarding_success_path
     else
@@ -33,7 +38,7 @@ class OnboardingController < ApplicationController
   end
 
   def succcess
-    check_for_current_step("done")
+    authorize :manage, :onboard_success
   end
 
 private
@@ -52,23 +57,5 @@ private
 
   def set_user
     @user = current_user
-  end
-
-  def user_current_step(user)
-    if user.skill.present?
-      "done" # TODO extremely bad code style, need to rewrite pretty much everything
-    elsif user.email.present?
-      3
-    elsif signed_in?
-      2
-    else
-      1
-    end
-  end
-
-  def check_for_current_step(step)
-    if user_current_step(current_user) != step
-      redirect_to root_path
-    end
   end
 end

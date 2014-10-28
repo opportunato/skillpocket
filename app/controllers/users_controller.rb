@@ -1,14 +1,18 @@
-class ProfileController < ApplicationController
-  before_action :set_user, only: [:index, :edit, :update]
-  before_action :check_if_approved
+class UsersController < ApplicationController
+  skip_before_action :authenticate!, only: [:show]
+  before_action :set_user
 
-  def index
+  def show
+    authorize! :read, @user
   end
 
   def edit
+    authorize! :update, @user
   end
 
   def update
+    authorize! :update, @user
+
     if @user.update(user_params.except(:skill_attributes)) && SkillCreator.perform(@user, user_params[:skill_attributes])
       redirect_to profile_path
     else
@@ -17,7 +21,6 @@ class ProfileController < ApplicationController
   end
 
 private
-  # TODO eradicate duplication, repetition, all the horror here
 
   def user_params
     params.require(:user).permit(
@@ -29,15 +32,8 @@ private
   end
 
   def set_user
-    @user = current_user
-  end
+    handle = params[:id].match /@([\w-]+)/
 
-  def check_if_approved
-    user = current_user
-    passed = signed_in? && user.email.present? && user.skill.present? && user.approved
-  
-    if !passed
-      redirect_to :root
-    end
+    @user = User.approved.find_by_handle(handle[1])
   end
 end

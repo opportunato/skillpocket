@@ -10,16 +10,17 @@ header.main
       li
         = link_to_unless_current 'How It Works', root_path
       li
-        a href=about_path About
+        = link_to_unless_current 'About', about_path
       li
-        a href=faq_path FAQ
+        = link_to_unless_current 'FAQ', faq_path
       - if signed_in?
         li
-          a href=profile_path Profile
+          = link_to_unless_current 'Profile', user_path("@#{current_user.twitter_handle}")
+          / TODO find a clean way to define route
         li
-          a href=logout_path Logout
+          = link_to 'Logout', logout_path
       - if !signed_in?
         li
-          a href=onboarding_step1_path Become an expert
+          = link_to_unless_current 'Become an expert', onboarding_step1_path
         li
-          a href="/auth/twitter" Login
+          = link_to 'Login', "/auth/twitter"

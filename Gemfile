@@ -24,7 +24,7 @@ gem 'draper'
 
 gem 'friendly_id'
 gem 'warden'
-gem 'cancan'
+gem 'cancancan'
 
 gem 'twitter'
 

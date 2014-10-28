@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     skill.present?
   end
 
+  def admin?
+    role == "admin"
+  end
+
   def approve
     self.approved = true
     self.save(validate: false)

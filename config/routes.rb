@@ -38,14 +38,10 @@ Rails.application.routes.draw do
   post "onboarding/step3", to: "onboarding#step3_submit"
   get "onboarding/success", to: "onboarding#success"
 
-  get "profile", to: "profile#index"
-  get "profile/edit", to: "profile#edit"
-  post "profile", to: "profile#update"
-
   get "about", to: "landing#about"
   get "faq", to: "landing#faq"
 
-  resources :experts, path: '', only: :show, as: :show_expert, constraints: { id: /@[\w-]+/ }
+  resources :users, path: '', only: [:show, :edit, :update], constraints: { id: /@[\w-]+/ }
 
   get "logout", to: "sessions#destroy"
 end

@@ -1,9 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate!
-  before_action :authenticate_admin!
 
   helper_method :signed_in?, :current_user
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
 protected
 
