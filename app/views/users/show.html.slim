@@ -1,5 +1,14 @@
 - user = @user.decorate
 
+- page_title = expert_title(user)
+- description = user.about
+- image = full_url(user.photo_url)
+- url = user_url("@#{user.twitter_handle}")
+
+- title page_title, description: description, canonical: url
+- set_meta_tags og: { title: title, image: image, description: description, url: url }
+- set_meta_tags twitter: { title: title, image: image, description: description, url: url }
+
 section.profile-page
   header.profile
     .bg[style="background-image: url(#{user.profile_banner_url});"]
