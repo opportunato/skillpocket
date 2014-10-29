@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate!
+  before_action :authenticate_admin_on_staging
 
   helper_method :signed_in?, :current_user
 
@@ -16,6 +17,12 @@ protected
 
   def authenticate_admin!(options={})
     warden.authenticate!(scope: :admin)
+  end
+
+  def authenticate_admin_on_staging
+    if Rails.env.staging?
+      authenticate_admin!
+    end
   end
 
   def signed_in?
