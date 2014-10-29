@@ -4,7 +4,7 @@ class Ability
   def initialize(user)      
     # Anyone
     # 
-    can :read, User, approved: true
+    can :read, User, approved: true, skill: true
     can :manage, :onboard_step1
 
     return unless user
