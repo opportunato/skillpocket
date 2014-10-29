@@ -30,9 +30,12 @@ class OnboardingController < ApplicationController
   def step3_submit
     authorize! :manage, :onboard_step3
 
-    if SkillCreator.perform(@user, skill_params)
+    @skill_creator = SkillCreator.new(@user)
+
+    if @skill_creator.create(skill_params)
       redirect_to onboarding_success_path
     else
+      @skill = @skill_creator.skill
       render "step3"
     end
   end

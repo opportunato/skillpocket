@@ -1,4 +1,6 @@
 class SkillCreator
+  attr_reader :skill
+
   def initialize(user)
     @user = user
   end
@@ -13,9 +15,5 @@ class SkillCreator
     end
 
     @skill.persisted? && @skill.valid? && @skill.update_tags(*tags)
-  end
-
-  def self.perform(user, skill_params)
-    self.new(user).create(skill_params)
   end
 end

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def update
     authorize! :update, @user
 
-    if @user.update(user_params.except(:skill_attributes)) && SkillCreator.perform(@user, user_params[:skill_attributes])
+    if @user.update(user_params.except(:skill_attributes)) && SkillCreator.new(@user).create(user_params[:skill_attributes])
       redirect_to user_path("@#{@user.twitter_handle}")
     else
       render "edit"
