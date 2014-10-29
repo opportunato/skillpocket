@@ -12,5 +12,5 @@ section.onboarding-step
         span.dollar $
         = f.input :price
       = f.input :tags_text, placeholder: 'Design, UX Design'
-      = f.input :categories_list, as: :check_boxes, collection: Skill::CATEGORIES
+      = f.input :categories_list, as: :check_boxes, collection: Skill::CATEGORIES, wrapper: :checkbox
       = f.submit "Complete profile"

@@ -4,6 +4,7 @@ class Skill < ActiveRecord::Base
   has_many :tags, through: :skills_tags
 
   validates_presence_of :expert, :price, :title
+  validates :title, length: { maximum: 110 }
 
   attr_accessor :tags_text, :categories_list
 

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_one :skill, dependent: :destroy
 
   validates_presence_of :full_name, :email, :job, :about, :photo, :profile_banner
+  validates :job, length: { maximum: 40 }
+  validates :about, length: { maximum: 500 }
 
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
   scope :approved, -> { where(approved: true) }
