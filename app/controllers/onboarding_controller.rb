@@ -8,7 +8,7 @@ class OnboardingController < ApplicationController
   end
 
   def step2
-    authorize@ :manage, :onboard_step2
+    authorize! :manage, :onboard_step2
   end
 
   def step2_submit
