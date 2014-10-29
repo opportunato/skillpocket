@@ -18,3 +18,5 @@ config/secrets.yml
 /vendor/bundle
 config/database.yml
 config/push.pem
+.yardoc
+public/api

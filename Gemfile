@@ -44,12 +44,13 @@ gem 'immigrant'
 
 gem 'grocer' # Apple push notifications
 
-# REST API doc generator (https://helloreverb.com/developers/swagger)
-gem 'swagger-docs'
-
 group :development do
   gem 'mina-stack', github: 'div/mina-stack'
   gem 'spring'
+
+  gem 'yard-restful' # REST API docs # TODO: guard-yard
+  gem 'inch' # Documentation metrics # TODO: guard-inch
+  # TODO: mina-yard? how do we generate docs? push to repo (yuck!)?
 end
 
 group :development, :test do

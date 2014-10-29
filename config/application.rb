@@ -3,6 +3,9 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'csv'
 
+require 'yard' if Rails.env == 'development'
+# FIXME: odd that it needs to be here. yard-restful should have required it by itself
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
