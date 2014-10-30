@@ -3,12 +3,12 @@
 # Messages
 #
 class Api::V1::MessageController < ApiController
-  # @url /books/:id
+  # @url /message/:user_id
   # @action GET
   #
-  # View a book
+  # View message history with specific user
   #
-  # @required [Integer] id Identifier the book
+  # @required [Integer] user_id User identifier
   #
   # @response [Book] The requested book
   #
@@ -36,16 +36,14 @@ class Api::V1::MessageController < ApiController
   #
   # @example_request_description Let's try to create a book
   # @example_request
-  #   ```json
   #   {
   #     "author_id": 1,
   #     "title": "My first book",
   #     "year": 1999
   #   }
-  #   ```
+  #
   # @example_response_description The book should be created correctly
   # @example_response
-  #   ```json
   #   {
   #     "author": {
   #       "name": "Petr Petrov",
@@ -55,7 +53,7 @@ class Api::V1::MessageController < ApiController
   #     "year": 1999,
   #     "genre": ""
   #   }
-  #   ```
+  #
   def create
     recipient = User.find params[:id]
     current_user.send_message_to recipient, params[:text]

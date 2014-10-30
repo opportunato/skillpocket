@@ -1,5 +1,11 @@
-Skillpocket API v1
-==================
+Notice
+======
+
+We do not expose this document to public, however we`re glad you found it.
+If you wish to build something on or extend Skillpocket, do not hesitate to contact us.
+
+General
+=======
 
 Endpoints are located at https://skillpocket.com/api/.
 

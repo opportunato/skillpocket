@@ -1,7 +1,7 @@
 --no-private
 --title "Skillpocket API v1"
 --plugin restful
---readme API_README.md
+--readme API_README
 --output-dir ./public/api
 --embed-mixins
 app/models/api/**/*.rb
