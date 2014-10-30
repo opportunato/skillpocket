@@ -31,11 +31,11 @@ Rails.application.routes.draw do
 
   get '/auth/twitter/callback', to: "sessions#create"
 
-  get "onboarding/step1", to: "onboarding#step1"
-  get "onboarding/step2", to: "onboarding#step2"
-  post "onboarding/step2", to: "onboarding#step2_submit"
-  get "onboarding/step3", to: "onboarding#step3"
-  post "onboarding/step3", to: "onboarding#step3_submit"
+  get "onboarding/step/1", to: "onboarding#step1"
+  get "onboarding/step/2", to: "onboarding#step2"
+  post "onboarding/step/2", to: "onboarding#step2_submit"
+  get "onboarding/step/3", to: "onboarding#step3"
+  post "onboarding/step/3", to: "onboarding#step3_submit"
   get "onboarding/success", to: "onboarding#success"
 
   get "about", to: "landing#about"

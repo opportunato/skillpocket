@@ -5,12 +5,12 @@ section.onboarding-step
     h2 Step 3
     h1 Add your skill
 
-  = simple_form_for @skill, url: onboarding_step3_path, method: :post do |f|
+  = simple_form_for @skill, url: onboarding_step_3_path, method: :post do |f|
     fieldset
       = f.input :title, placeholder: 'Data Science Consulting — Leverage your data for a personalised user experience'
       .price
         span.dollar $
         = f.input :price
       = f.input :tags_text, placeholder: 'Design, UX Design'
-      = f.input :categories_list, as: :check_boxes, collection: Skill::CATEGORIES, wrapper: :checkbox
+      = f.input :categories_list, as: :check_boxes, collection: Skill::CATEGORIES
       = f.submit "Complete profile"

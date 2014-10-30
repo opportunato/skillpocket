@@ -1,3 +1,6 @@
+- if current_user.present?
+  - user = current_user.decorate
+
 header.main
   / a.logo href="#"
   = link_to root_path, class: 'logo'
@@ -13,14 +16,12 @@ header.main
         = link_to_unless_current 'About', about_path
       li
         = link_to_unless_current 'FAQ', faq_path
-      - if signed_in? && current_user.approved
-        li
-          = link_to_unless_current 'Profile', user_path("@#{current_user.twitter_handle}")
+      - if current_user.present? && user.current_onboarding_step.present?
+          li = link_to_unless_current 'Become an expert', "/onboarding/step/#{user.current_onboarding_step}"
+      - if current_user.present? && user.current_onboarding_step.nil? && user.approved
+        li = link_to_unless_current 'Profile', user_path("@#{user.twitter_handle}")
           / TODO find a clean way to define route
-        li
-          = link_to 'Logout', logout_path
-      - if !signed_in?
-        li
-          = link_to_unless_current 'Become an expert', onboarding_step1_path
-        li
-          = link_to 'Login', "/auth/twitter"
+      - if signed_in?
+        li = link_to 'Logout', logout_path
+      - else
+        li = link_to 'Login', "/auth/twitter"

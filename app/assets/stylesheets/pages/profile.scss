@@ -31,6 +31,21 @@ body.profile {
     box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
   }
 
+  .about {
+    margin-bottom: $grid*2;
+  }
+
+  .urls {
+    li {
+      border-bottom: 1px solid $color-grey-light;
+      padding: $grid;
+
+      &:first-child {
+        border-top: 1px solid $color-grey-light;
+      }
+    }
+  }
+
   .name {
     margin-bottom: 0;
   }
@@ -39,9 +54,25 @@ body.profile {
     color: $color-grey;
   }
 
-  // .price {
-  //   font-size: 1.4em;
-  // }
+  .tags {
+    margin-bottom: $grid*2;
+    li { 
+      display: inline-block;
+      border-radius: 30px;
+      background: $color-grey-light;
+      padding: $grid/4 $grid/2;
+      margin: $grid/4;
+    }
+  }
+
+  .price {
+    margin-bottom: $grid;
+  }
+
+  .button {
+    display: inline-block;
+    margin-bottom: $grid;
+  }
 
   .bg {
     opacity: .4;

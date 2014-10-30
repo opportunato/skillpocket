@@ -15,18 +15,18 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: :span, class: :error }
   end
 
-  config.wrappers :checkbox, tag: :div, class: "checkbox", error_class: "has-error" do |b|
+  # config.wrappers :checkbox, tag: :div, class: "checkbox", error_class: "has-error" do |b|
 
-    b.use :html5
+  #   b.use :html5
 
-    b.wrapper tag: :div do |ba|
-      ba.use :input
-      ba.use :label_text, wrap_with: { tag: :span }
-    end
+  #   b.wrapper tag: :div do |ba|
+  #     ba.use :input
+  #     ba.use :label_text, wrap_with: { tag: :span }
+  #   end
 
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
-  end
+  #   b.use :hint,  wrap_with: { tag: :span, class: :hint }
+  #   b.use :error, wrap_with: { tag: :span, class: :error }
+  # end
 
   config.default_wrapper = :default
   config.boolean_style = :nested

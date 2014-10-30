@@ -8,6 +8,33 @@
 		max-width: 470px;
 	}
 
+  .check_boxes {
+    margin-bottom: $grid*2;
+  }
+
+  label.check_boxes {
+    margin-bottom: $grid;
+  }
+
+  .checkbox {
+    display: block;
+    border-bottom: 1px solid $color-grey-light;
+    position: relative;
+    padding: $grid;
+
+    &:nth-child(2) {
+      border-top: 1px solid $color-grey-light;
+    }
+
+    label {
+      margin-bottom: 0;
+    }
+
+    input {
+      @include position(absolute, 21px 0 0 0px);
+    }
+  }
+
 	.button, input[type=submit] {
 		font-size: 1.2em;
 		padding: $grid/2 $grid*2;
