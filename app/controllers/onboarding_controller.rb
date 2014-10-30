@@ -1,4 +1,6 @@
 class OnboardingController < ApplicationController
+  include OnboardingHelper
+
   skip_before_action :authenticate!, only: [:step1]
 
   before_action :set_user, except: [:step1]
@@ -51,10 +53,8 @@ class OnboardingController < ApplicationController
 
 private
   def check_step(current_step)
-    user = current_user.decorate
-
-    if user.current_onboarding_step != current_step
-      redirect_to "/onboarding/step/#{user.current_onboarding_step}"
+    if current_onboarding_step != current_step
+      redirect_to "/onboarding/step/#{current_onboarding_step}"
     end
   end
 

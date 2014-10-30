@@ -26,18 +26,6 @@ class UserDecorator < ApplicationDecorator
     end.join('').html_safe
   end
 
-  def current_onboarding_step
-    if user.expert?
-      nil
-    elsif user.email.present?
-      3
-    elsif signed_in?
-      2
-    else
-      1
-    end
-  end
-
 private
 
   def url_names

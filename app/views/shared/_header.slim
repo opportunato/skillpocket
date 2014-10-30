@@ -16,9 +16,9 @@ header.main
         = link_to_unless_current 'About', about_path
       li
         = link_to_unless_current 'FAQ', faq_path
-      - if current_user.present? && user.current_onboarding_step.present?
-          li = link_to_unless_current 'Become an expert', "/onboarding/step/#{user.current_onboarding_step}"
-      - if current_user.present? && user.current_onboarding_step.nil? && user.approved
+      - if current_onboarding_step.present?
+          li = link_to_unless_current 'Become an expert', "/onboarding/step/#{current_onboarding_step}"
+      - if current_onboarding_step.nil? && user.approved
         li = link_to_unless_current 'Profile', user_path("@#{user.twitter_handle}")
           / TODO find a clean way to define route
       - if signed_in?
