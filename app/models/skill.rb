@@ -8,7 +8,7 @@ class Skill < ActiveRecord::Base
 
   attr_accessor :tags_text, :categories_list
 
-  CATEGORIES=%w[Technology Business Marketing\ &\ Sales Skills\ &\ Management Product\ &\ Design Funding Photo\ &\ Video, Writing]
+  CATEGORIES=%w[Technology Business Marketing\ &\ Sales Skills\ &\ Management Product\ &\ Design Funding Photo\ &\ Video Writing]
 
   def tags_text
     @tags_text || tags.non_categories.map(&:name).reduce do |string, tag|
