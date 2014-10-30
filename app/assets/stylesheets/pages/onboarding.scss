@@ -31,8 +31,11 @@
     }
 
     input {
-      @include position(absolute, 21px 0 0 0px);
+      display: inline-block;
+      margin: 0 0.3em 0 0;
+      width: auto;
     }
+
   }
 
 	.button, input[type=submit] {
