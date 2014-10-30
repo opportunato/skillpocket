@@ -23,7 +23,7 @@ class Ability
       can :read, :onboard_success if step3_passed?(user)
 
       can :read, User do |checking_user|
-        user.id = checking_user.id && step3_passed?(user) && user.approved
+        user.id == checking_user.id && step3_passed?(user) && user.approved
       end
       can :update, User, approved: true, id: user.id
       can :update, Skill, id: user.id

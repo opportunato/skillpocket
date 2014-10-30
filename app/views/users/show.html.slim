@@ -12,14 +12,14 @@
 section.profile-page
   header.profile
     .bg[style="background-image: url(#{user.profile_banner_url});background-size: cover;"]
-    h2.skill-title= user.skill_title
+    h2.skill-title = user.skill_title
     = image_tag user.photo_url, class: 'userpic'
   section.profile
     h2.name = user.full_name
     p.job = user.job
     h3.price = user.price
-
-    a.button href= Edit profile
+    - if can?(:update, user)
+      = link_to "Edit profile", edit_user_path("@#{user.twitter_handle}"), class: "button"
     ul.tags = user.tags
     p.about = user.about
     .caps Social networks
