@@ -44,6 +44,8 @@ gem 'immigrant'
 
 gem 'grocer' # Apple push notifications
 
+gem 'geocoder'
+
 group :development do
   gem 'mina-stack', github: 'div/mina-stack'
   gem 'spring'

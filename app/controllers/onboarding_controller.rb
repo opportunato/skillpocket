@@ -4,6 +4,7 @@ class OnboardingController < ApplicationController
   skip_before_action :authenticate!, only: [:step1]
 
   before_action :set_user, except: [:step1]
+  before_action :user_location, except: [:step1, :step2]
 
   def step1
     check_step(1)
@@ -20,7 +21,7 @@ class OnboardingController < ApplicationController
     authorize! :manage, :onboard_step2
 
     if @user.update(user_params)
-      redirect_to onboarding_step3_path
+      redirect_to onboarding_step_3_path
     else
       render "step2"
     end
@@ -72,5 +73,9 @@ private
 
   def set_user
     @user = current_user
+  end
+
+  def user_location
+    current_user.update_location request.location
   end
 end

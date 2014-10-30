@@ -50,4 +50,10 @@ class User < ActiveRecord::Base
   def self.find_by_handle(handle)
     where("lower(twitter_handle) = ?", handle.downcase).first
   end
+
+  def update_location location
+    self.latitude = location.latitude
+    self.longitude = location.longitude
+    save
+  end
 end
