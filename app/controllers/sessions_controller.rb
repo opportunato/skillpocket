@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
       if user.skill.present?
         redirect_to user_path("@#{user.twitter_handle}")
       elsif user.email.present?
-        redirect_to onboarding_step3_path
+        redirect_to onboarding_step_3_path
       else
-        redirect_to onboarding_step2_path
+        redirect_to onboarding_step_2_path
       end
     end
   end
