@@ -48,9 +48,18 @@ group :development do
   gem 'mina-stack', github: 'div/mina-stack'
   gem 'spring'
 
-  gem 'yard-restful' # REST API docs # TODO: guard-yard
-  gem 'inch' # Documentation metrics # TODO: guard-inch
+  gem 'yard-restful'       # REST API docs
+  gem 'inch'               # Documentation metrics
   # TODO: mina-yard? how do we generate docs? push to repo (yuck!)?
+
+  gem 'guard'              # Watch those changes
+  gem 'guard-rails'        # .. restart rails server
+  gem 'guard-bundler'      # .. install new gems
+  gem 'guard-migrate'      # .. migrate (dev and test) once you run migrations
+  gem 'guard-rspec'        # .. re-run specs one something changes
+  gem 'guard-annotate'     # .. expose structure in model files
+  gem 'guard-shell'        # .. re-generate (API) docs
+  gem 'guard-inch'         # .. check doc metrics
 end
 
 group :development, :test do
