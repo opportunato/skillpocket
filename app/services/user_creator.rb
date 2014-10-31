@@ -39,7 +39,7 @@ private
 
     user.access_token = access_token
 
-    user.remote_photo_url = user_data.profile_image_url
+    user.remote_photo_url = user_data.profile_image_url(:original)
     user.remote_profile_banner_url = user_data.profile_banner_url
 
     user.save(validate: false)
