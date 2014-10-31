@@ -51,9 +51,10 @@ class User < ActiveRecord::Base
     where("lower(twitter_handle) = ?", handle.downcase).first
   end
 
-  def update_location location
+  def update_location location, ip
     self.latitude = location.latitude
     self.longitude = location.longitude
+    self.ip_address = ip
     save
   end
 end

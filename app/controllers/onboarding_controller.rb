@@ -76,6 +76,6 @@ private
   end
 
   def user_location
-    current_user.update_location request.location
+    current_user.update_location request.location, request.ip
   end
 end
