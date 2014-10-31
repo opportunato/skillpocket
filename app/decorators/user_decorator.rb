@@ -18,7 +18,7 @@ class UserDecorator < ApplicationDecorator
     User::URLS.map do |url|
       if user.send(url).present? 
         h.content_tag :li do
-          h.link_to user.send(url) do
+          h.link_to user.send(url), target: "_blank" do
             url_names[url.to_sym]
           end
         end

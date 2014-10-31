@@ -7,6 +7,16 @@ class User < ActiveRecord::Base
   validates :job, length: { maximum: 40 }
   validates :about, length: { maximum: 500 }
 
+  before_validation :add_protocol_for_urls
+
+  def add_protocol_for_urls
+    URLS.each do |url|
+      unless self.send(url)[/\Ahttp:\/\//] || self.send(url)[/\Ahttps:\/\//]
+        self.send("#{url}=", "http://#{self.send(url)}")
+      end
+    end
+  end
+
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
   scope :approved, -> { where(approved: true) }
   scope :experts, -> { joins(:skill) }
