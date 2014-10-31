@@ -3,7 +3,7 @@ class Skill < ActiveRecord::Base
   has_many :skills_tags
   has_many :tags, through: :skills_tags
 
-  SMARTPHONE_OSES = %w[ios android other]
+  SMARTPHONE_OSES = %w[iOS Android Other]
   CATEGORIES=%w[Technology Business Marketing\ &\ Sales Skills\ &\ Management Product\ &\ Design Funding Photo\ &\ Video Writing]
 
   validates_presence_of :expert, :price, :title
