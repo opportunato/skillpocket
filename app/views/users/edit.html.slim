@@ -1,5 +1,9 @@
+- title "Edit profile"
+
 section.onboarding-step
   header
+    h2 Edit Your Profile
+
     = simple_form_for @user, url: user_path("@#{@user.twitter_handle}"), method: :put, html: { multipart: true } do |f|
       fieldset
         = f.input :photo, as: :image_upload, label: false, input_html: { class: "photo" }

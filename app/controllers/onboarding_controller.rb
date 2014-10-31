@@ -68,7 +68,7 @@ private
   end
 
   def skill_params
-    params.require(:skill).permit(:title, :price, :tags_text, categories_list: [])
+    params.require(:skill).permit(:title, :price, :tags_text, :smartphone_os, categories_list: [])
   end
 
   def set_user

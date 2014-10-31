@@ -27,6 +27,7 @@ en:
         title: Skill title
         tags_text: Tags
         categories_list: Categories
+        smartphone_os: What kind of smartphone system do you use?
     # hints:
     #   defaults:
     #     username: 'User name to sign in.'

@@ -3,12 +3,14 @@ class Skill < ActiveRecord::Base
   has_many :skills_tags
   has_many :tags, through: :skills_tags
 
+  SMARTPHONE_OSES = %w[ios android other]
+  CATEGORIES=%w[Technology Business Marketing\ &\ Sales Skills\ &\ Management Product\ &\ Design Funding Photo\ &\ Video Writing]
+
   validates_presence_of :expert, :price, :title
   validates :title, length: { maximum: 110 }
+  validates :smartphone_os, inclusion: { in: SMARTPHONE_OSES }
 
   attr_accessor :tags_text, :categories_list
-
-  CATEGORIES=%w[Technology Business Marketing\ &\ Sales Skills\ &\ Management Product\ &\ Design Funding Photo\ &\ Video Writing]
 
   def tags_text
     @tags_text || tags.non_categories.map(&:name).reduce do |string, tag|

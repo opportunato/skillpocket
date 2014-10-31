@@ -64,6 +64,11 @@ input, textarea {
   }
 }
 
+select {
+  margin-bottom: $grid/2*3;
+  width: 100%;
+}
+
 .image_upload:before {
   content: "g";
   font-family: "skillpocket" !important;

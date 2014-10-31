@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026143227) do
+ActiveRecord::Schema.define(version: 20141031070330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,11 +85,12 @@ ActiveRecord::Schema.define(version: 20141026143227) do
   add_index "preapproved_handles", ["name"], name: "index_preapproved_handles_on_name", using: :btree
 
   create_table "skills", force: true do |t|
-    t.integer  "price",      null: false
-    t.string   "title",      null: false
-    t.integer  "user_id",    null: false
+    t.integer  "price",         null: false
+    t.string   "title",         null: false
+    t.integer  "user_id",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "smartphone_os"
   end
 
   add_index "skills", ["user_id"], name: "index_skills_on_user_id", using: :btree
@@ -131,6 +132,8 @@ ActiveRecord::Schema.define(version: 20141026143227) do
     t.string   "role",                 default: "user"
     t.decimal  "social_authority"
     t.string   "ios_device_token"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree
