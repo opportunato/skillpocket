@@ -16,7 +16,7 @@ nav.main {
   visibility: hidden;
   text-align: center;
   font-size: 1.2em;
-  // @include position(fixed, 0px 0px 0px 0px);
+  @include position(fixed, 0px 0px 0px 0px);
   background: white;
   z-index: 999;
 
