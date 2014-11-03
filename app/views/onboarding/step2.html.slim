@@ -13,6 +13,7 @@ section.onboarding-step
       = f.input :job
       = f.input :about
       = f.input :profile_banner, as: :image_upload, input_html: { class: "banner" }
+      = f.hidden_field :profile_banner_cache
 
       a.add-social href='#' + Add your social networks
       .social-networks

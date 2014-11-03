@@ -24,7 +24,7 @@ private
 
   def user_params
     params.require(:user).permit(
-      :full_name, :email, :job, :about, :photo, :profile_banner,
+      :full_name, :email, :job, :about, :photo, :profile_banner, :profile_banner_cache,
       :website_url, :facebook_url, :github_url, :behance_url,
       :stackoverflow_url, :linkedin_url,
       skill_attributes: [:title, :price, :tags_text, categories_list: []]
