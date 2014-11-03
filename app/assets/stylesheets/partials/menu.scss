@@ -15,7 +15,7 @@ nav.main {
   // @include transition(opacity $transitionTime $baseTransitionStyle);
 
   opacity: 0;
-  visibility: hidden;
+  display: none;
   text-align: center;
   font-size: 1.2em;
   position: fixed;
@@ -27,7 +27,7 @@ nav.main {
   }
 
   &.active {
-    visibility: visible;
+    display: block;
     opacity: 0.95;
   }
 
