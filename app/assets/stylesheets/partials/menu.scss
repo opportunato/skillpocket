@@ -12,7 +12,7 @@ header.main {
 
 nav.main {
   @include position(fixed, 0px 0px 0px 0px);
-  @include transition(opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle);
+  @include transition(opacity $transitionTime $baseTransitionStyle);
 
   opacity: 0;
   visibility: hidden;
