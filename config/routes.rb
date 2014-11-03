@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   get '/auth/twitter/callback', to: "sessions#create"
+  get '/auth/twitter/setup', to: "sessions#setup"
 
   get "onboarding/step/1", to: "onboarding#step1"
   get "onboarding/step/2", to: "onboarding#step2"
