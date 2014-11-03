@@ -8,6 +8,7 @@ class Skill < ActiveRecord::Base
 
   validates_presence_of :expert, :price, :title
   validates :title, length: { maximum: 110 }
+  validates :price, numericality: { only_integer: true }
   validates :smartphone_os, inclusion: { in: SMARTPHONE_OSES }
 
   attr_accessor :tags_text, :categories_list
