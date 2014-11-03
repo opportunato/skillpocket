@@ -88,6 +88,8 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    email_validator (1.4.0)
+      activemodel
     equalizer (0.0.9)
     erubis (2.7.0)
     excon (0.39.0)
@@ -297,6 +299,7 @@ DEPENDENCIES
   coffee-rails
   database_rewinder
   draper
+  email_validator
   factory_girl_rails
   ffaker
   figaro

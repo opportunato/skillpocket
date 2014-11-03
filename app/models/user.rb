@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates_presence_of :full_name, :email, :job, :about, :photo, :profile_banner
   validates :job, length: { maximum: 40 }
   validates :about, length: { maximum: 500 }
+  validates :email, email: true
 
   before_validation :add_protocol_for_urls
 

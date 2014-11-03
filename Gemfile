@@ -34,6 +34,7 @@ gem 'omniauth-twitter'
 gem 'puma'
 gem 'figaro'
 gem 'simple_form', '~> 3.1.0.rc2', github: 'plataformatec/simple_form', branch: 'master'
+gem 'email_validator'
 
 gem 'meta-tags'
 
