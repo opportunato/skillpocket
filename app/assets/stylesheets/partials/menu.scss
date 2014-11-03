@@ -10,24 +10,26 @@ header.main {
   }
 }
 
-// nav.main {
-//   transition: opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle;
-//   opacity: 0;
-//   visibility: hidden;
-//   text-align: center;
-//   font-size: 1.2em;
-//   @include position(fixed, 0px 0px 0px 0px);
-//   background: white;
-//   z-index: 999;
+nav.main {
+  transition: opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  font-size: 1.2em;
+  @include position(fixed, 0px 0px 0px 0px);
+  background: white;
+  z-index: 999;
 
-//   @include respond-to(medium) {
-//     font-size: 2em;
-//   }
+  @include respond-to(medium) {
+    font-size: 2em;
+  }
 
-//   &.active {
-//     visibility: visible;
-//     opacity: .95;
-//   }
+  &.active {
+    visibility: visible;
+    opacity: 0.95;
+  }
+
+}
 
 //   ul {
 //     @include position(absolute, 50% 0 0 50%);
