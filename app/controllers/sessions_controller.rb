@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate!, only: [:create, :setup]
+  skip_before_action :authenticate!, only: [:create]
 
   def create
     if user = create_user
@@ -13,10 +13,6 @@ class SessionsController < ApplicationController
         redirect_to onboarding_step_2_path
       end
     end
-  end
-
-  def setup
-    binding.pry
   end
 
   def destroy
