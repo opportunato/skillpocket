@@ -44,7 +44,9 @@ class Skill < ActiveRecord::Base
           tag = Tag.create(name: tag_name)
         end
 
-        tags.push tag
+        if !(tags.exists?(name: tag_name))
+          tags.push tag
+        end
       end
     end
     save!
