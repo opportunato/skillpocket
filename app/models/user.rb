@@ -9,10 +9,13 @@ class User < ActiveRecord::Base
 
   before_validation :add_protocol_for_urls
 
+  # TODO extremely bad style, need to fix it somehow
   def add_protocol_for_urls
     URLS.each do |url|
-      unless self.send(url)[/\Ahttp:\/\//] || self.send(url)[/\Ahttps:\/\//]
-        self.send("#{url}=", "http://#{self.send(url)}")
+      if self.send(url).present? && self.send(url) != ""
+        unless self.send(url)[/\Ahttp:\/\//] || self.send(url)[/\Ahttps:\/\//]
+          self.send("#{url}=", "http://#{self.send(url)}")
+        end
       end
     end
   end
