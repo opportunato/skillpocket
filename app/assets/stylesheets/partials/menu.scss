@@ -19,7 +19,7 @@ nav.main {
   text-align: center;
   font-size: 1.2em;
   position: fixed;
-  background: white;
+  background: red;
   z-index: 999;
 
   @include respond-to(medium) {
