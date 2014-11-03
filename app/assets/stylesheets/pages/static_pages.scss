@@ -1,0 +1,13 @@
+.static-pages {
+  max-width: 280px;
+  margin: 0 auto;
+  margin-bottom: $grid*6;
+
+  @include respond-to(medium) {
+    max-width: 470px;
+  }
+
+  p {
+    line-height: 1.5em;
+  }
+}
