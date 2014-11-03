@@ -11,22 +11,23 @@ header.main {
 }
 
 nav.main {
-	transition: opacity $transitionTime $baseTransitionStyle;
+	transition: opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle;
 	opacity: 0;
-	display: none;
+  visibility: hidden;
 	text-align: center;
 	font-size: 1.2em;
 	@include position(fixed, 0px 0px 0px 0px);
 	background: white;
-	z-index: 999;
+  z-index: 999;
+  transform: translateZ(0);
 
 	@include respond-to(medium) {
 		font-size: 2em;
 	}
 
 	&.active {
-		display: block;
 		opacity: .95;
+    visibility: visible;
 	}
 
 	ul {
