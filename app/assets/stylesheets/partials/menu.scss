@@ -11,7 +11,7 @@ header.main {
 }
 
 nav.main {
-	transition: opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle;
+	// transition: opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle;
 	opacity: 0;
 	visibility: hidden;
 	text-align: center;
@@ -31,7 +31,7 @@ nav.main {
 
 	ul {
 		@include position(absolute, 50% 0 0 50%);
-		transform: translate(-50%,-50%);
+		// transform: translate(-50%,-50%);
 	}
 
 	li {
