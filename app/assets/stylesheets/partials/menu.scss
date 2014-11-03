@@ -10,27 +10,27 @@ header.main {
   }
 }
 
-// nav.main {
-//   @include position(fixed, 0px 0px 0px 0px);
-//   // @include transition(opacity $transitionTime $baseTransitionStyle);
+nav.main {
+  // @include position(fixed, 0px 0px 0px 0px);
+  // @include transition(opacity $transitionTime $baseTransitionStyle);
 
-//   opacity: 0;
-//   visibility: hidden;
-//   text-align: center;
-//   font-size: 1.2em;
-//   background: white;
-//   z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  font-size: 1.2em;
+  background: white;
+  z-index: 999;
 
-//   @include respond-to(medium) {
-//     font-size: 2em;
-//   }
+  @include respond-to(medium) {
+    font-size: 2em;
+  }
 
-//   &.active {
-//     visibility: visible;
-//     opacity: 0.95;
-//   }
+  &.active {
+    visibility: visible;
+    opacity: 0.95;
+  }
 
-// }
+}
 
 //   ul {
 //     @include position(absolute, 50% 0 0 50%);
