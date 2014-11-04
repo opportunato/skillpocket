@@ -6,6 +6,7 @@ FactoryGirl.define do
     title
     price
     expert factory: :user
+    smartphone_os 'iOS'
 
     factory :tagged_skill do
       after(:create) do |skill|
