@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :experts, only: [:index, :show]
       resources :categories, only: [:index]
-      resources :contacts, only: [:index, :show]
+      resources :contacts, only: [:index]
 
       resource :profile, only: [:show, :create, :update] do
         post :pushtoken

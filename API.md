@@ -213,3 +213,72 @@ Example response:
   }
 ```
 
+
+`PUT /profile`
+-----------
+Updates profile
+Should be signed with authentication token via Authorisation header.
+Accepts either combination of full_name, email, job, about, website_url, twitter_url, linkedin_url, behance_url, github_url, stackoverflow_url as request parameters.
+Returns HTTP 201 and an empty body.
+
+
+`POST /profile/pushtoken`
+-----------
+Updates iOS device push token.
+Should be signed with authentication token via Authorisation header.
+Accepts 'ios_device_token' parameter.
+Returns HTTP 202 and an empty body.
+
+
+`GET /contacts`
+-----------
+Should be signed with authentication token via Authorisation header.
+Returns a list of contacts ordered by date of last conversation and count of unread messages.
+Returns HTTP 200 and JSON of the following format:
+
+```javascript
+    [
+      {
+        "id": 212,
+        "full_name": 'John Smith',
+        "about": 'Software engineer',
+        "unread":1,
+        "text":'whatup',
+        "time":1234568000
+      },
+      ...
+    ]
+```
+
+`GET /message/:id`
+-----------
+Get a list of messages with a specific person.
+Should be signed with authentication token via Authorisation header.
+Accepts user id.
+Returns HTTP 200 and JSON of the following format:
+
+```javascript
+    [
+      {"incoming":false, "read":true,  "date":1413234444, "message":"Ready, let`s roll" },
+      {"incoming":false, "read":true,  "date":1413234333, "message":"Hello back" }
+    ]
+```
+
+
+`POST /message/:id`
+------------
+Send a message to a specific person.
+Should be signed with authentication token via Authorisation header.
+Accepts a user 'id' and 'text' in parameters.
+Returns HTTP 201 and an empty body.
+
+
+`GET /message/unread`
+------------
+Gets a list of total unread messages.
+Should be signed with authentication token via Authorisation header.
+Returns HTTP 200 and JSON of the following format:
+
+```javascript
+    {"unread": 20}
+```
