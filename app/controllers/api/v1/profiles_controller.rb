@@ -20,6 +20,11 @@ class Api::V1::ProfilesController < ApiController
     render nothing: true, status: 202
   end
 
+  def location
+    @profile.update params.permit(:latitude, :longitude)
+    render nothing: true, status: 200
+  end
+
 private
   def get_profile
     @profile = current_user
@@ -29,7 +34,7 @@ private
 
   def user_params
     params.permit(:full_name, :email, :job, :about,
-             :website_url, :twitter_url, :linkedin_url,
+             :website_url, :linkedin_url,
              :behance_url, :github_url, :stackoverflow_url)
   end
 end

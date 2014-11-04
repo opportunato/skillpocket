@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ProfilesController do
-  TwitterUser = Struct.new(:id, :name, :description, :screen_name, :profile_image_url, :profile_banner_url)
+  TwitterUser = Struct.new(:id, :name, :description, :screen_name, :profile_image_url_base, :profile_banner_url) do
+    def profile_image_url format = nil
+      profile_image_url_base
+    end
+  end
 
   context '#create' do
     context 'incorrect' do
@@ -54,8 +58,8 @@ RSpec.describe Api::V1::ProfilesController do
         expect(user.twitter_token).to eq '123'
         expect(user.twitter_token_secret).to eq 'secret'
         expect(user.twitter_url).to eq 'https://twitter.com/screen_name'
-        # expect(user.profile_image_url).to eq 'profile_image_url'
-        # expect(user.profile_banner_url).to eq 'profile_banner_url'
+        # expect(user.profile_image_url).to eq 'http://profile_image_url.com'
+        # expect(user.profile_banner_url).to eq 'http://profile_banner_url.com'
       end
     end
   end
@@ -95,18 +99,23 @@ RSpec.describe Api::V1::ProfilesController do
     end
 
     it 'updates allowed parameters' do
-      VARIABLE_PROPERTIES = [:about, :email, :full_name, :job, :behance_url, :github_url, :linkedin_url, :stackoverflow_url, :twitter_url, :website_url]
-      RESTRICTED_PROPERTIES = [:id, :slug, :twitter_id, :twitter_token, :twitter_token_secret]
+      VARIABLE_PROPERTIES = [:about, :full_name, :job]
+      URLS = [:behance_url, :github_url, :linkedin_url, :stackoverflow_url, :website_url]
+      RESTRICTED_PROPERTIES = [:id, :slug, :twitter_id, :twitter_token, :twitter_token_secret, :twitter_url]
       # TODO: those are rounded on persistence :created_at, :updated_at]
       login_as(user)
       put api_v1_profile_path,
-        VARIABLE_PROPERTIES.product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h)
+        (VARIABLE_PROPERTIES + URLS).product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h).merge(email: 'changed@change.org')
       expect(response.status).to eq 201
       after = user.clone
       after.reload
       VARIABLE_PROPERTIES.each do |property|
         expect(after.send(property)).to eq 'changed'
       end
+      URLS.each do |url|
+        expect(after.send(url)).to eq 'http://changed'
+      end
+      expect(after.email).to eq 'changed@change.org'
       RESTRICTED_PROPERTIES.each do |property|
         expect(after.send(property)).to eq user.send(property)
       end
@@ -121,6 +130,18 @@ RSpec.describe Api::V1::ProfilesController do
       expect(response.body).to be_blank
 
       expect(user.reload.ios_device_token).to eq token
+    end
+
+    it 'updates location' do
+      login_as(user)
+      latitude, longitude = rand(0..100), rand(0..100)
+      post location_api_v1_profile_path, { latitude: latitude, longitude: longitude }
+
+      expect(response.status).to eq 200
+      expect(response.body).to be_blank
+
+      expect(user.reload.latitude).to eq latitude
+      expect(user.reload.longitude).to eq longitude
     end
   end
 end

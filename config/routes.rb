@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
       resource :profile, only: [:show, :create, :update] do
         post :pushtoken
+        post :location
       end
 
       resources :message, only: [:show] do
