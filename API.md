@@ -1,0 +1,215 @@
+Staging endpoints are located at `https://skillpocket.com/api/`. API version is scoped via the URL. For example:
+
+    https://skillpocket.com/api/v1/experts/:id
+
+All `POST` and `PATCH` endpoints accept JSON data in the body of the request. All requests require a `'Content-Type': 'application/json'` header. All responses are JSON.
+
+`GET /experts`
+------------
+Shows all the nearest experts for the current request.
+Also supports GET parameter named category, as `GET /experts?category=programming`
+
+Example response:
+
+```javascript
+[
+  {
+    "about" : "Building and designing iOS apps since 2009. I started as an independent developer, later worked for a mobile studio and designed product for GetYourGuide, a travel startup. I've gained some knowledge about what might or might not work in apps.",
+    "behance_url" : "https://www.behance.net/andyjakubowski",
+    "categories" : [
+      {
+        "id" : 12,
+        "name" : "CSS"
+      }
+    ],
+    "email" : "hello@andyjakubowski.com",
+    "github_url" : "https://github.com/andyjakubowski",
+    "full_name" : "Andy Jakubowski",
+    "id" : 20,
+    "job" : "Product Designer",
+    "linkedin_url" : "https://www.linkedin.com/profile/view?id=304613669",
+    "photo" : "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/1525326_714327698586243_837977757_n.jpg",
+    "price" : 20,
+    "profile_banner_url": "http://api.skillpocket.com/assets/profile_stub.jpeg",
+    "skill_description" : "Online Marketing and Paid Acquisition - Where Can I Buy Customers",
+    "skill_title" : "Designer",
+    "slug" : "andy-jakubowski",
+    "tags" : [
+      {
+        "id" : 12,
+        "name" : "CSS"
+      },
+      {
+        "id" : 15,
+        "name" : "HTML5"
+      }
+    ],
+    "twitter_url" : "https://twitter.com/jakubowskiandy",
+    "website_url" : "http://andyjakubowski.com"
+  },
+  {
+    "about" : "Building and designing iOS apps since 2009. I started as an independent developer, later worked for a mobile studio and designed product for GetYourGuide, a travel startup. I've gained some knowledge about what might or might not work in apps.",
+    "behance_url" : "https://www.behance.net/andyjakubowski",
+    "categories" : [
+      {
+        "id" : 12,
+        "name" : "CSS"
+      }
+    ],
+    "color" : "E14744",
+    "email" : "hello@andyjakubowski.com",
+    "github_url" : "https://github.com/andyjakubowski",
+    "full_name" : "Andy Jakubowski",
+    "id" : 20,
+    "job" : "Product Designer",
+    "linkedin_url" : "https://www.linkedin.com/profile/view?id=304613669",
+    "photo" : "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/1525326_714327698586243_837977757_n.jpg",
+    "price" : 20,
+    "profile_banner_url": "http://api.skillpocket.com/assets/profile_stub.jpeg",
+    "skill_description" : "Online Marketing and Paid Acquisition - Where Can I Buy Customers",
+    "skill_title" : "Designer",
+    "slug" : "andy-jakubowski",
+    "tags" : [
+      {
+        "id" : 12,
+        "name" : "CSS"
+      },
+      {
+        "id" : 15,
+        "name" : "HTML5"
+      }
+    ],
+    "twitter_url" : "https://twitter.com/jakubowskiandy",
+    "website_url" : "http://andyjakubowski.com"
+  }
+]
+```
+
+`GET /experts/:id`
+------------
+Shows the info about one expert, according to its id. Id can be either number or a human-readable slug like "andy-jakubowski".
+Also supports GET parameter named category, as `GET /experts?category=programming`
+
+Example response:
+
+```javascript
+  {
+    "about" : "Building and designing iOS apps since 2009. I started as an independent developer, later worked for a mobile studio and designed product for GetYourGuide, a travel startup. I've gained some knowledge about what might or might not work in apps.",
+    "behance_url" : "https://www.behance.net/andyjakubowski",
+    "categories" : [
+      {
+        "id" : 12,
+        "name" : "CSS"
+      }
+    ],
+    "email" : "hello@andyjakubowski.com",
+    "github_url" : "https://github.com/andyjakubowski",
+    "full_name" : "Andy Jakubowski",
+    "id" : 20,
+    "job" : "Product Designer",
+    "linkedin_url" : "https://www.linkedin.com/profile/view?id=304613669",
+    "photo" : "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/1525326_714327698586243_837977757_n.jpg",
+    "price" : 20,
+    "profile_banner_url": "http://api.skillpocket.com/assets/profile_stub.jpeg",
+    "skill_description" : "Online Marketing and Paid Acquisition - Where Can I Buy Customers",
+    "skill_title" : "Designer",
+    "slug" : "andy-jakubowski",
+    "tags" : [
+      {
+        "id" : 12,
+        "name" : "CSS"
+      },
+      {
+        "id" : 15,
+        "name" : "HTML5"
+      }
+    ],
+    "twitter_url" : "https://twitter.com/jakubowskiandy",
+    "website_url" : "http://andyjakubowski.com"
+  }
+```
+
+`GET /categories`
+------------
+Shows all the categories on which you can perform search on experts.
+
+Example response:
+
+```javascript
+[
+  {
+    "id" : ,
+    "name" : "CSS"
+  },
+  {
+    "id" : ,
+    "name" : "HTML5"
+  }
+]
+```
+
+`POST /profile`
+-----------
+Creates the new profile for a user or returns an existing one if it already has one.
+Should accept twitter token and secret as 'token' and 'secret' POST parameters. Returns a token for a client to use.
+
+Example request data:
+
+```javascript
+{
+    token: "d5c2accedd5338ae6bdb7024589a0636",
+    secret: "d5c2accedd5338ae6bdb7024589a0636"
+}
+```
+
+Example response:
+
+```javascript
+{
+    token: "d5c2accedd5338ae6bdb7024589a0636"
+}
+```
+
+`GET /profile`
+------------
+Shows the profile of a user that is currently using an application.
+Should be signed with authentication token via Authorisation header.
+Example response:
+
+```javascript
+  {
+    "about" : "Building and designing iOS apps since 2009. I started as an independent developer, later worked for a mobile studio and designed product for GetYourGuide, a travel startup. I've gained some knowledge about what might or might not work in apps.",
+    "behance_url" : "https://www.behance.net/andyjakubowski",
+    "categories" : [
+      {
+        "id" : 12,
+        "name" : "CSS"
+      }
+    ],
+    "email" : "hello@andyjakubowski.com",
+    "github_url" : "https://github.com/andyjakubowski",
+    "full_name" : "Andy Jakubowski",
+    "id" : 20,
+    "job" : "Product Designer",
+    "linkedin_url" : "https://www.linkedin.com/profile/view?id=304613669",
+    "photo" : "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/1525326_714327698586243_837977757_n.jpg",
+    "price" : 20,
+    "profile_banner_url": "http://api.skillpocket.com/assets/profile_stub.jpeg",
+    "skill_description" : "Online Marketing and Paid Acquisition - Where Can I Buy Customers",
+    "skill_title" : "Designer",
+    "slug" : "andy-jakubowski",
+    "tags" : [
+      {
+        "id" : 12,
+        "name" : "CSS"
+      },
+      {
+        "id" : 15,
+        "name" : "HTML5"
+      }
+    ],
+    "twitter_url" : "https://twitter.com/jakubowskiandy",
+    "website_url" : "http://andyjakubowski.com"
+  }
+```
+
