@@ -17,6 +17,7 @@ RSpec.describe Api::V1::ExpertsController do
   end
 
   it 'returns experts in correct format' do
+    login_as(user)
     get "/api/v1/experts/"
 
     # it_behaves_like 'token protected resource'
@@ -79,6 +80,7 @@ RSpec.describe Api::V1::ExpertsController do
 
   context "when sent the category" do
     it "returns only experts with that category" do
+      login_as(user)
       get "/api/v1/experts?category=#{URI.encode(second_expert.skill.tags.last.name)}"
 
       expect(response_json.size).to eq 1
@@ -88,6 +90,7 @@ RSpec.describe Api::V1::ExpertsController do
 
   context 'when given a slug' do
     it 'returns expert' do
+      login_as(user)
       get "/api/v1/experts/#{first_expert.slug}"
 
       expect(response_json['id']).to eq first_expert.id

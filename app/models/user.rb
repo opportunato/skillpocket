@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
   scope :approved, -> { where(approved: true) }
   scope :experts, -> { joins(:skill) }
+  scope :near_user, -> user { near([user.latitude, user.longitude], user.max_search_distance, units: :km) }
+
+  geocoded_by :ip_address
+  after_validation :geocode
 
   delegate :price,
            to: :skill
@@ -70,5 +74,9 @@ class User < ActiveRecord::Base
     self.longitude = location.longitude
     self.ip_address = ip
     save
+  end
+
+  def location_defined?
+    self.latitude && self.longitude
   end
 end

@@ -8,6 +8,7 @@ All `POST` and `PATCH` endpoints accept JSON data in the body of the request. Al
 ------------
 Shows all the nearest experts for the current request.
 Also supports GET parameter named category, as `GET /experts?category=programming`
+Maximum search distance is always taken into account when user location is defined (at least now, until we add 'online only', 'now', 'in 4 hrs' criteria et c). Default value is 30 miles (~48km).
 
 Allowed category values: "Technology", "Business", "Marketing & Sales", "Skills & Management", "Product & Design", "Funding", "Writing", "Photo & Video"
 
@@ -90,7 +91,6 @@ Example response:
 `GET /experts/:id`
 ------------
 Shows the info about one expert, according to its id. Id can be either number or a human-readable slug like "andy-jakubowski".
-Also supports GET parameter named category, as `GET /experts?category=programming`
 
 Example response:
 

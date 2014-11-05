@@ -1,9 +1,10 @@
 class Api::V1::ExpertsController < ApiController
-  skip_before_action :authenticate!, only: [:index, :show]
   has_scope :with_category, as: :category
 
   def index
-    @experts = apply_scopes(User.all.joins(:skill)).order("users.created_at ASC")
+    @experts = apply_scopes(User.experts)
+    @experts = @experts.geocoded.near_user(current_user) if current_user.location_defined?
+    @experts = @experts.order("users.created_at ASC")
   end
 
   def show
