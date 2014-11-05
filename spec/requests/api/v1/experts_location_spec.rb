@@ -46,4 +46,16 @@ RSpec.describe Api::V1::ExpertsController do
       expect(response_json.map {|expert| expert['id'] }.sort).to eq [outlander, center, coast, south, unknown1, unknown2].map(&:id).sort
     end
   end
+
+  describe do
+    let(:latitude)  { 32.721031 }
+    let(:longitude) { -117.157776 }
+    let(:distance)  { 10 }
+    it 'we get distance to experts in km' do
+      login_as(user)
+      get api_v1_experts_path
+      # FIXME in app/views/api/v1/experts/_expert.json.jbuilder replace * 1.6 to units: :km (doesn't seem to work to presumably a bug in geocoder)
+      expect(response_json.map {|expert| expert['distance'] }.sort).to eq [5.9145713330765854, 8.029690073858402]
+    end
+  end
 end

@@ -27,4 +27,6 @@ json.cache! expert do
     json.id skill_tag.id
     json.name skill_tag.name
   end
+
+  json.distance expert.distance_to(current_user) * 1.6 if current_user.geocoded?
 end

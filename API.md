@@ -48,7 +48,8 @@ Example response:
       }
     ],
     "twitter_url" : "https://twitter.com/jakubowskiandy",
-    "website_url" : "http://andyjakubowski.com"
+    "website_url" : "http://andyjakubowski.com",
+    "distance": 12.234
   },
   {
     "about" : "Building and designing iOS apps since 2009. I started as an independent developer, later worked for a mobile studio and designed product for GetYourGuide, a travel startup. I've gained some knowledge about what might or might not work in apps.",
@@ -83,7 +84,8 @@ Example response:
       }
     ],
     "twitter_url" : "https://twitter.com/jakubowskiandy",
-    "website_url" : "http://andyjakubowski.com"
+    "website_url" : "http://andyjakubowski.com",
+    "distance": 34.234
   }
 ]
 ```
