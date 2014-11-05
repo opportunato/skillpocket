@@ -126,7 +126,8 @@ RSpec.describe Api::V1::ProfilesController do
       token = SecureRandom.hex
       post pushtoken_api_v1_profile_path, { ios_device_token: token }
 
-      expect(response.status).to eq 202
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq 'application/json'
       expect(response.body).to be_blank
 
       expect(user.reload.ios_device_token).to eq token
@@ -138,6 +139,7 @@ RSpec.describe Api::V1::ProfilesController do
       post location_api_v1_profile_path, { latitude: latitude, longitude: longitude }
 
       expect(response.status).to eq 200
+      expect(response.content_type).to eq 'application/json'
       expect(response.body).to be_blank
 
       expect(user.reload.latitude).to eq latitude

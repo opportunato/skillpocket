@@ -12,17 +12,17 @@ class Api::V1::ProfilesController < ApiController
 
   def update
     @profile.update user_params
-    render nothing: true, status: 201
+    render json: '', status: 201
   end
 
   def pushtoken
     @profile.update params.permit(:ios_device_token)
-    render nothing: true, status: 202
+    render json: '', status: 200
   end
 
   def location
     @profile.update params.permit(:latitude, :longitude)
-    render nothing: true, status: 200
+    render json: '', status: 200
   end
 
 private

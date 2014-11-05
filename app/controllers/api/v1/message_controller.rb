@@ -59,7 +59,7 @@ class Api::V1::MessageController < ApiController
   def create
     recipient = User.find params[:id]
     current_user.send_message_to recipient, params[:text]
-    render status: 201, nothing: true
+    render json: '', status: 201
   end
 
   # @url /books

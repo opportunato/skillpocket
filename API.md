@@ -227,7 +227,7 @@ Returns HTTP 201 and an empty body.
 Updates iOS device push token.
 Should be signed with authentication token via Authorisation header.
 Accepts 'ios_device_token' parameter.
-Returns HTTP 202 and an empty body.
+Returns HTTP 200 and an empty body.
 
 
 `POST /profile/location`

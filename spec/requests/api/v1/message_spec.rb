@@ -16,6 +16,7 @@ RSpec.describe Api::V1::MessageController do
       post api_v1_message_path(expert.id), { text: body }
 
       expect(response.status).to eq 201
+      expect(response.content_type).to eq 'application/json'
       expect(response.body).to be_blank
 
       # expect(consumer).to receive(:send_message_to).with(expert, body)
@@ -34,6 +35,7 @@ RSpec.describe Api::V1::MessageController do
       post api_v1_message_path(consumer.id), { text: reply }
 
       expect(response.status).to eq 201
+      expect(response.content_type).to eq 'application/json'
       expect(response.body).to be_blank
 
       # expect(expert).to receive(:send_message_to).with(consumer, reply)
