@@ -60,6 +60,7 @@ RSpec.describe Api::V1::ProfilesController do
         expect(user.twitter_url).to eq 'https://twitter.com/screen_name'
         # expect(user.profile_image_url).to eq 'http://profile_image_url.com'
         # expect(user.profile_banner_url).to eq 'http://profile_banner_url.com'
+        expect(user.max_search_distance).to eq 48
       end
     end
   end
@@ -94,7 +95,10 @@ RSpec.describe Api::V1::ProfilesController do
         linkedin_url: user.linkedin_url,
         stackoverflow_url: user.stackoverflow_url,
         twitter_url: user.twitter_url,
-        website_url: user.website_url
+        website_url: user.website_url,
+        latitude: user.latitude,
+        longitude: user.longitude,
+        max_search_distance: user.max_search_distance
       })
     end
 
@@ -105,7 +109,7 @@ RSpec.describe Api::V1::ProfilesController do
       # TODO: those are rounded on persistence :created_at, :updated_at]
       login_as(user)
       put api_v1_profile_path,
-        (VARIABLE_PROPERTIES + URLS).product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h).merge(email: 'changed@change.org')
+        (VARIABLE_PROPERTIES + URLS).product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h).merge(email: 'changed@change.org').merge(max_search_distance: 24)
       expect(response.status).to eq 201
       after = user.clone
       after.reload
@@ -116,6 +120,7 @@ RSpec.describe Api::V1::ProfilesController do
         expect(after.send(url)).to eq 'http://changed'
       end
       expect(after.email).to eq 'changed@change.org'
+      expect(after.max_search_distance).to eq 24
       RESTRICTED_PROPERTIES.each do |property|
         expect(after.send(property)).to eq user.send(property)
       end

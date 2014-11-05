@@ -33,7 +33,7 @@ private
   # TODO: allow to update photo and skill
 
   def user_params
-    params.permit(:full_name, :email, :job, :about,
+    params.permit(:full_name, :email, :job, :about, :max_search_distance,
              :website_url, :linkedin_url,
              :behance_url, :github_url, :stackoverflow_url)
   end

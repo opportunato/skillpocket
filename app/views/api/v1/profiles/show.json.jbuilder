@@ -7,6 +7,9 @@ json.cache! @profile do
   json.photo_url @profile.photo.url(:small)
   json.profile_banner_url @profile.profile_banner.url(:normal)
   json.slug @profile.slug
+  json.latitude @profile.latitude
+  json.longitude @profile.longitude
+  json.max_search_distance @profile.max_search_distance
 
   json.website_url @profile.website_url
   json.twitter_url @profile.twitter_url

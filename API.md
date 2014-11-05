@@ -211,7 +211,10 @@ Example response:
       }
     ],
     "twitter_url" : "https://twitter.com/jakubowskiandy",
-    "website_url" : "http://andyjakubowski.com"
+    "website_url" : "http://andyjakubowski.com",
+    "latitude": 30.0,
+    "longitude": 60.0,
+    "max_search_distance": 48
   }
 ```
 
@@ -220,7 +223,7 @@ Example response:
 -----------
 Updates profile
 Should be signed with authentication token via Authorisation header.
-Accepts either combination of full_name, email, job, about, website_url, twitter_url, linkedin_url, behance_url, github_url, stackoverflow_url as request parameters.
+Accepts either combination of full_name, email, job, about, max_search_distance, website_url, twitter_url, linkedin_url, behance_url, github_url, stackoverflow_url as request parameters.
 Returns HTTP 201 and an empty body.
 
 
