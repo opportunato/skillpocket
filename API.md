@@ -1,4 +1,4 @@
-Staging endpoints are located at `https://skillpocket.com/api/`. API version is scoped via the URL. For example:
+Staging endpoint are located at `https://skillpocket.com/api/`. API version is scoped via the URL. For example:
 
     https://skillpocket.com/api/v1/experts/:id
 
@@ -8,6 +8,8 @@ All `POST` and `PATCH` endpoints accept JSON data in the body of the request. Al
 ------------
 Shows all the nearest experts for the current request.
 Also supports GET parameter named category, as `GET /experts?category=programming`
+
+Allowed category values: "Technology", "Business", "Marketing & Sales", "Skills & Management", "Product & Design", "Funding", "Writing", "Photo & Video"
 
 Example response:
 
