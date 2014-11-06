@@ -72,6 +72,22 @@ nav.main {
   }
 }
 
+.menu {
+	@include position(absolute, 14px 14px 0 0);
+
+  @include respond-to(medium) {
+    @include position(absolute, 16px 15px 0 0);
+  }
+}
+
 .menu-button {
-	@include position(absolute, $grid/2 $grid/2 0 0);
+  margin-left: $grid;
+}
+
+.become {
+  display: none;
+
+  @include respond-to(small) {
+    display: inline-block;
+  }
 }

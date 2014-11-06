@@ -2,11 +2,15 @@
   - user = current_user.decorate
 
 header.main
-  / a.logo href="#"
   = link_to root_path, class: 'logo'
     span.icon-logo
     span Skillpocket
-  a.button.menu-button href="#" Menu
+  .menu
+    - if current_onboarding_step.present?
+      = link_to_unless_current 'Become an expert', "/onboarding/step/#{current_onboarding_step}", class: "button become"
+    - if current_onboarding_step.nil? && user.approved
+      = link_to_unless_current 'Profile', user_path("@#{user.twitter_handle}")
+    a.menu-button href="#" Menu
   nav.main
     .overlay
     ul
