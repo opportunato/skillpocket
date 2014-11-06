@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20141105145049) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "ip_address"
+    t.boolean  "mailchimp_flag",       default: false
     t.integer  "max_search_distance",  default: 48
   end
 
