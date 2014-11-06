@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     post "/login", to: "login#create"
     get "/approve", to: "approve#index"
     post "/approve", to: "approve#update"
+    get "/applicants", to: "applicants#index"
   end
 
   get '/auth/twitter/callback', to: "sessions#create"

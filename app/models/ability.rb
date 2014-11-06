@@ -13,6 +13,7 @@ class Ability
     # 
     if user.admin?
       can :manage, :all
+      can :read, User
 
     # User
     # 

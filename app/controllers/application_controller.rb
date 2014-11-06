@@ -34,7 +34,11 @@ protected
   end
 
   def current_user
-    warden.user(:user)
+    if warden.user(:admin)
+      warden.user(:admin)
+    else
+      warden.user(:user)
+    end
   end
 
   def is_admin?

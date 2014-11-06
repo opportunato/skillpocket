@@ -1,0 +1,28 @@
+- title "Check out applicants"
+
+/ = form_tag admin_import_path, method: :post do 
+/   = submit_tag "Update mailchimp"
+section.admin
+  h2 Approved
+  table
+    tr
+      th Twitter handle
+      th Name
+      th Approved
+    - @experts.each do |user|
+      tr
+        td = link_to "@#{user.twitter_handle}", user_path("@#{user.twitter_handle}")
+        td = user.full_name
+        td = user.approved ? "Yes" : "No"
+
+  h2 Applied
+  table
+    tr
+      th Twitter handle
+      th Name
+      th Approved
+    - @applicants.each do |user|
+      tr
+        td = link_to "@#{user.twitter_handle}", user_path("@#{user.twitter_handle}"), target: "_blank"
+        td = user.full_name
+        td = user.approved ? "Yes" : "No"

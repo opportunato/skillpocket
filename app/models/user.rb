@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   end
 
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
+  scope :unapproved, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :experts, -> { joins(:skill) }
   scope :near_user, -> user { near([user.latitude, user.longitude], user.max_search_distance, units: :km) }
