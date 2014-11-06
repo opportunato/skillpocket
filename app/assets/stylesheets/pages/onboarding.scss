@@ -8,6 +8,22 @@
 		max-width: 470px;
 	}
 
+  .phone {
+    margin-top: $grid*6;
+    margin-bottom: -$grid*4;
+  }
+
+  ol.step1 {
+    font-family: $accent-font-family;
+    font-size: 1.2em;
+    margin-top: $grid*6;
+
+    li {
+      margin: 0 $grid;
+      display: inline-block;
+    }
+  }
+
   .check_boxes {
     margin-bottom: $grid*2;
   }
