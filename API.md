@@ -239,7 +239,7 @@ Returns HTTP 200 and an empty body.
 
 `POST /profile/location`
 -----------
-Updates iOS device push token.
+Updates user's location.
 Should be signed with authentication token via Authorisation header.
 Accepts 'latitude' and 'longitude' parameters.
 Returns HTTP 200 and an empty body.
