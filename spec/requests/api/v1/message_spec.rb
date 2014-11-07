@@ -146,4 +146,25 @@ RSpec.describe Api::V1::MessageController do
 
     end
   end
+
+  describe 'shows number of unread messages' do
+    before(:each) do
+      @consumer = create :user
+      @expert = create :skilled_user
+      @expert2 = create :skilled_user
+      Timecop.freeze(Time.at(1413234000)) { @consumer.send_message_to(@expert, 'Hi') }
+      Timecop.freeze(Time.at(1413234111)) { @expert.send_message_to(@consumer, 'Hello') }
+      Timecop.freeze(Time.at(1413234222)) { @consumer.send_message_to(@expert, 'Hi') }
+      Timecop.freeze(Time.at(1413234333)) { @expert.send_message_to(@consumer, 'Hello back') }
+      Timecop.freeze(Time.at(1413234444)) { @expert.send_message_to(@consumer, 'Ready, let`s roll') }
+    end
+
+    it 'returns correct number' do
+      login_as(@consumer)
+      get unread_api_v1_message_index_path, nil
+
+      expect(response.status).to eq 200
+      expect(response_json).to eq({"unread" => 3})
+    end
+  end
 end

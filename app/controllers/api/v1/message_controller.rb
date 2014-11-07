@@ -61,4 +61,22 @@ class Api::V1::MessageController < ApiController
     current_user.send_message_to recipient, params[:text]
     render json: '', status: 201
   end
+
+  # @url /books
+  # @action GET
+  #
+  # View list of all books
+  #
+  # @optional [Integer] page Page number
+  # @optional [Integer] year Filter books by imprint date
+  #
+  # @response_field [Integer] page Page number
+  # @response_field [Integer] total_pages Total number of pages
+  # @response_field [Integer] total_books Total number of books
+  # @response_field [Array<Book>] books List of books on this page
+  #
+  def unread
+    unread = Message.recipient(current_user).unread.count
+    render json: {unread:  unread}, status: 200
+  end
 end
