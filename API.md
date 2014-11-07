@@ -286,14 +286,3 @@ Send a message to a specific person.
 Should be signed with authentication token via Authorisation header.
 Accepts a user 'id' and 'text' in parameters.
 Returns HTTP 201 and an empty body.
-
-
-`GET /message/unread`
-------------
-Gets a list of total unread messages.
-Should be signed with authentication token via Authorisation header.
-Returns HTTP 200 and JSON of the following format:
-
-```javascript
-    {"unread": 20}
-```
