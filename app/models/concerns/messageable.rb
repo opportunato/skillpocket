@@ -8,7 +8,7 @@ module Messageable
       conversation = conversation_with(messageable).first_or_create(older: self, newer: messageable)
       Message.create sender: self, recipient: messageable, conversation: conversation, body: text
       # FIXME: we assume that Messageable is a User, and User is a NofificationPushable
-      AppleNotificationPusher.push messageable.ios_device_token, "#{self.full_name} has sent you a message", self.id, messages_with(messageable).unread.count
+      AppleNotificationPusher.push messageable.ios_device_token, "#{self.full_name} has sent you a message", self.id, Message.recipient(messageable).unread.count
     end
 
     def messages_with messageable
