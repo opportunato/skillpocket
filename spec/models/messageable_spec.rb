@@ -85,15 +85,18 @@ RSpec.shared_examples_for Messageable  do |factory|
   describe '#send_message_to also sends push notification' do
     let(:recipient) { create :user_with_ios_device_token }
     let(:sender) { create :user }
-    let(:body) { Faker::Lorem.sentence }
+    let(:body) { "#{sender.full_name} has sent you a message" }
 
+    #FIXME: omg, should double be set up to allow or expect? why does it fail if only either is used?
     before do
-      allow(AppleNotificationPusher).to receive(:push).with(recipient.ios_device_token, body)
+      allow(AppleNotificationPusher).to receive(:push).with(recipient.ios_device_token, body, sender.id, 1)
     end
 
     specify do
-      expect(AppleNotificationPusher).to receive(:push).with(recipient.ios_device_token, body)
+      expect(AppleNotificationPusher).to receive(:push).with(recipient.ios_device_token, body, sender.id, 1)
       sender.send_message_to recipient, body
     end
+
+    it 'should have correct unread'
   end
 end
