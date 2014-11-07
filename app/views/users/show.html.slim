@@ -13,7 +13,7 @@ section.profile-page
   header.profile
     .bg[style="background-image: url(#{user.profile_banner_url});background-size: cover;"]
     h2.skill-title = user.skill_title
-    = image_tag user.photo_url, class: 'userpic'
+    .userpic [style="background-image: url(#{user.photo_url});background-size: cover;"]
   section.profile
     h2.name = user.full_name
     p.job = user.job
