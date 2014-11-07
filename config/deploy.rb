@@ -32,6 +32,7 @@ set :shared_paths,                  %w(
                                       config/application.yml
                                       config/database.yml
                                       config/secrets.yml
+                                      config/push.pem
                                       public/uploads
                                       public/system
                                     )
