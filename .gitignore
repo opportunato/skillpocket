@@ -17,7 +17,7 @@ config/secrets.yml
 /.bundle
 /vendor/bundle
 config/database.yml
-config/push.pem
+config/*.pem
 .yardoc
 public/api
 .powenv
