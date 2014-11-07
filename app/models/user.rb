@@ -71,8 +71,10 @@ class User < ActiveRecord::Base
   end
 
   def update_location location, ip
-    self.latitude = location.latitude
-    self.longitude = location.longitude
+    if location
+      self.latitude = location.latitude
+      self.longitude = location.longitude
+    end
     self.ip_address = ip
     save
   end
