@@ -8,11 +8,15 @@ section.admin
     tr
       th Twitter handle
       th Name
+      th iOS
+      th Categories
       th Approved
     - @experts.each do |user|
       tr
         td = link_to "@#{user.twitter_handle}", user_path("@#{user.twitter_handle}")
         td = user.full_name
+        td = user.smartphone_os
+        td = user.skill_categories_text
         td = user.approved ? "Yes" : "No"
 
   h2 Applied
@@ -20,6 +24,8 @@ section.admin
     tr
       th Twitter handle
       th Name
+      th iOS
+      th Categories
       th Approved
     - @applicants.each do |user|
       tr
@@ -27,4 +33,6 @@ section.admin
           - if user.twitter_handle
             = link_to "@#{user.twitter_handle}", user_path("@#{user.twitter_handle}"), target: "_blank"
         td = user.full_name
+        td = user.smartphone_os
+        td = user.skill_categories_text
         td = user.approved ? "Yes" : "No"

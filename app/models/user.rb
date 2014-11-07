@@ -30,10 +30,10 @@ class User < ActiveRecord::Base
   geocoded_by :ip_address
   after_validation :geocode
 
-  delegate :price,
+  delegate :price, :smartphone_os,
            to: :skill
 
-  delegate :title, :tags, :categories,
+  delegate :title, :tags, :categories, :categories_text,
            to: :skill,
            prefix: true
 

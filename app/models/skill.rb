@@ -27,6 +27,12 @@ class Skill < ActiveRecord::Base
     tags.categories
   end
 
+  def categories_text
+    tags.categories.map(&:name).reduce do |string, category|
+      string + ", " + category
+    end
+  end
+
   def categories_list
     @categories_list || tags.categories.map(&:name)
   end
