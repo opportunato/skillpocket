@@ -14,6 +14,8 @@ ActiveAdmin.register User do
     selectable_column
     column :twitter_handle
     column :full_name
+    column :smartphone_os
+    column :tags
     column :approved
   end
 
