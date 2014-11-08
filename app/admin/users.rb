@@ -11,10 +11,17 @@ ActiveAdmin.register User do
   filter :created_at
 
   index do
+    selectable_column
     column :twitter_handle
     column :full_name
     column :approved
-    actions
+  end
+
+  batch_action :approve do |ids|
+    User.find(ids).each do |user|
+      user.approve
+    end
+    redirect_to collection_path, alert: 'The users have been approved'
   end
 
   controller do
