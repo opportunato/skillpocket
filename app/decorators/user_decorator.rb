@@ -9,6 +9,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def tags
+    return '' unless skill
     user.skill_tags.map do |tag|
       h.content_tag :li, tag.name
     end.join('').html_safe
