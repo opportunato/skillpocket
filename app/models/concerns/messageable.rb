@@ -6,6 +6,7 @@ module Messageable
 
     def send_message_to messageable, text
       conversation = conversation_with(messageable).first_or_create(older: self, newer: messageable)
+      conversation.update_attribute :body, text
       Message.create sender: self, recipient: messageable, conversation: conversation, body: text
       # FIXME: we assume that Messageable is a User, and User is a NofificationPushable
       AppleNotificationPusher.push messageable.ios_device_token, "#{self.full_name} has sent you a message", self.id, Message.recipient(messageable).unread.count
@@ -20,11 +21,7 @@ module Messageable
     end
 
     def recent
-      Message.
-        joins(:conversation).
-        where('older_id = ? OR newer_id = ?', self.id, self.id). # WTF, why I cannot use scope on a joined model:
-        # participant(self).
-        includes(:conversation)
+      Conversation.participant(self)
     end
   end
 end

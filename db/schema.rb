@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105145049) do
+ActiveRecord::Schema.define(version: 20141108174046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20141105145049) do
   end
 
   create_table "conversations", force: true do |t|
-    t.integer "older_id", null: false
-    t.integer "newer_id", null: false
+    t.integer  "older_id",   null: false
+    t.integer  "newer_id",   null: false
+    t.string   "body"
+    t.datetime "updated_at"
   end
 
   add_index "conversations", ["older_id", "newer_id"], name: "index_conversations_on_older_id_and_newer_id", unique: true, using: :btree
@@ -135,7 +137,6 @@ ActiveRecord::Schema.define(version: 20141105145049) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "ip_address"
-    t.boolean  "mailchimp_flag",       default: false
     t.integer  "max_search_distance",  default: 48
   end
 

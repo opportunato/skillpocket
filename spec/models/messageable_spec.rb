@@ -69,15 +69,16 @@ RSpec.shared_examples_for Messageable  do |factory|
         @another = create factory
         @someone = create factory
         @sender.send_message_to @recipient, 'hello'
-        @recipient.send_message_to @sender, 'hi'
-        @another.send_message_to @sender, 'blah'
+        @recipient.send_message_to @sender, 'hi' # First with @recipient
+        @another.send_message_to @sender, 'yo'
+        @another.send_message_to @sender, 'blah' # Another with @another
         @someone.send_message_to @recipient, 'loser'
-        @someone.send_message_to @another, 'wtf'
+        @someone.send_message_to @another, 'wtf' # Irrelevant
       end
 
       it 'provides a list of recent conversations' do
         recent = @sender.recent
-        expect(recent.map &:body).to eq ['blah', 'hi', 'hello']
+        expect(recent.map &:body).to eq ['blah', 'hi']
       end
     end
   end

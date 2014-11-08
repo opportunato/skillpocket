@@ -4,6 +4,8 @@ class Conversation < ActiveRecord::Base
   belongs_to :newer, class: User
   has_many :messages
 
+  default_scope { order(updated_at: :desc) }
+
   scope :participant, -> (participant) { where('older_id = ? OR newer_id = ?', participant.id, participant.id) }
 
   # Disallow Andy <=> Pete and Pete <=> Andy conversation duplicates
