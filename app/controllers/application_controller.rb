@@ -30,7 +30,11 @@ protected
   end
 
   def admin_signed_in?
-    warden.authenticated?(:admin)
+    !current_admin_user.nil?
+  end
+
+  def current_admin_user
+    warden.user(:admin)
   end
 
   def current_user

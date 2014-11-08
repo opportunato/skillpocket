@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.7'
 gem 'pg'
 
 gem 'sass-rails'
@@ -46,6 +46,9 @@ gem 'immigrant'
 gem 'grocer' # Apple push notifications
 
 gem 'geocoder'
+
+gem 'inherited_resources', '1.4.1'
+gem 'activeadmin', github: 'activeadmin'
 
 group :development do
   gem 'mina-stack', github: 'div/mina-stack'
