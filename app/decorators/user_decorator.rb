@@ -14,6 +14,10 @@ class UserDecorator < ApplicationDecorator
     end.join('').html_safe
   end
 
+  def smartphone_os
+    skill ? skill.smartphone_os : ''
+  end
+
   def urls
     User::URLS.map do |url|
       if user.send(url).present? 
