@@ -11,4 +11,8 @@ class TwitterTalker
   def user
     @client.user
   end
+
+  def friend_ids(options={})
+    @client.friend_ids(options).to_a
+  end
 end

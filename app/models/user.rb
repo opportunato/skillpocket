@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Messageable
+  include Redis::Objects
 
   has_one :skill, dependent: :destroy
 
@@ -22,6 +23,8 @@ class User < ActiveRecord::Base
   end
 
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
+  scope :experts, -> { joins(:skill) }
+  scope :from_twitter, -> { where.not('users.twitter_id' => nil) }
   scope :unapproved, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :experts, -> { joins(:skill) }
@@ -48,6 +51,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :photo, UserPhotoUploader
   mount_uploader :profile_banner, UserBannerUploader
+
+  set :twitter_friends
 
   def expert?
     skill.present?

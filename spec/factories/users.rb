@@ -7,6 +7,9 @@ FactoryGirl.define do
   sequence(:access_token) { SecureRandom.hex(16) }
   sequence(:photo) { File.open Rails.root.join("db/fixtures/images/lera.png") }
   sequence(:profile_banner) { File.open Rails.root.join("db/fixtures/images/lera.png") }
+  sequence(:twitter_id) { |n| n.to_s }
+  sequence(:twitter_token) { SecureRandom.hex(10) }
+  sequence(:twitter_token_secret) { SecureRandom.hex(20) }
 
   factory :user do
     about
@@ -16,6 +19,9 @@ FactoryGirl.define do
     full_name
     job
     access_token
+    twitter_id
+    twitter_token
+    twitter_token_secret
 
     # TODO: these should differ
     behance_url "http://behance.com/"
