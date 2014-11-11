@@ -1,6 +1,6 @@
 class TwitterFriendsSyncer
-  def initialize(user_id=nil)
-    @users = user_id.present? ? [User.find(user_id)] : User.all
+  def initialize(users)
+    @users = users
   end
 
   def sync
