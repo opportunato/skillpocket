@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_one :skill, dependent: :destroy
 
-  validates_presence_of :full_name, :email, :job, :about, :photo, :profile_banner
+  validates_presence_of :full_name, :email, :job, :about, :photo
   validates :job, length: { maximum: 40 }
   validates :about, length: { maximum: 500 }
   validates :email, email: true
