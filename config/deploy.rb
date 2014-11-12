@@ -45,14 +45,11 @@ set :monitored,                     %w(
                                       memcached
                                     )
 
+# Sets the path to the pid file of a sidekiq worker
+set :sidekiq_pid, lambda { "#{deploy_to}/#{shared_path}/tmp/pids/sidekiq.pid" }
+
 task :environment do
   invoke :'rbenv:load'
-end
-
-task :setup do
-  # sidekiq needs a place to store its pid file and log file
-  queue! %[mkdir -p "#{deploy_to}/shared/tmp/pids/"]
-  queue! %[mkdir -p "#{deploy_to}/shared/log/"]
 end
 
 desc "Deploys the current version to the server."
