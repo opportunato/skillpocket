@@ -109,7 +109,7 @@ RSpec.describe Api::V1::ProfilesController do
       # TODO: those are rounded on persistence :created_at, :updated_at]
       login_as(user)
       put api_v1_profile_path,
-        (VARIABLE_PROPERTIES + URLS).product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h).merge(email: 'changed@change.org').merge(max_search_distance: 24)
+        (VARIABLE_PROPERTIES + URLS).product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h).merge(email: 'changed@change.org').merge(max_search_distance: 24).merge(social_authority: 99)
       expect(response.status).to eq 201
       after = user.clone
       after.reload
@@ -124,6 +124,7 @@ RSpec.describe Api::V1::ProfilesController do
       RESTRICTED_PROPERTIES.each do |property|
         expect(after.send(property)).to eq user.send(property)
       end
+      expect(after.social_authority).to eq user.social_authority
     end
 
     it 'updates push token' do
