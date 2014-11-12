@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110180056) do
+ActiveRecord::Schema.define(version: 20141112173349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,20 @@ ActiveRecord::Schema.define(version: 20141110180056) do
     t.datetime "updated_at"
   end
 
+  create_table "user_friended_expert_followers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "expert_id"
+    t.string   "twitter_id"
+    t.string   "twitter_handle"
+    t.string   "full_name"
+    t.string   "photo_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_friended_expert_followers", ["expert_id"], name: "index_user_friended_expert_followers_on_expert_id", using: :btree
+  add_index "user_friended_expert_followers", ["user_id"], name: "index_user_friended_expert_followers_on_user_id", using: :btree
+
   create_table "user_friended_experts", force: true do |t|
     t.integer  "user_id"
     t.integer  "expert_id"
@@ -162,6 +176,7 @@ ActiveRecord::Schema.define(version: 20141110180056) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "ip_address"
+    t.boolean  "mailchimp_flag",       default: false
     t.integer  "max_search_distance",  default: 48
   end
 
