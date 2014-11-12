@@ -51,7 +51,7 @@ end
 
 task :setup do
   # sidekiq needs a place to store its pid file and log file
-  queue! %[mkdir -p "#{deploy_to}/shared/pids/"]
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp/pids/"]
   queue! %[mkdir -p "#{deploy_to}/shared/log/"]
 end
 
