@@ -16,14 +16,20 @@ class TwitterFriendsSyncer
     expert_twitter_ids.clear
     expert_twitter_ids.merge(*expert_ids)
 
-    experts.each do |expert|
-      twitter_talker = TwitterTalker.new(expert.twitter_token, expert.twitter_token_secret)
-    
-      follower_ids = twitter_talker.follower_ids(user_id: expert.twitter_id)
-      expert.twitter_followers.clear
-      if follower_ids.length > 0
-        expert.twitter_followers.merge(*follower_ids)
+    begin
+      experts.each do |expert|
+        twitter_talker = TwitterTalker.new(expert.twitter_token, expert.twitter_token_secret)
+      
+        follower_ids = twitter_talker.follower_ids(user_id: expert.twitter_id)
+        expert.twitter_followers.clear
+        if follower_ids.length > 0
+          expert.twitter_followers.merge(*follower_ids)
+        end
       end
+    rescue Twitter::Error::Unauthorized
+      puts "User '#{user.twitter_handle}' is unauthorized."
+    rescue Twitter::Error::TooManyRequests
+      puts "User '#{user.twitter_handle}' exceeded request limit."
     end
 
     @users.each do |user|
