@@ -3,6 +3,7 @@ require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'
 require 'mina-stack'
+require 'mina_sidekiq/tasks'
 
 set :app,                 'skillpocket'
 set :server_name,         'skillpocket.com www.skillpocket.com'
@@ -44,6 +45,9 @@ set :monitored,                     %w(
                                       memcached
                                     )
 
+# Sets the path to the pid file of a sidekiq worker
+set :sidekiq_pid, lambda { "#{deploy_to}/#{shared_path}/tmp/pids/sidekiq.pid" }
+
 task :environment do
   invoke :'rbenv:load'
 end
@@ -51,6 +55,7 @@ end
 desc "Deploys the current version to the server."
 task :deploy do
   deploy do
+    invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
@@ -59,6 +64,7 @@ task :deploy do
 
     to :launch do
       invoke :'puma:phased-restart'
+      invoke :'sidekiq:restart'
     end
   end
 end
