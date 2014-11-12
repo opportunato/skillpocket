@@ -8,7 +8,7 @@ class TwitterFriendsSyncer
 
     expert_twitter_ids = Redis::Set.new("experts")
 
-    experts = User.experts.from_twitter
+    experts = User.experts.approved.from_twitter
 
     expert_ids = experts.map(&:twitter_id)
     expert_twitter_ids_map = experts.reduce({}) { |memo, expert| memo[expert.twitter_id] = expert.id; memo; }
@@ -17,25 +17,25 @@ class TwitterFriendsSyncer
     expert_twitter_ids.merge(*expert_ids)
 
     
-      experts.each do |expert|
-        begin
-          twitter_talker = TwitterTalker.new(expert.twitter_token, expert.twitter_token_secret)
-        
-          if twitter_talker.user.followers_count <= 75000
-            follower_ids = twitter_talker.follower_ids(user_id: expert.twitter_id)
-            expert.twitter_followers.clear
-            if follower_ids.length > 0
-              expert.twitter_followers.merge(*follower_ids)
-            end
-          else
-            puts "User '#{expert.twitter_handle}' has too many followers."
+    experts.each do |expert|
+      begin
+        twitter_talker = TwitterTalker.new(expert.twitter_token, expert.twitter_token_secret)
+      
+        if twitter_talker.user.followers_count <= 75000
+          follower_ids = twitter_talker.follower_ids(user_id: expert.twitter_id)
+          expert.twitter_followers.clear
+          if follower_ids.length > 0
+            expert.twitter_followers.merge(*follower_ids)
           end
-        rescue Twitter::Error::Unauthorized
-          puts "User '#{expert.twitter_handle}' is unauthorized."
-        rescue Twitter::Error::TooManyRequests
-          puts "User '#{expert.twitter_handle}' exceeded request limit."
+        else
+          puts "User '#{expert.twitter_handle}' has too many followers."
         end
+      rescue Twitter::Error::Unauthorized
+        puts "User '#{expert.twitter_handle}' is unauthorized."
+      rescue Twitter::Error::TooManyRequests
+        puts "User '#{expert.twitter_handle}' exceeded request limit."
       end
+    end
 
     @users.each do |user|
       begin
@@ -80,9 +80,9 @@ class TwitterFriendsSyncer
 private
 
   def update_twitter_friend_ids(user)
+    twitter_talker = TwitterTalker.new(user.twitter_token, user.twitter_token_secret)
+    
     if twitter_talker.user.friends_count <= 75000
-      twitter_talker = TwitterTalker.new(user.twitter_token, user.twitter_token_secret)
-
       friend_ids = twitter_talker.friend_ids(user_id: user.twitter_id)
       user.twitter_friends.clear
 

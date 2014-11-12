@@ -3,19 +3,26 @@ require 'rails_helper'
 RSpec.describe TwitterFriendsSyncer do
   before :each do
     @user = create(:user)
-    @first_expert = create(:skilled_user, { twitter_id: "4" })
-    @second_expert = create(:skilled_user, { twitter_id: "5" })
-    @third_expert = create(:skilled_user, { twitter_id: "23" })
+    @first_expert = create(:skilled_user, { twitter_id: "4", approved: true })
+    @second_expert = create(:skilled_user, { twitter_id: "5", approved: true })
+    @third_expert = create(:skilled_user, { twitter_id: "23", approved: true })
 
     twitter_talker = instance_double("TwitterTalker")
     first_expert_twitter_talker = instance_double("TwitterTalker")
     second_expert_twitter_talker = instance_double("TwitterTalker")
     third_expert_twitter_talker = instance_double("TwitterTalker")
+    user_data = instance_double("Twitter::User")
 
     allow(twitter_talker).to receive(:friend_ids).with(user_id: @user.twitter_id) { [4,8,15,16,23,42] }
     allow(first_expert_twitter_talker).to receive(:follower_ids).with(user_id: @first_expert.twitter_id).and_return([8, 15, 11])
     allow(second_expert_twitter_talker).to receive(:follower_ids).with(user_id: @second_expert.twitter_id).and_return([1300, 1400, 1500])
     allow(third_expert_twitter_talker).to receive(:follower_ids).with(user_id: @third_expert.twitter_id).and_return([42, 9, 7])
+    allow(twitter_talker).to receive(:user) { user_data }
+    allow(first_expert_twitter_talker).to receive(:user) { user_data }
+    allow(second_expert_twitter_talker).to receive(:user) { user_data }
+    allow(third_expert_twitter_talker).to receive(:user) { user_data }
+    allow(user_data).to receive(:followers_count) { 400 }
+    allow(user_data).to receive(:friends_count) { 400 }
 
     allow(TwitterTalker).to receive(:new).with(@user.twitter_token, @user.twitter_token_secret) { twitter_talker }
     allow(TwitterTalker).to receive(:new).with(@first_expert.twitter_token, @first_expert.twitter_token_secret) { first_expert_twitter_talker } 
