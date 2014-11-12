@@ -17,18 +17,23 @@ class TwitterFriendsSyncer
     expert_twitter_ids.merge(*expert_ids)
 
     @users.each do |user|
-      update_twitter_friend_ids(user)
+      begin
+        update_twitter_friend_ids(user)
+        user_friended_experts = user.twitter_friends & expert_twitter_ids
+        user_friended_expert_objects = user_friended_experts.map do |expert_id|
+          { 
+            user_id: user.id,
+            expert_id: expert_twitter_ids_map[expert_id]
+          }
+        end
 
-      user_friended_experts = user.twitter_friends & expert_twitter_ids
-      user_friended_expert_objects = user_friended_experts.map do |expert_id|
-        { 
-          user_id: user.id,
-          expert_id: expert_twitter_ids_map[expert_id]
-        }
+        UserFriendedExpert.where(user: user).destroy_all
+        UserFriendedExpert.create(user_friended_expert_objects)
+      rescue Twitter::Error::Unauthorized
+        puts "User '#{user.twitter_handle}' is unauthorized."
+      rescue Twitter::Error::TooManyRequests
+        puts "User '#{user.twitter_handle}' exceeded request limit."
       end
-
-      UserFriendedExpert.where(user: user).destroy_all
-      UserFriendedExpert.create(user_friended_expert_objects)
     end
   end
 
