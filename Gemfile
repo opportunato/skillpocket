@@ -53,8 +53,13 @@ gem 'geocoder'
 gem 'inherited_resources', '1.4.1'
 gem 'activeadmin', github: 'activeadmin'
 
+gem 'sidekiq' # Off-webapp workers for mail
+gem 'sidetiq' # Recurring jobs. FIXME: replace with whenever/CRON once we move to capistrano
+
 group :development do
   gem 'mina-stack', github: 'div/mina-stack'
+  gem 'mina-sidekiq'
+
   gem 'spring'
 
   gem 'yard-restful' # REST API docs # TODO: guard-yard
