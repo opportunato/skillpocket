@@ -6,6 +6,7 @@ json.cache! expert do
   json.job expert.job
   json.photo expert.photo.url(:small)
   json.price expert.price
+  json.authority expert.social_authority.to_i
   json.slug expert.slug
   json.skill_title expert.skill_title
 

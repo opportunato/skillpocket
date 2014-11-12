@@ -32,12 +32,14 @@ FactoryGirl.define do
     website_url "http://some-site.com/"
 
     factory :skilled_user do
+      social_authority { rand(0..100) }
       after(:create) do |user, evaluator|
         create :tagged_skill, expert: user
       end
     end
 
     factory :category_tag_skilled_user do
+      social_authority { rand(0..100) }
       after(:create) do |user, evaluator|
         create :category_tagged_skill, expert: user
       end

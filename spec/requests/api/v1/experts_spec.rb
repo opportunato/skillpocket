@@ -16,6 +16,8 @@ RSpec.describe Api::V1::ExpertsController do
     @second_expert
   end
 
+  it 'returns expert in correct format'
+
   it 'returns experts in correct format' do
     login_as(user)
     get "/api/v1/experts/"
@@ -34,6 +36,7 @@ RSpec.describe Api::V1::ExpertsController do
         'linkedin_url' => first_expert.linkedin_url,
         'photo' => first_expert.photo.url(:small),
         'price' => first_expert.price,
+        'authority' => first_expert.social_authority.to_i,
         'profile_banner_url' => first_expert.profile_banner.url(:normal),
         'skill_title' => first_expert.skill.title,
         'slug' => first_expert.slug,
@@ -57,6 +60,7 @@ RSpec.describe Api::V1::ExpertsController do
         'linkedin_url' => second_expert.linkedin_url,
         'photo' => second_expert.photo.url(:small),
         'price' => second_expert.price,
+        'authority' => second_expert.social_authority.to_i,
         'profile_banner_url' => second_expert.profile_banner.url(:normal),
         'skill_title' => second_expert.skill.title,
         'slug' => second_expert.slug,
