@@ -256,7 +256,7 @@ Returns HTTP 200 and JSON of the following format:
       {
         "id": 212,
         "full_name": 'John Smith',
-        "about": 'Software engineer',
+        "photo": 'http://cdn.fb.me/aowisdofijoajisofdja.jpg',
         "unread":1,
         "text":'whatup',
         "time":1234568000

@@ -21,14 +21,14 @@ RSpec.describe Api::V1::ContactsController do
       expect(response_json).to eq([{
           "id"=> @two.id,
           "full_name"=> @two.full_name,
-          "about"=> @two.about,
+          'photo' => @two.photo.url(:small),
           "unread"=>1,
           "text"=>'whatup',
           "time"=>1234568000
         }, {
           "id"=> @one.id,
           "full_name"=> @one.full_name,
-          "about"=> @one.about,
+          'photo' => @one.photo.url(:small),
           "unread"=>1,
           "text"=>'hey',
           "time"=>1234567000
