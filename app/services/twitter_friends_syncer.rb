@@ -6,19 +6,24 @@ class TwitterFriendsSyncer
   def sync
     redis = Redis.new
 
-    experts = Redis::Set.new('experts')
-    expert_ids = User.experts.from_twitter.pluck(:twitter_id).map { |id| id.to_i }
-    experts.clear
-    experts.merge(*expert_ids)
+    expert_twitter_ids = Redis::Set.new("experts")
+
+    experts = User.experts.from_twitter
+
+    expert_ids = experts.map(&:twitter_id)
+    expert_twitter_ids_map = experts.reduce({}) { |memo, expert| memo[expert.twitter_id] = expert.id; memo; }
+
+    expert_twitter_ids.clear
+    expert_twitter_ids.merge(*expert_ids)
 
     @users.each do |user|
       update_twitter_friend_ids(user)
 
-      user_friended_experts = user.twitter_friends & experts
+      user_friended_experts = user.twitter_friends & expert_twitter_ids
       user_friended_expert_objects = user_friended_experts.map do |expert_id|
         { 
           user_id: user.id,
-          expert_id: expert_id
+          expert_id: expert_twitter_ids_map[expert_id]
         }
       end
 
