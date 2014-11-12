@@ -34,6 +34,8 @@ class TwitterFriendsSyncer
         puts "User '#{expert.twitter_handle}' is unauthorized."
       rescue Twitter::Error::TooManyRequests
         puts "User '#{expert.twitter_handle}' exceeded request limit."
+      rescue Twitter::Error
+        puts "Unexplained Error on user #{expert.twitter_handle}'"
       end
     end
 
@@ -73,6 +75,8 @@ class TwitterFriendsSyncer
         puts "User '#{user.twitter_handle}' is unauthorized."
       rescue Twitter::Error::TooManyRequests
         puts "User '#{user.twitter_handle}' exceeded request limit."
+      rescue Twitter::Error
+        puts "Unexplained Error on user #{user.twitter_handle}'"
       end
     end
   end
