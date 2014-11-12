@@ -39,8 +39,9 @@ private
 
     friend_ids = twitter_talker.friend_ids(user_id: user.twitter_id)
     user.twitter_friends.clear
-  
+
     if friend_ids.length > 0
       user.twitter_friends.merge(*friend_ids)
+    end
   end
 end
