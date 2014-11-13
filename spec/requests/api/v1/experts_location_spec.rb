@@ -39,11 +39,10 @@ RSpec.describe Api::V1::ExpertsController do
     let(:latitude)  { nil }
     let(:longitude) { nil }
     let(:distance)  { 0 }
-    it 'shows every expert' do
+    it 'shows no experts' do
       login_as(user)
       get api_v1_experts_path
-      expect(response_json.size).to eq 6
-      expect(response_json.map {|expert| expert['id'] }.sort).to eq [outlander, center, coast, south, unknown1, unknown2].map(&:id).sort
+      expect(response_json.size).to eq 0
     end
   end
 

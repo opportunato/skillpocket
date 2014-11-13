@@ -31,6 +31,9 @@ FactoryGirl.define do
     twitter_url "http://twitter.com/"
     website_url "http://some-site.com/"
 
+    latitude 30
+    longitude 60
+
     factory :expert do
       approved true
       social_authority { rand(0..100) }
