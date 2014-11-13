@@ -6,18 +6,19 @@ class OnboardingController < ApplicationController
   before_action :set_user, except: [:step1]
   before_action :user_location, except: [:step1, :step2]
 
+  before_action :check_step_1, only: [:step1]
+  before_action :check_step_2, only: [:step2, :step2_submit]
+  before_action :check_step_3, only: [:step3, :step3_submit]
+
   def step1
-    check_step(1)
     authorize! :manage, :onboard_step1
   end
 
   def step2
-    check_step(2)
     authorize! :manage, :onboard_step2
   end
 
   def step2_submit
-    check_step(2)
     authorize! :manage, :onboard_step2
 
     if @user.update(user_params)
@@ -28,14 +29,12 @@ class OnboardingController < ApplicationController
   end
 
   def step3
-    check_step(3)
     authorize! :manage, :onboard_step3
 
     @skill = @user.skill || Skill.new
   end
 
   def step3_submit
-    check_step(3)
     authorize! :manage, :onboard_step3
 
     @skill_creator = SkillCreator.new(@user)
@@ -53,6 +52,18 @@ class OnboardingController < ApplicationController
   end
 
 private
+  def check_step_1
+    check_step 1
+  end
+
+  def check_step_2
+    check_step 2
+  end
+
+  def check_step_3
+    check_step 3
+  end
+
   def check_step(current_step)
     if current_onboarding_step != current_step
       redirect_to "/onboarding/step/#{current_onboarding_step}"
