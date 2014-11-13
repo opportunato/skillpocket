@@ -48,7 +48,7 @@ RSpec.describe TwitterFriendsSyncer do
 
   it 'correctly sets friended followers of first expert' do
     TwitterFriendsSyncer.new([@user]).sync
-    expect(UserFriendedExpertFollower.where(user_id: @user.id, expert_id: @first_expert.id).pluck(:twitter_id)).to eq(["15", "8"])
+    expect(UserFriendedExpertFollower.where(user_id: @user.id, expert_id: @first_expert.id).pluck(:twitter_id)).to eq([15, 8])
   end
 
   it 'correctly sets friended followers of second expert' do
@@ -58,6 +58,6 @@ RSpec.describe TwitterFriendsSyncer do
 
   it 'correctly sets friended followers of third expert' do
     TwitterFriendsSyncer.new([@user]).sync
-    expect(UserFriendedExpertFollower.where(user_id: @user.id, expert_id: @third_expert.id).pluck(:twitter_id)).to eq(["42"])
+    expect(UserFriendedExpertFollower.where(user_id: @user.id, expert_id: @third_expert.id).pluck(:twitter_id)).to eq([42])
   end
 end
