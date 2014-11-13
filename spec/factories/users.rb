@@ -31,17 +31,24 @@ FactoryGirl.define do
     twitter_url "http://twitter.com/"
     website_url "http://some-site.com/"
 
-    factory :skilled_user do
+    factory :expert do
+      approved true
       social_authority { rand(0..100) }
-      after(:create) do |user, evaluator|
-        create :tagged_skill, expert: user
-      end
-    end
 
-    factory :category_tag_skilled_user do
-      social_authority { rand(0..100) }
-      after(:create) do |user, evaluator|
-        create :category_tagged_skill, expert: user
+      factory :skilled_user do
+        after(:create) do |user, evaluator|
+          create :tagged_skill, expert: user
+        end
+      end
+
+      factory :unapproved_expert do
+        approved false
+      end
+
+      factory :category_tag_skilled_user do
+        after(:create) do |user, evaluator|
+          create :category_tagged_skill, expert: user
+        end
       end
     end
 

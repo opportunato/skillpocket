@@ -3,18 +3,9 @@ require 'rails_helper'
 RSpec.describe Api::V1::ExpertsController do
   let(:user) { create :user }
 
-  before do
-    @first_expert = create :skilled_user
-    @second_expert = create :category_tag_skilled_user
-  end
-
-  def first_expert
-    @first_expert
-  end
-
-  def second_expert
-    @second_expert
-  end
+  let!(:first_expert) { create :skilled_user }
+  let!(:second_expert) { create :category_tag_skilled_user }
+  let!(:unapproved_expert) { create :unapproved_expert }
 
   it 'returns expert in correct format'
 
