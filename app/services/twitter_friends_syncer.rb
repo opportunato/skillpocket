@@ -50,8 +50,10 @@ class TwitterFriendsSyncer
           }
         end
 
-        UserFriendedExpert.where(user: user).destroy_all
-        UserFriendedExpert.create(user_friended_expert_objects)
+        ActiveRecord::Base.transaction do
+          UserFriendedExpert.where(user: user).destroy_all
+          UserFriendedExpert.create(user_friended_expert_objects)
+        end
 
         user_friended_expert_follower_objects = []
 
@@ -69,8 +71,10 @@ class TwitterFriendsSyncer
           )
         end
 
-        UserFriendedExpertFollower.where(user: user).destroy_all
-        UserFriendedExpertFollower.create(user_friended_expert_follower_objects)
+        ActiveRecord::Base.transaction do
+          UserFriendedExpertFollower.where(user: user).destroy_all
+          UserFriendedExpertFollower.create(user_friended_expert_follower_objects)
+        end
       rescue Twitter::Error::Unauthorized
         puts "User '#{user.twitter_handle}' is unauthorized."
       rescue Twitter::Error::TooManyRequests
