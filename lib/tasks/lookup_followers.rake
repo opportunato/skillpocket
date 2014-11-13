@@ -11,7 +11,7 @@ namespace :followers do
       users_data.each do |user|
         user_data = twitter_talker.user
 
-        UserFriendedExpertFollower.where(twitter_id: user.twitter_id).update_all({
+        UserFriendedExpertFollower.where(twitter_id: user_data.id).update_all({
           twitter_handle:    user_data.twitter_handle,
           full_name:         user_data.name,
           photo_url:         user_data.profile_image_url     
