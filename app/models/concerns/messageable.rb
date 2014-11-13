@@ -14,10 +14,12 @@ module Messageable
     end
 
     def messages_with messageable
+      fail 'Cannot write to yourself' if self === messageable
       Message.where(conversation: conversation_with(messageable))
     end
 
     def conversation_with messageable
+      fail 'Cannot write to yourself' if self === messageable
       Conversation.participant(self).participant(messageable)
     end
 

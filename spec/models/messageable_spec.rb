@@ -106,8 +106,16 @@ RSpec.shared_examples_for Messageable  do |factory|
     let(:same) { User.find_by_full_name user.full_name }
     let(:body) { 'hello' }
 
-    specify do
+    it 'for #send_message_to' do
       expect { user.send_message_to same, body }.to raise_error
+    end
+
+    it 'for #messages_with' do
+      expect { user.messages_with same }.to raise_error
+    end
+
+    it 'for #conversation_with' do
+      expect { user.conversation_with same }.to raise_error
     end
   end
 end
