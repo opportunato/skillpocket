@@ -1,7 +1,7 @@
 namespace :followers do
   desc "Update existing followers"
   task :lookup => :environment do
-    twitter_talker = TwitterTalker.new(ENV['TWITTER_KEY'], ENV['TWITTER_SECRET'])
+    twitter_talker = TwitterTalker.new(ENV['TWITTER_TOKEN'], ENV['TWITTER_TOKEN_SECRET'])
 
     users = UserFriendedExpertFollower.select(:twitter_id).without_info.group('twitter_id').limit(100)
 
