@@ -1,6 +1,6 @@
-class SwitchTwitterIdsToInteger < ActiveRecord::Migration
+class SwitchTwitterIdsToBigint < ActiveRecord::Migration
   def up
-    change_column :user_friended_expert_followers, :twitter_id, 'integer USING CAST(twitter_id AS integer)'
+    change_column :user_friended_expert_followers, :twitter_id, 'bigint USING CAST(twitter_id AS bigint)'
   
     add_index :user_friended_expert_followers, :twitter_id
   end

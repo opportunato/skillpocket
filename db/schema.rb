@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20141113170405) do
   create_table "user_friended_expert_followers", force: true do |t|
     t.integer  "user_id"
     t.integer  "expert_id"
-    t.integer  "twitter_id"
+    t.integer  "twitter_id",     limit: 8
     t.string   "twitter_handle"
     t.string   "full_name"
     t.string   "photo_url"
