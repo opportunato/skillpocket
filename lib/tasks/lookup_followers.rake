@@ -3,7 +3,7 @@ namespace :followers do
   task :lookup => :environment do
     twitter_talker = TwitterTalker.new(ENV['TWITTER_KEY'], ENV['TWITTER_SECRET'])
 
-    users = UserFriendedExpertFollower.without_info.group('twitter_id').limit(100)
+    users = UserFriendedExpertFollower.select(:twitter_id).without_info.group('twitter_id').limit(100)
 
     while (users.length > 0)
       users_data = twitter_talker.users(users.pluck(:twitter_id))
@@ -18,7 +18,7 @@ namespace :followers do
         })
       end
 
-      users = UserFriendedExpertFollower.without_info.limit(100)
+      users = UserFriendedExpertFollower.select(:twitter_id).without_info.group('twitter_id').limit(100)
     end
   end
 end
