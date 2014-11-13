@@ -15,8 +15,8 @@ RSpec.describe Api::V1::ExpertsController do
 
     # it_behaves_like 'token protected resource'
 
-    expect(response_json).to eq([
-      {
+    expect(response_json.size).to eq 2
+    expect(response_json.first).to eq({
         'about' => first_expert.about,
         'behance_url' => first_expert.behance_url,
         'email' => first_expert.email,
@@ -33,14 +33,16 @@ RSpec.describe Api::V1::ExpertsController do
         'slug' => first_expert.slug,
         'stackoverflow_url' => first_expert.stackoverflow_url,
         'categories' => [],
+        'distance' => 0.0,
         'tags' => [{
           'id' => first_expert.skill.tags.first.id,
           'name' => first_expert.skill.tags.first.name
         }],
         'twitter_url' => first_expert.twitter_url,
         'website_url' => first_expert.website_url
-      },
-      {
+      })
+
+    expect(response_json.last).to eq({
         'id' => second_expert.id,
         'email' => second_expert.email,
         'about' => second_expert.about,
@@ -60,6 +62,7 @@ RSpec.describe Api::V1::ExpertsController do
           'id' => second_expert.skill.tags.last.id,
           'name' => second_expert.skill.tags.last.name
         }],
+        'distance' => 0.0,
         'tags' => [{
           'id' => second_expert.skill.tags.first.id,
           'name' => second_expert.skill.tags.first.name
@@ -69,8 +72,7 @@ RSpec.describe Api::V1::ExpertsController do
         }],
         'twitter_url' => second_expert.twitter_url,
         'website_url' => second_expert.website_url
-      }
-    ])
+      })
   end
 
   context "when sent the category" do
