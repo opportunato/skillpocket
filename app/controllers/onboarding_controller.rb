@@ -65,7 +65,7 @@ private
   end
 
   def check_step(current_step)
-    if current_onboarding_step != current_step
+    if current_onboarding_step && current_onboarding_step != current_step
       redirect_to "/onboarding/step/#{current_onboarding_step}"
     end
   end
