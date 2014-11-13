@@ -100,4 +100,14 @@ RSpec.shared_examples_for Messageable  do |factory|
 
     it 'should have correct unread'
   end
+
+  describe '#send_message_to denies to send to himself' do
+    let(:user) { create :user }
+    let(:same) { User.find_by_full_name user.full_name }
+    let(:body) { 'hello' }
+
+    specify do
+      expect { user.send_message_to same, body }.to raise_error
+    end
+  end
 end

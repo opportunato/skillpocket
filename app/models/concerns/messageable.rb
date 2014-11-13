@@ -5,6 +5,7 @@ module Messageable
     has_many :conversations
 
     def send_message_to messageable, text
+      fail 'Cannot write to yourself' if self === messageable
       conversation = conversation_with(messageable).first_or_create(older: self, newer: messageable)
       conversation.update_attribute :body, text
       Message.create sender: self, recipient: messageable, conversation: conversation, body: text
