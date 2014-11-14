@@ -14,6 +14,7 @@ RSpec.describe TwitterFriendsSyncer do
     user_data = instance_double("Twitter::User")
 
     allow(twitter_talker).to receive(:friend_ids).with(user_id: @user.twitter_id) { [4,8,15,16,23,42] }
+    allow(first_expert_twitter_talker).to receive(:friend_ids).with(user_id: @first_expert.twitter_id) { [8,15,11,1300] }
     allow(first_expert_twitter_talker).to receive(:follower_ids).with(user_id: @first_expert.twitter_id).and_return([8, 15, 11])
     allow(second_expert_twitter_talker).to receive(:follower_ids).with(user_id: @second_expert.twitter_id).and_return([1300, 1400, 1500])
     allow(third_expert_twitter_talker).to receive(:follower_ids).with(user_id: @third_expert.twitter_id).and_return([42, 9, 7])
@@ -32,32 +33,42 @@ RSpec.describe TwitterFriendsSyncer do
 
   it 'correctly creates new friended experts for user' do
     expect {
-      TwitterFriendsSyncer.new([@user]).sync
+      TwitterFriendsSyncer.new([@user, @first_expert]).sync
     }.to change{ UserFriendedExpert.count }.by(2)
   end
 
   it 'correctly sets user id of new friended experts' do
-    TwitterFriendsSyncer.new([@user]).sync
+    TwitterFriendsSyncer.new([@user, @first_expert]).sync
     expect(UserFriendedExpert.last.user_id).to eq(@user.id)
   end
 
   it 'correctly sets expert id of new friended experts' do
-    TwitterFriendsSyncer.new([@user]).sync
+    TwitterFriendsSyncer.new([@user, @first_expert]).sync
     expect(UserFriendedExpert.where(user_id: @user.id).pluck(:expert_id)).to eq([@first_expert.id, @third_expert.id])
   end
 
   it 'correctly sets friended followers of first expert' do
-    TwitterFriendsSyncer.new([@user]).sync
+    TwitterFriendsSyncer.new([@user, @first_expert]).sync
     expect(UserFriendedExpertFollower.where(user_id: @user.id, expert_id: @first_expert.id).pluck(:twitter_id)).to include(8, 15)
   end
 
   it 'correctly sets friended followers of second expert' do
-    TwitterFriendsSyncer.new([@user]).sync
+    TwitterFriendsSyncer.new([@user, @first_expert]).sync
     expect(UserFriendedExpertFollower.where(user_id: @user.id, expert_id: @second_expert.id).pluck(:twitter_id)).to eq([])
   end
 
   it 'correctly sets friended followers of third expert' do
-    TwitterFriendsSyncer.new([@user]).sync
+    TwitterFriendsSyncer.new([@user, @first_expert]).sync
     expect(UserFriendedExpertFollower.where(user_id: @user.id, expert_id: @third_expert.id).pluck(:twitter_id)).to eq([42])
+  end
+
+  it 'correctly sets friended followers of first expert' do
+    TwitterFriendsSyncer.new([@user, @first_expert]).sync
+    expect(UserFriendedExpertFollower.where(user_id: @first_expert.id, expert_id: @first_expert.id).pluck(:twitter_id)).to eq([])
+  end
+
+  it 'correctly sets friended followers of first expert' do
+    TwitterFriendsSyncer.new([@user, @first_expert]).sync
+    expect(UserFriendedExpertFollower.where(user_id: @first_expert.id, expert_id: @second_expert.id).pluck(:twitter_id)).to eq([1300])
   end
 end

@@ -58,17 +58,19 @@ class TwitterFriendsSyncer
         user_friended_expert_follower_objects = []
 
         experts.each do |expert|
-          user_friended_expert_followers = expert.twitter_followers & user.twitter_friends
-          expert_id = expert.id
+          if user.id != expert.id
+            user_friended_expert_followers = expert.twitter_followers & user.twitter_friends
+            expert_id = expert.id
 
-          user_friended_expert_follower_objects.concat(user_friended_expert_followers.map do |twitter_id|
-              {
-                user_id: user.id,
-                expert_id: expert_id,
-                twitter_id: twitter_id
-              }
-            end
-          )
+            user_friended_expert_follower_objects.concat(user_friended_expert_followers.map do |twitter_id|
+                {
+                  user_id: user.id,
+                  expert_id: expert_id,
+                  twitter_id: twitter_id
+                }
+              end
+            )
+          end
         end
 
         ActiveRecord::Base.transaction do
