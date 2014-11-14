@@ -30,4 +30,6 @@ json.cache! expert do
   end
 
   json.distance expert.distance_to(current_user) * 1.6 if current_user.geocoded?
+
+  json.is_followed expert.is_followed(current_user)
 end

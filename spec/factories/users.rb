@@ -34,6 +34,22 @@ FactoryGirl.define do
     latitude 30
     longitude 60
 
+    trait :has_friended_experts do
+      ignore do
+        friended_experts []
+      end
+
+      after(:create) do |user, evaluator|
+        evaluator.friended_experts.each do |expert|
+          create(:user_friended_expert, user: user, expert: expert)
+        end
+      end
+    end
+
+    factory :user_with_friended_experts do
+      has_friended_experts
+    end
+
     factory :expert do
       approved true
       social_authority { rand(0..100) }
@@ -58,5 +74,8 @@ FactoryGirl.define do
     factory :user_with_ios_device_token do
       ios_device_token { SecureRandom.hex }
     end
+  end
+
+  factory :user_friended_expert do
   end
 end

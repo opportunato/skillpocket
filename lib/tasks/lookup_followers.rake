@@ -9,12 +9,10 @@ namespace :followers do
       users_data = twitter_talker.users(users.pluck(:twitter_id))
 
       users_data.each do |user|
-        user_data = twitter_talker.user
-
-        UserFriendedExpertFollower.where(twitter_id: user_data.id).update_all({
-          twitter_handle:    user_data.screen_name,
-          full_name:         user_data.name,
-          photo_url:         user_data.profile_image_url     
+        UserFriendedExpertFollower.where(twitter_id: user.id).update_all({
+          twitter_handle:    user.screen_name,
+          full_name:         user.name,
+          photo_url:         user.profile_image_url(:normal).to_s
         })
       end
 

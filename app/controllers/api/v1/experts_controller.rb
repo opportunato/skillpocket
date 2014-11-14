@@ -4,7 +4,7 @@ class Api::V1::ExpertsController < ApiController
   def index
     @experts = apply_scopes(User.approved.experts.geocoded)
     @experts = @experts.near_user(current_user)
-    @experts = @experts.order("users.created_at ASC")
+    @experts = @experts.by_rating(current_user)
   end
 
   def show

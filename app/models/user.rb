@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   include Redis::Objects
 
   has_one :skill, dependent: :destroy
+  has_many :user_friended_experts
+  has_many :user_followers, foreign_key: :expert_id, class_name: 'UserFriendedExpert', dependent: :destroy
 
   validates_presence_of :full_name, :email, :job, :about, :photo
   validates :job, length: { maximum: 40 }
@@ -29,6 +31,8 @@ class User < ActiveRecord::Base
   scope :approved, -> { where(approved: true) }
   scope :experts, -> { joins(:skill) }
   scope :near_user, -> user { near([user.latitude, user.longitude], user.max_search_distance, units: :km) }
+
+  scope :by_rating, -> user { joins("LEFT JOIN user_friended_experts ON user_friended_experts.expert_id = users.id AND user_friended_experts.user_id = #{user.id}").order("coalesce(user_friended_experts.id, -1) desc, social_authority desc, users.created_at desc") }
 
   geocoded_by :ip_address
   after_validation :geocode
@@ -57,6 +61,10 @@ class User < ActiveRecord::Base
 
   def expert?
     skill.present?
+  end
+
+  def is_followed(user)
+    user_followers.select { |expert| expert.user_id == user.id }.length > 0
   end
 
   def admin?
