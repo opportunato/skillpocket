@@ -27,6 +27,7 @@ RSpec.describe Api::V1::ExpertsController do
         'linkedin_url' => second_expert.linkedin_url,
         'photo' => second_expert.photo.url(:small),
         'price' => second_expert.price,
+        'authority' => second_expert.social_authority.to_i,
         'profile_banner_url' => second_expert.profile_banner.url(:normal),
         'skill_title' => second_expert.skill.title,
         'slug' => second_expert.slug,
