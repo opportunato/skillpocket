@@ -16,4 +16,10 @@ class Conversation < ActiveRecord::Base
   before_create do
     self.older, self.newer = [self.older, self.newer].sort_by &:id
   end
+
+  def mark_as_read_for user
+    counter = user.id == older_id ? :older_unread_count : :newer_unread_count
+    update_attribute counter, 0
+    messages.recipient(user).update_all(is_read: true)
+  end
 end

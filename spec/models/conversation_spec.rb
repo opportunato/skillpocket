@@ -36,6 +36,11 @@ RSpec.describe Conversation do
       it 'counts separately for sender and recipient' do
         expect(@conversation.unread_count(alice)).to eq 1
       end
+
+      it 'updates counts when marked as read' do
+        @conversation.mark_as_read_for(alice)
+        expect(@conversation.unread_count(alice)).to eq 0
+      end
     end
   end
 end

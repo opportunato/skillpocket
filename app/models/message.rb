@@ -21,8 +21,4 @@ class Message < ActiveRecord::Base
   end
 
   # TODO: fill in 'body' on 'after_create'
-
-  def self.mark_as_read
-    self.update_all is_read: true
-  end
 end
