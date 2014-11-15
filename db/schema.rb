@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113170405) do
+ActiveRecord::Schema.define(version: 20141115152920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,10 +43,12 @@ ActiveRecord::Schema.define(version: 20141113170405) do
   end
 
   create_table "conversations", force: true do |t|
-    t.integer  "older_id",   null: false
-    t.integer  "newer_id",   null: false
+    t.integer  "older_id",                       null: false
+    t.integer  "newer_id",                       null: false
     t.string   "body"
     t.datetime "updated_at"
+    t.integer  "newer_unread_count", default: 0, null: false
+    t.integer  "older_unread_count", default: 0, null: false
   end
 
   add_index "conversations", ["older_id", "newer_id"], name: "index_conversations_on_older_id_and_newer_id", unique: true, using: :btree

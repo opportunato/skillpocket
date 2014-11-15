@@ -11,8 +11,16 @@ class Message < ActiveRecord::Base
   validates_presence_of :recipient_id
 
   scope :unread, -> { where(is_read: false) }
+  scope :recipient, -> recipient { where(recipient: recipient) }
+  scope :conversation, -> conversation { where(conversation: conversation) }
 
-  scope :recipient, -> (recipient) { where(recipient: recipient) }
+  after_commit do
+    unread = Message.unread.recipient(recipient).conversation(conversation).count
+    column = recipient_id == conversation.older_id ? :older_unread_count : :newer_unread_count
+    conversation.update_column column, unread
+  end
+
+  # TODO: fill in 'body' on 'after_create'
 
   def self.mark_as_read
     self.update_all is_read: true

@@ -4,6 +4,10 @@ class Conversation < ActiveRecord::Base
   belongs_to :newer, class: User
   has_many :messages
 
+  def unread_count user
+    user.id == older_id ? older_unread_count : newer_unread_count
+  end
+
   default_scope { order(updated_at: :desc) }
 
   scope :participant, -> (participant) { where('older_id = ? OR newer_id = ?', participant.id, participant.id) }
