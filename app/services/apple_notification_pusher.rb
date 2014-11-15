@@ -5,7 +5,7 @@ class AppleNotificationPusher
       device_token: ios_device_token,
       alert:        text,
       identifier:   identifier,
-      custom:       { 'user-id': identifier },
+      custom:       { 'user-id' => identifier },
       badge:        badge
     )
   end
