@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   scope :by_rating, -> user { joins("LEFT JOIN user_friended_experts ON user_friended_experts.expert_id = users.id AND user_friended_experts.user_id = #{user.id}").order("coalesce(user_friended_experts.id, -1) desc, social_authority desc, users.created_at desc") }
 
   geocoded_by :ip_address
-  after_validation :geocode
+  after_validation :geocode, unless: :location_defined?
 
   delegate :price, :smartphone_os,
            to: :skill
