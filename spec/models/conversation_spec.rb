@@ -6,6 +6,22 @@ RSpec.describe Conversation do
     it { is_expected.to belong_to(:older).class_name('User') }
   end
 
+  describe '#mark_as_read_for also sends push notification' do
+    let(:recipient) { create :user_with_ios_device_token }
+    let(:sender) { create :user }
+    let(:conversation) { create :conversation, older: recipient, newer: sender }
+
+    #FIXME: omg, should double be set up to allow or expect? why does it fail if only either is used?
+    before do
+      allow(AppleNotificationPusher).to receive(:badge).with(recipient.ios_device_token, 0)
+    end
+
+    specify do
+      expect(AppleNotificationPusher).to receive(:badge).with(recipient.ios_device_token, 0)
+      conversation.mark_as_read_for(recipient)
+    end
+  end
+
   describe 'counter caches' do
     let(:alice) { create :user }
     let(:bob) { create :user }

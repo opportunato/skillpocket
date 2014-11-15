@@ -10,6 +10,14 @@ class AppleNotificationPusher
     )
   end
 
+  def self.badge ios_device_token, badge
+    return unless ios_device_token
+    pusher.push Grocer::Notification.new(
+      device_token: ios_device_token,
+      badge:        badge
+    )
+  end
+
 protected
 # TODO: Apple insists on reusing the connection. We may want to save on cert parsing too, so probably it's better to enqueue this and send once in a while (1 sec or so) with ActiveJob
   def self.pusher

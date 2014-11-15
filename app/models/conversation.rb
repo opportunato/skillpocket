@@ -21,5 +21,6 @@ class Conversation < ActiveRecord::Base
     counter = user.id == older_id ? :older_unread_count : :newer_unread_count
     update_attribute counter, 0
     messages.recipient(user).update_all(is_read: true)
+    AppleNotificationPusher.badge user.ios_device_token, Message.recipient(user).unread.count
   end
 end
