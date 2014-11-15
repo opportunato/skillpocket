@@ -59,6 +59,31 @@ RSpec.shared_examples_for Messageable  do |factory|
         expect(messages.last.body).to eq 'hello'
       end
     end
+
+    context 'within a circle' do
+      before do
+        @alice = create factory
+        @bob = create factory
+        @eve = create factory
+
+        @alice.send_message_to @bob, 'hello'
+        @bob.send_message_to @alice, 'hi'
+
+        @eve.send_message_to @alice, 'wtf'
+        @alice.send_message_to @eve, 'syff'
+        @eve.send_message_to @bob, 'loser'
+        @bob.send_message_to @eve, 'would you mind to explain'
+      end
+
+      it 'can only see own messages' do
+        messages = @eve.messages_with(@alice)
+        expect(messages.count).to eq 2
+        expect(messages.map(&:body)).to eq ['syff', 'wtf']
+        messages = @eve.messages_with(@bob)
+        expect(messages.count).to eq 2
+        expect(messages.map(&:body)).to eq ['would you mind to explain', 'loser']
+      end
+    end
   end
 
   describe '#conversations' do
