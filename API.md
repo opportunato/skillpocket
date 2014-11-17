@@ -38,6 +38,7 @@ Example response:
     "skill_description" : "Online Marketing and Paid Acquisition - Where Can I Buy Customers",
     "skill_title" : "Designer",
     "slug" : "andy-jakubowski",
+    "handle" : "jakubowskiandy",
     "tags" : [
       {
         "id" : 12,
@@ -75,6 +76,7 @@ Example response:
     "skill_description" : "Online Marketing and Paid Acquisition - Where Can I Buy Customers",
     "skill_title" : "Designer",
     "slug" : "andy-jakubowski",
+    "handle" : "jakubowskiandy",
     "tags" : [
       {
         "id" : 12,
@@ -121,6 +123,7 @@ Example response:
     "skill_description" : "Online Marketing and Paid Acquisition - Where Can I Buy Customers",
     "skill_title" : "Designer",
     "slug" : "andy-jakubowski",
+    "handle" : "jakubowskiandy",
     "tags" : [
       {
         "id" : 12,
@@ -206,6 +209,7 @@ Example response:
     "skill_description" : "Online Marketing and Paid Acquisition - Where Can I Buy Customers",
     "skill_title" : "Designer",
     "slug" : "andy-jakubowski",
+    "handle" : "jakubowskiandy",
     "tags" : [
       {
         "id" : 12,

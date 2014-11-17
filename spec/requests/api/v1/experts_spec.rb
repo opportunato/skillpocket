@@ -31,6 +31,7 @@ RSpec.describe Api::V1::ExpertsController do
         'profile_banner_url' => second_expert.profile_banner.url(:normal),
         'skill_title' => second_expert.skill.title,
         'slug' => second_expert.slug,
+        'handle' => second_expert.twitter_handle,
         'stackoverflow_url' => second_expert.stackoverflow_url,
         'categories' => [{
           'id' => second_expert.skill.tags.last.id,
@@ -65,6 +66,7 @@ RSpec.describe Api::V1::ExpertsController do
         'profile_banner_url' => first_expert.profile_banner.url(:normal),
         'skill_title' => first_expert.skill.title,
         'slug' => first_expert.slug,
+        'handle' => first_expert.twitter_handle,
         'stackoverflow_url' => first_expert.stackoverflow_url,
         'categories' => [],
         'distance' => 0.0,

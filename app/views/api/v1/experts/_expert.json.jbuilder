@@ -8,6 +8,7 @@ json.cache! expert do
   json.price expert.price
   json.authority expert.social_authority.to_i
   json.slug expert.slug
+  json.handle expert.twitter_handle
   json.skill_title expert.skill_title
 
   json.website_url expert.website_url
