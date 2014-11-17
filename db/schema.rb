@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113170405) do
+ActiveRecord::Schema.define(version: 20141117071509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20141113170405) do
   end
 
   add_index "conversations", ["older_id", "newer_id"], name: "index_conversations_on_older_id_and_newer_id", unique: true, using: :btree
+
+  create_table "friendly_id_slugs", id: false, force: true do |t|
+    t.integer  "id",                        default: "nextval('friendly_id_slugs_id_seq'::regclass)", null: false
+    t.string   "slug",                                                                                null: false
+    t.integer  "sluggable_id",                                                                        null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
 
   create_table "messages", force: true do |t|
     t.integer  "sender_id",                       null: false
@@ -172,13 +181,13 @@ ActiveRecord::Schema.define(version: 20141113170405) do
     t.string   "twitter_handle"
     t.boolean  "approved",             default: false
     t.string   "role",                 default: "user"
-    t.decimal  "social_authority"
+    t.decimal  "social_authority",     default: 0.0
     t.string   "ios_device_token"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "ip_address"
-    t.boolean  "mailchimp_flag",       default: false
     t.integer  "max_search_distance",  default: 48
+    t.boolean  "mailchimp_flag",       default: false
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree

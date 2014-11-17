@@ -2,8 +2,8 @@ class Api::V1::ExpertsController < ApiController
   has_scope :with_category, as: :category
 
   def index
-    @experts = apply_scopes(User.approved.experts.geocoded)
-    @experts = @experts.near_user(current_user)
+    @experts = apply_scopes(User.approved.experts.geocoded.where.not(id: current_user.id))
+    @experts = @experts.near_user(current_user).reorder('')
     @experts = @experts.by_rating(current_user)
   end
 

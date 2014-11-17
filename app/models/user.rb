@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   scope :experts, -> { joins(:skill) }
   scope :near_user, -> user { near([user.latitude, user.longitude], user.max_search_distance, units: :km) }
 
-  scope :by_rating, -> user { joins("LEFT JOIN user_friended_experts ON user_friended_experts.expert_id = users.id AND user_friended_experts.user_id = #{user.id}").order("coalesce(user_friended_experts.id, -1) desc, social_authority desc, users.created_at desc") }
+  scope :by_rating, -> user { joins("LEFT JOIN user_friended_experts ON user_friended_experts.expert_id = users.id AND user_friended_experts.user_id = #{user.id}").order("coalesce(user_friended_experts.id, -1) desc, social_authority desc, distance asc, users.created_at desc") }
 
   geocoded_by :ip_address
   after_validation :geocode
