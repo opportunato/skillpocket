@@ -53,15 +53,6 @@ ActiveRecord::Schema.define(version: 20141117071509) do
 
   add_index "conversations", ["older_id", "newer_id"], name: "index_conversations_on_older_id_and_newer_id", unique: true, using: :btree
 
-  create_table "friendly_id_slugs", id: false, force: true do |t|
-    t.integer  "id",                        default: "nextval('friendly_id_slugs_id_seq'::regclass)", null: false
-    t.string   "slug",                                                                                null: false
-    t.integer  "sluggable_id",                                                                        null: false
-    t.string   "sluggable_type", limit: 50
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
   create_table "messages", force: true do |t|
     t.integer  "sender_id",                       null: false
     t.integer  "recipient_id",                    null: false
@@ -189,7 +180,6 @@ ActiveRecord::Schema.define(version: 20141117071509) do
     t.float    "longitude"
     t.string   "ip_address"
     t.integer  "max_search_distance",  default: 48
-    t.boolean  "mailchimp_flag",       default: false
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree
