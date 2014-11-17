@@ -3,9 +3,9 @@ class TwitterFollowersWorker
   include Sidetiq::Schedulable
 
   # https://github.com/tobiassvn/sidetiq/wiki/Known-Issues#ice_cube
-  recurrence { hourly.minute_of_hour(0, 20, 40) }
+  recurrence { hourly }
 
   def perform
-    logger.info 'blah'
+    TwitterFriendsSyncer.new(User.from_twitter).sync
   end
 end

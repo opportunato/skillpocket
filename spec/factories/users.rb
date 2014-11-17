@@ -35,7 +35,7 @@ FactoryGirl.define do
     longitude 60
 
     trait :has_friended_experts do
-      ignore do
+      transient do
         friended_experts []
       end
 

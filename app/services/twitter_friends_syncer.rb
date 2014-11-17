@@ -41,41 +41,45 @@ class TwitterFriendsSyncer
 
     @users.each do |user|
       begin
+        user_id = User.sanitize(user.id)
+
         update_twitter_friend_ids(user)
         user_friended_experts = user.twitter_friends & expert_twitter_ids
-        user_friended_expert_objects = user_friended_experts.map do |expert_id|
-          { 
-            user_id: user.id,
-            expert_id: expert_twitter_ids_map[expert_id]
-          }
+        user_friended_expert_inserts = user_friended_experts.map do |expert_id|
+          expert_id = User.sanitize(expert_twitter_ids_map[expert_id])
+
+          "(#{user_id}, #{expert_id})"
         end
 
         ActiveRecord::Base.transaction do
-          UserFriendedExpert.where(user: user).destroy_all
-          UserFriendedExpert.create(user_friended_expert_objects)
+          ActiveRecord::Base.connection.execute("DELETE FROM user_friended_experts WHERE user_id = #{user_id};")
+          if user_friended_expert_inserts.length > 0
+            ActiveRecord::Base.connection.execute("INSERT INTO user_friended_experts (user_id, expert_id) VALUES #{user_friended_expert_inserts.join(', ')};")
+          end
         end
 
-        user_friended_expert_follower_objects = []
+        user_friended_expert_follower_inserts = []
 
         experts.each do |expert|
           if user.id != expert.id
             user_friended_expert_followers = expert.twitter_followers & user.twitter_friends
             expert_id = expert.id
 
-            user_friended_expert_follower_objects.concat(user_friended_expert_followers.map do |twitter_id|
-                {
-                  user_id: user.id,
-                  expert_id: expert_id,
-                  twitter_id: twitter_id
-                }
+            user_friended_expert_follower_inserts.concat(user_friended_expert_followers.map do |twitter_id|
+                expert_id = User.sanitize(expert_id)
+                twitter_id = User.sanitize(twitter_id)
+
+                "(#{user_id}, #{expert_id}, #{twitter_id})"
               end
             )
           end
         end
 
         ActiveRecord::Base.transaction do
-          UserFriendedExpertFollower.where(user: user).destroy_all
-          UserFriendedExpertFollower.create(user_friended_expert_follower_objects)
+          ActiveRecord::Base.connection.execute("DELETE FROM user_friended_expert_followers WHERE user_id = #{user_id}")
+          if user_friended_expert_follower_inserts.length > 0
+            ActiveRecord::Base.connection.execute("INSERT INTO user_friended_expert_followers (user_id, expert_id, twitter_id) VALUES #{user_friended_expert_follower_inserts.join(', ')};")
+          end
         end
       rescue Twitter::Error::Unauthorized
         puts "User '#{user.twitter_handle}' is unauthorized."
