@@ -37,12 +37,13 @@ RSpec.describe Api::V1::ExpertsController do
           'name' => second_expert.skill.tags.last.name
         }],
         'distance' => 0.0,
-        'tags' => [{
-          'id' => second_expert.skill.tags.first.id,
-          'name' => second_expert.skill.tags.first.name
-        }, {
-          'id' => second_expert.skill.tags.last.id,
-          'name' => second_expert.skill.tags.last.name
+        'tags' => [
+          {
+            'id' => second_expert.skill.tags.last.id,
+            'name' => second_expert.skill.tags.last.name
+          }, {
+            'id' => second_expert.skill.tags.first.id,
+            'name' => second_expert.skill.tags.first.name
         }],
         'twitter_url' => second_expert.twitter_url,
         'website_url' => second_expert.website_url,
@@ -84,6 +85,16 @@ RSpec.describe Api::V1::ExpertsController do
 
       expect(response_json.size).to eq 1
       expect(response_json.first['id']).to eq second_expert.id
+    end
+  end
+
+  context "when sent the non category tag" do
+    it "returns experts with that tag" do
+      login_as(user)
+      get "/api/v1/experts?category=#{URI.encode(first_expert.skill.tags.last.name)}"
+
+      expect(response_json.size).to eq 1
+      expect(response_json.first['id']).to eq first_expert.id
     end
   end
 

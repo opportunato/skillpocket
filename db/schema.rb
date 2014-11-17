@@ -43,10 +43,12 @@ ActiveRecord::Schema.define(version: 20141117071509) do
   end
 
   create_table "conversations", force: true do |t|
-    t.integer  "older_id",   null: false
-    t.integer  "newer_id",   null: false
+    t.integer  "older_id",                       null: false
+    t.integer  "newer_id",                       null: false
     t.string   "body"
     t.datetime "updated_at"
+    t.integer  "newer_unread_count", default: 0, null: false
+    t.integer  "older_unread_count", default: 0, null: false
   end
 
   add_index "conversations", ["older_id", "newer_id"], name: "index_conversations_on_older_id_and_newer_id", unique: true, using: :btree

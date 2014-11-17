@@ -1,5 +1,5 @@
 class Api::V1::ExpertsController < ApiController
-  has_scope :with_category, as: :category
+  has_scope :with_any_category, as: :category
 
   def index
     @experts = apply_scopes(User.approved.experts.geocoded.where.not(id: current_user.id))

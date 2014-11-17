@@ -5,6 +5,15 @@ class AppleNotificationPusher
       device_token: ios_device_token,
       alert:        text,
       identifier:   identifier,
+      custom:       { 'user-id' => identifier },
+      badge:        badge
+    )
+  end
+
+  def self.badge ios_device_token, badge
+    return unless ios_device_token
+    pusher.push Grocer::Notification.new(
+      device_token: ios_device_token,
       badge:        badge
     )
   end

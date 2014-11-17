@@ -6,5 +6,5 @@ json.array! @recent do |conversation|
   last_message = conversation.messages.last
   json.text conversation.body
   json.time conversation.updated_at.to_i
-  json.unread conversation.messages.unread.count
+  json.unread conversation.unread_count(current_user)
 end

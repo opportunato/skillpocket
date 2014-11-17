@@ -18,7 +18,8 @@ class Api::V1::MessageController < ApiController
     @messages = current_user.messages_with interlocutor
     render.tap do
       # Render first. Mark as read afterwards
-      @messages.recipient(current_user).unread.mark_as_read
+      conversation = current_user.conversation_with(interlocutor).first
+      conversation.mark_as_read_for(current_user) if conversation
     end
   end
 
