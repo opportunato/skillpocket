@@ -111,7 +111,7 @@ RSpec.shared_examples_for Messageable  do |factory|
   describe '#send_message_to also sends push notification' do
     let(:recipient) { create :user_with_ios_device_token }
     let(:sender) { create :user }
-    let(:body) { "#{sender.full_name} have sent you a message" }
+    let(:body) { "#{sender.full_name} has sent you a message" }
 
     #FIXME: omg, should double be set up to allow or expect? why does it fail if only either is used?
     before do
