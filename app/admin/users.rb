@@ -7,6 +7,7 @@ ActiveAdmin.register User do
   # Filterable attributes on the index screen
   filter :twitter_handle
   filter :full_name
+  filter :smartphone_os
   filter :approved
   filter :created_at
 
