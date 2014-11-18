@@ -6,6 +6,7 @@ protected
 
   def authenticate!
     warden.authenticate!(:http_token)
+    logger.info "APIuser: #{current_user.twitter_handle}"
   end
 
   def current_user
