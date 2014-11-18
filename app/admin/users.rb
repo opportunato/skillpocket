@@ -22,6 +22,7 @@ ActiveAdmin.register User do
   batch_action :unapprove do |ids|
     User.find(ids).each do |user|
       user.approved = false
+      user.save(validate: false)
     end
     redirect_to collection_path, alert: 'The users have been unapproved'
   end
