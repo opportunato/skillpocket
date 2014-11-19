@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117071509) do
+ActiveRecord::Schema.define(version: 20141119090041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(version: 20141117071509) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "ip_address"
-    t.integer  "max_search_distance",  default: 48
+    t.integer  "max_search_distance",  default: 150
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree

@@ -15,7 +15,7 @@ RSpec.describe Api::V1::ExpertsController do
     let(:longitude) { -117.157776 }
 
     context 'when distance is huge' do
-      let(:distance)  { 100 }
+      let(:distance)  { 60 }
       it 'shows all of them' do
         login_as(user)
         get api_v1_experts_path
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::ExpertsController do
     end
 
     context 'with small distance' do
-      let(:distance)  { 10 }
+      let(:distance)  { 6 }
       it 'shows closest' do
         login_as(user)
         get api_v1_experts_path
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::ExpertsController do
   describe do
     let(:latitude)  { 32.721031 }
     let(:longitude) { -117.157776 }
-    let(:distance)  { 10 }
+    let(:distance)  { 6 }
     it 'we get distance to experts in km' do
       login_as(user)
       get api_v1_experts_path

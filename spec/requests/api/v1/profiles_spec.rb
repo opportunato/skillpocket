@@ -60,7 +60,7 @@ RSpec.describe Api::V1::ProfilesController do
         expect(user.twitter_url).to eq 'https://twitter.com/screen_name'
         # expect(user.profile_image_url).to eq 'http://profile_image_url.com'
         # expect(user.profile_banner_url).to eq 'http://profile_banner_url.com'
-        expect(user.max_search_distance).to eq 48
+        expect(user.max_search_distance).to eq 150
       end
     end
   end
