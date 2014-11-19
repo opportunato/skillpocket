@@ -19,6 +19,22 @@ ActiveAdmin.register User do
     column :approved
   end
 
+  csv do
+    column :id
+    column :job
+    column :about
+    column :email
+    column :created_at
+    column :full_name
+    column :twitter_handle
+    column :approved
+    column :role
+    column :social_authority
+    column :latitude
+    column :longitude
+    column :smartphone_os
+  end
+
   batch_action :unapprove do |ids|
     User.find(ids).each do |user|
       user.approved = false
