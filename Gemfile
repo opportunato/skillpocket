@@ -25,6 +25,7 @@ gem 'draper'
 gem 'friendly_id'
 gem 'warden'
 gem 'cancancan'
+gem 'social_authority', git: 'git://github.com/opportunato/social_authority.git'
 
 gem 'twitter'
 
