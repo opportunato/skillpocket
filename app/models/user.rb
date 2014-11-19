@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :user_friended_experts
   has_many :user_followers, foreign_key: :expert_id, class_name: 'UserFriendedExpert', dependent: :destroy
 
-  validates_presence_of :full_name, :job, :about, :photo
+  validates_presence_of :full_name, :about, :photo
   validates :job, length: { maximum: 40 }
   validates :about, length: { maximum: 500 }
   # validates :email, email: true
