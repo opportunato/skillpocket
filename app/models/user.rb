@@ -30,9 +30,24 @@ class User < ActiveRecord::Base
   scope :unapproved, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :experts, -> { joins(:skill) }
-  scope :near_user, -> user { near([user.latitude, user.longitude], user.max_search_distance) }
-
-  scope :by_rating, -> user { joins("LEFT JOIN user_friended_experts ON user_friended_experts.expert_id = users.id AND user_friended_experts.user_id = #{user.id}").order("coalesce(user_friended_experts.id, -1) desc, social_authority desc, distance asc, users.created_at desc") }
+  scope :near_user, -> user {
+    geocoded.
+    near([user.latitude, user.longitude], user.max_search_distance).
+    reorder('') # we didn't ask to sort by distance
+  }
+  scope :by_rating, -> user {
+    near_user(user).
+    include_is_followed(user).
+    order('is_followed DESC').
+    order(social_authority: :desc).
+    order('distance DESC').
+    order(created_at: :desc)
+  }
+  scope :include_is_followed, -> user {
+    joins("LEFT OUTER JOIN user_friended_experts ON user_friended_experts.expert_id = users.id AND user_friended_experts.user_id = #{user.id}").
+    select('COUNT(user_friended_experts) as is_followed').
+    group('users.id')
+  }
 
   geocoded_by :ip_address
   after_validation :geocode, unless: :location_defined?
@@ -61,10 +76,6 @@ class User < ActiveRecord::Base
 
   def expert?
     skill.present?
-  end
-
-  def is_followed(user)
-    user_followers.select { |expert| expert.user_id == user.id }.length > 0
   end
 
   def admin?

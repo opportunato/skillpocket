@@ -30,7 +30,7 @@ json.cache! expert do
     json.name skill_tag.name
   end
 
-  json.distance expert.distance_to(current_user) * 1.6 if current_user.geocoded?
+  json.distance expert.distance_to(current_user)
 
-  json.is_followed expert.is_followed(current_user)
+  json.is_followed expert.is_followed == 1
 end

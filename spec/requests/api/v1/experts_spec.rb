@@ -101,11 +101,23 @@ RSpec.describe Api::V1::ExpertsController do
   end
 
   context 'when given a slug' do
-    it 'returns expert' do
+    before do
       login_as(user)
-      get "/api/v1/experts/#{first_expert.slug}"
+    end
 
+    it 'returns expert' do
+      get "/api/v1/experts/#{first_expert.slug}"
       expect(response_json['id']).to eq first_expert.id
+    end
+
+    it 'for those not followed' do
+      get "/api/v1/experts/#{first_expert.slug}"
+      expect(response_json['is_followed']).to eq false
+    end
+
+    it 'for those followed' do
+      get "/api/v1/experts/#{second_expert.slug}"
+      expect(response_json['is_followed']).to eq true
     end
   end
 end
