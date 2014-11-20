@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   get "about", to: "landing#about"
   get "faq", to: "landing#faq"
 
+  get 'berlin/:id', to: redirect('/')
+  get 'prelaunch', to: redirect('/')
+
   resources :users, path: '', only: [:show, :edit, :update], constraints: { id: /@[\w-]+/ }
 
   get "logout", to: "sessions#destroy"
