@@ -1,3 +1,21 @@
+.download {
+	font-size: .4em;
+	border-radius: 60px;
+	display: inline-block;
+	padding: $grid/2 30px;
+	margin-top: $grid;
+
+	span {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.icon-apple {
+		margin-right: $grid/5;
+		font-size: 1.6em;
+	}
+}
+
 .coming-soon {
 	background: $color-accent;
 	font-family: $accent-font-family;
