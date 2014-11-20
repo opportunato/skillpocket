@@ -11,6 +11,6 @@ class Admin::LoginController < ApplicationController
   def create
     warden.authenticate!(:password, scope: :admin)
 
-    redirect_to admin_applicants_path
+    redirect_to admin_dashboard_path
   end
 end
