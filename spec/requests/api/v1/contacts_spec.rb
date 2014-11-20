@@ -13,8 +13,7 @@ RSpec.describe Api::V1::ContactsController do
     end
 
     it 'lists customers messages' do
-      login_as(@consumer)
-      get api_v1_contacts_path, nil
+      get api_v1_contacts_path, nil, as(@consumer)
 
       expect(response.status).to eq 200
       expect(response_json.size).to eq 2

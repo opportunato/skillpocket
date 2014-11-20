@@ -12,8 +12,7 @@ RSpec.describe Api::V1::MessageController do
       expert = create :skilled_user
       body = Faker::Lorem.sentence
 
-      login_as(consumer)
-      post api_v1_message_path(expert.id), { text: body }
+      post api_v1_message_path(expert.id), { text: body }, as(consumer)
 
       expect(response.status).to eq 201
       expect(response.content_type).to eq 'application/json'
@@ -31,8 +30,7 @@ RSpec.describe Api::V1::MessageController do
       consumer.send_message_to(expert, body)
       reply = Faker::Lorem.sentence
 
-      login_as(expert)
-      post api_v1_message_path(consumer.id), { text: reply }
+      post api_v1_message_path(consumer.id), { text: reply }, as(expert)
 
       expect(response.status).to eq 201
       expect(response.content_type).to eq 'application/json'
@@ -49,8 +47,7 @@ RSpec.describe Api::V1::MessageController do
       end
 
       it 'is an empty list' do
-        login_as(@consumer)
-        get api_v1_message_path(rand(10000000..20000000)), nil
+        get api_v1_message_path(rand(10000000..20000000)), nil, as(@consumer)
 
         expect(response.status).to eq 200
         expect(response_json).to eq([])
@@ -64,8 +61,7 @@ RSpec.describe Api::V1::MessageController do
       end
 
       it 'is an empty list' do
-        login_as(@consumer)
-        get api_v1_message_path(@expert.id), nil
+        get api_v1_message_path(@expert.id), nil, as(@consumer)
 
         expect(response.status).to eq 200
         expect(response_json).to eq([])
@@ -85,8 +81,7 @@ RSpec.describe Api::V1::MessageController do
       end
 
       it 'lists customers messages' do
-        login_as(@consumer)
-        get api_v1_message_path(@expert.id), nil
+        get api_v1_message_path(@expert.id), nil, as(@consumer)
 
         expect(response.status).to eq 200
         expect(response_json).to eq([
@@ -99,24 +94,21 @@ RSpec.describe Api::V1::MessageController do
       end
 
       it 'is unable to read other customers messages' do
-        login_as(@expert2)
-        get api_v1_message_path(@consumer.id), nil
+        get api_v1_message_path(@consumer.id), nil, as(@expert2)
 
         expect(response.status).to eq 200
         expect(response_json).to eq([])
       end
 
       it 'is only shows given interlocutor messages' do
-        login_as(@consumer)
-        get api_v1_message_path(@expert2.id), nil
+        get api_v1_message_path(@expert2.id), nil, as(@consumer)
 
         expect(response.status).to eq 200
         expect(response_json).to eq([])
       end
 
       it 'lists expert messages' do
-        login_as(@expert)
-        get api_v1_message_path(@consumer.id), nil
+        get api_v1_message_path(@consumer.id), nil, as(@expert)
 
         expect(response.status).to eq 200
         expect(response_json).to eq([
@@ -129,9 +121,8 @@ RSpec.describe Api::V1::MessageController do
       end
 
       it 'next time messages are marked as read' do
-        login_as(@consumer)
-        get api_v1_message_path(@expert.id), nil
-        get api_v1_message_path(@expert.id), nil
+        get api_v1_message_path(@expert.id), nil, as(@consumer)
+        get api_v1_message_path(@expert.id), nil, as(@consumer)
 
         response_json.
           select { |message| message['incoming'] }.
@@ -160,8 +151,7 @@ RSpec.describe Api::V1::MessageController do
     end
 
     it 'returns correct number' do
-      login_as(@consumer)
-      get unread_api_v1_message_index_path, nil
+      get unread_api_v1_message_index_path, nil, as(@consumer)
 
       expect(response.status).to eq 200
       expect(response_json).to eq({"unread" => 3})

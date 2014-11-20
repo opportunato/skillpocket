@@ -77,8 +77,7 @@ RSpec.describe Api::V1::ProfilesController do
     let(:user) { create :user }
 
     it '#show' do
-      login_as(user)
-      get api_v1_profile_path, nil
+      get api_v1_profile_path, nil, as(user)
 
       expect(response.status).to eq 200
       expect(response_json.symbolize_keys).to eq({
@@ -107,9 +106,8 @@ RSpec.describe Api::V1::ProfilesController do
       URLS = [:behance_url, :github_url, :linkedin_url, :stackoverflow_url, :website_url]
       RESTRICTED_PROPERTIES = [:id, :slug, :twitter_id, :twitter_token, :twitter_token_secret, :twitter_url]
       # TODO: those are rounded on persistence :created_at, :updated_at]
-      login_as(user)
       put api_v1_profile_path,
-        (VARIABLE_PROPERTIES + URLS).product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h).merge(email: 'changed@change.org').merge(max_search_distance: 24).merge(social_authority: 99)
+        (VARIABLE_PROPERTIES + URLS).product(['changed']).to_h.merge(RESTRICTED_PROPERTIES.product(['pwn']).to_h).merge(email: 'changed@change.org').merge(max_search_distance: 24).merge(social_authority: 99), as(user)
       expect(response.status).to eq 201
       after = user.clone
       after.reload
@@ -128,9 +126,8 @@ RSpec.describe Api::V1::ProfilesController do
     end
 
     it 'updates push token' do
-      login_as(user)
       token = SecureRandom.hex
-      post pushtoken_api_v1_profile_path, { ios_device_token: token }
+      post pushtoken_api_v1_profile_path, { ios_device_token: token }, as(user)
 
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
@@ -140,9 +137,8 @@ RSpec.describe Api::V1::ProfilesController do
     end
 
     it 'updates location' do
-      login_as(user)
       latitude, longitude = rand(0..100), rand(0..100)
-      post location_api_v1_profile_path, { latitude: latitude, longitude: longitude }
+      post location_api_v1_profile_path, { latitude: latitude, longitude: longitude }, as(user)
 
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
