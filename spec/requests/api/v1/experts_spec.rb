@@ -10,7 +10,8 @@ RSpec.describe Api::V1::ExpertsController do
   it 'returns expert in correct format'
 
   it 'returns experts in correct format' do
-    get "/api/v1/experts/", nil, as(user)
+    login_as(user)
+    get "/api/v1/experts/"
 
     # it_behaves_like 'token protected resource'
 
@@ -81,7 +82,8 @@ RSpec.describe Api::V1::ExpertsController do
 
   context "when sent the category" do
     it "returns only experts with that category" do
-      get "/api/v1/experts?category=#{URI.encode(second_expert.skill.tags.last.name)}", nil, as(user)
+      login_as(user)
+      get "/api/v1/experts?category=#{URI.encode(second_expert.skill.tags.last.name)}"
 
       expect(response_json.size).to eq 1
       expect(response_json.first['id']).to eq second_expert.id
@@ -90,7 +92,8 @@ RSpec.describe Api::V1::ExpertsController do
 
   context "when sent the non category tag" do
     it "returns experts with that tag" do
-      get "/api/v1/experts?category=#{URI.encode(first_expert.skill.tags.last.name)}", nil, as(user)
+      login_as(user)
+      get "/api/v1/experts?category=#{URI.encode(first_expert.skill.tags.last.name)}"
 
       expect(response_json.size).to eq 1
       expect(response_json.first['id']).to eq first_expert.id
@@ -98,18 +101,22 @@ RSpec.describe Api::V1::ExpertsController do
   end
 
   context 'when given a slug' do
+    before do
+      login_as(user)
+    end
+
     it 'returns expert' do
-      get "/api/v1/experts/#{first_expert.slug}", nil, as(user)
+      get "/api/v1/experts/#{first_expert.slug}"
       expect(response_json['id']).to eq first_expert.id
     end
 
     it 'for those not followed' do
-      get "/api/v1/experts/#{first_expert.slug}", nil, as(user)
+      get "/api/v1/experts/#{first_expert.slug}"
       expect(response_json['is_followed']).to eq false
     end
 
     it 'for those followed' do
-      get "/api/v1/experts/#{second_expert.slug}", nil, as(user)
+      get "/api/v1/experts/#{second_expert.slug}"
       expect(response_json['is_followed']).to eq true
     end
   end

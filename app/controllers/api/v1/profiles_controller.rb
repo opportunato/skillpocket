@@ -1,5 +1,5 @@
 class Api::V1::ProfilesController < ApiController
-  skip_before_action :authenticate_with_token, only: [:create]
+  skip_before_action :authenticate!, only: [:create]
   before_action :get_profile, except: [:create]
 
   def create
