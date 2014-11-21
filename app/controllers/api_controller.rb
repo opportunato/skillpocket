@@ -11,9 +11,8 @@ private
 
   def authenticate_with_token
     @current_user = authenticate_or_request_with_http_token do |token, options|
-      user = User.find_by(access_token: token)
-      logger.info "APIuser: #{user.twitter_handle || token}"
-      user
+      User.find_by(access_token: token)
     end
+    logger.info "APIuser: #{current_user.twitter_handle}"
   end
 end
