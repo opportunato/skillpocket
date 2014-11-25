@@ -33,6 +33,7 @@ ActiveAdmin.register User do
     column :latitude
     column :longitude
     column :smartphone_os
+    column :price
   end
 
   batch_action :unapprove do |ids|
