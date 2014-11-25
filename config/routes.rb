@@ -46,6 +46,7 @@ Rails.application.routes.draw do
 
   get 'berlin/:id', to: redirect('/')
   get 'prelaunch', to: redirect('/')
+  get 'Prelaunch', to: redirect('/')
 
   resources :users, path: '', only: [:show, :edit, :update], constraints: { id: /@[\w-]+/ }
 
