@@ -1,0 +1,16 @@
+section.experts-list
+  nav.cities
+    - @cities.each do |city|
+      = link_to city[:name], city[:path]
+  nav.tags
+    - @categories.each do |category|
+      = link_to category[:name], category[:path]
+  h1 = @title
+  p = @description
+  ul
+    - @experts.each do |expert|
+      li
+        article
+          .userpic [style="background-image: url(#{expert.photo_url});background-size: cover;"]
+          h2 = expert.full_name
+          p = expert.job
