@@ -1,16 +1,59 @@
 section.experts-list
   nav.cities
-    - @cities.each do |city|
-      = link_to city[:name], city[:path]
+    ul
+      - @cities.each do |city|
+        li= link_to city[:name], city[:path]
   nav.tags
-    - @categories.each do |category|
-      = link_to category[:name], category[:path]
+    ul
+      - @categories.each do |category|
+        li= link_to category[:name], category[:path]
   h1 = @title
-  p = @description
+  p.description = @description
   ul
-    - @experts.each do |expert|
-      li
-        article
-          .userpic [style="background-image: url(#{expert.photo_url});background-size: cover;"]
-          h2 = expert.full_name
-          p = expert.job
+    li.expert
+      .userpic style="background-image: url('https://skillpocket.com/uploads/user/000/000/036/photo/46f20fb62e.png');background-size: cover;"
+      h4.name Jean-Marc Denis
+      p.job Mobile product lead of Inbox @Google
+      .price 99$/hr
+    li.expert
+      .userpic style="background-image: url('https://skillpocket.com/uploads/user/000/000/036/photo/46f20fb62e.png');background-size: cover;"
+      h4.name Jean-Marc Denis
+      p.job Mobile product lead of Inbox @Google
+      .price 99$/hr
+    li.expert
+      .userpic style="background-image: url('https://skillpocket.com/uploads/user/000/000/036/photo/46f20fb62e.png');background-size: cover;"
+      h4.name Jean-Marc Denis
+      p.job Mobile product lead of Inbox @Google
+      .price 99$/hr
+    li.expert
+      .userpic style="background-image: url('https://skillpocket.com/uploads/user/000/000/036/photo/46f20fb62e.png');background-size: cover;"
+      h4.name Jean-Marc Denis
+      p.job Mobile product lead of Inbox @Google
+      .price 99$/hr
+    li.expert
+      .userpic style="background-image: url('https://skillpocket.com/uploads/user/000/000/036/photo/46f20fb62e.png');background-size: cover;"
+      h4.name Jean-Marc Denis
+      p.job Mobile product lead of Inbox @Google
+      .price 99$/hr
+    li.expert
+      .userpic style="background-image: url('https://skillpocket.com/uploads/user/000/000/036/photo/46f20fb62e.png');background-size: cover;"
+      h4.name Jean-Marc Denis
+      p.job Mobile product lead of Inbox @Google
+      .price 99$/hr
+    li.expert
+      .userpic style="background-image: url('https://skillpocket.com/uploads/user/000/000/036/photo/46f20fb62e.png');background-size: cover;"
+      h4.name Jean-Marc Denis
+      p.job Mobile product lead of Inbox @Google
+      .price 99$/hr
+    li.expert
+      .userpic style="background-image: url('https://skillpocket.com/uploads/user/000/000/036/photo/46f20fb62e.png');background-size: cover;"
+      h4.name Jean-Marc Denis
+      p.job Mobile product lead of Inbox @Google
+      .price 99$/hr
+
+    / - @experts.each do |expert|
+    /   li
+    /     article
+    /       .userpic [style="background-image: url(#{expert.photo_url});background-size: cover;"]
+    /       h2 = expert.full_name
+    /       p = expert.job

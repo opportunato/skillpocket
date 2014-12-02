@@ -1,0 +1,61 @@
+.experts-list {
+  text-align: center;
+
+  @include respond-to(medium) {
+    margin: 0 auto;
+    max-width: $sizeL;
+  }
+
+  .expert {
+    display: inline-block;
+    width: 33%;
+  }
+
+  .expert {
+    position: relative;
+    margin-bottom: $grid*2;
+  }
+
+  .userpic {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin: 0 auto;
+    margin-bottom: $grid/2;
+  }
+
+  .job {
+    color: $color-grey;
+  }
+
+  .price {
+    margin-bottom: $grid;
+  }
+
+  h1 {
+    margin-bottom: $grid/2;
+  }
+
+  .description {
+    margin-bottom: $grid*3;
+    color: $color-grey;
+  }
+}
+
+.tags, .cities {
+  font-family: $accent-font-family;
+  font-size: 1.2em;
+
+  li {
+    display: inline-block;
+    margin-right: $grid;
+  }
+}
+
+.tags {
+  margin-bottom: $grid*2;
+}
+
+.cities {
+  margin-bottom: $grid/2;
+}
