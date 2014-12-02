@@ -7,8 +7,11 @@
   }
 
   .expert {
-    display: inline-block;
-    width: 33%;
+
+    @include respond-to(medium) {
+      display: inline-block;
+      width: 33%;
+    }
   }
 
   .expert {
