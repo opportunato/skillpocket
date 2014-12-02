@@ -2,11 +2,11 @@ section.experts-list
   nav.cities
     ul
       - @cities.each do |city|
-        li= link_to city[:name], city[:path]
+        li = link_active_unless_current city[:name], city[:path]
   nav.tags
     ul
       - @categories.each do |category|
-        li= link_to category[:name], category[:path]
+        li = link_active_unless_current category[:name], category[:path]
   h1 = @title
   p.description = @description
   ul

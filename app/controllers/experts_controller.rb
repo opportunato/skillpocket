@@ -8,10 +8,10 @@ class ExpertsController < ApplicationController
     @description = state[:description]
 
     @categories = CATEGORIES.map { |category_url, category| { name: category[:name], path: state[:category_path].call(category_url) } }
-    @categories.push({ name: "All Categories", path: state[:all_categories_path] })
+    @categories.unshift({ name: "All Categories", path: state[:all_categories_path] })
 
     @cities     = CITIES.map     { |city_url, city| { name: city[:name], path: state[:city_path].call(city_url) } }
-    @cities.push({ name: "All Cities", path: state[:all_cities_path] })
+    @cities.unshift({ name: "All Cities", path: state[:all_cities_path] })
 
     if current_user.present?
       @experts = state[:experts].by_rating(current_user)
@@ -44,7 +44,7 @@ private
         category_path = Proc.new { |category| category_experts_path(category: category) }
         all_categories_path = experts_path
       end
-    elsif city_data = CITIES[category] && city = category
+    elsif (city_data = CITIES[category]) && (city = category)
       title = "Hire experts in #{city_data[:title]}"
       description = "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
       experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
@@ -77,12 +77,12 @@ private
   end
 
   CATEGORIES = {
-    technology: {
+    "technology" => {
       title: "Technology",
       name:  "Technology",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
-    business: {
+    "business" => {
       title: "Business",
       name: "Business",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
@@ -102,7 +102,7 @@ private
       name: "Design",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
-    funding: {
+    "funding" => {
       title: "Funding",
       name: "Funding",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
@@ -112,7 +112,7 @@ private
       name: "Photo",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
-    writing: {
+    "writing" => {
       title: "Writing",
       name: "Writing",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
