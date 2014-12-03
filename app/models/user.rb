@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include Messageable
   include Redis::Objects
 
-  has_one :skill, dependent: :destroy
+  has_one  :skill, dependent: :destroy
   has_many :user_friended_experts
   has_many :user_followers, foreign_key: :expert_id, class_name: 'UserFriendedExpert', dependent: :destroy
 
@@ -47,9 +47,9 @@ class User < ActiveRecord::Base
   }
   # duplication, change later
   scope :by_rating_for_view, -> user {
-    include_is_followed(user).
-    # intermediate_followers_count(user).
-    order('is_followed DESC').
+    # include_is_followed(user).
+    # # intermediate_followers_count(user).
+    # order('is_followed DESC').
     # order('intermediate_followers_count DESC'). # not using this just yet
     order(social_authority: :desc).
     order(created_at: :desc)
