@@ -63,7 +63,7 @@ nav.main {
 }
 
 .logo {
-	@include position(absolute, $grid/2 0 0 $grid/2);
+	@include position(absolute, $grid/4*3 0 0 $grid/4*3);
   color: $color-grey;
 
   span {
@@ -84,8 +84,9 @@ nav.main {
   margin-left: $grid;
 }
 
-.button.become {
-  display: none!important;
+.become {
+  display: none;
+  margin-bottom: 0;
 
   @include respond-to(small) {
     display: inline-block!important;

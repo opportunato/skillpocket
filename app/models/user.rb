@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
   #   select('COUNT(user_friended_expert_followers) as intermediate_followers_count').
   #   group('users.id')
   # }
+  scope :by_authority, -> { order("social_authority desc, users.created_at desc") }
 
   geocoded_by :ip_address
   after_validation :geocode, unless: :location_defined?
