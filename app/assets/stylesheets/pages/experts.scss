@@ -12,9 +12,16 @@
       display: inline-block;
       width: 33%;
     }
-  }
 
-  .expert {
+    a {
+      color: inherit;
+
+      * {
+        text-decoration: none;
+        color: inherit;        
+      }
+    }
+
     position: relative;
     margin-bottom: $grid*2;
   }

@@ -9,14 +9,15 @@ section.experts-list
     ul
       - @categories.each do |category|
         li = link_active_unless_current category[:name], category[:path]
-  h1 = @title
-  / p.description = @description
+  h1 = @title_text
+  p.description = @description
   ul
 
     - @experts.each do |expert|
       li.expert
-        .userpic [style="background-image: url(#{expert.photo_url});background-size: cover;"]
-        h4.name = expert.full_name
-        p.job   = expert.job
-        .price  = expert.price
+        = link_to user_path("@#{expert.twitter_handle}")
+          .userpic [style="background-image: url(#{expert.photo_url});background-size: cover;"]
+          h4.name = expert.full_name
+          p.job   = expert.job
+          .price  = expert.price
 

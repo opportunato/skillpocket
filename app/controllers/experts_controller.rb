@@ -4,13 +4,14 @@ class ExpertsController < ApplicationController
   def index
     state = get_city_and_category_state(params[:category], params[:city], User.approved.experts)
 
-    @title = state[:title]
+    @title       = state[:title]
     @description = state[:description]
+    @title_text  = state[:title_text]
 
-    @categories = CATEGORIES.map { |category_url, category| { name: category[:name], path: state[:category_path].call(category_url) } }
+    @categories  = CATEGORIES.map { |category_url, category| { name: category[:name], path: state[:category_path].call(category_url) } }
     @categories.unshift({ name: "All Categories", path: state[:all_categories_path] })
 
-    @cities     = CITIES.map     { |city_url, city| { name: city[:name], path: state[:city_path].call(city_url) } }
+    @cities      = CITIES.map     { |city_url, city| { name: city[:name], path: state[:city_path].call(city_url) } }
     @cities.unshift({ name: "All Cities", path: state[:all_cities_path] })
 
     if current_user.present?
@@ -27,11 +28,12 @@ private
   # In heavy need for refactoring, if adding new features needs to be done in instant
   def get_city_and_category_state(category, city, experts)
     if category_data = CATEGORIES[category]
-      description = category_data[:description]
       experts = experts.with_any_category(category_data[:name])
 
       if city_data = CITIES[city]
         title = "Hire #{category_data[:title]} in #{city_data[:title]}"
+        title_text = "#{category_data[:title]} in #{city_data[:title]}"
+        description = "Skillpocket makes it easy for you to find and hire talented #{category_data[:title]} in #{city_data[:title]}. Browse experts now!"
         experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
@@ -39,7 +41,9 @@ private
         category_path = Proc.new { |category| category_city_experts_path(category: category, city: city) }
         all_categories_path = category_experts_path(category: city)
       else
-        title = "Hire #{category_data[:title]}"
+        title = "Hire #{category_data[:title]} on Skillpocket"
+        title_text = "#{category_data[:title]} on Skillpocket"
+        description = "Skillpocket makes it easy for you to find and hire talented #{category_data[:title]}. Browse experts now!"
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
         all_cities_path = category_experts_path(category: category)
@@ -48,7 +52,8 @@ private
       end
     elsif (city_data = CITIES[category]) && (city = category)
       title = "Hire experts in #{city_data[:title]}"
-      description = "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
+      title_text = "Experts in #{city_data[:title]}"
+      description = "Skillpocket makes it easy for you to find and hire talented experts in #{city_data[:title]}. Browse experts now!"
       experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
       
       city_path = Proc.new { |city| category_experts_path(category: city) }
@@ -56,8 +61,9 @@ private
       category_path = Proc.new { |category| category_city_experts_path(category: category, city: city) }
       all_categories_path = category_experts_path(category: city)
     else
-      title = "Hire experts"
-      description = "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
+      title = "Hire experts on Skillpocket"
+      title_text = "Experts on Skillpocket"
+      description = "Skillpocket makes it easy for you to find and hire talented experts. Browse experts now!"
       experts = experts
 
       city_path = Proc.new { |city| category_experts_path(category: city) }
@@ -68,6 +74,7 @@ private
 
     {
       title: title,
+      title_text: title_text,
       description: description,
       experts: experts,
       category_path: category_path,
