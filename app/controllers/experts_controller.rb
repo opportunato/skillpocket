@@ -2,7 +2,7 @@ class ExpertsController < ApplicationController
   skip_before_action :authenticate!, only: [:index]
 
   def index
-    state = get_city_and_category_state(params[:category], params[:city], User.approved.experts)
+    state = get_city_and_category_state(params[:category], params[:city], User.approved.experts.from_twitter)
 
     @title       = state[:title]
     @description = state[:description]
