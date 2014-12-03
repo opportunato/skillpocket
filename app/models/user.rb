@@ -45,6 +45,16 @@ class User < ActiveRecord::Base
     order('distance DESC').
     order(created_at: :desc)
   }
+  # duplication, change later
+  scope :by_rating_for_view, -> user {
+    include_is_followed(user).
+    # intermediate_followers_count(user).
+    order('is_followed DESC').
+    # order('intermediate_followers_count DESC'). # not using this just yet
+    order(social_authority: :desc).
+    order(created_at: :desc)
+  }
+  scope :by_authority, -> { order("social_authority desc, users.created_at desc") }
   scope :include_is_followed, -> user {
     joins("LEFT OUTER JOIN user_friended_experts ON user_friended_experts.expert_id = users.id AND user_friended_experts.user_id = #{user.id}").
     select('COUNT(user_friended_experts) as is_followed').
@@ -55,7 +65,6 @@ class User < ActiveRecord::Base
   #   select('COUNT(user_friended_expert_followers) as intermediate_followers_count').
   #   group('users.id')
   # }
-  scope :by_authority, -> { order("social_authority desc, users.created_at desc") }
 
   geocoded_by :ip_address
   after_validation :geocode, unless: :location_defined?

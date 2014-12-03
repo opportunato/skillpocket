@@ -14,7 +14,7 @@ class ExpertsController < ApplicationController
     @cities.unshift({ name: "All Cities", path: state[:all_cities_path] })
 
     if current_user.present?
-      @experts = state[:experts].by_rating(current_user)
+      @experts = state[:experts].by_rating_for_view(current_user)
     else
       @experts = state[:experts].by_authority
     end
