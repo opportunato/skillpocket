@@ -88,6 +88,12 @@ private
   end
 
   def user_location
-    current_user.update_location request.location, request.ip
+    location = request.location
+    ip = request.ip
+    current_user.update_location location, ip
+  rescue EOFError => e
+    logger.error "FAILED TO UPDATE USER LOCATION"
+    logger.error e.message
+    logger.error e.backtrace
   end
 end
