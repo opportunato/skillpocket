@@ -1,6 +1,7 @@
 class ExpertsController < ApplicationController
   skip_before_action :authenticate!, only: [:index]
 
+  #TODO Abomination, needs rewriting
   def index
     state = get_city_and_category_state(params[:category], params[:city], User.approved.experts.from_twitter)
 
@@ -21,6 +22,8 @@ class ExpertsController < ApplicationController
     end
 
     @experts = UserDecorator.decorate_collection(@experts)
+
+    @is_expert = current_user.expert?
   end
 
 private
@@ -33,7 +36,7 @@ private
       if city_data = CITIES[city]
         title = "Hire #{category_data[:title]} in #{city_data[:title]}"
         title_text = "#{category_data[:title]} in #{city_data[:title]}"
-        description = "Skillpocket makes it easy for you to find and hire talented #{category_data[:title]} in #{city_data[:title]}. Browse experts now!"
+        description_experts = "#{category_data[:title]} in #{city_data[:title]}"
         experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
@@ -41,9 +44,9 @@ private
         category_path = Proc.new { |category| category_city_experts_path(category: category, city: city) }
         all_categories_path = category_experts_path(category: city)
       else
-        title = "Hire #{category_data[:title]} on Skillpocket"
-        title_text = "#{category_data[:title]} on Skillpocket"
-        description = "Skillpocket makes it easy for you to find and hire talented #{category_data[:title]}. Browse experts now!"
+        title = "Hire #{category_data[:title]}"
+        title_text = "#{category_data[:title]}"
+        description_experts = category_data[:title]
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
         all_cities_path = category_experts_path(category: category)
@@ -53,7 +56,7 @@ private
     elsif (city_data = CITIES[category]) && (city = category)
       title = "Hire experts in #{city_data[:title]}"
       title_text = "Experts in #{city_data[:title]}"
-      description = "Skillpocket makes it easy for you to find and hire talented experts in #{city_data[:title]}. Browse experts now!"
+      description_experts = city_data[:title]
       experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
       
       city_path = Proc.new { |city| category_experts_path(category: city) }
@@ -61,9 +64,9 @@ private
       category_path = Proc.new { |category| category_city_experts_path(category: category, city: city) }
       all_categories_path = category_experts_path(category: city)
     else
-      title = "Hire experts on Skillpocket"
-      title_text = "Experts on Skillpocket"
-      description = "Skillpocket makes it easy for you to find and hire talented experts. Browse experts now!"
+      title = "Hire experts"
+      title_text = "Experts"
+      description_experts = "experts"
       experts = experts
 
       city_path = Proc.new { |city| category_experts_path(category: city) }
@@ -71,6 +74,8 @@ private
       category_path = Proc.new { |category| category_experts_path(category: category) }
       all_categories_path = experts_path
     end
+
+    description = "Skillpocket makes it easy for you to find and hire talented #{description_experts}."
 
     {
       title: title,
@@ -87,12 +92,12 @@ private
 
   CATEGORIES = {
     "technology" => {
-      title: "Freelance Programmers & Developers",
+      title: "Programmers & Developers",
       name:  "Technology",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
     "business" => {
-      title: "Freelance Business-experts",
+      title: "Business-experts",
       name: "Business",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
@@ -107,7 +112,7 @@ private
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
     "product-design" => {
-      title: "Freelance UI/UX & Product Designers",
+      title: "UI/UX & Product Designers",
       name: "Design",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
@@ -117,12 +122,12 @@ private
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
     "photo-video" => {
-      title: "Freelance Photographers & Video-Experts",
+      title: "Photographers & Video-Experts",
       name: "Photo",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
     "writing" => {
-      title: "Freelance Copywriters and Translators",
+      title: "Copywriters and Translators",
       name: "Writing",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     }

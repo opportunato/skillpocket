@@ -1,5 +1,8 @@
 - title @title
 
+- if !@is_expert
+  - @description = @description += "<br>Browse experts on our #{link_to 'iPhone App', 'https://itunes.apple.com/us/app/skillpocket-hire-experts/id933547324?ls=1&mt=8'} and #{link_to 'apply to become an expert', onboarding_step_1_path}."
+
 section.experts-list
   nav.cities
     ul
@@ -10,7 +13,7 @@ section.experts-list
       - @categories.each do |category|
         li = link_active_unless_current category[:name], category[:path]
   h1 = @title_text
-  p.description = @description
+  p.description = @description.html_safe
   ul
 
     - @experts.each do |expert|
