@@ -23,7 +23,7 @@ class ExpertsController < ApplicationController
 
     @experts = UserDecorator.decorate_collection(@experts)
 
-    @is_expert = current_user.expert?
+    @is_expert = current_user.present? && current_user.expert?
   end
 
 private
