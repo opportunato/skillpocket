@@ -28,6 +28,6 @@ section.onboarding-step
           .price
             span.dollar $
             = s.input :price
+          = s.input :category, as: :radio_buttons, collection: Skill::NEW_CATEGORIES
           = s.input :tags_text, placeholder: 'Design, UX Design'
-          = s.input :categories_list, as: :check_boxes, collection: Skill::CATEGORIES
           = f.submit "Update"
