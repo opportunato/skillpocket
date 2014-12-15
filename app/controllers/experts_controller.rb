@@ -9,11 +9,11 @@ class ExpertsController < ApplicationController
     @description = state[:description]
     @title_text  = state[:title_text]
 
-    @categories  = CATEGORIES.map { |category_url, category| { name: category[:name], path: state[:category_path].call(category_url) } }
-    @categories.unshift({ name: "All Categories", path: state[:all_categories_path] })
+    @categories  = CATEGORIES.map { |category_url, category| [ category[:name], state[:category_path].call(category_url) ] }
+    @categories.unshift(["all professionals", state[:all_categories_path]])
 
-    @cities      = CITIES.map     { |city_url, city| { name: city[:name], path: state[:city_path].call(city_url) } }
-    @cities.unshift({ name: "All Cities", path: state[:all_cities_path] })
+    @cities      = CITIES.map     { |city_url, city| [ city[:name], state[:city_path].call(city_url) ] }
+    @cities.unshift(["all cities", state[:all_cities_path]])
 
     if current_user.present?
       @experts = state[:experts].by_rating_for_view(current_user)
@@ -91,44 +91,29 @@ private
   end
 
   CATEGORIES = {
-    "technology" => {
+    "developers" => {
       title: "Programmers & Developers",
-      name:  "Technology",
+      name:  "developers",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
-    "business" => {
+    "designers" => {
       title: "Business-experts",
-      name: "Business",
+      name: "designers",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
-    "marketing-sales" => {
+    "marketers" => {
       title: "Digital Marketeers & Sales Experts",
-      name: "Marketing",
+      name: "marketers",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
-    "skills-management" => {
+    "strategists" => {
       title: "Skills & Mangement Experts",
-      name: "Management",
+      name: "strategists",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
-    "product-design" => {
+    "creatives" => {
       title: "UI/UX & Product Designers",
-      name: "Design",
-      description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
-    },
-    "funding" => {
-      title: "Investors, Venture Capitalists (VC’s)",
-      name: "Funding",
-      description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
-    },
-    "photo-video" => {
-      title: "Photographers & Video-Experts",
-      name: "Photo",
-      description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
-    },
-    "writing" => {
-      title: "Copywriters and Translators",
-      name: "Writing",
+      name: "creatives",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     }
   }
