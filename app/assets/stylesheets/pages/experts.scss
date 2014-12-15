@@ -7,10 +7,15 @@
   }
 
   .expert {
+    background: white;
+    padding: $grid;
 
     @include respond-to(medium) {
       display: inline-block;
-      width: 33%;
+      vertical-align: top;
+      width: 30%;
+      margin: 1%;
+      height: 330px;
     }
 
     a {
