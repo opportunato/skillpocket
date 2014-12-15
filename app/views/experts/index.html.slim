@@ -6,6 +6,8 @@
 - set_meta_tags title: @title, description: @description
 
 section.experts-list
+  h1 = @title_text
+  p.description = @description.html_safe
   nav.cities
     ul
       - @cities.each do |city|
@@ -14,8 +16,6 @@ section.experts-list
     ul
       - @categories.each do |category|
         li = link_active_unless_current category[:name], category[:path]
-  h1 = @title_text
-  p.description = @description.html_safe
   ul
 
     - @experts.each do |expert|

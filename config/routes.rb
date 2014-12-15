@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  root 'landing#index'
+  root 'experts#index'
 
   namespace :api, defaults: { format: "json" } do
     namespace :v1 do
@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get "onboarding/success", to: "onboarding#success"
 
   get "about", to: "landing#about"
+  get "landing", to: "landing#index"
   get "faq", to: "landing#faq"
 
   get 'berlin/:id', to: redirect('/')

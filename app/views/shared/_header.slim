@@ -6,25 +6,25 @@ header.main
     span.icon-logo
     span Skillpocket
   .menu
-    - if current_onboarding_step.present?
-      = link_to_unless_current 'Become an expert', "/onboarding/step/#{current_onboarding_step}", class: "button become"
-    - if current_onboarding_step.nil? && user.approved
-      = link_to_unless_current 'Profile', user_path("@#{user.twitter_handle}")
     a.menu-button href="#" Menu
   nav.main
     .overlay
     ul
       li
-        = link_to_unless_current 'How It Works', root_path
+        = link_to_unless_current 'How It Works', landing_path
       li
         = link_to_unless_current 'About', about_path
       li
         = link_to_unless_current 'FAQ', faq_path
-      - if current_onboarding_step.present?
-          li = link_to_unless_current 'Become an expert', "/onboarding/step/#{current_onboarding_step}"
       - if current_onboarding_step.nil? && user.approved
         li = link_to_unless_current 'Profile', user_path("@#{user.twitter_handle}")
           / TODO find a clean way to define route
+      - if current_onboarding_step.present?
+        li
+          = link_to_unless_current 'Become an expert', "/onboarding/step/#{current_onboarding_step}", class: "button become"
+      - if current_onboarding_step.nil? && user.approved
+        li
+          = link_to_unless_current 'Profile', user_path("@#{user.twitter_handle}")
       - if signed_in?
         li = link_to 'Logout', logout_path
       - else

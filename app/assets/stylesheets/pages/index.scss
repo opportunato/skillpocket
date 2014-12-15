@@ -59,6 +59,7 @@
 
 .intro {
 	margin-bottom: 0;
+	padding-top: 63px;
 
 	.block { display: block; }
 
@@ -69,7 +70,7 @@
 
 .intro, .how-it-works {
 	text-align: center;
-	border-bottom: 1px solid $color-grey-light;
+	border-bottom: 1px solid $color-grey-medium;
 
 	@include respond-to(medium) {
 		text-align: left;
@@ -162,12 +163,12 @@
 }
 
 .use-skillpocket-to {
-	background: $color-grey-light;
 	padding: $grid 0;
+	border-bottom: 1px solid $color-grey-medium;
 }
 
 .our-experts {
-	border-bottom: 1px solid $color-grey-light;
+	border-bottom: 1px solid $color-grey-medium;
 
 	a { color: $color-text; }
 
