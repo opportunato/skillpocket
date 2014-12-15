@@ -1,0 +1,26 @@
+.app-strip {
+  @include position(fixed, 0px 0px 0 0px);
+  z-index: 999;
+  background: $color-accent;
+  color: white;
+  text-align: center;
+
+  .title {
+    margin-right: $grid;
+    font-family: $accent-font-family;
+  }
+
+  .download {
+    font-size: 1em;
+    color: white!important;
+    border-color: white!important;
+    padding: $grid/4 $grid;
+    margin-top: $grid/2;
+    margin-bottom: $grid/2;
+
+    &:hover {
+      color: $color-accent!important;
+      background: white!important;
+    }
+  }
+}

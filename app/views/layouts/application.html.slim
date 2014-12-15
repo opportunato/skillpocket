@@ -7,6 +7,7 @@ html
 	meta[name="apple-mobile-web-app-capable" content="yes"]
   body[class=(["users"].include?(params[:controller]) ? "profile" : "")]
     = render partial: "shared/social"
+    = render partial: "shared/appstrip"
     = render partial: "shared/header"
     main
       = yield
