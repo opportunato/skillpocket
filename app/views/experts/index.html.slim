@@ -8,14 +8,11 @@
 section.experts-list
   h1 = @title_text
   p.description = @description.html_safe
-  nav.cities
-    ul
-      - @cities.each do |city|
-        li = link_active_unless_current city[:name], city[:path]
-  nav.tags
-    ul
-      - @categories.each do |category|
-        li = link_active_unless_current category[:name], category[:path]
+  nav
+    | Show
+    = select_tag "categories", options_for_select(@categories)
+    | in
+    = select_tag "cities", options_for_select(@cities)
   ul
 
     - @experts.each do |expert|

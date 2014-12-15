@@ -69,12 +69,14 @@ class User < ActiveRecord::Base
   geocoded_by :ip_address
   after_validation :geocode, unless: :location_defined?
 
-  delegate :price, :smartphone_os,
-           to: :skill
-
-  delegate :title, :tags, :categories, :categories_text,
+  delegate :price, :smartphone_os, :category,
            to: :skill,
-           prefix: true
+           allow_nil: true
+
+  delegate :title, :tags, :tags_text, :categories, :categories_text,
+           to: :skill,
+           prefix: true,
+           allow_nil: true
 
   accepts_nested_attributes_for :skill
 

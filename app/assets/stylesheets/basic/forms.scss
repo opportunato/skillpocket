@@ -20,7 +20,7 @@ label {
 }
 
 input[type=submit] {
-	background: white;
+	background: transparent;
 	width: auto;
 }
 
@@ -36,7 +36,7 @@ input, textarea {
   display: inline-block;
   outline: none;
   border-radius: 0;
-  background: $color-grey-light;
+  background: white;
   border: 0;
   resize: none;
   font-family: $base-font-family;
@@ -64,9 +64,11 @@ input, textarea {
   }
 }
 
-select {
-  margin-bottom: $grid/2*3;
-  width: 100%;
+.simple_form {
+  select {
+    margin-bottom: $grid/2*3;
+    width: 100%;
+  }
 }
 
 .image_upload:before {
@@ -106,7 +108,7 @@ div.image_upload {
   }
 
   .control-label {
-    background: white;
+    background: $color-grey-light;
     padding-bottom: $grid/2;
     margin-bottom: 0;
   }

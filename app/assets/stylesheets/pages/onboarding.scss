@@ -24,15 +24,13 @@
     }
   }
 
-  .check_boxes {
-    margin-bottom: $grid*2;
-  }
-
-  label.check_boxes {
+  .check_boxes,
+  .radio_buttons {
     margin-bottom: $grid;
   }
 
-  .checkbox {
+  .checkbox,
+  .radio {
     display: block;
     border-bottom: 1px solid $color-grey-light;
     position: relative;

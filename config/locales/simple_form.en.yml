@@ -26,7 +26,7 @@ en:
         price: Your price per hour
         title: Skill title
         tags_text: Tags
-        categories_list: Categories
+        category: Pick a category that describes your skillset best
         smartphone_os: What kind of smartphone system do you use?
     # hints:
     #   defaults:

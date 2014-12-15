@@ -4,6 +4,8 @@ ActiveAdmin.register User do
   scope :approved
   scope :unapproved
 
+  permit_params :id, skill_attributes: [:id, :category]
+
   # Filterable attributes on the index screen
   filter :twitter_handle
   filter :full_name
@@ -15,8 +17,10 @@ ActiveAdmin.register User do
     column :twitter_handle
     column :full_name
     column :smartphone_os
+    column :category
     column :tags
     column :approved
+    actions
   end
 
   csv do
@@ -24,6 +28,7 @@ ActiveAdmin.register User do
     column :job
     column :about
     column :email
+    column :category
     column :created_at
     column :full_name
     column :twitter_handle
@@ -34,6 +39,57 @@ ActiveAdmin.register User do
     column :longitude
     column :smartphone_os
     column :price
+  end
+
+  form do |f|
+    f.inputs 'Category', for: [:skill, f.object.skill || Skill.new] do |s|
+      s.input :category, as: :radio, collection: Skill::NEW_CATEGORIES
+    end
+    f.actions
+  end
+
+  show do
+    attributes_table do
+      row :photo do 
+        image_tag(user.photo_url(:small))
+      end
+      row :full_name
+      row :twitter_handle
+      row :email
+      row :job
+      row :about
+
+      row :approved
+
+      row :skill_title
+      row :category
+      row :price
+      row :skill_tags_text
+      row :social_authority
+      row :smartphone_os
+
+      row :website_url do
+        link_to(user.website_url, user.website_url, target: "_blank") 
+      end
+      row :twitter_url do
+        link_to(user.twitter_url, user.twitter_url, target: "_blank")
+      end
+      row :facebook_url do
+        link_to(user.facebook_url, user.facebook_url, target: "_blank")
+      end
+      row :linkedin_url do
+        link_to(user.linkedin_url, user.linkedin_url, target: "_blank")
+      end
+      row :behance_url do
+        link_to(user.behance_url, user.behance_url, target: "_blank")
+      end
+      row :github_url do
+        link_to(user.github_url, user.github_url, target: "_blank")
+      end
+      row :stackoverflow_url do
+        link_to(user.stackoverflow_url, user.stackoverflow_url, target: "_blank")
+      end
+    end
   end
 
   batch_action :unapprove do |ids|

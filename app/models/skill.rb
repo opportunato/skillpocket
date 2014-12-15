@@ -5,16 +5,19 @@ class Skill < ActiveRecord::Base
 
   SMARTPHONE_OSES = %w[iOS Android Other]
   CATEGORIES=%w[Technology Business Marketing\ &\ Sales Skills\ &\ Management Product\ &\ Design Funding Photo\ &\ Video Writing]
+  NEW_CATEGORIES=%w[Developer Designer Marketer Strategist Creative]
 
   validates_presence_of :expert, :price, :title
   validates :title, length: { maximum: 110 }
   validates :price, numericality: { only_integer: true }
   validates :smartphone_os, inclusion: { in: SMARTPHONE_OSES }
 
+  enum category: NEW_CATEGORIES
+
   attr_accessor :tags_text, :categories_list
 
   def tags_text
-    @tags_text || tags.non_categories.map(&:name).reduce do |string, tag|
+    @tags_text || tags.map(&:name).reduce do |string, tag|
       string + ", " + tag
     end
   end

@@ -40,11 +40,11 @@ RSpec.describe Api::V1::ExpertsController do
         'distance' => 0.0,
         'tags' => [
           {
-            'id' => second_expert.skill.tags.last.id,
-            'name' => second_expert.skill.tags.last.name
-          }, {
             'id' => second_expert.skill.tags.first.id,
             'name' => second_expert.skill.tags.first.name
+          }, {
+            'id' => second_expert.skill.tags.last.id,
+            'name' => second_expert.skill.tags.last.name
         }],
         'twitter_url' => second_expert.twitter_url,
         'website_url' => second_expert.website_url,

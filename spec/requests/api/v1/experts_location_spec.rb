@@ -53,7 +53,7 @@ RSpec.describe Api::V1::ExpertsController do
     it 'we get distance to experts in km' do
       login_as(user)
       get api_v1_experts_path
-      expect(response_json.map {|expert| expert['distance'] }.sort).to eq [3.6966070831728657, 5.018556296161502]
+      expect(response_json.map {|expert| expert['distance'] }.sort).to eq [3.6966070831728657, 5.018556296161501]
     end
   end
 end
