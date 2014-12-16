@@ -33,8 +33,11 @@
 
   nav {
     margin-bottom: $grid*3;
-    font-size: 1.4em;
-    font-family: $accent-font-family;
+
+    span {
+      font-family: $accent-font-family;
+      font-size: 1.4em;
+    }
   }
 
   select {
@@ -80,25 +83,31 @@
 
 .link-list {
   display: inline;
-  font-family: $accent-font-family;
-  font-size: 1.2em;
   position: relative;
 
-  button {
+  button.anchorlike {
+    transition: all $transitionTime $baseTransitionStyle;
     display: inline;
     outline: none;
+    text-decoration: underline;
+    color: $color-accent;
+    font-family: $accent-font-family;
+    font-size: 1.6em;
+
+    &:hover {
+      color: $color-text;
+    }
   }
 
   ul {
-    @include position(absolute, 0 0 0 -11px);
-
+    @include position(absolute, 0 0 0 0);
     background-color: white;
-    
-    border: 1px solid black;
+    border: 1px solid $color-accent;
     display: none;
     list-style-type: none;
-    padding: 10px;
+    padding: $grid/2 $grid/2 0 $grid/2;
     z-index: 100;
+    font-size: 1.1em;
 
     li {
       display: block;

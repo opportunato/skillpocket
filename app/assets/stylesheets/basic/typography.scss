@@ -95,7 +95,7 @@ h4 {
   @include header-font-size(1.1em,1.1em,1.2em,1.2em);
 }
 
-a, button.anchorlike {
+a {
 	transition: all $transitionTime $baseTransitionStyle;
 	text-decoration: none;
 	color: $color-accent;
