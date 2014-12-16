@@ -1,28 +1,3 @@
-- title @title
+- title @page_title
 
-- if !@is_expert
-  - @description = @description += "<br>Browse experts on our #{link_to 'iPhone App', 'https://itunes.apple.com/us/app/skillpocket-hire-experts/id933547324?ls=1&mt=8'} and #{link_to 'apply to become an expert', onboarding_step_1_path}."
-
-- set_meta_tags title: @title, description: @description
-
-section.experts-list
-  h1 = @title_text
-  p.description = @description.html_safe
-  nav
-    | Show
-    = select_tag "categories", options_for_select(@categories)
-    | in
-    = select_tag "cities", options_for_select(@cities)
-  ul
-
-    - @experts.each do |expert|
-      li.expert
-        = link_to user_path("@#{expert.twitter_handle}")
-          .userpic [style="background-image: url(#{expert.photo_url});background-size: cover;"]
-          h4.name = expert.full_name
-          p.job   = expert.job
-          .price  = expert.price
-
-          div [style="background-image: url(#{expert.profile_banner_url});background-size: cover;"]
-          = expert.skill_title
-
+- set_meta_tags title: @page_title, description: @description

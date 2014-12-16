@@ -5,15 +5,15 @@ class ExpertsController < ApplicationController
   def index
     state = get_city_and_category_state(params[:category], params[:city], User.approved.experts.from_twitter)
 
-    @title       = state[:title]
+    @page_title  = state[:title]
     @description = state[:description]
-    @title_text  = state[:title_text]
+    @title       = state[:title_text]
 
-    @categories  = CATEGORIES.map { |category_url, category| [ category[:name], state[:category_path].call(category_url) ] }
-    @categories.unshift(["all professionals", state[:all_categories_path]])
+    @categories  = CATEGORIES.map { |category_url, category| { name: category[:name], path: state[:category_path].call(category_url) } }
+    @categories.unshift({ name: "all professionals", path: state[:all_categories_path] })
 
-    @cities      = CITIES.map     { |city_url, city| [ city[:name], state[:city_path].call(city_url) ] }
-    @cities.unshift(["all cities", state[:all_cities_path]])
+    @cities      = CITIES.map     { |city_url, city| { name: city[:name], path: state[:city_path].call(city_url) } }
+    @cities.unshift({ name: "all cities", path: state[:all_cities_path]})
 
     if current_user.present?
       @experts = state[:experts].by_rating_for_view(current_user)
@@ -21,9 +21,17 @@ class ExpertsController < ApplicationController
       @experts = state[:experts].by_authority
     end
 
-    @experts = UserDecorator.decorate_collection(@experts)
+    @experts = @experts
+    @is_current_user_expert = current_user.present? && current_user.expert?
 
-    @is_expert = current_user.present? && current_user.expert?
+    pagescript_params(
+      title: @title,
+      description: @description,
+      experts: ActiveModel::ArraySerializer.new(@experts, each_serializer: ExpertSerializer),
+      categories: @categories,
+      cities: @cities,
+      is_current_user_expert: @is_current_user_expert
+    )
   end
 
 private
@@ -31,7 +39,7 @@ private
   # In heavy need for refactoring, if adding new features needs to be done in instant
   def get_city_and_category_state(category, city, experts)
     if category_data = CATEGORIES[category]
-      experts = experts.with_any_category(category_data[:name])
+      experts = experts.with_any_new_category(category_data[:search_name])
 
       if city_data = CITIES[city]
         title = "Hire #{category_data[:title]} in #{city_data[:title]}"
@@ -93,26 +101,31 @@ private
   CATEGORIES = {
     "developers" => {
       title: "Programmers & Developers",
-      name:  "developers",
+      search_name:  "developer",
+      name: "developers",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
     "designers" => {
       title: "Business-experts",
+      search_name: "designer",
       name: "designers",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
     "marketers" => {
       title: "Digital Marketeers & Sales Experts",
+      search_name: "marketer",
       name: "marketers",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
     "strategists" => {
       title: "Skills & Mangement Experts",
+      search_name: "strategist",
       name: "strategists",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     },
     "creatives" => {
       title: "UI/UX & Product Designers",
+      search_name: "creative",
       name: "creatives",
       description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
     }

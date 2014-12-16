@@ -30,7 +30,7 @@ coordinates_list = [
   }
 ]
 
-10.times do
+50.times do
 
   coordinates = coordinates_list.sample
 
@@ -51,6 +51,7 @@ coordinates_list = [
   skill = Skill.create title: Faker::Lorem.words(6).join(' '),
     price: rand(10) * 10,
     smartphone_os: "iOS",
-    user_id: user.id
+    user_id: user.id,
+    category: Skill::NEW_CATEGORIES.sample
 end
 

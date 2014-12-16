@@ -49,6 +49,13 @@ GIT
     sprockets-commonjs (0.0.5)
       sprockets (~> 2.1)
 
+GIT
+  remote: git@github.com:opportunato/pagescript.git
+  revision: a6c78b18a589dc93e7ad5857ab361ad09d57e454
+  specs:
+    pagescript (0.0.1)
+      railties (>= 3.2, < 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -65,6 +72,8 @@ GEM
       activesupport (= 4.1.7)
       builder (~> 3.1)
       erubis (~> 2.7.0)
+    active_model_serializers (0.8.1)
+      activemodel (>= 3.0)
     activemodel (4.1.7)
       activesupport (= 4.1.7)
       builder (~> 3.1)
@@ -107,6 +116,8 @@ GEM
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
+    coffee-react (0.5.2)
+      execjs
     coffee-script (2.3.0)
       coffee-script-source
       execjs
@@ -323,6 +334,11 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sprockets-coffee-react (0.5.1)
+      coffee-react (>= 0.5.1)
+      coffee-script
+      sprockets
+      tilt
     sprockets-rails (2.2.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -363,6 +379,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (= 0.8.1)
   activeadmin!
   autoprefixer-rails
   better_errors
@@ -396,6 +413,7 @@ DEPENDENCIES
   normalize-rails
   omniauth
   omniauth-twitter
+  pagescript!
   pg
   pry
   pry-nav
@@ -413,6 +431,7 @@ DEPENDENCIES
   slim
   social_authority!
   spring
+  sprockets-coffee-react
   sprockets-commonjs!
   timecop
   twitter

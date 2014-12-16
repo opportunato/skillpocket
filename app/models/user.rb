@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
   scope :with_category, -> category { joins(skill: :tags).where("tags.is_category" => true, "tags.name" => category) }
   scope :with_any_category, -> category { joins(skill: :tags).where("tags.name" => category) }
+  scope :with_any_new_category, -> category { joins(:skill).where("skills.category = ?", Skill.categories[category]) }
   scope :from_twitter, -> { where.not('users.twitter_id' => nil) }
   scope :unapproved, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }

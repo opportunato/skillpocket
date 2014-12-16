@@ -11,7 +11,9 @@ gem 'bourbon'
 gem 'normalize-rails'
 gem 'jquery-rails'
 gem 'sprockets-commonjs', git: 'git@github.com:maccman/sprockets-commonjs.git'
+gem 'sprockets-coffee-react'
 
+gem 'active_model_serializers', '= 0.8.1'
 gem 'jbuilder', '~> 2.0'
 
 gem 'mini_magick'
@@ -28,6 +30,7 @@ gem 'cancancan'
 gem 'social_authority', git: 'git://github.com/opportunato/social_authority.git'
 
 gem 'twitter'
+gem 'pagescript', git: 'git@github.com:opportunato/pagescript.git'
 
 gem 'omniauth'
 gem 'omniauth-twitter'

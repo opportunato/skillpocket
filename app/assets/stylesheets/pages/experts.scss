@@ -78,17 +78,44 @@
   }
 }
 
-.tags, .cities {
+.link-list {
+  display: inline;
   font-family: $accent-font-family;
   font-size: 1.2em;
+  position: relative;
 
-  li {
-    display: inline-block;
-    margin-right: $grid;
+  button {
+    display: inline;
+    outline: none;
+  }
+
+  ul {
+    @include position(absolute, 0 0 0 -11px);
+
+    background-color: white;
+    
+    border: 1px solid black;
+    display: none;
+    list-style-type: none;
+    padding: 10px;
+    z-index: 100;
+
+    li {
+      display: block;
+      margin-bottom: 10px;
+      text-align: left;
+      white-space: nowrap;
+    }
+  }
+
+  &.opened {
+    ul {
+      display: block;
+    }
   }
 }
 
-.tags {
+.categories {
   margin-bottom: $grid*2;
 }
 
