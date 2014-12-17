@@ -87,6 +87,18 @@ ExpertsList = React.createClass
             </li>
         }
       </ul>
+      <section className="become-an-expert">
+        <div className="content">
+          <h2>Become an expert</h2>
+          <span>Be among our first experts and start earning money when we launch near you.</span>
+          <a className="button" href="/auth/twitter">Apply with Twitter</a>
+          <div className="caps">Follow us</div>
+          <div className="social">
+            <a className="button icon-facebook" href="https://www.facebook.com/skillpocket" target="_blank"></a>
+              <a className="button icon-twitter" href="https://twitter.com/Skillpocket" target="_blank"></a>
+          </div>
+        </div>
+      </section>
     </section>
 
 module.exports = ExpertsList
