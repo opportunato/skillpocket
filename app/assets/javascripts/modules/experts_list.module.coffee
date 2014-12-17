@@ -59,12 +59,12 @@ ExpertsList = React.createClass
       <h1>{@state.title}</h1>
       <p className="description">{@state.description}</p>
       <nav>
-        Show 
-        <LinkList 
+        Show&nbsp
+        <LinkList
           options={@state.categories}
           selectedIndex={@currentCategoryIndex()}
-          onOptionClick={@onCategoryChange} /> in  
-        <LinkList 
+          onOptionClick={@onCategoryChange} />&nbsp in &nbsp
+        <LinkList
           options={@state.cities}
           selectedIndex={@currentCityIndex()}
           onOptionClick={@onCityChange} />
@@ -74,13 +74,15 @@ ExpertsList = React.createClass
           @state.experts.map (expert) ->
             <li className="expert" key={expert.id}>
               <a href={expert.path}>
-                <div className="userpic"
-                     style={backgroundImage: "url(#{expert.photo_url})", backgroundSize: "cover"}></div>
-                <h4 className="name">{expert.full_name}</h4>
-                <p className="job">{expert.job}</p>
-                <div className="price">{expert.price}</div>
-                <div style={backgroundImage: "url(#{expert.profile_banner_url})", backgroundSize: "cover"}></div>
-                {expert.skill_title}
+                <div className="cover" style={backgroundImage: "url(#{expert.profile_banner_url})", backgroundSize: "cover"}>
+                  <h4 className="skill-title">{expert.skill_title}</h4>
+                </div>
+                <div className="userpic" style={backgroundImage: "url(#{expert.photo_url})", backgroundSize: "cover"}></div>
+                <div className="info">
+                  <h4 className="name">{expert.full_name}</h4>
+                  <p className="job">{expert.job}</p>
+                  <div className="price">{expert.price}</div>
+                </div>
               </a>
             </li>
         }
