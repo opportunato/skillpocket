@@ -1,17 +1,64 @@
 body.profile {
+  position: relative;
+  top: 63px;
+
   header.main {
     @include position(absolute, 0px 0px 0 0px);
     z-index: 999;
 
-    .logo { color: white; }
-
-    .menu-button, .button.become {
+    .logo {
       color: white;
+
+      &:hover {
+        color: $color-grey-medium!important;
+      }
+    }
+
+    .button.become {
+      color: white!important;
       border-color: white;
 
       &:hover {
-        background: white;
-        color: $color-text;
+        background: white!important;
+        color: $color-text!important;
+      }
+    }
+
+    .menu-button {
+      color: white!important;
+
+      &:hover {
+        color: $color-grey-medium!important;
+      }
+    }
+
+    nav.main {
+      a {
+        color: white!important;
+
+        &:hover {
+          color: $color-grey-medium!important;
+        }
+      }
+
+      &.active {
+        a {
+          color: $color-grey!important;
+
+          &:hover {
+            color: $color-text!important;
+          }
+        }
+
+        .button.become {
+          border-color: $color-accent;
+          color: $color-accent!important;
+
+          &:hover {
+            color: white!important;
+            background: $color-accent!important;
+          }
+        }
       }
     }
   }
@@ -28,7 +75,7 @@ body.profile {
     width: 100px;
     height: 100px;
     border-radius: 100px;
-    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
   }
 
   .about {
@@ -66,11 +113,6 @@ body.profile {
   }
 
   .price {
-    margin-bottom: $grid;
-  }
-
-  .button {
-    display: inline-block;
     margin-bottom: $grid;
   }
 

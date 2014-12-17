@@ -7,8 +7,13 @@
   opacity: .95;
 
   .title {
-    margin-right: $grid;
+    display: none;
+    margin-right: $grid/2;
     font-family: $accent-font-family;
+
+    @include respond-to(small) {
+      display: inline-block;
+    }
   }
 
   .download {

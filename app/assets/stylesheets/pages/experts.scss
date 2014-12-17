@@ -1,21 +1,81 @@
 .experts-list {
   text-align: center;
+  margin-left: $grid;
+  margin-right: $grid;
 
-  @include respond-to(medium) {
+  @include respond-to(small) {
     margin: 0 auto;
     max-width: $sizeL;
   }
 
+  .cover {
+    height: 220px;
+  }
+
   .expert {
     background: white;
-    padding: $grid;
+    position: relative;
+    margin-bottom: $grid;
 
-    @include respond-to(medium) {
+    @include respond-to(small) {
       display: inline-block;
       vertical-align: top;
-      width: 30%;
-      margin: 1%;
-      height: 330px;
+      width: 44%;
+      margin-bottom: 4%;
+
+      &:nth-child(odd) {
+        margin-right: 2%;
+        margin-left: 4%;
+      }
+
+      &:nth-child(even) {
+        margin-right: 4%;
+        margin-left: 2%;
+      }
+    }
+
+    a {
+      display: block;
+      overflow: hidden;
+
+      &:hover {
+        box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .cover {
+      background: $color-text;
+      @include position(relative, 0px 0px 0 0px);
+
+      &:after {
+        content: '';
+        background: black;
+        opacity: .3;
+        @include position(absolute, 0px 0px 0px 0px);
+      }
+    }
+
+    .userpic {
+      @include position(absolute, 170px 0 0 50%);
+      transform: translateX(-50%);
+      box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .skill-title {
+      color: white;
+      @include position(absolute, 50% 0 0 50%);
+      transform: translate(-50%,-50%);
+      z-index: 2;
+    }
+
+    .price {
+      font-family: $accent-font-family;
+      font-size: 1.2em;
+      margin-bottom: $grid*2;
+    }
+
+    .info {
+      padding-top: 60px;
     }
 
     a {
@@ -26,9 +86,6 @@
         color: inherit;
       }
     }
-
-    position: relative;
-    margin-bottom: $grid*2;
   }
 
   nav {
@@ -36,7 +93,11 @@
 
     span {
       font-family: $accent-font-family;
-      font-size: 1.4em;
+      font-size: 1.2em;
+
+      @include respond-to(small) {
+        font-size: 1.4em;
+      }
     }
   }
 
@@ -92,7 +153,11 @@
     text-decoration: underline;
     color: $color-accent;
     font-family: $accent-font-family;
-    font-size: 1.6em;
+    font-size: 1.4em;
+
+    @include respond-to(small) {
+      font-size: 1.6em;
+    }
 
     &:hover {
       color: $color-text;

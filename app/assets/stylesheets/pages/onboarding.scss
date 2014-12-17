@@ -32,12 +32,13 @@
   .checkbox,
   .radio {
     display: block;
-    border-bottom: 1px solid $color-grey-light;
+    border-bottom: 1px solid $color-grey-medium;
     position: relative;
     padding: $grid;
+    text-align: left;
 
     &:nth-child(2) {
-      border-top: 1px solid $color-grey-light;
+      border-top: 1px solid $color-grey-medium;
     }
 
     label {
