@@ -22,7 +22,10 @@ class ExpertsController < ApplicationController
       @experts = state[:experts].by_authority
     end
 
-    @experts = @experts
+    if request.path == '/'
+      @experts = @experts.limit(10)
+    end
+
     @is_current_user_expert = current_user.present? && current_user.expert?
 
     pagescript_params(
@@ -39,10 +42,10 @@ private
 
   # In heavy need for refactoring, if adding new features needs to be done in instant
   def get_city_and_category_state(category, city, experts)
-    title = "Experts"
-    title_tag = "Hire experts"
-    description = "Hire one of our talented experts "
-    meta_description = "Skillpocket makes it easy to contact and hire talented experts"
+    title = "Hire digital professionals for tasks or advice"
+    title_tag = "Skillpocket — Hire digital professionals for tasks or advice"
+    description = "Skillpocket helps you find and hire talented professionals to help grow your business."
+    meta_description = "Skillpocket is a marketplace of talented professionals that stand ready to assist you and your business."
 
     if category_data = CATEGORIES[category]
       experts = experts.with_any_new_category(category_data[:search_name])
@@ -73,10 +76,6 @@ private
         all_categories_path = experts_path
       end
     elsif (city_data = CITIES[category]) && (city = category)
-      title += " in #{city_data[:name]}"
-      title_tag += " in #{city_data[:name]}"
-      description += " in #{city_data[:name]}"
-      meta_description += " in #{city_data[:name]} for advice or freelance."
       experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
       
       city_path = Proc.new { |city| category_experts_path(category: city) }
@@ -84,8 +83,6 @@ private
       category_path = Proc.new { |category| category_city_experts_path(category: category, city: city) }
       all_categories_path = category_experts_path(category: city)
     else
-      title_tag += " on Skillpocket"
-      meta_description += " for advice or freelance."
       experts = experts
 
       city_path = Proc.new { |city| category_experts_path(category: city) }
