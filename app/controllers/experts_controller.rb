@@ -5,9 +5,10 @@ class ExpertsController < ApplicationController
   def index
     state = get_city_and_category_state(params[:category], params[:city], User.approved.experts.from_twitter)
 
-    @page_title  = state[:title]
-    @description = state[:description]
-    @title       = state[:title_text]
+    @title            = state[:title]
+    @title_tag        = state[:title_tag]
+    @description      = state[:description]
+    @meta_description = state[:meta_description]
 
     @categories  = CATEGORIES.map { |category_url, category| { name: category[:name], path: state[:category_path].call(category_url) } }
     @categories.unshift({ name: "all professionals", path: state[:all_categories_path] })
@@ -38,13 +39,24 @@ private
 
   # In heavy need for refactoring, if adding new features needs to be done in instant
   def get_city_and_category_state(category, city, experts)
+    title = "Experts"
+    title_tag = "Hire experts"
+    description = "Hire one of our talented experts "
+    meta_description = "Skillpocket makes it easy to contact and hire talented experts"
+
     if category_data = CATEGORIES[category]
       experts = experts.with_any_new_category(category_data[:search_name])
 
+      title = category_data[:title]
+      title_tag = "Hire #{category_data[:title_tag]}"
+      description = "#{category_data[:teaser]} Hire one of our talented #{category_data[:teaser_noun]}"
+      meta_description = "Skillpocket makes it easy to contact and hire talented #{category_data[:meta_noun]}"
+
       if city_data = CITIES[city]
-        title = "Hire #{category_data[:title]} in #{city_data[:title]}"
-        title_text = "#{category_data[:title]} in #{city_data[:title]}"
-        description_experts = "#{category_data[:title]} in #{city_data[:title]}"
+        title += " in #{city_data[:name]}"
+        title_tag += " in #{city_data[:name]}"
+        description += " in #{city_data[:name]}"
+        meta_description += " in #{city_data[:name]} for advice or freelance."
         experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
@@ -52,9 +64,8 @@ private
         category_path = Proc.new { |category| category_city_experts_path(category: category, city: city) }
         all_categories_path = category_experts_path(category: city)
       else
-        title = "Hire #{category_data[:title]}"
-        title_text = "#{category_data[:title]}"
-        description_experts = category_data[:title]
+        title_tag += " on Skillpocket"
+        meta_description += " for advice or freelance."
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
         all_cities_path = category_experts_path(category: category)
@@ -62,9 +73,10 @@ private
         all_categories_path = experts_path
       end
     elsif (city_data = CITIES[category]) && (city = category)
-      title = "Hire experts in #{city_data[:title]}"
-      title_text = "Experts in #{city_data[:title]}"
-      description_experts = city_data[:title]
+      title += " in #{city_data[:name]}"
+      title_tag += " in #{city_data[:name]}"
+      description += " in #{city_data[:name]}"
+      meta_description += " in #{city_data[:name]} for advice or freelance."
       experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
       
       city_path = Proc.new { |city| category_experts_path(category: city) }
@@ -72,9 +84,8 @@ private
       category_path = Proc.new { |category| category_city_experts_path(category: category, city: city) }
       all_categories_path = category_experts_path(category: city)
     else
-      title = "Hire experts"
-      title_text = "Experts"
-      description_experts = "experts"
+      title_tag += " on Skillpocket"
+      meta_description += " for advice or freelance."
       experts = experts
 
       city_path = Proc.new { |city| category_experts_path(category: city) }
@@ -83,11 +94,10 @@ private
       all_categories_path = experts_path
     end
 
-    description = "Skillpocket makes it easy for you to find and hire talented #{description_experts}."
-
     {
+      title_tag: title_tag,
+      meta_description: meta_description,
       title: title,
-      title_text: title_text,
       description: description,
       experts: experts,
       category_path: category_path,
@@ -100,34 +110,49 @@ private
 
   CATEGORIES = {
     "developers" => {
-      title: "Programmers & Developers",
-      search_name:  "developer",
+      title: "Developers",
+      title_tag: "Freelance Programmers & Developers",
+      search_name:  "Developer",
       name: "developers",
-      description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
+      teaser: "Need a developer who is great at JavaScript, iOS, PHP or other languages?",
+      teaser_noun: "programmers",
+      meta_noun: "programmers and developers"
     },
     "designers" => {
-      title: "Business-experts",
-      search_name: "designer",
+      title: "Designers",
+      title_tag: "Freelance UX / UI & Product-Designers",
+      search_name: "Designer",
       name: "designers",
-      description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
+      teaser: "Need a new logo? Or want UX- or product-feedback?",
+      teaser_noun: "designers",
+      meta_noun: "UX/UI and Product-designers"
     },
     "marketers" => {
-      title: "Digital Marketeers & Sales Experts",
-      search_name: "marketer",
+      title: "Marketers",
+      title_tag: "Freelance Digital & Online Marketers",
+      search_name: "Marketer",
       name: "marketers",
-      description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
+      teaser: "Get assistance on SEO, email-marketing or other marketing & sales tasks.",
+      teaser_noun: "marketers",
+      meta_noun: "digital marketers"
     },
-    "strategists" => {
-      title: "Skills & Mangement Experts",
-      search_name: "strategist",
-      name: "strategists",
-      description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
+    "business" => {
+      title: "Business consultants",
+      title_tag: "Freelance Business Consultants",
+      search_name: "Business consultant",
+      name: "business consultants",
+      teaser: "Get advice on your business and how to grow it.",
+      teaser_noun: "strategists",
+      meta_noun: "strategists and business consultants"
     },
     "creatives" => {
-      title: "UI/UX & Product Designers",
-      search_name: "creative",
+      title: "Creatives",
+      title_tag: "Freelance Creatives",
+      search_name: "Creative",
       name: "creatives",
-      description: "Unsure if your business makes sense? Sit down with a seasoned VC and get feedback on your deck."
+      teaser: "Get assistance with photo, video or other creative production tasks.",
+      teaser_noun: "creatives",
+      meta_noun: "creatives"
     }
   }
 

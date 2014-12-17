@@ -5,7 +5,7 @@ class Skill < ActiveRecord::Base
 
   SMARTPHONE_OSES = %w[iOS Android Other]
   CATEGORIES=%w[Technology Business Marketing\ &\ Sales Skills\ &\ Management Product\ &\ Design Funding Photo\ &\ Video Writing]
-  NEW_CATEGORIES=%w[developer designer marketer strategist creative]
+  NEW_CATEGORIES=%w[Developer Designer Marketer Business\ Consultant Creative]
 
   validates_presence_of :expert, :price, :title
   validates :title, length: { maximum: 110 }

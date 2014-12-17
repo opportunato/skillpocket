@@ -100,12 +100,13 @@
   }
 
   ul {
-    @include position(absolute, 0 0 0 0);
     background-color: white;
     border: 1px solid $color-accent;
     display: none;
+    left: -$grid/2;
     list-style-type: none;
     padding: $grid/2 $grid/2 0 $grid/2;
+    position: absolute;
     z-index: 100;
     font-size: 1.1em;
 
