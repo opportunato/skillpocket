@@ -14,7 +14,7 @@ body.profile {
       }
     }
 
-    .menu-button, .button.become {
+    .button.become {
       color: white!important;
       border-color: white;
 
@@ -24,12 +24,40 @@ body.profile {
       }
     }
 
+    .menu-button {
+      color: white!important;
+
+      &:hover {
+        color: $color-grey-medium!important;
+      }
+    }
+
     nav.main {
       a {
         color: white!important;
 
         &:hover {
           color: $color-grey-medium!important;
+        }
+      }
+
+      &.active {
+        a {
+          color: $color-grey!important;
+
+          &:hover {
+            color: $color-text!important;
+          }
+        }
+
+        .button.become {
+          border-color: $color-accent;
+          color: $color-accent!important;
+
+          &:hover {
+            color: white!important;
+            background: $color-accent!important;
+          }
         }
       }
     }

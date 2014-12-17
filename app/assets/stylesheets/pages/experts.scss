@@ -1,5 +1,7 @@
 .experts-list {
   text-align: center;
+  margin-left: $grid;
+  margin-right: $grid;
 
   @include respond-to(medium) {
     margin: 0 auto;
@@ -13,7 +15,7 @@
   .expert {
     background: white;
     position: relative;
-    margin: $grid;
+    margin-bottom: $grid;
 
     @include respond-to(medium) {
       display: inline-block;
@@ -90,7 +92,11 @@
 
     span {
       font-family: $accent-font-family;
-      font-size: 1.4em;
+      font-size: 1.2em;
+
+      @include respond-to(small) {
+        font-size: 1.4em;
+      }
     }
   }
 
@@ -146,7 +152,11 @@
     text-decoration: underline;
     color: $color-accent;
     font-family: $accent-font-family;
-    font-size: 1.6em;
+    font-size: 1.4em;
+
+    @include respond-to(small) {
+      font-size: 1.6em;
+    }
 
     &:hover {
       color: $color-text;

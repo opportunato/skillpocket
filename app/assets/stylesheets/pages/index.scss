@@ -59,7 +59,10 @@
 
 .intro {
 	margin-bottom: 0;
-	padding-top: 63px;
+
+	@include respond-to(medium) {
+		padding-top: 63px;
+	}
 
 	.block { display: block; }
 

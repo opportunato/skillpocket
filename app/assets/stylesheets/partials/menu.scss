@@ -3,7 +3,7 @@ header.main {
 	position: relative;
   top: 63px;
 	height: 50px;
-	margin-bottom: $grid*2;
+	margin-bottom: $grid*5;
 	color: $color-text;
 
 	@include respond-to(medium) {
@@ -90,7 +90,7 @@ nav.main {
 }
 
 .menu {
-	@include position(absolute, 14px 14px 0 0);
+	@include position(absolute, 19px 14px 0 0);
 
   @include respond-to(medium) {
     display: none;
