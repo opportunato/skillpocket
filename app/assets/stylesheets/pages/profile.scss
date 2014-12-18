@@ -1,6 +1,50 @@
+.message-popup {
+  transition: opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle;
+  visibility: hidden;
+  z-index: 9999999;
+  opacity: 0;
+  overflow: auto;
+  @include position(fixed, 0px 0px 0px 0px);
+
+  &:before {
+    content: '';
+    background: $color-grey-medium;
+    @include position(fixed, 0px 0px 0px 0px);
+  }
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .wrapper {
+    @include position(absolute, 50px 0 0 50%);
+    transform: translate(-50%,0);
+
+    @include respond-to(medium) {
+      @include position(absolute, 50% 0 0 50%);
+      transform: translate(-50%,-50%);
+      max-width: 500px;
+    }
+  }
+
+  textarea {
+    height: 200px;
+  }
+
+  .message-button {
+    display: inline-block;
+  }
+}
+
 body.profile {
   position: relative;
   top: 63px;
+
+  .message-button {
+    font-size: 1.2em;
+    padding: $grid/2 $grid*2;
+  }
 
   header.main {
     @include position(absolute, 0px 0px 0 0px);

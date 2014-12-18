@@ -18,9 +18,19 @@ section.profile-page
     h2.name = user.full_name
     p.job = user.job
     h3.price = user.price
+
+    a.button.message-button href="#" Send a message
+
     - if can?(:update, user)
       = link_to "Edit profile", edit_user_path("@#{user.twitter_handle}"), class: "button"
     ul.tags = user.tags
     p.about = user.about
     .caps Social networks
     ul.urls = user.urls
+
+    .message-popup.active
+      .wrapper
+        h2 Send [name of expert] a private message. Please be specific about your request.
+        input placeholder="Your e-mail"
+        textarea placeholder="Hi [name of expert], I found your profile on Skillpocket and would like to hire you for."
+        a.message-button.button href="#" Send
