@@ -22,8 +22,8 @@
   $(".message-button").on "click", (e) ->
     e.preventDefault()
     e.stopPropagation()
-    $popup.addClass("active")
     $(document.body).addClass("no-scroll")
+    $popup.addClass("active")
 
   $(document).on "click", (e) ->
     if $(e.target).parents(".message-popup").length == 0
