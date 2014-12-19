@@ -9,7 +9,7 @@ class ExpertMailer < ActionMailer::Base
     @message = message
     @expert = message.expert
 
-    subject = "#{@expert.first_name}, you got a new request on Skillpocket!"
+    subject = "#{@expert.first_name}, you got a new request on Skillpocket from #{@message.full_name}!"
 
     if @expert.email.present?
       mail(to: @expert.email, from: "hello@skillpocket.com", subject: subject).deliver
