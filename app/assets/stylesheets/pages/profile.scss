@@ -24,8 +24,6 @@
     transform: translate(-50%,0);
 
     @include respond-to(medium) {
-      @include position(absolute, 50% 0 0 50%);
-      transform: translate(-50%,-50%);
       max-width: 500px;
     }
   }
@@ -46,6 +44,7 @@ body.profile {
   .message-button {
     font-size: 1.2em;
     padding: $grid/2 $grid*2;
+    display: inline-block;
   }
 
   header.main {
@@ -149,10 +148,11 @@ body.profile {
 
   .tags {
     margin-bottom: $grid*2;
+
     li {
       display: inline-block;
       border-radius: 30px;
-      background: $color-grey-light;
+      background: $color-grey-medium;
       padding: $grid/4 $grid/2;
       margin: $grid/4;
     }
