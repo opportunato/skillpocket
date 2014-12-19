@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :user_friended_experts
   has_many :user_followers, foreign_key: :expert_id, class_name: 'UserFriendedExpert', dependent: :destroy
 
-  validates_presence_of :full_name, :photo
+  validates_presence_of :full_name, :photo, :email, :job
   validates :job, length: { maximum: 40 }
   validates :about, length: { maximum: 500 }
   # validates :email, email: true
@@ -93,6 +93,10 @@ class User < ActiveRecord::Base
 
   set :twitter_friends
   set :twitter_followers
+
+  def first_name
+    full_name.split(/\s+/).select { |part| part.present? }.first
+  end
 
   def expert?
     skill.present?

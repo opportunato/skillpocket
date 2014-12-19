@@ -19,8 +19,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'mini_magick'
 gem 'carrierwave'
 
-gem 'mandrill_mailer'
-
 gem 'has_scope'
 gem 'draper'
 

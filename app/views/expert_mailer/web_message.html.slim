@@ -1,0 +1,11 @@
+= "#{@expert.first_name}, you got a new request on Skillpocket!"
+br
+br
+= "#{@message.full_name} sent you this message:"
+br
+br
+= "\"#{@message.body}\""
+br
+br
+= "If you are interested, you can reply right <a href='mailto:#{@message.email}'>now</a>.".html_safe
+br

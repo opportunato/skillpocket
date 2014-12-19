@@ -19,7 +19,8 @@ section.profile-page
     p.job = user.job
     h3.price = user.price
 
-    a.button.message-button href="#" Send a message
+    - if !(current_user.present? && current_user.id == user.id)
+      a.button.message-button href="#" Send a message
 
     - if can?(:update, user)
       = link_to "Edit profile", edit_user_path("@#{user.twitter_handle}"), class: "button"
@@ -28,9 +29,12 @@ section.profile-page
     .caps Social networks
     ul.urls = user.urls
 
-    .message-popup.active
+    .message-popup
       .wrapper
-        h2 Send [name of expert] a private message. Please be specific about your request.
-        input placeholder="Your e-mail"
-        textarea placeholder="Hi [name of expert], I found your profile on Skillpocket and would like to hire you for."
-        a.message-button.button href="#" Send
+        h2 = "Send #{user.full_name} a private message. Please be specific about your request."
+        = simple_form_for WebMessage.new, html: {class: "message-form"} do |f|
+          = f.input :full_name, placeholder: "Your full name", label: false, input_html: { value: (current_user.present? && current_user.full_name) || "" }, hint: "For expert to know who you are"
+          = f.input :email, placeholder: "Your e-mail", label: false, input_html: { value: (current_user.present? && current_user.email) || "" }, hint: "For expert to know how to contact you"
+          = f.input :expert_id, as: "hidden", input_html: { value: user.id }
+          = f.input :body, label: false, input_html: { value: "Hi #{user.full_name}, I found your profile on Skillpocket and would like to hire you." }, hint: "For expert to know what are you up to"
+          = f.submit "Send", input_html: { class: "button" }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211151053) do
+ActiveRecord::Schema.define(version: 20141218115539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,14 @@ ActiveRecord::Schema.define(version: 20141211151053) do
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   add_index "users", ["twitter_handle"], name: "index_users_on_twitter_handle", using: :btree
   add_index "users", ["twitter_token"], name: "index_users_on_twitter_token", unique: true, using: :btree
+
+  create_table "web_messages", force: true do |t|
+    t.integer "expert_id"
+    t.integer "user_id"
+    t.string  "email"
+    t.string  "full_name"
+    t.text    "body"
+  end
 
   add_foreign_key "conversations", "users", name: "conversations_newer_id_fk", column: "newer_id", dependent: :delete
   add_foreign_key "conversations", "users", name: "conversations_older_id_fk", column: "older_id", dependent: :delete

@@ -42,6 +42,7 @@ coordinates_list = [
           latitude: coordinates[:latitude],
           longitude: coordinates[:longitude],
           approved: true,
+          email: Faker::Internet.email,
           photo: photo,
           profile_banner: profile_banner,
           social_authority: rand(100),

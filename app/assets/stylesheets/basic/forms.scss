@@ -89,11 +89,18 @@ input, textarea {
   margin-top: -16px;
 }
 
-.help-block {
+span.help-block {
   color: red;
   display: block;
   margin-top: -25px;
   margin-bottom: $grid;
+}
+
+p.help-block {
+  color: grey;
+  display: block;
+  margin-top: -25px;
+  margin-bottom: $grid;  
 }
 
 div.image_upload {

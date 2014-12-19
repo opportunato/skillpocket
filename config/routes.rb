@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get '/uploads/user/000/000/347/photo/158c4278a1.png', to: redirect('/')
 
   resources :users, path: '', only: [:show, :edit, :update], constraints: { id: /@[\w-]+/ }
+  resources :web_messages, only: [:create]
 
   get "/experts", to: "experts#index"
   get "/experts/:category", to: "experts#index", as: :category_experts

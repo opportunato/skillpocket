@@ -7,11 +7,11 @@ section.onboarding-step
 
   = simple_form_for @skill, url: onboarding_step_3_path, method: :post do |f|
     fieldset
-      = f.input :title, placeholder: 'Data Science Consulting — Leverage your data for a personalised user experience'
+      = f.input :title, placeholder: "Data Science Consulting — Leverage your data for a personalised user experience"
       .price
         span.dollar $
         = f.input :price
       = f.input :category, as: :radio_buttons, collection: Skill::NEW_CATEGORIES
       = f.input :smartphone_os, as: :select, collection: Skill::SMARTPHONE_OSES
-      = f.input :tags_text, placeholder: 'Design, UX Design'
+      = f.input :tags_text, placeholder: "Design, UX Design"
       = f.submit "Complete profile"

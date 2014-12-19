@@ -9,6 +9,8 @@
   &:before {
     content: '';
     background: $color-grey-medium;
+    opacity: .95;
+
     @include position(fixed, 0px 0px 0px 0px);
   }
 
@@ -32,7 +34,7 @@
     height: 200px;
   }
 
-  .message-button {
+  .button {
     display: inline-block;
   }
 }
