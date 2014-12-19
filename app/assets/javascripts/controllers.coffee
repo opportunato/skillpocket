@@ -23,10 +23,12 @@
     e.preventDefault()
     e.stopPropagation()
     $popup.addClass("active")
+    $(document.body).addClass("no-scroll")
 
   $(document).on "click", (e) ->
     if $(e.target).parents(".message-popup").length == 0
       $popup.removeClass("active")
+      $(document.body).removeClass("no-scroll")
 
   $form.find('.form-group > input, textarea').on 'focus', (e) ->
     $(e.target).parents('.form-group').removeClass('has-error')
