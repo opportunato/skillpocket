@@ -11,7 +11,7 @@ class WebMessagesController < ApplicationController
     web_message.save!
 
     if web_message.persisted?
-      ExpertMailer.web_message(web_message)
+      ExpertMailer.delay.web_message(web_message)
     end
 
     render plain: "OK"
