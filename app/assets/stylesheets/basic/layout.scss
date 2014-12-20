@@ -9,7 +9,7 @@ body {
   font-family: $base-font-family;
   background: $color-grey-light;
   text-rendering: optimizeLegibility;
-  -webkit-overflow-scrolling: touch;
+  // -webkit-overflow-scrolling: touch;
   -webkit-font-smoothing: antialiased;
 
   &.no-scroll {

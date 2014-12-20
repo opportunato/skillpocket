@@ -22,9 +22,10 @@
   .wrapper {
     @include position(absolute, 50px 0 0 50%);
     transform: translate(-50%,0);
+    width: 280px;
 
     @include respond-to(medium) {
-      max-width: 500px;
+      width: 500px;
     }
   }
 
@@ -34,6 +35,16 @@
 
   .button {
     display: inline-block;
+  }
+
+  .icon-close {
+    @include position(absolute, 15px 15px 0 0);
+    font-size: 1.4em;
+    cursor: pointer;
+
+    @include respond-to(medium) {
+      font-size: 2em;
+    }
   }
 }
 

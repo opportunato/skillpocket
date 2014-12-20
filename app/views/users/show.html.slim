@@ -30,6 +30,7 @@ section.profile-page
     ul.urls = user.urls
 
     .message-popup
+      .icon-close
       .wrapper
         h2 = "Send #{user.full_name} a private message. Please be specific about your request."
         = simple_form_for WebMessage.new, html: {class: "message-form"} do |f|

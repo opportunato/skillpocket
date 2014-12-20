@@ -18,6 +18,7 @@
 @["users#show"] = ->
   $popup = $(".message-popup")
   $form  = $(".message-form")
+  $iconClose  = $(".icon-close")
 
   $(".message-button").on "click", (e) ->
     e.preventDefault()
@@ -29,6 +30,10 @@
     if $(e.target).parents(".message-popup").length == 0
       $popup.removeClass("active")
       $(document.body).removeClass("no-scroll")
+
+  $iconClose.on "click", (e) ->
+    $popup.removeClass("active")
+    $(document.body).removeClass("no-scroll")
 
   $form.find('.form-group > input, textarea').on 'focus', (e) ->
     $(e.target).parents('.form-group').removeClass('has-error')
