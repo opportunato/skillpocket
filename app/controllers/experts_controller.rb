@@ -76,6 +76,9 @@ private
         all_categories_path = experts_path
       end
     elsif (city_data = CITIES[category]) && (city = category)
+      title += " in #{city_data[:name]}"
+      title_tag += " in #{city_data[:name]}"
+      meta_description += " in #{city_data[:name]} for advice or freelance."
       experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
       
       city_path = Proc.new { |city| category_experts_path(category: city) }

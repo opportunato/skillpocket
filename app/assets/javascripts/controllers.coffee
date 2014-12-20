@@ -23,8 +23,8 @@
   $(".message-button").on "click", (e) ->
     e.preventDefault()
     e.stopPropagation()
-    $popup.addClass("active")
     $(document.body).addClass("no-scroll")
+    $popup.addClass("active")
 
   $(document).on "click", (e) ->
     if $(e.target).parents(".message-popup").length == 0
@@ -81,3 +81,4 @@
           "<h2>Message successfully sent! Wait for expert reply!</h2>
           <p>Meanwhile, you can look for more awesome experts <a href='/experts'>here</a>.</p>"
         )
+        $('.message-popup').height(window.height)
