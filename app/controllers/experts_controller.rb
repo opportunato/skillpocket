@@ -58,7 +58,7 @@ private
       if city_data = CITIES[city]
         title += " in #{city_data[:name]}"
         title_tag += " in #{city_data[:name]}"
-        description += " in #{city_data[:name]}"
+        description += " in #{city_data[:name]}."
         meta_description += " in #{city_data[:name]} for advice or freelance."
         experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
 
@@ -68,6 +68,7 @@ private
         all_categories_path = category_experts_path(category: city)
       else
         title_tag += " on Skillpocket"
+        description += "."
         meta_description += " for advice or freelance."
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
@@ -87,6 +88,7 @@ private
       all_categories_path = category_experts_path(category: city)
     else
       experts = experts
+      description += "."
 
       city_path = Proc.new { |city| category_experts_path(category: city) }
       all_cities_path = experts_path
@@ -139,10 +141,10 @@ private
     "business" => {
       title: "Business consultants",
       title_tag: "Freelance Business Consultants",
-      search_name: "Business consultant",
+      search_name: "Business Consultant",
       name: "business consultants",
       teaser: "Get advice on your business and how to grow it.",
-      teaser_noun: "strategists",
+      teaser_noun: "business consultants",
       meta_noun: "strategists and business consultants"
     },
     "creatives" => {
