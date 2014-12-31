@@ -6,7 +6,9 @@ ActiveAdmin.register User do
   scope :featured
   scope :not_featured
 
-  permit_params :id, :is_featured, skill_attributes: [:id, :category]
+  permit_params :id, :is_featured, 
+    :dribble_url, :angellist_url,
+    skill_attributes: [:id, :category]
 
   # Filterable attributes on the index screen
   filter :twitter_handle
@@ -51,6 +53,8 @@ ActiveAdmin.register User do
     end
     f.inputs 'Featuring' do
       f.input :is_featured
+      f.input :angellist_url
+      f.input :dribble_url
     end
     f.actions
   end
@@ -87,6 +91,12 @@ ActiveAdmin.register User do
       end
       row :linkedin_url do
         link_to(user.linkedin_url, user.linkedin_url, target: "_blank")
+      end
+      row :dribble_url do
+        link_to(user.dribble_url, user.dribble_url, target: "_blank")
+      end
+      row :angellist_url do
+        link_to(user.angellist_url, user.angellist_url, target: "_blank")
       end
       row :behance_url do
         link_to(user.behance_url, user.behance_url, target: "_blank")

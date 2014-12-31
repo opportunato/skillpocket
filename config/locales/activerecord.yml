@@ -2,4 +2,6 @@ en:
   activerecord:
     attributes:
       user:
-        is_featured: "Featured"
+        is_featured:   "Featured"
+        angellist_url: "AngelList URL"
+        dribble_url:   "Dribble URL"

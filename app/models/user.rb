@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :skill
 
-  URLS = %w[website_url twitter_url facebook_url linkedin_url behance_url github_url stackoverflow_url]
+  URLS = %w[website_url twitter_url facebook_url linkedin_url behance_url github_url stackoverflow_url angellist_url dribble_url]
 
   store_accessor :urls, *URLS
 
