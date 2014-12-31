@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
   decorate_with UserDecorator
   scope :all, :default => true
+  scope :experts
   scope :approved
   scope :unapproved
   scope :featured
@@ -8,6 +9,7 @@ ActiveAdmin.register User do
 
   permit_params :id, :is_featured, 
     :dribble_url, :angellist_url,
+    :does_advice, :does_freelance,
     skill_attributes: [:id, :category]
 
   # Filterable attributes on the index screen
@@ -15,6 +17,8 @@ ActiveAdmin.register User do
   filter :full_name
   filter :approved
   filter :is_featured
+  filter :does_freelance
+  filter :does_advice
   filter :created_at
 
   index do
@@ -53,6 +57,8 @@ ActiveAdmin.register User do
     end
     f.inputs 'Featuring' do
       f.input :is_featured
+      f.input :does_freelance
+      f.input :does_advice
       f.input :angellist_url
       f.input :dribble_url
     end
@@ -72,6 +78,9 @@ ActiveAdmin.register User do
 
       row(:approved) { status_tag(user.approved.to_s) }
       row(:is_featured) { status_tag(user.is_featured.to_s) }
+
+      row(:does_freelance) { status_tag(user.does_freelance.to_s) }
+      row(:does_advice) { status_tag(user.does_advice.to_s) }
 
       row :skill_title
       row :category
