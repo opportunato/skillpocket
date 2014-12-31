@@ -6,8 +6,13 @@ ActiveAdmin.register User do
   scope :unapproved
   scope :featured
   scope :not_featured
+  scope :developers
+  scope :designers
+  scope :business
+  scope :marketers
+  scope :creatives
 
-  permit_params :id, :is_featured, 
+  permit_params :id, :is_featured, :approved,
     :dribble_url, :angellist_url,
     :does_advice, :does_freelance,
     skill_attributes: [:id, :category]
@@ -57,6 +62,7 @@ ActiveAdmin.register User do
     end
     f.inputs 'Featuring' do
       f.input :is_featured
+      f.input :approved
       f.input :does_freelance
       f.input :does_advice
       f.input :angellist_url
