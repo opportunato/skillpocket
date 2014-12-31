@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   scope :from_twitter, -> { where.not('users.twitter_id' => nil) }
   scope :unapproved, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
+  scope :not_featured, -> { where(is_featured: false) }
+  scope :featured, -> { where(is_featured: true) }
   scope :experts, -> { joins(:skill) }
   scope :near_user, -> user {
     geocoded.

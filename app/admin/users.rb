@@ -3,13 +3,16 @@ ActiveAdmin.register User do
   scope :all, :default => true
   scope :approved
   scope :unapproved
+  scope :featured
+  scope :not_featured
 
-  permit_params :id, skill_attributes: [:id, :category]
+  permit_params :id, :is_featured, skill_attributes: [:id, :category]
 
   # Filterable attributes on the index screen
   filter :twitter_handle
   filter :full_name
   filter :approved
+  filter :is_featured
   filter :created_at
 
   index do
@@ -20,6 +23,7 @@ ActiveAdmin.register User do
     column :category
     column :tags
     column :approved
+    column :is_featured
     actions
   end
 
@@ -45,6 +49,9 @@ ActiveAdmin.register User do
     f.inputs 'Category', for: [:skill, f.object.skill || Skill.new] do |s|
       s.input :category, as: :radio, collection: Skill::NEW_CATEGORIES
     end
+    f.inputs 'Featuring' do
+      f.input :is_featured
+    end
     f.actions
   end
 
@@ -59,7 +66,8 @@ ActiveAdmin.register User do
       row :job
       row :about
 
-      row :approved
+      row(:approved) { status_tag(user.approved.to_s) }
+      row(:is_featured) { status_tag(user.is_featured.to_s) }
 
       row :skill_title
       row :category

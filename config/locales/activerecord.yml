@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        is_featured: "Featured"
