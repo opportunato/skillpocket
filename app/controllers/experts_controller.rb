@@ -62,7 +62,7 @@ private
         title_tag += " in #{city_data[:name]}"
         description += " in #{city_data[:name]}."
         meta_description += " in #{city_data[:name]} for advice or freelance."
-        experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
+        experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km).reorder('')
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
         all_cities_path = category_experts_path(category: category)
@@ -82,7 +82,7 @@ private
       title += " in #{city_data[:name]}"
       title_tag += " in #{city_data[:name]}"
       meta_description += " in #{city_data[:name]} for advice or freelance."
-      experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km)
+      experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km).reorder('')
       
       city_path = Proc.new { |city| category_experts_path(category: city) }
       all_cities_path = experts_path
