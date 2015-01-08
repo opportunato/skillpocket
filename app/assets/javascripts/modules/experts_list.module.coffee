@@ -1,6 +1,7 @@
 # @cjsx React.DOM
 
 LinkList = require('modules/link_list')
+cx       = React.addons.classSet
 
 ExpertsList = React.createClass
 
@@ -72,7 +73,9 @@ ExpertsList = React.createClass
       <ul>
         {
           @state.experts.map (expert) ->
-            <li className="expert" key={expert.id}>
+            klass = cx(expert: true, featured: expert.is_featured)
+
+            <li className={klass} key={expert.id}>
               <a href={expert.path}>
                 <div className="cover" style={backgroundImage: "url(#{expert.profile_banner_url})", backgroundSize: "cover"}>
                   <h4 className="skill-title">{expert.skill_title}</h4>

@@ -3,6 +3,7 @@ class ExpertSerializer < ActiveModel::Serializer
   attributes  :id, :full_name, :job, :price, :skill_title
   attributes  :photo_url, :profile_banner_url
   attributes  :path
+  attributes  :is_featured
   
   alias_method :expert, :object
 

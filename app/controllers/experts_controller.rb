@@ -3,7 +3,7 @@ class ExpertsController < ApplicationController
 
   #TODO Abomination, needs rewriting
   def index
-    state = get_city_and_category_state(params[:category], params[:city], User.approved.experts.from_twitter)
+    state = get_city_and_category_state(params[:category], params[:city], User.approved.experts.from_twitter.geocoded)
 
     @title            = state[:title]
     @title_tag        = state[:title_tag]
@@ -16,10 +16,12 @@ class ExpertsController < ApplicationController
     @cities      = CITIES.map     { |city_url, city| { name: city[:name], path: state[:city_path].call(city_url) } }
     @cities.unshift({ name: "all cities", path: state[:all_cities_path]})
 
+    @experts = state[:experts].order(is_featured: :desc)
+
     if current_user.present?
-      @experts = state[:experts].by_rating_for_view(current_user)
+      @experts = @experts.by_rating_for_view(current_user)
     else
-      @experts = state[:experts].by_authority
+      @experts = @experts.by_authority
     end
 
     if request.path == '/'
