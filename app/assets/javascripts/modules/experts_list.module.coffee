@@ -3,6 +3,8 @@
 LinkList = require('modules/link_list')
 cx       = React.addons.classSet
 
+expertsLimit = 8
+
 ExpertsList = React.createClass
 
   getDescription: ->
@@ -38,11 +40,15 @@ ExpertsList = React.createClass
     @syncData(value)
 
   getInitialState: (props) ->
+    restExperts = @props.experts.slice(expertsLimit)
+
     description: @props.description
     title: @props.title
     categories: @props.categories
     cities: @props.cities
-    experts: @props.experts
+    restExperts: restExperts
+    visibleExperts: @props.experts.slice(0, expertsLimit)
+    showButtonVisible: restExperts.length > 0
     showUserText: @props.showUserText
 
   currentCityIndex: ->
@@ -54,6 +60,17 @@ ExpertsList = React.createClass
     @state.categories.reduce((memo, category, index) ->
       if window.location.pathname == category.path then index else memo
     , 0)
+
+  updateVisibleExperts: (e) ->
+    e.preventDefault()
+
+    showedExperts = @state.restExperts.slice(0, expertsLimit)
+    restExperts   = @state.restExperts.slice(expertsLimit)
+
+    @setState
+      visibleExperts:    @state.visibleExperts.concat(showedExperts)
+      restExperts:       restExperts
+      showButtonVisible: restExperts.length > 0
 
   render: ->
     <section className="experts-list">
@@ -72,7 +89,7 @@ ExpertsList = React.createClass
       </nav>
       <ul>
         {
-          @state.experts.map (expert) ->
+          @state.visibleExperts.map (expert) ->
             klass = cx(expert: true, featured: expert.is_featured)
 
             <li className={klass} key={expert.id}>
@@ -90,6 +107,12 @@ ExpertsList = React.createClass
             </li>
         }
       </ul>
+      {
+        if @state.showButtonVisible
+          <div className="more-button">
+            <a className="button" href="#" onClick={@updateVisibleExperts}>Show more</a>
+          </div>
+      }
       <section className="become-an-expert">
         <div className="content">
           <h2>Become an expert</h2>

@@ -3,7 +3,7 @@ class ExpertsController < ApplicationController
 
   #TODO Abomination, needs rewriting
   def index
-    state = get_city_and_category_state(params[:category], params[:city], User.approved.experts.from_twitter.geocoded)
+    state = get_city_and_category_state(params[:category], params[:city], User.approved.experts.from_twitter)
 
     @title            = state[:title]
     @title_tag        = state[:title_tag]
@@ -22,10 +22,6 @@ class ExpertsController < ApplicationController
       @experts = @experts.by_rating_for_view(current_user)
     else
       @experts = @experts.by_authority
-    end
-
-    if request.path == '/'
-      @experts = @experts.limit(10)
     end
 
     @is_current_user_expert = current_user.present? && current_user.expert?
@@ -62,7 +58,7 @@ private
         title_tag += " in #{city_data[:name]}"
         description += " in #{city_data[:name]}."
         meta_description += " in #{city_data[:name]} for advice or freelance."
-        experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km).reorder('')
+        experts = experts.geocoded.near([city_data[:latitude], city_data[:longitude]], 48, units: :km).reorder('')
 
         city_path = Proc.new { |city| category_city_experts_path(category: category, city: city) }
         all_cities_path = category_experts_path(category: category)
@@ -82,7 +78,7 @@ private
       title += " in #{city_data[:name]}"
       title_tag += " in #{city_data[:name]}"
       meta_description += " in #{city_data[:name]} for advice or freelance."
-      experts = experts.near([city_data[:latitude], city_data[:longitude]], 48, units: :km).reorder('')
+      experts = experts.geocoded.near([city_data[:latitude], city_data[:longitude]], 48, units: :km).reorder('')
       
       city_path = Proc.new { |city| category_experts_path(category: city) }
       all_cities_path = experts_path
