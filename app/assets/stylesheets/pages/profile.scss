@@ -1,28 +1,23 @@
 .message-popup {
-  transition: opacity $transitionTime $baseTransitionStyle, visibility $transitionTime $baseTransitionStyle;
   visibility: hidden;
   z-index: 9999999;
   opacity: 0;
   overflow: auto;
   @include position(fixed, 0px 0px 0px 0px);
-
-  &:before {
-    content: '';
-    background: $color-grey-medium;
-    opacity: .95;
-
-    @include position(fixed, 0px 0px 0px 0px);
-  }
+  background: $color-grey-medium;
+  min-height: 100%;
+  width: 100%;
 
   &.active {
-    opacity: 1;
+    opacity: .98;
     visibility: visible;
   }
 
-  .wrapper {
-    @include position(absolute, 50px 0 0 50%);
-    transform: translate(-50%,0);
+  .content {
+    margin-top: 100px;
     width: 280px;
+    opacity: 1;
+    text-align: center;
 
     @include respond-to(medium) {
       width: 500px;

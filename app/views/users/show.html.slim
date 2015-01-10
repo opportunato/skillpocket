@@ -29,13 +29,13 @@ section.profile-page
     .caps Social networks
     ul.urls = user.urls
 
-    .message-popup
-      .icon-close
-      .wrapper
-        h2 = "Send #{user.full_name} a private message."
-        = simple_form_for WebMessage.new, html: {class: "message-form"} do |f|
-          = f.input :full_name, placeholder: "Your name", label: false, input_html: { value: (current_user.present? && current_user.full_name) || "" }
-          = f.input :email, placeholder: "Your email", label: false, input_html: { value: (current_user.present? && current_user.email) || "" }
-          = f.input :expert_id, as: "hidden", input_html: { value: user.id }
-          = f.input :body, label: false, input_html: { value: "Hi #{user.first_name}, I found your profile on Skillpocket and would like to hire you." }, hint: "Please be specific about your request"
-          = f.submit "Send", input_html: { class: "button" }
+.message-popup
+  .icon-close
+  .content
+    h2 = "Send #{user.full_name} a private message."
+    = simple_form_for WebMessage.new, html: {class: "message-form"} do |f|
+      = f.input :full_name, placeholder: "Your name", label: false, input_html: { value: (current_user.present? && current_user.full_name) || "" }
+      = f.input :email, placeholder: "Your email", label: false, input_html: { value: (current_user.present? && current_user.email) || "" }
+      = f.input :expert_id, as: "hidden", input_html: { value: user.id }
+      = f.input :body, label: false, input_html: { value: "Hi #{user.first_name}, I found your profile on Skillpocket and would like to hire you." }, hint: "Please be specific about your request"
+      = f.submit "Send", input_html: { class: "button" }
