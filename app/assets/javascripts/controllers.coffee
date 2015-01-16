@@ -77,7 +77,7 @@
     if errors == 0
       $form.find('input[type="submit"]').prop('disabled', true)
       $.post "/web_messages", formData, (data) ->
-        $('.message-popup .wrapper').html(
+        $('.message-popup .content').html(
           "<h2>Message successfully sent! Wait for expert reply!</h2>
           <p>Meanwhile, you can look for more awesome experts <a href='/experts'>here</a>.</p>"
         )
