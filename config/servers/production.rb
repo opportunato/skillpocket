@@ -1,7 +1,7 @@
 namespace :env do
   task :production => [:environment] do
-    set :domain,              'skillpocket.com'
-    set :user,                'deploy'
+    set :domain,              '52.1.177.21'
+    set :user,                'opportunato'
     set :deploy_to,           "/home/#{user}/apps/#{app}"
     set :repository,          "git@github.com:opportunato/skillpocket"
     set :nginx_path,          '/etc/nginx'
